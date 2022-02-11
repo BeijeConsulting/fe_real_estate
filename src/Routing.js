@@ -1,31 +1,47 @@
-import * as RoutingBO from "./backoffice/RoutingBO";
-
+import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import Homepage from "./frontend/screens/Homepage";
-import NotFound from "./common/screens/NotFound";
+// REDUX
 import { Provider } from "react-redux";
-import React from "react";
 import applicationStore from "./applicationStore";
+
+import * as RoutingBO from "./backoffice/RoutingBO";
+
+// FRONTEND SCREENS
+import Home from "./frontend/screens/Home/Home";
+import Login from './frontend/screens/Auth/Login'
+import Signup from './frontend/screens/Auth/Signup'
+import ForgotPsw from './frontend/screens/Auth/ForgotPsw'
+import AboutUs from "./frontend/screens/Home/AboutUs";
+import WhatWeOffer from './frontend/screens/Home/WhatWeOffer'
+import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
+
+// BACKOFFICE SCREENS
+// here
+
+// COMMON
+import NotFound from "./common/screens/NotFound";
+
+
 
 const Routing = () => (
 	<Provider store={applicationStore}>
 		<Routes>
 			{/* FRONTEND */}
-			<Route path="" element={<Homepage />} />
+			<Route path="" >
+				<Route path="" element={<Home />} />
+				<Route path="about-us" element={<AboutUs />} />
+				<Route path="what-we-offer" element={<WhatWeOffer />} />
+				<Route path="assess-building" element={<AssessBuilding />} />
+			</Route>
 
 			<Route path=":advType/:buildingType/:city" element={null} /> 
 			<Route path="building/:buildingId" element={null} />
 
-			<Route path="about-us" element={null} />
-			<Route path="what-we-offer" element={null}>
-				<Route path="assess-building" element={null} />
-			</Route>
-
 			<Route path="auth">
-				<Route path="login" element={null} />
-				<Route path="signup" element={null} />
-				<Route path="forgotpsw" element={null} />
+				<Route path="login" element={<Login />} />
+				<Route path="signup" element={<Signup />} />
+				<Route path="forgotpsw" element={<ForgotPsw />} />
 			</Route>
 
 			<Route path="user">
