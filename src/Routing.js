@@ -13,6 +13,27 @@ const Routing = () => (
 		<Routes>
 			{/* FRONTEND */}
 			<Route path="" element={<Homepage />} />
+
+			<Route path=":advType/:buildingType/:city" element={null} /> 
+			<Route path="building/:buildingId" element={null} />
+
+			<Route path="about-us" element={null} />
+			<Route path="what-we-offer" element={null}>
+				<Route path="assess-building" element={null} />
+			</Route>
+
+			<Route path="auth">
+				<Route path="login" element={null} />
+				<Route path="signup" element={null} />
+				<Route path="forgotpsw" element={null} />
+			</Route>
+
+			<Route path="user">
+				<Route path="profile" element={null} />
+				<Route path="post-ad" element={null} />
+				<Route path="saved-ads" element={null} />
+			</Route>
+
 			{/* BACKOFFICE */}
 			<Route path="admin-login" element={<RoutingBO.Login />} />
 			<Route path="admin" element={<RoutingBO.AsideBar />}>
