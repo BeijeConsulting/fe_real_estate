@@ -55,33 +55,47 @@ class Login extends Component {
 
 	render() {
 		return (
-			<form className="flex flex-col justify-evenly items-center">
-				<h1>Area Privata</h1>
-				<p>
-					Inserisci le credenziali ed accedi alla tua area
-					privata di Domus
-				</p>
-				<input type="email" onChange={this.onChangeEmail} />
-				<input
-					type="password"
-					onChange={this.onChangePassword}
-				/>
-				<div>
-					<input
-						type="checkbox"
-						checked={this.state.rememberMe}
-						onChange={this.onChangeRememberMe}
-					/>
-					Ricorda le mie credenziali
+			<>
+				<div className="hidden md:flex ">
+					<img src="" alt="login" />
 				</div>
-				<button onClick={this.onClickLogin}>Accedi</button>
 				<div>
-					Non hai un account?
-					<a>Registrati adesso</a>
+					<form className="flex flex-col justify-evenly items-center">
+						<h1>Area Privata</h1>
+						<p>
+							Inserisci le credenziali ed accedi
+							alla tua area privata di Domus
+						</p>
+						<input
+							type="email"
+							onChange={this.onChangeEmail}
+						/>
+						<input
+							type="password"
+							onChange={this.onChangePassword}
+						/>
+						<div>
+							<input
+								type="checkbox"
+								checked={this.state.rememberMe}
+								onChange={
+									this.onChangeRememberMe
+								}
+							/>
+							Ricorda le mie credenziali
+						</div>
+						<button onClick={this.onClickLogin}>
+							Accedi
+						</button>
+						<div>
+							Non hai un account?
+							<a>Registrati adesso</a>
+						</div>
+						{/* Routing */}
+						{this.state.logged && <Navigate to={"/"} />}
+					</form>
 				</div>
-				{/* Routing */}
-				{this.state.logged && <Navigate to={"/"} />}
-			</form>
+			</>
 		);
 	}
 }
