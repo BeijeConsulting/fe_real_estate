@@ -17,6 +17,7 @@ import WhatWeOffer from './frontend/screens/Home/WhatWeOffer'
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 
 // BACKOFFICE SCREENS
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 // here
 
 // COMMON
@@ -52,7 +53,7 @@ const Routing = () => (
 
 
 			{/* BACKOFFICE */}
-			<Route path="admin-login" element={<RoutingBO.Login />} />
+			<Route path="admin-auth" element={<AdminLogin />} />
 			<Route path="admin" element={<RoutingBO.AsideBar />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<RoutingBO.User />} />
