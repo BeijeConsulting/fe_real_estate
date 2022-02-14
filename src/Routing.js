@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Profiler } from "react";
 import { Route, Routes } from "react-router-dom";
 
 // REDUX
@@ -15,6 +15,8 @@ import ForgotPsw from './frontend/screens/Auth/ForgotPsw'
 import AboutUs from "./frontend/screens/Home/AboutUs";
 import WhatWeOffer from './frontend/screens/Home/WhatWeOffer'
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
+import User from "./frontend/screens/User/User";
+import Profile from "./frontend/screens/User/Profile";
 
 // BACKOFFICE SCREENS
 // here
@@ -35,7 +37,7 @@ const Routing = () => (
 				<Route path="assess-building" element={<AssessBuilding />} />
 			</Route>
 
-			<Route path=":advType/:buildingType/:city" element={null} /> 
+			<Route path=":advType/:buildingType/:city" element={null} />
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth">
@@ -44,8 +46,8 @@ const Routing = () => (
 				<Route path="forgotpsw" element={<ForgotPsw />} />
 			</Route>
 
-			<Route path="user">
-				<Route path="profile" element={null} />
+			<Route path="user" element={<User />}>
+				<Route path="" element={<Profile />} />
 				<Route path="post-ad" element={null} />
 				<Route path="saved-ads" element={null} />
 			</Route>
