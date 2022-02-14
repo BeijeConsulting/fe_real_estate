@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { setUser } from "../../../redux/ducks/userMeDuck";
 
-import Input from '../../components/UI/Input/Input';
-import Checkbox from '../../components/UI/Checkbox/Checkbox';
+import Input from "../../components/UI/Input/Input";
+import Checkbox from "../../components/UI/Checkbox/Checkbox";
 class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -19,15 +19,8 @@ class Login extends Component {
 				email: "",
 				password: "",
 			},
-			logged: false,
 		};
 	}
-
-	componentDidMount = () => {
-		if (this.props.emailUser !== undefined) {
-			this.setState({ logged: true });
-		}
-	};
 
 	onChangeEmail = (e) => {
 		this.setState({
@@ -51,24 +44,22 @@ class Login extends Component {
 		this.props.dispatch(
 			setUser({ ...this.state.data, password: undefined })
 		);
-
-		this.setState({ logged: true });
 	};
 
 	render() {
 		return (
 			<>
-				<div className='hidden md:flex '>
-					<img src='' alt='login' />
+				<div className="hidden md:flex ">
+					<img src="" alt="login" />
 				</div>
 				<form className="flex flex-col items-center ">
-					<h1 className="capitalise font-extrabold text-4xl">Area Privata</h1>
+					<h1 className="capitalise font-extrabold text-4xl">
+						Area Privata
+					</h1>
 					<p className="font-light text-sm w-2/3 text-center">
-						Inserisci le credenziali ed accedi alla tua area
-						privata di Domus
+						Inserisci le credenziali ed accedi alla tua
+						area privata di Domus
 					</p>
-
-
 
 					<Input
 						type="email"
@@ -85,30 +76,22 @@ class Login extends Component {
 						className="rounded bg-secondary text-white pt-2 pb-2 pl-2 pr-2 mb-3"
 					/>
 
-
-
 					<Checkbox
 						checked={this.state.rememberMe}
 						onChange={this.onChangeRememberMe}
-						label= "Ricorda le mie credenziali"
+						label="Ricorda le mie credenziali"
 						className="font-black"
 					/>
 
-					<button onClick={this.onClickLogin}>Accedi</button>
-					<div>
-						Non hai un account?
-						<a>Registrati adesso</a>
-					</div>
-					{/* Routing */}
-					{this.state.logged && <Navigate to={"/"} />}
+					<button onClick={this.onClickLogin}>
+						Accedi
+					</button>
+					<p>Non hai un account?</p>
+					<Link to={"/auth/signup"}>Registrati adesso</Link>
 				</form>
 			</>
 		);
 	}
 }
 
-const mapStateToProps = (state) => ({
-	emailUser: state.userMeDuck.user.email,
-});
-
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);

@@ -2,10 +2,33 @@ import React, { Component } from "react";
 import Card from "../../components/UI/Card/Card";
 import logo from "../../../common/assets/logo/logo.png";
 
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import { connect } from "react-redux";
 
-import Login from "./Login";
-export default class Auth extends Component {
+class Auth extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {
+			logged: false,
+		};
+	}
+
+	redirectOnAuthenticated = () => {
+		if (this.props.emailUser !== undefined) {
+			console.log("redirect");
+			this.setState({ logged: true });
+		}
+	};
+
+	componentDidMount = () => {
+		this.redirectOnAuthenticated();
+	};
+
+	componentDidUpdate = () => {
+		this.redirectOnAuthenticated();
+	};
+
 	render() {
 		return (
 			<div className="bg-secondary h-screen ">
@@ -22,7 +45,15 @@ export default class Auth extends Component {
 						<Outlet />
 					</Card>
 				</div>
+				{/* Routing */}
+				{this.state.logged && <Navigate to={"/"} />}
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	emailUser: state.userMeDuck.user.email,
+});
+
+export default connect(mapStateToProps)(Auth);
