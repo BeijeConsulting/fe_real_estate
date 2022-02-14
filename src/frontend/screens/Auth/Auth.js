@@ -8,7 +8,6 @@ export default class Auth extends Component {
 			<div>
 				{/* schermo blu */}
 				{/* header with navbar and logo below */}
-
 				{/* CARD WITH FORM */}
 				<div>
 					{/* Login / Registration */}
