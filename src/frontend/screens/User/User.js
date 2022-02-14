@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Outlet, Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare, faBookmark, faHouseChimney } from '@fortawesome/free-solid-svg-icons'
+import { faPenToSquare, faBookmark, faHouseChimney, faList } from '@fortawesome/free-solid-svg-icons'
 
 import "./user.css"
 
@@ -24,7 +24,9 @@ class User extends Component {
                                 <FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
                                 Modifica profilo
                             </Link>
-                            <Link className={"m-2 link-menu"} to={"user/post-advs"}>Annunci pubblicati</Link>
+                            <Link className={"m-2 link-menu"} to={"user/post-advs"}>
+                                <FontAwesomeIcon className={"mr-2"} icon={faList} />
+                                Annunci pubblicati</Link>
                             <Link className={"m-2 link-menu"} to={"user/save-advs"}>
                                 <FontAwesomeIcon className={"mr-2"} icon={faBookmark} />
                                 Annunci salvati
