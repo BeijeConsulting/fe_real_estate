@@ -47,7 +47,7 @@ class Login extends Component {
 
 	onClickLogin = (e) => {
 		e.preventDefault();
-		console.log(this.state.data);
+
 		this.props.dispatch(
 			setUser({ ...this.state.data, password: undefined })
 		);

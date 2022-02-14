@@ -19,7 +19,6 @@ export default class Auth extends Component {
 				<div className="flex items-center justify-center">
 					<Card className="pt-2 pr-4 pl-4 pb-2 w-10/12">
 						{/* Login / Registration */}
-						<Login />
 						<Outlet />
 					</Card>
 				</div>
