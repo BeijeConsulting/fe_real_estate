@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { setUser } from "../../../redux/ducks/userMeDuck";
 
 class Login extends Component {
@@ -17,15 +17,8 @@ class Login extends Component {
 				email: "",
 				password: "",
 			},
-			logged: false,
 		};
 	}
-
-	componentDidMount = () => {
-		if (this.props.emailUser !== undefined) {
-			this.setState({ logged: true });
-		}
-	};
 
 	onChangeEmail = (e) => {
 		this.setState({
@@ -49,8 +42,6 @@ class Login extends Component {
 		this.props.dispatch(
 			setUser({ ...this.state.data, password: undefined })
 		);
-
-		this.setState({ logged: true });
 	};
 
 	render() {
@@ -87,12 +78,11 @@ class Login extends Component {
 						<button onClick={this.onClickLogin}>
 							Accedi
 						</button>
-						<div>
-							Non hai un account?
-							<a>Registrati adesso</a>
-						</div>
-						{/* Routing */}
-						{this.state.logged && <Navigate to={"/"} />}
+
+						<p>Non hai un account?</p>
+						<Link to={"/auth/signup"}>
+							Registrati adesso
+						</Link>
 					</form>
 				</div>
 			</>
@@ -100,8 +90,4 @@ class Login extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
-	emailUser: state.userMeDuck.user.email,
-});
-
-export default connect(mapStateToProps)(Login);
+export default connect()(Login);

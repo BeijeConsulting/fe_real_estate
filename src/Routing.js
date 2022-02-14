@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
@@ -9,8 +9,9 @@ import Auth from "./frontend/screens/Auth/Auth";
 import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
 import Home from "./frontend/screens/Home/Home";
 import Login from "./frontend/screens/Auth/Login";
-import Signup from "./frontend/screens/Auth/Signup";
+import SignUpPrivate from "./frontend/screens/Auth/SignUp/SignUpPrivate";
 import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
+import SignUpBusiness from "./frontend/screens/Auth/SignUp/SignUpBusiness";
 // COMMON
 import NotFound from "./common/screens/NotFound";
 // REDUX
@@ -19,6 +20,7 @@ import applicationStore from "./applicationStore";
 
 // BACKOFFICE SCREENS
 import * as RoutingBO from "./backoffice/RoutingBO";
+import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -38,11 +40,32 @@ const Routing = () => (
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth" element={<Auth />}>
-				<Route path="login" element={<Login />}>
-					<Route path='private' element={null} />
-					<Route path='business' element={null} />
+				<Route
+					path=""
+					// redirect to /auth/login
+					element={<Navigate to={"login"} replace={true} />}
+				/>
+				<Route path="login" element={<Login />} />
+				<Route path="signup" element={<SignUp />}>
+					<Route
+						path=""
+						// redirect to /auth/signup/private
+						element={
+							<Navigate
+								to={"private"}
+								replace={true}
+							/>
+						}
+					/>
+					<Route
+						path="private"
+						element={<SignUpPrivate />}
+					/>
+					<Route
+						path="business"
+						element={<SignUpBusiness />}
+					/>
 				</Route>
-				<Route path="signup" element={<Signup />} />
 				<Route path="forgotpsw" element={<ForgotPsw />} />
 			</Route>
 
