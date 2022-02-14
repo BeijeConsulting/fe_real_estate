@@ -1,44 +1,43 @@
 import React from "react";
+
 import { Route, Routes } from "react-router-dom";
 
+// FRONTEND SCREENS
+import AboutUs from "./frontend/screens/Home/AboutUs";
+import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
+import Auth from "./frontend/screens/Auth/Auth";
+import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
+import Home from "./frontend/screens/Home/Home";
+import Login from "./frontend/screens/Auth/Login";
+import Signup from "./frontend/screens/Auth/Signup";
+import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
+// COMMON
+import NotFound from "./common/screens/NotFound";
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 
-import * as RoutingBO from "./backoffice/RoutingBO";
-
-// FRONTEND SCREENS
-import Home from "./frontend/screens/Home/Home";
-import Login from './frontend/screens/Auth/Login'
-import Signup from './frontend/screens/Auth/Signup'
-import ForgotPsw from './frontend/screens/Auth/ForgotPsw'
-import AboutUs from "./frontend/screens/Home/AboutUs";
-import WhatWeOffer from './frontend/screens/Home/WhatWeOffer'
-import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
-
 // BACKOFFICE SCREENS
-// here
-
-// COMMON
-import NotFound from "./common/screens/NotFound";
-
-
+import * as RoutingBO from "./backoffice/RoutingBO";
 
 const Routing = () => (
 	<Provider store={applicationStore}>
 		<Routes>
 			{/* FRONTEND */}
-			<Route path="" >
+			<Route path="">
 				<Route path="" element={<Home />} />
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
-				<Route path="assess-building" element={<AssessBuilding />} />
+				<Route
+					path="assess-building"
+					element={<AssessBuilding />}
+				/>
 			</Route>
 
-			<Route path=":advType/:buildingType/:city" element={null} /> 
+			<Route path=":advType/:buildingType/:city" element={null} />
 			<Route path="building/:buildingId" element={null} />
 
-			<Route path="auth">
+			<Route path="auth" element={<Auth />}>
 				<Route path="login" element={<Login />} />
 				<Route path="signup" element={<Signup />} />
 				<Route path="forgotpsw" element={<ForgotPsw />} />
