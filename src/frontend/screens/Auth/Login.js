@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Navigate } from "react-router-dom";
 import { setUser } from "../../../redux/ducks/userMeDuck";
 
+import Input from '../../components/UI/Input/Input';
+import Checkbox from '../../components/UI/Checkbox/Checkbox';
 class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -55,33 +57,52 @@ class Login extends Component {
 
 	render() {
 		return (
-			<form className="flex flex-col justify-evenly items-center">
-				<h1>Area Privata</h1>
-				<p>
-					Inserisci le credenziali ed accedi alla tua area
-					privata di Domus
-				</p>
-				<input type="email" onChange={this.onChangeEmail} />
-				<input
-					type="password"
-					onChange={this.onChangePassword}
-				/>
-				<div>
-					<input
-						type="checkbox"
+			<>
+				<div className='hidden md:flex '>
+					<img src='' alt='login' />
+				</div>
+				<form className="flex flex-col items-center ">
+					<h1 className="capitalise font-extrabold text-4xl">Area Privata</h1>
+					<p className="font-light text-sm w-2/3 text-center">
+						Inserisci le credenziali ed accedi alla tua area
+						privata di Domus
+					</p>
+
+
+
+					<Input
+						type="email"
+						onChange={this.onChangeEmail}
+						placeholder="Email"
+						className="rounded bg-secondary pt-2 pb-2 pl-2 pr-2 mb-2 mt-8"
+					/>
+
+					<Input
+						// imageSrc={}
+						type="password"
+						onChange={this.onChangePassword}
+						placeholder="Password"
+						className="rounded bg-secondary pt-2 pb-2 pl-2 pr-2 mb-3"
+					/>
+
+
+
+					<Checkbox
 						checked={this.state.rememberMe}
 						onChange={this.onChangeRememberMe}
+						label= "Ricorda le mie credenziali"
+						className="font-black"
 					/>
-					Ricorda le mie credenziali
-				</div>
-				<button onClick={this.onClickLogin}>Accedi</button>
-				<div>
-					Non hai un account?
-					<a>Registrati adesso</a>
-				</div>
-				{/* Routing */}
-				{this.state.logged && <Navigate to={"/"} />}
-			</form>
+
+					<button onClick={this.onClickLogin}>Accedi</button>
+					<div>
+						Non hai un account?
+						<a>Registrati adesso</a>
+					</div>
+					{/* Routing */}
+					{this.state.logged && <Navigate to={"/"} />}
+				</form>
+			</>
 		);
 	}
 }

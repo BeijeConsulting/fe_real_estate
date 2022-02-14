@@ -42,7 +42,10 @@ const Routing = () => (
 					<Route path='private' element={null} />
 					<Route path='business' element={null} />
 				</Route>
-				<Route path="signup" element={<Signup />} />
+				<Route path="signup" element={<Signup />}>
+					<Route path='private' element={null} />
+					<Route path='business' element={null} />
+				</Route>
 				<Route path="forgotpsw" element={<ForgotPsw />} />
 			</Route>
 
