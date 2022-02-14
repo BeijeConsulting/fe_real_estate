@@ -38,7 +38,10 @@ const Routing = () => (
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth" element={<Auth />}>
-				<Route path="login" element={<Login />} />
+				<Route path="login" element={<Login />}>
+					<Route path='private' element={null} />
+					<Route path='business' element={null} />
+				</Route>
 				<Route path="signup" element={<Signup />} />
 				<Route path="forgotpsw" element={<ForgotPsw />} />
 			</Route>

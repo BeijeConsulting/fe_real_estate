@@ -16,8 +16,15 @@ export default class Auth extends Component {
 				</header>
 
 				<div className="flex items-center justify-center">
-					<Card className="rounded flex items-center justify-center bg-white w-10/12">
+					<Card className="pt-2 pr-4 pl-4 pb-2 w-10/12">
 						{/* Login / Registration */}
+						{/* IN LOGIN */}
+						{/* <div className='hidden md:flex '>
+							<img src='' alt='login' />
+						</div>
+						<div>
+							<p>FORM TO ADD</p>
+						</div> */}
 						<Outlet />
 					</Card>
 				</div>
