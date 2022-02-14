@@ -35,7 +35,7 @@ const Routing = () => (
 				<Route path="assess-building" element={<AssessBuilding />} />
 			</Route>
 
-			<Route path=":advType/:buildingType/:city" element={null} /> 
+			<Route path=":advType/:buildingType/:city" element={null} />
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth">
@@ -49,6 +49,7 @@ const Routing = () => (
 				<Route path="post-ad" element={null} />
 				<Route path="saved-ads" element={null} />
 			</Route>
+
 
 			{/* BACKOFFICE */}
 			<Route path="admin-login" element={<RoutingBO.Login />} />
