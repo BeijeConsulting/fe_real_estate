@@ -1,10 +1,28 @@
 import React, { Component } from "react";
-
+import formValidation from "../../../utils/formValidation";
 import { Navigate, Link } from "react-router-dom";
 
 class SignUpPrivate extends Component {
 	constructor(props) {
 		super(props);
+
+		/**
+		 * See "formValidation.js" -> `validateObject`
+		 */
+		this.dataValidations = {
+			cf: [formValidation.nonEmptyText],
+			name: [formValidation.nonEmptyText],
+			surname: [formValidation.nonEmptyText],
+			username: [formValidation.nonEmptyText],
+			email: [
+				formValidation.nonEmptyText,
+				formValidation.invalidEmail,
+			],
+			password: [
+				formValidation.nonEmptyText,
+				formValidation.invalidPassword,
+			],
+		};
 
 		this.state = {
 			data: {
@@ -73,10 +91,27 @@ class SignUpPrivate extends Component {
 		});
 	};
 
+	// Errors
+
+	areDataValid = () => {
+		const { noError, errors } = formValidation.validateObject(
+			this.state.data,
+			this.dataValidations
+		);
+
+		this.setState({ errors });
+
+		return noError;
+	};
+
+	// Submit
+
 	onClickSignUp = (e) => {
 		e.preventDefault();
 
-		this.redirectToLogin();
+		if (this.areDataValid()) {
+			this.redirectToLogin();
+		}
 	};
 
 	render() {
@@ -87,7 +122,6 @@ class SignUpPrivate extends Component {
 					type="text"
 					onChange={this.onChangeCF}
 				/>
-
 				<input
 					placeholder="name"
 					type="text"

@@ -16,7 +16,6 @@ class Auth extends Component {
 
 	redirectOnAuthenticated = () => {
 		if (this.props.emailUser !== undefined) {
-			console.log("redirect");
 			this.setState({ logged: true });
 		}
 	};

@@ -1,10 +1,28 @@
 import React, { Component } from "react";
 
 import { Navigate, Link } from "react-router-dom";
+import formValidation from "../../../utils/formValidation";
 
 class SignUpBusiness extends Component {
 	constructor(props) {
 		super(props);
+
+		/**
+		 * See "formValidation.js" -> `validateObject`
+		 */
+		this.dataValidations = {
+			vatNumber: [formValidation.nonEmptyText],
+			businessName: [formValidation.nonEmptyText],
+			address: [formValidation.nonEmptyText],
+			email: [
+				formValidation.nonEmptyText,
+				formValidation.invalidEmail,
+			],
+			password: [
+				formValidation.nonEmptyText,
+				formValidation.invalidPassword,
+			],
+		};
 
 		this.state = {
 			data: {
@@ -65,10 +83,27 @@ class SignUpBusiness extends Component {
 		});
 	};
 
+	// Errors
+
+	areDataValid = () => {
+		const { noError, errors } = formValidation.validateObject(
+			this.state.data,
+			this.dataValidations
+		);
+
+		this.setState({ errors });
+
+		return noError;
+	};
+
+	// Submit
+
 	onClickSignUp = (e) => {
 		e.preventDefault();
 
-		this.redirectToLogin();
+		if (this.areDataValid()) {
+			this.redirectToLogin();
+		}
 	};
 
 	render() {

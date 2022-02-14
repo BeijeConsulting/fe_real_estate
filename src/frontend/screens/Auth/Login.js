@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { setUser } from "../../../redux/ducks/userMeDuck";
-
+import storage from "../../utils/storage";
 import Input from "../../components/UI/Input/Input";
 import Checkbox from "../../components/UI/Checkbox/Checkbox";
 class Login extends Component {
@@ -21,6 +21,19 @@ class Login extends Component {
 			},
 		};
 	}
+
+	componentDidMount = () => {
+		const rememberMe = JSON.parse(
+			localStorage.getItem(storage.LOCAL_STORAGE_KEYS.REMEMBER_ME)
+		);
+
+		if (rememberMe !== null && !!rememberMe.email) {
+			this.setState({
+				data: { ...this.state.data, email: rememberMe.email },
+				rememberMe: true,
+			});
+		}
+	};
 
 	onChangeEmail = (e) => {
 		this.setState({
@@ -41,6 +54,22 @@ class Login extends Component {
 	onClickLogin = (e) => {
 		e.preventDefault();
 
+		// remember me
+		let rememberMeObj = {};
+
+		if (this.state.rememberMe) {
+			rememberMeObj = {
+				email: this.state.data.email,
+			};
+		}
+
+		localStorage.setItem(
+			storage.LOCAL_STORAGE_KEYS.REMEMBER_ME,
+			JSON.stringify(rememberMeObj)
+		);
+		//
+
+		// dispatch
 		this.props.dispatch(
 			setUser({ ...this.state.data, password: undefined })
 		);
