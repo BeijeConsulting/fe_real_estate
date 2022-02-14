@@ -1,0 +1,10 @@
+.link-menu {
+    transition: 0.2s;
+    cursor: pointer;
+    transform: scale(1);
+}
+
+.link-menu:hover{
+    color: #ffeba8;
+    transform: scale(1.05);
+}
