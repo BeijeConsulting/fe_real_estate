@@ -1,0 +1,60 @@
+
+.profile-container{
+    margin-right: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+    background-color: var(--gray);
+}
+
+.img-profile{
+    height: 100px;
+    width: 100px;
+    justify-self: center;
+    align-self: center;
+    background-color: gray;
+    border-radius: 50%;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    grid-column-start: 2;
+}
+
+.info-profile-box{
+    margin-left: 1em;
+    padding: 1em;
+    width: 300px;
+    align-self: center;
+    border: 1px solid lightgray;
+    grid-row-start: 2;
+    grid-row-end: 6;
+    grid-column-start: 2;
+}
+
+.info-title{
+    border-bottom: 1px solid lightgray;
+    font-size: 22px;
+}
+
+.contacts-profile-box{
+    padding: 1em;
+    width: 500px;
+    align-self: center;
+    border: 1px solid lightgray;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 4;
+    grid-column-end: 6;
+}
+.contacts-title{
+    border-bottom: 1px solid lightgray;
+    font-size: 22px;
+}
+
+.button-profile{
+    width: 150px;
+    justify-self: center;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-column-end: 3;
+    grid-row-start: 6;
+}

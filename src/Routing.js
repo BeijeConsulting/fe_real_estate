@@ -16,11 +16,13 @@ import AboutUs from "./frontend/screens/Home/AboutUs";
 import WhatWeOffer from './frontend/screens/Home/WhatWeOffer'
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 
+
 // BACKOFFICE SCREENS
-// here
+import Profile from "./backoffice/screens/profile/Profile";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
+import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 
 
 
@@ -35,7 +37,7 @@ const Routing = () => (
 				<Route path="assess-building" element={<AssessBuilding />} />
 			</Route>
 
-			<Route path=":advType/:buildingType/:city" element={null} /> 
+			<Route path=":advType/:buildingType/:city" element={null} />
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth">
@@ -68,7 +70,8 @@ const Routing = () => (
 					path="dashBoard"
 					element={<RoutingBO.DashBoard />}
 				/>
-				<Route path="profile" element={<RoutingBO.User />} />
+				<Route path="profile" element={<Profile />} />
+				<Route path="profile/update-profile" element={<UpdateProfile />} />
 				<Route
 					path="collaborators"
 					element={<RoutingBO.User />}

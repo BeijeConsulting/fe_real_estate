@@ -1,7 +1,7 @@
 import "./index.css";
 
 import { BrowserRouter } from "react-router-dom";
-import React from "react";
+import React, { Profiler } from "react";
 import ReactDOM from "react-dom";
 import Routing from "./Routing";
 import reportWebVitals from "./reportWebVitals";
