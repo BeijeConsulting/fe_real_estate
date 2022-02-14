@@ -74,7 +74,7 @@ class Login extends Component {
 						type="email"
 						onChange={this.onChangeEmail}
 						placeholder="Email"
-						className="rounded bg-secondary pt-2 pb-2 pl-2 pr-2 mb-2 mt-8"
+						className="rounded bg-secondary text-white pt-2 pb-2 pl-2 pr-2 mb-2 mt-8"
 					/>
 
 					<Input
@@ -82,7 +82,7 @@ class Login extends Component {
 						type="password"
 						onChange={this.onChangePassword}
 						placeholder="Password"
-						className="rounded bg-secondary pt-2 pb-2 pl-2 pr-2 mb-3"
+						className="rounded bg-secondary text-white pt-2 pb-2 pl-2 pr-2 mb-3"
 					/>
 
 
