@@ -5,6 +5,10 @@ import { setUser } from "../../../redux/ducks/userMeDuck";
 
 import Input from "../../components/UI/Input/Input";
 import Checkbox from "../../components/UI/Checkbox/Checkbox";
+
+import {faPerson} from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -62,6 +66,7 @@ class Login extends Component {
 					</p>
 
 					<Input
+						image={<FontAwesomeIcon icon={faPerson} />}
 						type="email"
 						onChange={this.onChangeEmail}
 						placeholder="Email"
@@ -69,7 +74,7 @@ class Login extends Component {
 					/>
 
 					<Input
-						// imageSrc={}
+						image={<FontAwesomeIcon icon={faPerson} />}
 						type="password"
 						onChange={this.onChangePassword}
 						placeholder="Password"

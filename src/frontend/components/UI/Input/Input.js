@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 const Input = (props) => {
   return (
     <div>
-      {props.imageSrc &&
-      <img src={props.imageSrc} alt='icon'/> }
+      {props.image }
       <input
         type={props.type}
         onChange={props.onChange}
@@ -20,11 +19,12 @@ const Input = (props) => {
 Input.defaultProps = {
   required: false,
   type: "text",
-  imageSrc: '',
+  image: '',
 };
 
 Input.propTypes = {
   placeholder: PropTypes.string,
+  image: PropTypes.node,
   type: PropTypes.string,
   value: PropTypes.string,
   className: PropTypes.string,
