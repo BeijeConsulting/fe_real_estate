@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import PropTypes from "prop-types";
 
-const Card = () => {
-  return (
-    <div>Card</div>
-  )
-}
+const Card = (props) => {
+	return (
+		<div
+			className={`rounded bg-white flex items-center justify-around  ${props.className}`}
+		>
+			{props.children}
+		</div>
+	);
+};
 
-export default Card
+Card.defaultProps = {
+	children: <div></div>,
+};
+
+Card.propTypes = {
+	children: PropTypes.node,
+	className: PropTypes.string,
+};
+
+export default Card;

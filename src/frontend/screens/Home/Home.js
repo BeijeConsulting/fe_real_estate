@@ -1,7 +1,24 @@
 import React from "react";
+import "./Home.css"
 
-const Homepage = (props) => {
-	return <div>Homepage</div>;
+// COMPONENTS
+import Navbar from '../../components/Navbar/Navbar'
+import Search from "../../components/Search/Search";
+import Footer from '../../components/Footer/Footer'
+const Home = (props) => {
+
+	return (
+		<div className='home-container'>
+			<div className=' h-screen flex flex-col'>
+				<Navbar fixed />
+				<Search />
+			</div>
+			<div className='h-screen'>
+				sncd slide
+			</div>
+			<Footer />
+		</div>
+	)
 };
 
-export default Homepage;
+export default Home;
