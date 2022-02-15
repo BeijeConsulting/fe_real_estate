@@ -3,6 +3,9 @@ import 'antd/dist/antd.css' //Css Antdesign
 
 import { Component } from "react";
 
+// Import Routing
+import { getUsers } from "../../../services/backoffice/usersApi";
+
 // Import from AntDesign
 import { Table, Input, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
@@ -20,11 +23,6 @@ class UsersList extends Component {
             {
                 title: 'Email',
                 dataIndex: 'email',
-            },
-            {
-                title: 'Numero di Telefono',
-                dataIndex: 'telephoneNumber',
-                responsive: ["sm"]
             },
             {
                 title: 'Tipo',
@@ -54,30 +52,33 @@ class UsersList extends Component {
                 ,
             }
         ]
-        //START PSEUDO API
-        let users = []
-
-        for (let i = 3; i < 500; i++) {
-            users.push({
-                key: i,
-                username: "Alberto",
-                email: "prova" + i + "@gmail.com",
-                telephoneNumber: "3283742578"
-            })
-        }
-        //END PSEUDO API
 
         this.state = {
-            users: users, // users get from API
+            users: [],
             columns: columns,
-            isLoading: false,
-            totalElements: 500, // number of users get from API
+            isLoading: true,
+            totalElements: 0
         }
     }
 
+    componentDidMount() {
+        this.fetchUsers()
+    }
+
     searchByName = (value) => {
-        //Chiamata API per la ricerca
-        console.log(value)
+        this.setState({
+            isLoading: true
+        })
+        this.fetchUsers()
+    }
+
+    fetchUsers = async () => {
+        let payload = await getUsers()
+        this.setState({
+            users: payload.fetchedUsers,
+            isLoading: false,
+            totalElements: payload.totalElements
+        })
     }
 
     render() {
@@ -99,7 +100,7 @@ class UsersList extends Component {
                             loading={this.state.isLoading}
                             tableLayout="fixed"
                             scroll={{ scrollToFirstRowOnChange: true }}
-                            pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true}}
+                            pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true }}
                         />
                     </div>
                 </div>
