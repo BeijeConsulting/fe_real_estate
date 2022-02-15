@@ -1,0 +1,10 @@
+{
+	"VATNumber": "VAT number",
+	"businessName": "Business name",
+	"address": "Address",
+	"signUpButton": "Sign Up",
+	"goToLogin": {
+		"label": "Already registered?",
+		"link": "Log in"
+	}
+}

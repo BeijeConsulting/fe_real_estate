@@ -2,7 +2,7 @@ import React from 'react';
 import './carousel2.css'
 
 //Components
-import Card from '../UI/Card/Card';
+import CardCarousel from '../UI/CardCarousel/CardCarousel';
 
 
 //Images
@@ -16,29 +16,33 @@ const Carousel2 = () => {
     return (
         <>
 
-            <h1 class="font-primary text-3xl font-semibold ml-5 mt-6">GLI ULTIMI ANNUNCI</h1>
+            <h1 class="font-primary text-3xl font-semibold ml-5 mt-7">GLI ULTIMI ANNUNCI</h1>
             <div className="fixed-background">
                 <div className="scroll-helper">
                     <div className='cards-container'>
 
-                        <Card
+                        <CardCarousel 
                             title="Casa Colonica Modena"
                             image={Apartment1}
+                            subtitle="Vedi Dettagli"
                         />
 
-                        <Card
+                        <CardCarousel
                             title="Casa studenti Bologna"
                             image={Apartment2}
+                            subtitle="Vedi Dettagli"
                         />
                      
-                        <Card
+                        <CardCarousel
                             title="Appartamento Chiasso"
                             image={Apartment3}
+                            subtitle="Vedi Dettagli"
                         />
 
-                        <Card
+                        <CardCarousel
                             title="Terrazzo Bologna"
                             image={Apartment4}
+                            subtitle="Vedi Dettagli"
                         />
 
                     </div>

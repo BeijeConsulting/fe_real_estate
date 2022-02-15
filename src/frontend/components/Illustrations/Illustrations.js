@@ -13,7 +13,7 @@ const Illustrations = (props) => {
   
 return (
     <>
-    <h1 class="font-primary text-3xl font-semibold ml-5"> PENSATO PER TE </h1>
+    <h1 class="font-primary text-3xl font-semibold ml-5 mt-5"> PENSATO PER TE </h1>
     
     <div className={props.className}>
     

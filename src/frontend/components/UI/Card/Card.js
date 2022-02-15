@@ -1,23 +1,23 @@
-import React from 'react'
-import './card.css'
-
+import React from "react";
+import PropTypes from "prop-types";
 
 const Card = (props) => {
-  return (
-    <>
-    <div class="w-1/3 h-96 border rounded-lg bg-zinc-50 ml-6 mt-6 inline-block">
-    <img class="rounded-lg w-full h-5/6" src={props.image} /> 
-      <h1 className='mthelper'> {props.title} </h1>
-    
-    
-    
-    
-    
-    
-    
-    </div>
-    </>
-  )
-}
+	return (
+		<div
+			className={`rounded bg-white flex items-center justify-around  ${props.className}`}
+		>
+			{props.children}
+		</div>
+	);
+};
 
-export default Card
+Card.defaultProps = {
+	children: <div></div>,
+};
+
+Card.propTypes = {
+	children: PropTypes.node,
+	className: PropTypes.string,
+};
+
+export default Card;

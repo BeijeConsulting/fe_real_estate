@@ -1,9 +1,13 @@
 import Login from "./Login.json";
-import ScreenOne from "./ScreenOne.json";
+import SignUp from "./SignUp.json";
+import SignUpPrivate from "./SignUpPrivate.json";
+import SignUpBusiness from "./SignUpBusiness.json";
 
-const en = {
-	ScreenOne,
+const it = {
 	Login,
+	SignUp,
+	SignUpPrivate,
+	SignUpBusiness,
 };
 
-export default en;
+export default it;
