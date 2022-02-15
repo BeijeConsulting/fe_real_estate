@@ -5,8 +5,8 @@ import { setUser } from "../../../redux/ducks/userMeDuck";
 import storage from "../../utils/storage";
 import Input from "../../components/UI/Input/Input";
 import Checkbox from "../../components/UI/Checkbox/Checkbox";
-
-import {faPerson} from "@fortawesome/free-solid-svg-icons"
+import { withTranslation } from "react-i18next";
+import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Login extends Component {
@@ -80,6 +80,8 @@ class Login extends Component {
 	};
 
 	render() {
+		const { t } = this.props;
+
 		return (
 			<>
 				<div className="hidden md:flex ">
@@ -87,11 +89,10 @@ class Login extends Component {
 				</div>
 				<form className="flex flex-col items-center ">
 					<h1 className="capitalise font-extrabold text-4xl">
-						Area Privata
+						{t("Login.title")}
 					</h1>
 					<p className="font-light text-sm w-2/3 text-center">
-						Inserisci le credenziali ed accedi alla tua
-						area privata di Domus
+						{t("Login.description")}
 					</p>
 
 					<Input
@@ -113,19 +114,21 @@ class Login extends Component {
 					<Checkbox
 						checked={this.state.rememberMe}
 						onChange={this.onChangeRememberMe}
-						label="Ricorda le mie credenziali"
+						label={t("Login.checkBoxLabel")}
 						className="font-black"
 					/>
 
 					<button onClick={this.onClickLogin}>
-						Accedi
+						{t("Login.signInButton")}
 					</button>
-					<p>Non hai un account?</p>
-					<Link to={"/auth/signup"}>Registrati adesso</Link>
+					<p>{t("Login.goToRegistration.label")}</p>
+					<Link to={"/auth/signup"}>
+						{t("Login.goToRegistration.link")}
+					</Link>
 				</form>
 			</>
 		);
 	}
 }
 
-export default connect()(Login);
+export default connect()(withTranslation()(Login));

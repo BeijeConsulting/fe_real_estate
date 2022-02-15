@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 
 import { Navigate, Link } from "react-router-dom";
 import formValidation from "../../../utils/formValidation";
@@ -107,22 +108,24 @@ class SignUpBusiness extends Component {
 	};
 
 	render() {
+		const { t } = this.props;
+
 		return (
 			<form className="flex flex-col justify-evenly items-center">
 				<input
-					placeholder="partita iva"
+					placeholder={t("SignUpBusiness.VATNumber")}
 					type="text"
 					onChange={this.onChangeVatNumber}
 				/>
 
 				<input
-					placeholder="business name"
+					placeholder={t("SignUpBusiness.businessName")}
 					type="text"
 					onChange={this.onChangeBusinessName}
 				/>
 
 				<input
-					placeholder="indirizzo"
+					placeholder={t("SignUpBusiness.address")}
 					type="text"
 					onChange={this.onChangeAddress}
 				/>
@@ -138,10 +141,14 @@ class SignUpBusiness extends Component {
 					onChange={this.onChangePassword}
 				/>
 
-				<button onClick={this.onClickSignUp}>Registrati</button>
+				<button onClick={this.onClickSignUp}>
+					{t("SignUpBusiness.signUpButton")}
+				</button>
 
-				<p>Hai un account?</p>
-				<Link to={"/auth/login"}>Effettua il login</Link>
+				<p>{t("SignUpBusiness.goToLogin.label")}</p>
+				<Link to={"/auth/login"}>
+					{t("SignUpBusiness.goToLogin.link")}
+				</Link>
 				{this.state.redirectToLogin && (
 					<Navigate to={"/auth/login"} />
 				)}
@@ -150,4 +157,4 @@ class SignUpBusiness extends Component {
 	}
 }
 
-export default SignUpBusiness;
+export default withTranslation()(SignUpBusiness);

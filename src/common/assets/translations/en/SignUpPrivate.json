@@ -1,0 +1,10 @@
+{
+	"cf": "Fiscal code",
+	"name": "Name",
+	"surname": "Surname",
+	"signUpButton": "Sign Up",
+	"goToLogin": {
+		"label": "Already registered?",
+		"link": "Log in"
+	}
+}
