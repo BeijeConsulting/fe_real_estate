@@ -10,7 +10,7 @@ const BlueSection = (props) => {
          
          {props.subtext} 
        
-         <button class="text-base border-2 rounded-lg text-yellow-400 border-yellow-400 cursor: pointer; p-3"> PUBBLICA ANNUNCIO</button>
+         <button class="text-base border-2 rounded-lg text-yellow-400 border-yellow-400 cursor: pointer; p-3 sm:mt-9"> PUBBLICA ANNUNCIO</button>
         
         </div>
 
