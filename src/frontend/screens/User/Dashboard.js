@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
+import BlueSection from '../../components/BlueSection/BlueSection'
 
 
 class Dashboard extends Component {
@@ -35,8 +36,8 @@ class Dashboard extends Component {
                 <div className='flex flex-col m-2 p-2'>
                     <h1 className='text-xl font-bold'>I tuoi annunci:</h1>
                     <h4>Non hai pubblicato alcun annuncio...</h4>
-                    <h4>Pubblica un nuovo annuncio</h4>
-                    <button>Nuovo annuncio</button>
+                    <BlueSection
+                        text="Pubblica un nuovo annuncio gratis" />
                 </div>
             </>
         )
