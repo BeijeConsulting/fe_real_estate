@@ -1,0 +1,14 @@
+.scroll-helper {
+        position: absolute;
+        overflow: auto;
+    }
+    
+    
+.cards-container {
+    overflow-x: auto;
+    white-space: nowrap;
+    height:600px;
+}
+
+
+

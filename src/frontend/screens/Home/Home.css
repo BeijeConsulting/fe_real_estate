@@ -1,0 +1,8 @@
+
+.illustrations-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: row;
+    margin-top: 2%;
+}
