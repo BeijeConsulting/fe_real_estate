@@ -15,6 +15,7 @@ import User from "./frontend/screens/User/User";
 import EditProfile from "./frontend/screens/User/EditProfile";
 import PostAdvs from "./frontend/screens/User/PostAdvs";
 import SaveAdvs from "./frontend/screens/User/SaveAdvs";
+import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
 
 // COMMON
@@ -23,12 +24,9 @@ import NotFound from "./common/screens/NotFound";
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 
-import * as RoutingBO from "./backoffice/RoutingBO";
-
-
 // BACKOFFICE SCREENS
 import * as RoutingBO from "./backoffice/RoutingBO";
-import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
+
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -38,18 +36,14 @@ const Routing = () => (
 				<Route path="" element={<Home />} />
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
-				<Route
-					path="assess-building"
-					element={<AssessBuilding />}
-				/>
+				<Route path="assess-building" element={<AssessBuilding />} />
 			</Route>
 
 			<Route path=":advType/:buildingType/:city" element={null} />
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth" element={<Auth />}>
-				<Route
-					path=""
+				<Route path=""
 					// redirect to /auth/login
 					element={<Navigate to={"login"} replace={true} />}
 				/>
