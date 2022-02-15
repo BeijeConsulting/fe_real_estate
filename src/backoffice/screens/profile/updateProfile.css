@@ -1,7 +1,5 @@
-.update-profile-container{
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--gray);
+.update-profile-container{    
+    height: 70vh;
 }
 
 .update-profile-form{
@@ -65,7 +63,7 @@
 @media (max-width: 650px){
 
     .update-profile-container{
-        height: fit-content ;
+        overflow-y: scroll;
     }
     .update-profile-form{
         display: flex;
@@ -76,16 +74,17 @@
     }
     .update-profile-upload{
         margin: 0 auto;
+        margin-top: 10px;
     }
     .update-profile-info{
         margin: 0;
-        padding: 1em 0;
+        padding: 0;
     }
     .update-profile-contacts{
         margin: 0;
-        padding: 0 1em;
+        padding: 0;
     }
     .update-profile-button{
-        margin: 0 auto;
+        margin: 1em auto;
     }
 }

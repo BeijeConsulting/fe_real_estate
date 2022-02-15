@@ -84,7 +84,7 @@ const Cms = (props) => {
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>Domus ©2022 Created by Beije Team</Footer>
                 </Layout>
-            </Layout>,
+            </Layout>
         </>
     );
 };

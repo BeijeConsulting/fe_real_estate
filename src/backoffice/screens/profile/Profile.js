@@ -33,12 +33,16 @@ const Profile = () => {
         <div className='profile-container' >
             <span className='img-profile'></span>
             <div className='info-profile-box'>
-                <h3 className='info-title'>Info</h3>
                 <List
+                    className="info-list"
+                    size="small"
+                    header={<h4 className="info-profile-title">Info</h4>}
                     itemLayout="vertical"
                     dataSource={data}
                     renderItem={item => (
-                        <List.Item>
+                        <List.Item
+                        className="info-profile-items"
+                        >
                             <List.Item.Meta
                                 title={'Nome'}
                                 description={item.name}
@@ -61,8 +65,9 @@ const Profile = () => {
             </div>
 
             <div className='contacts-profile-box'>
-                <h3 className='contacts-title'>Contatti</h3>
                 <List
+                    className="contacts-list"
+                    header={<h3 className='contacts-title'>Contatti</h3>}
                     itemLayout="vertical"
                     dataSource={dataContacts}
                     renderItem={item => (
