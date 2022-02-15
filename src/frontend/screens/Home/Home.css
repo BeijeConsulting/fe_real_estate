@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 .illustrations-container {
     display: flex;
@@ -6,3 +7,13 @@
     flex-direction: row;
     margin-top: 2%;
 }
+=======
+html{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+  }
+>>>>>>> 4d1721ac4f4efcb2785948d3456ed5dd6a2aa179
