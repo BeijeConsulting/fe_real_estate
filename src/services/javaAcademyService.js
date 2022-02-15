@@ -1,10 +1,9 @@
 import axios from "axios";
 
-const javaAcademyServiceInstance = axios.create({
+export const javaAcademyServiceInstance = axios.create({
 	baseURL: "http://domus-test.eba-733cj72h.eu-south-1.elasticbeanstalk.com",
 });
 
-const getUsers = () => javaAcademyServiceInstance.get("/users");
 
 const signIn = ({ username, password }) =>
 	javaAcademyServiceInstance.post(
@@ -21,7 +20,6 @@ const signIn = ({ username, password }) =>
 	);
 
 const javaAcademyService = {
-	getUsers,
 	signIn,
 };
 

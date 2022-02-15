@@ -4,6 +4,15 @@ import { Route, Routes, Navigate } from "react-router-dom";
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
+
+// BACKOFFICE SCREENS
+// here
+import Cms from "./backoffice/screens/cms/Cms";
+
+// COMMON
+import NotFound from "./common/screens/NotFound";
+import UsersList from "./backoffice/screens/UsersList/UsersList";
+
 import Auth from "./frontend/screens/Auth/Auth";
 import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
 import Home from "./frontend/screens/Home/Home";
@@ -18,13 +27,12 @@ import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
 
-// COMMON
-import NotFound from "./common/screens/NotFound";
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 
 // BACKOFFICE SCREENS
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 import * as RoutingBO from "./backoffice/RoutingBO";
 
 
@@ -78,11 +86,12 @@ const Routing = () => (
 				<Route path="save-advs" element={<SaveAdvs />} />
 			</Route>
 
+
 			{/* BACKOFFICE */}
-			<Route path="admin-login" element={<RoutingBO.Login />} />
-			<Route path="admin" element={<RoutingBO.AsideBar />}>
+			<Route path="admin-auth" element={<AdminLogin />} />
+			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
-				<Route path="users" element={<RoutingBO.User />} />
+				<Route path="users" element={<UsersList />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
 				<Route
 					path="advertisements"
@@ -96,7 +105,10 @@ const Routing = () => (
 					path="dashBoard"
 					element={<RoutingBO.DashBoard />}
 				/>
-				<Route path="profile" element={<RoutingBO.User />} />
+				<Route
+					path="profile"
+					element={<RoutingBO.User />}
+				/>
 				<Route
 					path="collaborators"
 					element={<RoutingBO.User />}

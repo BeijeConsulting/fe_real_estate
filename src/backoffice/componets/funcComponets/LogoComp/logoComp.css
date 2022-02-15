@@ -1,0 +1,8 @@
+.container-logoComp{
+    border-radius: 100%;
+    overflow: hidden;
+}
+.container-logoComp img{
+    height: 100%;
+    width: 100%;
+} 
