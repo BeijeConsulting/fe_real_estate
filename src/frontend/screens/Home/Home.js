@@ -11,8 +11,9 @@ const Home = (props) => {
 
 	return (
 		<div className='home-container'>
+			<Navbar fixed />
+
 			<div className=' h-screen flex flex-col'>
-				<Navbar fixed />
 				<Search />
 			</div>
 			<div className='h-screen'>

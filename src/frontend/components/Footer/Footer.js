@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='bg-gray  py-6 font-primary'>
+    <div className='bg-gray  pt-7 font-primary relative'>
       <div className='lg:max-w-6xl mx-auto flex flex-row'>
         <div className='flex-1'>
           <p className='font-semibold lg:text-3xl'>ASSITENZA</p>
@@ -20,7 +20,14 @@ const Footer = () => {
         </div>
         <div className='flex-1'>
           <p className='font-semibold lg:text-3xl'>INFO LEGALI</p>
+          <p>COOKIES</p>
+          <p>GESTIONE CONSENSO</p>
+          <p>SICUREZZA</p>
+          <p>LEGGI INFORMATIVA</p>
         </div>
+      </div>
+      <div className='flex p-2 mt-6 bg-gray-300 justify-center items-center'>
+        <p className='font-semibold'>DOMUS S.R.L © {new Date().getFullYear()} - P.IVA 03183450232</p>
       </div>
     </div>
   )
