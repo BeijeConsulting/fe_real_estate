@@ -1,10 +1,29 @@
 import React, { Component } from "react";
-
+import formValidation from "../../../utils/formValidation";
 import { Navigate, Link } from "react-router-dom";
+import { withTranslation } from "react-i18next";
 
 class SignUpPrivate extends Component {
 	constructor(props) {
 		super(props);
+
+		/**
+		 * See "formValidation.js" -> `validateObject`
+		 */
+		this.dataValidations = {
+			cf: [formValidation.nonEmptyText],
+			name: [formValidation.nonEmptyText],
+			surname: [formValidation.nonEmptyText],
+			username: [formValidation.nonEmptyText],
+			email: [
+				formValidation.nonEmptyText,
+				formValidation.invalidEmail,
+			],
+			password: [
+				formValidation.nonEmptyText,
+				formValidation.invalidPassword,
+			],
+		};
 
 		this.state = {
 			data: {
@@ -73,29 +92,47 @@ class SignUpPrivate extends Component {
 		});
 	};
 
+	// Errors
+
+	areDataValid = () => {
+		const { noError, errors } = formValidation.validateObject(
+			this.state.data,
+			this.dataValidations
+		);
+
+		this.setState({ errors });
+
+		return noError;
+	};
+
+	// Submit
+
 	onClickSignUp = (e) => {
 		e.preventDefault();
 
-		this.redirectToLogin();
+		if (this.areDataValid()) {
+			this.redirectToLogin();
+		}
 	};
 
 	render() {
+		const { t } = this.props;
+
 		return (
 			<form className="flex flex-col justify-evenly items-center">
 				<input
-					placeholder="cf"
+					placeholder={t("SignUpPrivate.cf")}
 					type="text"
 					onChange={this.onChangeCF}
 				/>
-
 				<input
-					placeholder="name"
+					placeholder={t("SignUpPrivate.name")}
 					type="text"
 					onChange={this.onChangeName}
 				/>
 
 				<input
-					placeholder="surname"
+					placeholder={t("SignUpPrivate.surname")}
 					type="text"
 					onChange={this.onChangeSurname}
 				/>
@@ -117,10 +154,10 @@ class SignUpPrivate extends Component {
 					onChange={this.onChangePassword}
 				/>
 
-				<button onClick={this.onClickSignUp}>Registrati</button>
+				<button onClick={this.onClickSignUp}>{t("SignUpPrivate.signUpButton")}</button>
 
-				<p>Hai un account?</p>
-				<Link to={"/auth/login"}>Effettua il login</Link>
+				<p>{t("SignUpPrivate.goToLogin.label")}</p>
+				<Link to={"/auth/login"}>{t("SignUpPrivate.goToLogin.link")}</Link>
 				{this.state.redirectToLogin && (
 					<Navigate to={"/auth/login"} />
 				)}
@@ -129,4 +166,4 @@ class SignUpPrivate extends Component {
 	}
 }
 
-export default SignUpPrivate;
+export default withTranslation()(SignUpPrivate);

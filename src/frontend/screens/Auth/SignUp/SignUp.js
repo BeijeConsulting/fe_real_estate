@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withTranslation } from "react-i18next";
 
 import { Link, Outlet } from "react-router-dom";
 
@@ -12,11 +13,19 @@ class SignUp extends Component {
 	}
 
 	render() {
+		const { t } = this.props;
+
 		return (
 			<div className="flex flex-col items-center justify-evenly">
 				<div>
-					<Link to={"private"}>Private</Link> {" | "}
-					<Link to={"business"}>Business</Link>
+					<Link to={"private"}>
+						{" "}
+						{t("SignUp.goToPrivateSignUp")}{" "}
+					</Link>{" "}
+					{" | "}
+					<Link to={"business"}>
+						{t("SignUp.goToBusinessSignUp")}
+					</Link>
 				</div>
 				<Outlet />
 			</div>
@@ -24,4 +33,4 @@ class SignUp extends Component {
 	}
 }
 
-export default SignUp;
+export default withTranslation()(SignUp);

@@ -1,0 +1,10 @@
+{
+	"cf": "Codice fiscale",
+	"name": "Nome",
+	"surname": "Cognome",
+	"signUpButton": "Registrati",
+	"goToLogin": {
+		"label": "Hai un account?",
+		"link": "Effettua il login"
+	}
+}
