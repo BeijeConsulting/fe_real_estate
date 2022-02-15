@@ -101,6 +101,7 @@ class Login extends Component {
 						onChange={this.onChangeUsername}
 						placeholder="Username"
 						className="rounded bg-secondary text-white pt-2 pb-2 pl-2 pr-2 mb-2 mt-8"
+						value={this.state.data.username}
 					/>
 
 					<Input
