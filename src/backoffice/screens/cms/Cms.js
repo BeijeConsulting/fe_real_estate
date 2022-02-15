@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './cms.css';
 import 'antd/dist/antd.css';
 import { Outlet, useNavigate } from "react-router-dom";
+
+import { connect } from "react-redux"
 
 // ANT DESIGN
 import { UserOutlined, HomeOutlined } from '@ant-design/icons';
@@ -26,6 +28,12 @@ const Cms = (props) => {
             });
         setTitle(title)
     }
+
+    useEffect( ()=> {
+         if(!props.admin.username) {
+            navigate("/admin-auth")
+        } 
+    }, [])
 
     return (
         <>
@@ -92,4 +100,9 @@ const Cms = (props) => {
 Cms.propTypes = {
 
 };
-export default Cms;
+
+const mapStateToProps = state => ({
+    admin: state.adminDuck.admin
+})
+
+export default connect(mapStateToProps) (Cms);

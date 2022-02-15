@@ -48,9 +48,9 @@ class AdminLogin extends PureComponent {
         })
     }
     /* AUTH funcs */
-    login = () => {
-        authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
-        this.redirect();
+    login = async () => {
+        await authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
+        this.redirect()
     }
 
     redirect = () => {

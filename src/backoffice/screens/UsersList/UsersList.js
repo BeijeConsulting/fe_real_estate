@@ -4,7 +4,7 @@ import 'antd/dist/antd.css' //Css Antdesign
 import { Component } from "react";
 
 // Import Routing
-import javaAcademyService from "../../../services/javaAcademyService";
+import { getUsers } from "../../../services/backoffice/usersApi";
 
 // Import from AntDesign
 import { Table, Input, Tag, Space } from "antd";
@@ -53,8 +53,8 @@ class UsersList extends Component {
             }
         ]
 
-    this.state = {
-            users: [], 
+        this.state = {
+            users: [],
             columns: columns,
             isLoading: true,
             totalElements: 0
@@ -72,23 +72,13 @@ class UsersList extends Component {
         this.fetchUsers()
     }
 
-    fetchUsers = () => {
-        javaAcademyService.getUsers().then((response) => {
-            let fetchedUsers = response.data.map( (user)=> {
-                return ({
-                    username: user.username,
-                    key: user.id,
-                    email: user.email,
-                    commercialId: user.business
-                })
-            })
-            this.setState({
-                users : fetchedUsers,
-                isLoading: false,
-                totalElements: response.data.size
-            })
-        }
-        )
+    fetchUsers = async () => {
+        let payload = await getUsers()
+        this.setState({
+            users: payload.fetchedUsers,
+            isLoading: false,
+            totalElements: payload.totalElements
+        })
     }
 
     render() {
