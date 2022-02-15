@@ -1,0 +1,13 @@
+.what-we-offer__insert-ad {
+	background-image: url("../../assets/images/jardin.jpeg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.what-we-offer__assess-property {
+	background-image: url("../../assets/images/colorful-home.jpeg");
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
