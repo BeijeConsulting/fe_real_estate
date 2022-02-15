@@ -1,26 +1,25 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { setUser } from "../../../redux/ducks/userMeDuck";
-import storage from "../../utils/storage";
+import storage from "../../../common/utils/storage";
 import Input from "../../components/UI/Input/Input";
 import Checkbox from "../../components/UI/Checkbox/Checkbox";
 import { withTranslation } from "react-i18next";
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import authApi from "../../../services/frontend/authApi";
 class Login extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
 			data: {
-				email: "",
+				username: "",
 				password: "",
 			},
 			rememberMe: false,
 			errors: {
-				email: "",
+				username: "",
 				password: "",
 			},
 		};
@@ -39,7 +38,7 @@ class Login extends Component {
 		}
 	};
 
-	onChangeEmail = (e) => {
+	onChangeUsername = (e) => {
 		this.setState({
 			data: { ...this.state.data, email: e.target.value },
 		});
@@ -63,19 +62,16 @@ class Login extends Component {
 
 		if (this.state.rememberMe) {
 			rememberMeObj = {
-				email: this.state.data.email,
+				email: this.state.data.username,
 			};
 		}
-
-		localStorage.setItem(
-			storage.LOCAL_STORAGE_KEYS.REMEMBER_ME,
-			JSON.stringify(rememberMeObj)
-		);
-		//
-
-		// dispatch
-		this.props.dispatch(
-			setUser({ ...this.state.data, password: undefined })
+		authApi.signIn(
+			{
+				username: this.state.data.username,
+				password: this.state.data.password,
+			},
+			rememberMeObj,
+			this.props.dispatch
 		);
 	};
 
@@ -97,9 +93,9 @@ class Login extends Component {
 
 					<Input
 						image={<FontAwesomeIcon icon={faPerson} />}
-						type="email"
-						onChange={this.onChangeEmail}
-						placeholder="Email"
+						type="text"
+						onChange={this.onChangeUsername}
+						placeholder="Username"
 						className="rounded bg-secondary text-white pt-2 pb-2 pl-2 pr-2 mb-2 mt-8"
 					/>
 

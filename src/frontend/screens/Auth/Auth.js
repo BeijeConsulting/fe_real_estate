@@ -16,7 +16,7 @@ class Auth extends Component {
 	}
 
 	redirectOnAuthenticated = () => {
-		if (this.props.emailUser !== undefined) {
+		if (this.props.username !== undefined) {
 			this.setState({ logged: true });
 		}
 	};
@@ -61,7 +61,7 @@ class Auth extends Component {
 }
 
 const mapStateToProps = (state) => ({
-	emailUser: state.userMeDuck.user.email,
+	username: state.userMeDuck.user.username,
 });
 
 export default connect(mapStateToProps)(Auth);
