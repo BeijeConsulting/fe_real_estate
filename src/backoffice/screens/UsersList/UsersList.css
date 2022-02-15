@@ -1,15 +1,11 @@
 .users-list-background {
     display: flex;
     justify-content: center;
-    background-color: var(--gray);
-    padding: 10px;
 }
 
 .users-list-container{
     background-color: white;
     width: 100%;
-    padding: 10px;
-    margin: 10px;
     border-radius: 10px;
 }
 
@@ -17,20 +13,17 @@
     border: 1px solid var(--gray);
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 10px;
+    padding-right: 20%;
 }
-
 
 @media only screen and (min-width: 600px) {
     
-
-    .users-list-background {
-        padding-right: 100px;
-        padding-left: 100px;
-    }
-
     .users-list-table {
         width: 100%;
-        overflow-x: scroll;
+    }
+
+    .users-list-container{
+        padding: 10px;
+        margin: 10px;
     }
 }

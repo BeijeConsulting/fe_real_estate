@@ -1,4 +1,4 @@
-import "./usersList.css"
+import "./UsersList.css"
 import 'antd/dist/antd.css' //Css Antdesign
 
 import { Component } from "react";
@@ -24,6 +24,7 @@ class UsersList extends Component {
             {
                 title: 'Numero di Telefono',
                 dataIndex: 'telephoneNumber',
+                responsive: ["sm"]
             },
             {
                 title: 'Tipo',
@@ -41,8 +42,10 @@ class UsersList extends Component {
                     return (
                         <Tag color={color}>{type}</Tag>
                     )
-                }
+                },
+                responsive: ["sm"]
             },
+
             {
                 title: '',
                 dataIndex: 'actions',
@@ -51,48 +54,29 @@ class UsersList extends Component {
                 ,
             }
         ]
-        //Questo va sostituito dalla chiamata API
-        let users = [
-            {
-                key: "0",
-                username: "Alberto",
-                email: "prova@gmail.com",
-                telephoneNumber: "3283742578",
-                commercialId: true
-            },
-            {
-                key: "1",
-                username: "Alberto",
-                email: "prova@gmail.com",
-                telephoneNumber: "3283742578"
-            },
-            {
-                key: "2",
-                username: "Alberto",
-                email: "prova@gmail.com",
-                telephoneNumber: "3283742578"
-            }
-        ]
+        //START PSEUDO API
+        let users = []
 
-        for(let i=3; i<500; i++) {
-            users.push({     
-                    key: i,
-                    username: "Alberto",
-                    email: "prova@gmail.com",
-                    telephoneNumber: "3283742578"   
+        for (let i = 3; i < 500; i++) {
+            users.push({
+                key: i,
+                username: "Alberto",
+                email: "prova" + i + "@gmail.com",
+                telephoneNumber: "3283742578"
             })
         }
-        //END pseudo API
+        //END PSEUDO API
 
         this.state = {
-            users: users,
+            users: users, // users get from API
             columns: columns,
             isLoading: false,
-            totalElements: 5
+            totalElements: 500, // number of users get from API
         }
     }
 
     searchByName = (value) => {
+        //Chiamata API per la ricerca
         console.log(value)
     }
 
@@ -101,21 +85,22 @@ class UsersList extends Component {
             <div className="users-list-background">
                 <div className="users-list-container">
                     <div className="users-list-header">
-                        <Search 
-                        placeholder="Search by username"
-                        enterButton
-                        allowClear 
-                        onSearch={this.searchByName}
-                        className="icon-correction"
-                        size="large"/>
+                        <Search
+                            placeholder="Search by username"
+                            enterButton
+                            allowClear
+                            onSearch={this.searchByName}
+                            className="icon-correction"
+                            size="large" />
                     </div>
                     <div className="users-list-table">
                         <Table dataSource={this.state.users}
-                         columns={this.state.columns} 
-                         loading={this.state.isLoading}
-                         tableLayout="fixed"
-                         pagination = {{showSizeChanger: false, total: this.state.totalElements}}
-                         />
+                            columns={this.state.columns}
+                            loading={this.state.isLoading}
+                            tableLayout="fixed"
+                            scroll={{ scrollToFirstRowOnChange: true }}
+                            pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true}}
+                        />
                     </div>
                 </div>
             </div>
