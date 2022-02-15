@@ -4,18 +4,7 @@ import { setUser } from "../../redux/ducks/userMeDuck";
 
 const signIn = ({ username, password }, rememberMeObj, dispatch) =>
 	javaAcademyService
-		.post(
-			"/signin",
-			{
-				username,
-				password,
-			},
-			{
-				headers: {
-					"Content-type": "application/json",
-				},
-			}
-		)
+		.signIn({ username, password })
 		.then(({ data: { id, permission, token, username } }) => {
 			console.log(permission);
 			localStorage.setItem(
