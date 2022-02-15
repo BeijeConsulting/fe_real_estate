@@ -21,6 +21,8 @@ import Login from "./frontend/screens/Auth/Login";
 import SignUpPrivate from "./frontend/screens/Auth/SignUp/SignUpPrivate";
 import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
 import SignUpBusiness from "./frontend/screens/Auth/SignUp/SignUpBusiness";
+import User from "./frontend/screens/User/User";
+
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
@@ -77,7 +79,7 @@ const Routing = () => (
 				<Route path="forgotpsw" element={<ForgotPsw />} />
 			</Route>
 
-			<Route path="user">
+			<Route path="user" element={<User />}>
 				<Route path="profile" element={null} />
 				<Route path="post-ad" element={null} />
 				<Route path="saved-ads" element={null} />
@@ -102,9 +104,9 @@ const Routing = () => (
 					path="dashBoard"
 					element={<RoutingBO.DashBoard />}
 				/>
-				<Route 
-				path="profile" 
-				element={<RoutingBO.User />} 
+				<Route
+					path="profile"
+					element={<RoutingBO.User />}
 				/>
 				<Route
 					path="collaborators"
