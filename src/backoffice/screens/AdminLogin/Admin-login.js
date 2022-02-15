@@ -89,7 +89,9 @@ class AdminLogin extends PureComponent {
                             </div>
                             <div className="basis-2/4 flex justify-end">
                                 {/* provvisorio */}
-                                <Button></Button>
+                                <Button
+                                    label="loggati"
+                                />
                                 <button onClick={this.login}>
                                     loggati
                                 </button>
