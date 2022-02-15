@@ -7,7 +7,8 @@ import { setAdmin } from "../../../redux/ducks/adminDuck"
 import { Link, Navigate } from "react-router-dom"
 /* func components */
 import LogoComp from "../../componets/funcComponets/LogoComp/LogoComp"
-
+import Input from "../../../frontend/components/UI/Input/Input"
+import Button from "../../../frontend/components/UI/Button/Button"
 
 class AdminLogin extends PureComponent {
 
@@ -69,29 +70,26 @@ class AdminLogin extends PureComponent {
                     </section>
                     <section className="box-inputs">
                         <div>
-                            {/* provvisorio */}
                             <label>
                                 Indirizzo email
                             </label>
-                            <br />
-                            <input type="text" onChange={this.setMail} />
+                            <Input onChange={this.setMail} />
                         </div>
                         <div>
-                            {/* provvisorio */}
                             <label>
                                 Password
                             </label>
-                            <br />
-                            <input type="text" onChange={this.setPassword} />
+                            <Input onChange={this.setPassword} />
                         </div>
                         <section className="mt-4 flex">
-                            <div className="basis-2/4">
-                                {/* provvisorio */}
-                                <input type={"checkbox"} />
-                                ricordami
+                            <div className="basis-2/4  flex">
+                                <Input type={"checkbox"} />
+                                <span className="ml-1">ricordami</span>
+
                             </div>
                             <div className="basis-2/4 flex justify-end">
                                 {/* provvisorio */}
+                                <Button></Button>
                                 <button onClick={this.login}>
                                     loggati
                                 </button>
@@ -99,7 +97,7 @@ class AdminLogin extends PureComponent {
                         </section>
                     </section>
                     <footer>
-                        <div><Link to={"/"}>Torna a Homa</Link></div>
+                        <div><Link to={"/"}>Torna a Home</Link></div>
                     </footer>
                 </div>
                 {
