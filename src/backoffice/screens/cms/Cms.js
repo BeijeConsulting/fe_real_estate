@@ -39,15 +39,6 @@ const Cms = (props) => {
                     onCollapse={(collapsed, type) => {
                         console.log(collapsed, type);
                     }}
-                    style={{
-                        overflow: 'auto',
-                        height: '100vh',
-                        position: 'fixed',
-                        left: 0,
-                        top: 0,
-                        bottom: 0,
-                        zIndex: 2,
-                      }}
                 >
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
@@ -75,8 +66,8 @@ const Cms = (props) => {
                         <Button type="link" danger >Logout</Button>
                     </div>
                 </Sider>
-                <Layout >
-                    <Header className={"site-layout-sub-header-backgroun header-style"} style={{position: 'fixed', width: '100%' , padding: 0, backgroundColor: 'var(--gray)', height: 70, marginLeft: 210, zIndex: 1 }} >
+                <Layout>
+                    <Header className={"site-layout-sub-header-backgroun header-style"} style={{ padding: 0, backgroundColor: 'var(--gray)' }} >
                         <div>  <h2 className='nav-title'>{title}</h2> </div>
                         <div>
                             <ul className='languages'>
@@ -85,8 +76,9 @@ const Cms = (props) => {
                             </ul>
                         </div>
                     </Header>
-                    <Content style={{ marginLeft: 210, marginTop: 80}}>
+                    <Content style={{ margin: '24px 16px 0' }}>
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+
                             <Outlet />
                         </div>
                     </Content>
