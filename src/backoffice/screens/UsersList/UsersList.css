@@ -1,15 +1,13 @@
 .users-list-background {
     display: flex;
     justify-content: center;
-    overflow-y: scroll;
 }
 
 .users-list-container{
-    display: flex;
-    flex-wrap: wrap;
     background-color: white;
     height: 70vh;
     border-radius: 10px;
+    overflow-y: scroll;
 }
 
 .users-list-header {

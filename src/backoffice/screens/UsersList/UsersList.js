@@ -3,6 +3,9 @@ import 'antd/dist/antd.css' //Css Antdesign
 
 import { Component } from "react";
 
+// Import Routing
+import javaAcademyService from "../../../services/javaAcademyService";
+
 // Import from AntDesign
 import { Table, Input, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
@@ -20,11 +23,6 @@ class UsersList extends Component {
             {
                 title: 'Email',
                 dataIndex: 'email',
-            },
-            {
-                title: 'Numero di Telefono',
-                dataIndex: 'telephoneNumber',
-                responsive: ["sm"]
             },
             {
                 title: 'Tipo',
@@ -54,30 +52,43 @@ class UsersList extends Component {
                 ,
             }
         ]
-        //START PSEUDO API
-        let users = []
 
-        for (let i = 3; i < 500; i++) {
-            users.push({
-                key: i,
-                username: "Alberto",
-                email: "prova" + i + "@gmail.com",
-                telephoneNumber: "3283742578"
-            })
-        }
-        //END PSEUDO API
-
-        this.state = {
-            users: users, // users get from API
+    this.state = {
+            users: [], 
             columns: columns,
-            isLoading: false,
-            totalElements: 500, // number of users get from API
+            isLoading: true,
+            totalElements: 0
         }
     }
 
+    componentDidMount() {
+        this.fetchUsers()
+    }
+
     searchByName = (value) => {
-        //Chiamata API per la ricerca
-        console.log(value)
+        this.setState({
+            isLoading: true
+        })
+        this.fetchUsers()
+    }
+
+    fetchUsers = () => {
+        javaAcademyService.getUsers().then((response) => {
+            let fetchedUsers = response.data.map( (user)=> {
+                return ({
+                    username: user.username,
+                    key: user.id,
+                    email: user.email,
+                    commercialId: user.business
+                })
+            })
+            this.setState({
+                users : fetchedUsers,
+                isLoading: false,
+                totalElements: response.data.size
+            })
+        }
+        )
     }
 
     render() {
@@ -99,7 +110,7 @@ class UsersList extends Component {
                             loading={this.state.isLoading}
                             tableLayout="fixed"
                             scroll={{ scrollToFirstRowOnChange: true }}
-                            pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true}}
+                            pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true }}
                         />
                     </div>
                 </div>
