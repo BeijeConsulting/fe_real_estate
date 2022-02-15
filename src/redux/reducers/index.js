@@ -1,8 +1,9 @@
 import { combineReducers } from "redux";
-//API
-//DUCK
-import tokenDuck from "../ducks/tokenDuck";
+
+import userMeDuck from "../ducks/userMeDuck";
+
 const rootReducer = combineReducers({
-	tokenDuck,
+	userMeDuck,
 });
+
 export default rootReducer;
