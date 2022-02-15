@@ -26,6 +26,7 @@ import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 
 // BACKOFFICE SCREENS
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 import * as RoutingBO from "./backoffice/RoutingBO";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 
@@ -82,8 +83,9 @@ const Routing = () => (
 				<Route path="saved-ads" element={null} />
 			</Route>
 
+
 			{/* BACKOFFICE */}
-			<Route path="admin-login" element={<RoutingBO.Login />} />
+			<Route path="admin-auth" element={<AdminLogin />} />
 			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
