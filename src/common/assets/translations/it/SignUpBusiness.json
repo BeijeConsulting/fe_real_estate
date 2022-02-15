@@ -1,0 +1,10 @@
+{
+	"VATNumber": "Partita iva",
+	"businessName": "Nome azienda",
+	"address": "Indirizzo",
+	"signUpButton": "Registrati",
+	"goToLogin": {
+		"label": "Already registered?",
+		"link": "Log in"
+	}
+}
