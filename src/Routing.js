@@ -21,6 +21,7 @@ import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
+import UsersList from "./backoffice/screens/UsersList/UsersList";
 
 
 
@@ -54,7 +55,7 @@ const Routing = () => (
 			<Route path="admin-login" element={<RoutingBO.Login />} />
 			<Route path="admin" element={<RoutingBO.AsideBar />}>
 				<Route index element={<RoutingBO.DashBoard />} />
-				<Route path="users" element={<RoutingBO.User />} />
+				<Route path="users" element={<UsersList />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
 				<Route
 					path="advertisements"
@@ -68,7 +69,10 @@ const Routing = () => (
 					path="dashBoard"
 					element={<RoutingBO.DashBoard />}
 				/>
-				<Route path="profile" element={<RoutingBO.User />} />
+				<Route 
+				path="profile" 
+				element={<RoutingBO.User />} 
+				/>
 				<Route
 					path="collaborators"
 					element={<RoutingBO.User />}
