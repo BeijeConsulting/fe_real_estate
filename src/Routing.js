@@ -25,8 +25,6 @@ import NotFound from "./common/screens/NotFound";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 
 
-
-
 const Routing = () => (
 	<Provider store={applicationStore}>
 		<Routes>
