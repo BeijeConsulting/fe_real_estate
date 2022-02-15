@@ -3,6 +3,7 @@ import React from "react";
 import NavBar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import ServiceCard from "../../components/whatWeOffer/ServiceCard";
+import { withTranslation } from "react-i18next";
 
 const CLASSES = {
 	CARD: "flex flex-col items-start mt-4 mb-2 my-8",
@@ -11,7 +12,7 @@ const CLASSES = {
 		"flex flex-col items-start justify-evenly text-sm text-white font-bold",
 };
 
-const WhatWeOffer = () => {
+const WhatWeOffer = ({ t }) => {
 	return (
 		<div className="h-screen flex flex-col justify-between items-center">
 			<header className="w-screen mb-4">
@@ -23,7 +24,7 @@ const WhatWeOffer = () => {
 						"font-bold text-black text-xl  uppercase "
 					}
 				>
-					Cerca un immobile
+					{t("WhatWeOffer.searchForProperty.text")}
 				</p>
 				<input
 					placeholder="Searchbar"
@@ -36,43 +37,48 @@ const WhatWeOffer = () => {
 			</div>
 			<div className={CLASSES.CARD}>
 				<p className={CLASSES.PRE_CARD_TEXT}>
-					Sei un privato o un'agenzia immobiliare?
+					{t("WhatWeOffer.services.newAd.preCardText")}
 				</p>
 				<ServiceCard
-					buttonText={"Inserisci"}
+					buttonText={t(
+						"WhatWeOffer.services.newAd.button"
+					)}
 					classNameRedirectSection={
 						"what-we-offer__insert-ad"
 					}
-					title={"inserisci ora un nuovo annuncio!"}
+					title={t("WhatWeOffer.services.newAd.title")}
 				>
 					<div className={CLASSES.CARD_INFO}>
 						<p className={"text-xl uppercase"}>
-							Hai bisogno di un aiuto?
+							{t(
+								"WhatWeOffer.services.newAd.infoTitle"
+							)}
 						</p>
 						<p className="">
-							<br />
-							Chiama il numero <br /> 0289623520!{" "}
-							<br />
-							da lunedì a venerdì - dalle <br />{" "}
-							09.00 alle 21.00
-							<br /> <br />
-							Oppure scrivi a: domus@casa.it
+							{t(
+								"WhatWeOffer.services.newAd.infoText"
+							)}
 						</p>
 					</div>
 				</ServiceCard>
 			</div>
 			<div className={CLASSES.CARD}>
 				<p className={CLASSES.PRE_CARD_TEXT}>
-					Vuoi vendere ma non hai idea di quanto vale la tua
-					proprietà?
+					{t(
+						"WhatWeOffer.services.assessProperty.preCardText"
+					)}
 				</p>
 				<ServiceCard
-					buttonText={"Valuta"}
+					buttonText={t(
+						"WhatWeOffer.services.assessProperty.button"
+					)}
 					classNameRedirectSection={
 						"what-we-offer__assess-property"
 					}
 					reverseRow={true}
-					title={"valuta ora una tua proprieta'!"}
+					title={t(
+						"WhatWeOffer.services.assessProperty.title"
+					)}
 				>
 					<div className={`${CLASSES.CARD_INFO}`}>
 						<p
@@ -80,18 +86,14 @@ const WhatWeOffer = () => {
 								"text-xl uppercase text-center w-full"
 							}
 						>
-							Tante novita'!
+							{t(
+								"WhatWeOffer.services.assessProperty.infoTitle"
+							)}
 						</p>
 						<p className="ml-4">
-							<br />
-							Da ora puoi valutare la tua proprietà
-							direttamente sul nostro sito
-							<br />
-							<br />
-							Oppure contattando <br />
-							un nostro operatore al numero:
-							<br />
-							0289623520.
+							{t(
+								"WhatWeOffer.services.assessProperty.infoText"
+							)}
 						</p>
 					</div>
 				</ServiceCard>
@@ -103,4 +105,4 @@ const WhatWeOffer = () => {
 	);
 };
 
-export default WhatWeOffer;
+export default withTranslation()(WhatWeOffer);
