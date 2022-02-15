@@ -17,30 +17,30 @@ const Home = (props) => {
 
 	return (
 		<div className="fixed-background">
-		<div className='home-container'>
-			<Navbar fixed />
+			<div className='home-container'>
+				<Navbar fixed />
 
-			<div className=' h-screen flex flex-col'>
-				<Search />
-			</div>
-			<Illustrations
-				className='illustrations-container' />
+				<div className=' h-screen flex flex-col'>
+					<Search />
+				</div>
+				<Illustrations
+					className='illustrations-container' />
 
-			<Carousel2 />
-			
-			<div className='h-screen'>
-			
-				
+				<Carousel2 />
+
+				<div className='h-screen'>
+
+
+				</div>
+
+				<BlueSection
+					className='bluesection-container'
+					text='PUBBLICA ANNUNCI GRATUITAMENTE'
+					subtext="Inserisci i tuoi annunci, fatti trovare da chi cerca casa!"
+				/>
+
+				<Footer />
 			</div>
-			
-			<BlueSection 
-			className='bluesection-container'
-			text='PUBBLICA ANNUNCI GRATUITAMENTE'
-			subtext="Inserisci i tuoi annunci, fatti trovare da chi cerca casa!"
-			/>
-			
-			<Footer />
-		</div>
 		</div>
 	)
 };

@@ -1,24 +1,35 @@
 import React from 'react'
 import PropTypes from "prop-types";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleArrowRight  } from '@fortawesome/free-solid-svg-icons'
 
 const Button = (props) => {
-  let classColor= props.type === 'primary' ? 'bg-primary' : 'bg-secondary text-white font-primary rounded-full flex py-1 px-2 cursor-pointer'
+
+  let btnStyle = props.type === 'secondary' ? 'bg-secondary text-white' : 'bg-gradient'
+  
+  const handleClick = () => {
+    props.callback()
+  }
+
   return (
-    <div className={classColor}>
-      <button className={props.classLabel}>{props.label}</button>
-      <div>
-        {props.image}
-      </div>
+    <div 
+      style={{marginTop: props.marginTop}} 
+      className={btnStyle + " cursor-pointer rounded-full flex justify-center items-center"}
+      onClick={handleClick}
+    >
+      <p className='mr-2 ml-4 font-primary font-semibold' style={{fontSize: props.size}}>{props.label}</p>
+
+      <FontAwesomeIcon size={"2x"} icon={ faCircleArrowRight } className='mr-1'/>
     </div>
   )
 }
 
 
 Button.defaultProps = {
-  className: "bg-secondary text-white font-primary rounded-full flex py-1 px-2 cursor-pointer",
-  classLabel: 'font-bold uppercase mr-4',
-  image: ''
+  label:'label',
+  size: 20,
+  marginTop: 0,
+  callback: () => alert('click')
 };
 
 Button.propTypes = {
