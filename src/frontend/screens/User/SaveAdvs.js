@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 
-export default class SaveAdvs extends Component {
+class SaveAdvs extends Component {
     render() {
         return (
-            <div>SaveAdvs</div>
+            <div className='flex flex-col m-4 font-primary'>
+                <h1 className='text-2xl font-bold'>ANNUNCI SALVATI</h1>
+            </div>
         )
     }
 }
+
+export default SaveAdvs;
