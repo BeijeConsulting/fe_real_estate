@@ -14,3 +14,9 @@
 .margin {
     margin-top: 2%;
 }
+
+@media screen and (max-width: 680px) {
+    .single-animation {
+        margin-top: 10%;
+    }
+}

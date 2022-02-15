@@ -31,3 +31,35 @@ html::-webkit-scrollbar {
    
   }
   
+  @media  screen and (max-width: 680px) {
+      
+    .illustrations-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        margin-top: 4%;
+    }
+
+    .bluesection-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background-color: #202740;
+        height: 300px;
+        width: 100vw;
+        margin-top: -70%;
+        color: white;
+        font-family: 'Inter', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+       
+      }
+
+
+
+
+
+
+  }
