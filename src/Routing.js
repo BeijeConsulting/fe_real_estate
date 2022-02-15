@@ -16,7 +16,10 @@ import AboutUs from "./frontend/screens/Home/AboutUs";
 import WhatWeOffer from './frontend/screens/Home/WhatWeOffer'
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 import User from "./frontend/screens/User/User";
-import Profile from "./frontend/screens/User/Profile";
+import EditProfile from "./frontend/screens/User/EditProfile";
+import PostAdvs from "./frontend/screens/User/PostAdvs";
+import SaveAdvs from "./frontend/screens/User/SaveAdvs";
+import Dashboard from "./frontend/screens/User/Dashboard";
 
 // BACKOFFICE SCREENS
 // here
@@ -47,9 +50,10 @@ const Routing = () => (
 			</Route>
 
 			<Route path="user" element={<User />}>
-				<Route path="" element={<Profile />} />
-				<Route path="post-ad" element={null} />
-				<Route path="saved-ads" element={null} />
+				<Route path="" element={<Dashboard />} />
+				<Route path="edit-profile" element={<EditProfile />} />
+				<Route path="post-advs" element={<PostAdvs />} />
+				<Route path="save-advs" element={<SaveAdvs />} />
 			</Route>
 
 			{/* BACKOFFICE */}

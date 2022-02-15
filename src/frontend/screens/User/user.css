@@ -8,3 +8,23 @@
     color: #ffeba8;
     transform: scale(1.05);
 }
+
+.menu{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary);
+    color: var(--primary);
+    animation: open 0.8s forwards;
+
+}
+
+@keyframes open {
+    from{
+        height: 0;
+        opacity: 0;
+    }
+    to{
+        height: 200px;
+        opacity: 1;
+    }
+}

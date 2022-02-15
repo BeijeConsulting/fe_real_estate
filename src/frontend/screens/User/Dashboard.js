@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 
 
-class Profile extends Component {
+class Dashboard extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -13,6 +13,9 @@ class Profile extends Component {
     render() {
         return (
             <>
+                <h1 className='text-3xl font-bold m-4'>
+                    Benvenuto @utente
+                </h1>
                 <div className='flex flex-col m-2 p-2'>
                     <div className='flex flex-row space-x-2'>
                         <h1 className='text-xl font-bold'>Riepilogo utente</h1>
@@ -40,4 +43,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile; 
+export default Dashboard; 
