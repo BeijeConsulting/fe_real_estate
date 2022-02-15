@@ -2,7 +2,6 @@ import "./admin-login.css"
 import { PureComponent } from "react"
 /* react redux */
 import { connect } from "react-redux"
-import { setAdmin } from "../../../redux/ducks/adminDuck"
 /* react router */
 import { Link, Navigate } from "react-router-dom"
 /* func components */
