@@ -8,6 +8,7 @@ import { withTranslation } from "react-i18next";
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import authApi from "../../../services/frontend/authApi";
+
 class Login extends Component {
 	constructor(props) {
 		super(props);
@@ -30,9 +31,12 @@ class Login extends Component {
 			localStorage.getItem(storage.LOCAL_STORAGE_KEYS.REMEMBER_ME)
 		);
 
-		if (rememberMe !== null && !!rememberMe.email) {
+		if (rememberMe !== null && !!rememberMe.username) {
 			this.setState({
-				data: { ...this.state.data, email: rememberMe.email },
+				data: {
+					...this.state.data,
+					username: rememberMe.username,
+				},
 				rememberMe: true,
 			});
 		}
@@ -40,7 +44,7 @@ class Login extends Component {
 
 	onChangeUsername = (e) => {
 		this.setState({
-			data: { ...this.state.data, email: e.target.value },
+			data: { ...this.state.data, username: e.target.value },
 		});
 	};
 
@@ -57,14 +61,14 @@ class Login extends Component {
 	onClickLogin = (e) => {
 		e.preventDefault();
 
-		// remember me
 		let rememberMeObj = {};
 
 		if (this.state.rememberMe) {
 			rememberMeObj = {
-				email: this.state.data.username,
+				username: this.state.data.username,
 			};
 		}
+
 		authApi.signIn(
 			{
 				username: this.state.data.username,

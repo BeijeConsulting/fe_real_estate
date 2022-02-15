@@ -1,5 +1,5 @@
-const SET_USER_DATA = "userMeDuck/SET_USER_DATA";
-const SET_TO_IDLE = "userMeDuck/SET_TO_IDLE";
+const SET_USER_DATA = "generic/userMeDuck/SET_USER_DATA";
+const SET_TO_IDLE = "generic/userMeDuck/SET_TO_IDLE";
 
 const setUser = (user) => ({
 	type: SET_USER_DATA,

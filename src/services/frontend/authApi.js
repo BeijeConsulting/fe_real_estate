@@ -6,7 +6,6 @@ const signIn = ({ username, password }, rememberMeObj, dispatch) =>
 	javaAcademyService
 		.signIn({ username, password })
 		.then(({ data: { id, permission, token, username } }) => {
-			console.log(permission);
 			localStorage.setItem(
 				storage.LOCAL_STORAGE_KEYS.USER_TOKEN,
 				token
