@@ -8,6 +8,7 @@ import MobileSidebar from "../MobileSidebar/MobileSidebar"
 // ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
+import Languages from "../Languages/Languages"
 
 const Navbar = (props) => {
 
@@ -51,6 +52,7 @@ const Navbar = (props) => {
 
         {/* DESKTOP ONLY */}
         <div className='hidden md:flex flex-row space-x-2'>
+          <Languages />
           <p onClick={handleNavigate('/auth/login')} className='text-xl nav-btn nav-fill font-primary'>ACCEDI</p>
           <p onClick={handleNavigate('/auth/signup')} className='text-xl nav-btn nav-outline font-primary'>REGISTRATI</p>
         </div>

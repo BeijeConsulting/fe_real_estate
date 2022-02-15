@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { setUser } from "../../../redux/ducks/userMeDuck";
-
+import storage from "../../../common/utils/storage";
 import Input from "../../components/UI/Input/Input";
 import Checkbox from "../../components/UI/Checkbox/Checkbox";
 import Button from "../../components/UI/Button/Button";
 
 import { faUser, faLock, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons"
+import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import authApi from "../../../services/frontend/authApi";
 
 class Login extends Component {
 	constructor(props) {
@@ -16,20 +17,36 @@ class Login extends Component {
 
 		this.state = {
 			data: {
-				email: "",
+				username: "",
 				password: "",
 			},
 			rememberMe: false,
 			errors: {
-				email: "",
+				username: "",
 				password: "",
 			},
 		};
 	}
 
-	onChangeEmail = (e) => {
+	componentDidMount = () => {
+		const rememberMe = JSON.parse(
+			localStorage.getItem(storage.LOCAL_STORAGE_KEYS.REMEMBER_ME)
+		);
+
+		if (rememberMe !== null && !!rememberMe.username) {
+			this.setState({
+				data: {
+					...this.state.data,
+					username: rememberMe.username,
+				},
+				rememberMe: true,
+			});
+		}
+	};
+
+	onChangeUsername = (e) => {
 		this.setState({
-			data: { ...this.state.data, email: e.target.value },
+			data: { ...this.state.data, username: e.target.value },
 		});
 	};
 
@@ -46,12 +63,27 @@ class Login extends Component {
 	onClickLogin = (e) => {
 		e.preventDefault();
 
-		this.props.dispatch(
-			setUser({ ...this.state.data, password: undefined })
+		let rememberMeObj = {};
+
+		if (this.state.rememberMe) {
+			rememberMeObj = {
+				username: this.state.data.username,
+			};
+		}
+
+		authApi.signIn(
+			{
+				username: this.state.data.username,
+				password: this.state.data.password,
+			},
+			rememberMeObj,
+			this.props.dispatch
 		);
 	};
 
 	render() {
+		const { t } = this.props;
+
 		return (
 			<>
 				<div className="hidden md:flex ">
@@ -59,11 +91,10 @@ class Login extends Component {
 				</div>
 				<form className="flex flex-col items-center ">
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
-						Area Privata
+						{t("Login.title")}
 					</h1>
 					<p className="font-primary font-light text-sm w-2/3 text-center">
-						Inserisci le credenziali ed accedi alla tua
-						area privata di Domus
+					{t("Login.description")}
 					</p>
 
 					<Input
@@ -71,6 +102,7 @@ class Login extends Component {
 						type="email"
 						onChange={this.onChangeEmail}
 						placeholder="Email"
+						value={this.state.data.username}
 					/>
 
 					<Input
@@ -85,7 +117,7 @@ class Login extends Component {
 						<Checkbox
 							checked={this.state.rememberMe}
 							onChange={this.onChangeRememberMe}
-							label="Ricorda le mie credenziali"
+							label={t("Login.checkboxLabel")}
 						/>
 					</div>
 
@@ -93,16 +125,16 @@ class Login extends Component {
 					<Button
 						onClick={this.onClickLogin}
 						image={<FontAwesomeIcon icon={faCircleArrowRight} />}
-						label='Accedi'
+						label={t("Login.signInButton")}
 						type=''
 					/>
 
-					<p className="font-primary mt-4">Non hai un account?</p>
-					<Link to={"/auth/signup"} className="font-primary">Registrati adesso</Link>
+					<p className="font-primary mt-4">{t("Login.goToRegistration.label")}</p>
+					<Link to={"/auth/signup"} className="font-primary">{t("Login.goToRegistration.link")}</Link>
 				</form>
 			</>
 		);
 	}
 }
 
-export default connect()(Login);
+export default connect()(withTranslation()(Login));

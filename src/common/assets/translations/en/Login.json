@@ -1,3 +1,10 @@
 {
-	"textOne": "one"
+	"title": "Private Area",
+	"description": "Enter your credentials and access your Domus private area",
+	"checkboxLabel": "Remember my credentials",
+	"signInButton": "Sign In",
+	"goToRegistration": {
+		"label": "Do not have an account?",
+		"link": "Sign-up now"
+	}
 }

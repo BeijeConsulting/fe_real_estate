@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Card from "../../components/UI/Card/Card";
+import Languages from "../../components/Languages/Languages";
 import logo from "../../../common/assets/logo/logo.png";
-
+import storage from "../../../common/utils/storage";
 import { Navigate, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -14,29 +15,34 @@ class Auth extends Component {
 		};
 	}
 
-	redirectOnAuthenticated = () => {
-		if (this.props.emailUser !== undefined) {
-			console.log("redirect");
-			this.setState({ logged: true });
-		}
-	};
-
 	componentDidMount = () => {
-		this.redirectOnAuthenticated();
-	};
+		if (!this.props.username) {
+			const token = localStorage.getItem(
+				storage.LOCAL_STORAGE_KEYS.USER_TOKEN
+			);
 
-	componentDidUpdate = () => {
-		this.redirectOnAuthenticated();
+			if (!!token) {
+				// make call to validate token
+			}
+		}
 	};
 
 	render() {
 		return (
 			<div className="bg-secondary h-screen ">
 				<header className="flex items-center justify-center gap-2 pt-5 pb-5">
-					<img src={logo} alt="logo" className="h-10 " />
-					<h1 className="color-primary uppercase font-extrabold text-4xl">
-						domus
-					</h1>
+					<div className="flex items-center justify-center gap-2 pt-5 pb-5">
+						<img
+							src={logo}
+							alt="logo"
+							className="h-10 "
+						/>
+						<h1 className="color-primary uppercase font-extrabold text-4xl">
+							domus
+						</h1>
+					</div>
+					<p className="color-primary text-5xl">|</p>
+					<Languages classNameContainer="color-primary" />
 				</header>
 
 				<div className="flex items-center justify-center">
@@ -46,14 +52,16 @@ class Auth extends Component {
 					</Card>
 				</div>
 				{/* Routing */}
-				{this.state.logged && <Navigate to={"/"} />}
+				{this.props.username !== undefined && (
+					<Navigate to={"/"} />
+				)}
 			</div>
 		);
 	}
 }
 
 const mapStateToProps = (state) => ({
-	emailUser: state.userMeDuck.user.email,
+	username: state.userMeDuck.user.username,
 });
 
 export default connect(mapStateToProps)(Auth);
