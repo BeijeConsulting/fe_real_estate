@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:ital,wght@0,400;1,300&display=swap');
+
+.illustration-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 5%;
+    }
+
+.single-animation {
+    text-align: center;
+}
+
+.margin {
+    margin-top: 2%;
+}

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Outlet, Link } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import UserNavbar from '../../components/UserNavbar/UserNavbar';
 import MobileUserNavbar from '../../components/UserNavbar/MobileUserNavbar/MobileUserNavbar';
+import { connect } from "react-redux"
 
 class User extends Component {
     constructor(props) {
@@ -23,9 +24,16 @@ class User extends Component {
                     </section>
 
                 </div>
+                {/*this.props.username === undefined && (
+                    <Navigate to={"/auth/login"} />
+                )*/}
             </>
         )
     }
 }
 
-export default User; 
+const mapStateToProps = (state) => ({
+    username: state.userMeDuck.user.username,
+});
+
+export default connect(mapStateToProps)(User);

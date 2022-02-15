@@ -10,15 +10,42 @@ class EditProfile extends Component {
                 <Card>
                     <div className='flex flex-row '>
                         <div className='flex flex-col p-4'>
-                            <h1>Dati anagrafici</h1>
-                            <h1>Nome: </h1>
-                            <h1>Cognome:</h1>
-                            <h1>Email:</h1>
-                            <h1>Password:</h1>
+                            <h1 className='text-lg font-semibold'>Dati anagrafici</h1>
+                            <div className='flex flex-row p-4'>
+                                <h1>Nome: </h1>
+                                <Input />
+                            </div>
+                            <div className='flex flex-row p-4'>
+                                <h1>Cognome:</h1>
+                                <Input />
+                            </div>
+                            <div className='flex flex-row p-4'>
+                                <h1>Data di nascita:</h1>
+                                <Input />
+                            </div>
+                            <div className='flex flex-row p-4'>
+                                <h1>Numero di telefono:</h1>
+                                <Input />
+                            </div>
                         </div>
-                        <div className='flex flex-col'>
-                            <h1>Dati utente</h1>
-                            <h1></h1>
+                        <div className='flex flex-col p-4'>
+                            <h1 className="text-lg font-semibold">Dati utente</h1>
+                            <div className='flex flex-row p-4'>
+                                <h1>Username: </h1>
+                                <Input />
+                            </div>
+                            <div className='flex flex-row p-4'>
+                                <h1>Email:</h1>
+                                <Input />
+                            </div>
+                            <div className='flex flex-row p-4'>
+                                <h1>Password:</h1>
+                                <Input />
+                            </div>
+                            <div className='flex flex-row p-4'>
+                                <h1>value:</h1>
+                                <Input />
+                            </div>
                         </div>
                     </div>
                 </Card>
