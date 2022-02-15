@@ -29,7 +29,7 @@ const ServiceCard = (props) => {
 				</p>
 				<Button
 					label={props.buttonText}
-					callback={goTo(props.redirectPath)}
+					onClick={goTo(props.redirectPath)}
 				/>
 			</div>
 			<div
