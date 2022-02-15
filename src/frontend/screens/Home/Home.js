@@ -5,6 +5,8 @@ import "./Home.css"
 import Navbar from '../../components/Navbar/Navbar'
 import Search from "../../components/Search/Search";
 import Footer from '../../components/Footer/Footer'
+
+
 const Home = (props) => {
 
 	return (
