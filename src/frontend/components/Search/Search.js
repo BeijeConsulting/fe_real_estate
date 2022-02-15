@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import SearchSelect from './SearchSelect'
-
+import Button from '../UI/Button/Button'
 
 const Search = () => {
 
@@ -19,10 +19,7 @@ const Search = () => {
   
 
   return (
-    <div
-      className='select-none flex-1 flex flex-col justify-center items-center'
-      style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-    >
+    <div className='select-none flex-1 flex flex-col justify-center items-center'>
 
       <div className='flex flex-col md:flex-row text-white z-30 text-5xl space-x-2'>
         <p>Cerco</p>
@@ -45,7 +42,17 @@ const Search = () => {
         />
       </div>
 
-      <div className='absolute inset-0 flex-1 bg-black opacity-70' />
+      <Button 
+        type="primary"
+        size={26}
+        label="VEDI 3 CASE"
+        marginTop={25}
+      />
+
+
+      {/* BACKGROUND OVERLAY + BG */}
+      <div className='flex-1 absolute inset-0 -z-20' style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}/>
+      <div className='absolute inset-0 flex-1 bg-black opacity-70 -z-10' />
     </div>
   )
 }

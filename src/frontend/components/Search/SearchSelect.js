@@ -8,9 +8,9 @@ const SearchSelect = (props) => {
     const [isOpened, setIsOpened] = useState(false)
     const select = useRef()
 
-    let style = isOpened
-        ? { transform: 'translateY(0px)', opacity: 1 }
-        : { transform: 'translateY(50px)', opacity: 0 }
+    let selectStyle = isOpened
+        ? { transform: 'translateY(0px)', opacity: 1, display:'block' }
+        : { transform: 'translateY(50px)', opacity: 0}
 
 
     const toggleSelect = () => {
@@ -36,6 +36,7 @@ const SearchSelect = (props) => {
 
     return (
         <div className='relative'>
+            {/* SELECT */}
             <div
                 className='cursor-pointer flex md:mx-4 color-primary underlined'
                 onClick={toggleSelect}
@@ -46,9 +47,10 @@ const SearchSelect = (props) => {
                 </div>
             </div>
 
+            {/* OPTIONS */}
             <div
                 ref={select}
-                style={style}
+                style={selectStyle}
                 className='w-full z-30 ml-4 mt-4 transition duration-300 absolute bg-white text-black p-2 rounded-b'
             >
                 {props.options.map(handleOptionsRender)}
