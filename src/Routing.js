@@ -18,10 +18,12 @@ import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 
 // BACKOFFICE SCREENS
 // here
+import Cms from "./backoffice/screens/cms/Cms";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
+
 
 
 
@@ -36,7 +38,7 @@ const Routing = () => (
 				<Route path="assess-building" element={<AssessBuilding />} />
 			</Route>
 
-			<Route path=":advType/:buildingType/:city" element={null} /> 
+			<Route path=":advType/:buildingType/:city" element={null} />
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth">
@@ -53,7 +55,7 @@ const Routing = () => (
 
 			{/* BACKOFFICE */}
 			<Route path="admin-login" element={<RoutingBO.Login />} />
-			<Route path="admin" element={<RoutingBO.AsideBar />}>
+			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
