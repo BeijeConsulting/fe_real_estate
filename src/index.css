@@ -45,4 +45,16 @@
     background-color: #e5e5e5;
 }
 
+.underlined{
+    position: relative;
+}
+
+.underlined::after{
+    position: absolute;
+    bottom: 0;
+    height: 10px;
+    width: 50px;
+    background-color: #ffe714;
+}
+
 /* END COMMON CSS */

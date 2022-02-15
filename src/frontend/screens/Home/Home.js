@@ -18,8 +18,9 @@ const Home = (props) => {
 	return (
 		<div className="fixed-background">
 		<div className='home-container'>
+			<Navbar fixed />
+
 			<div className=' h-screen flex flex-col'>
-				<Navbar fixed />
 				<Search />
 			</div>
 			<Illustrations
