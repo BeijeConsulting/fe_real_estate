@@ -1,0 +1,49 @@
+.logo {
+    height: 32px;
+    margin: 16px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  .site-layout-sub-header-background {
+    background: #fff;
+  }
+  
+  .site-layout-background {
+    background: #fff;
+  }
+  
+.header-style {
+    box-shadow: 0 8px 8px -8px black;
+    background-color: var(--gray);
+    display: flex;
+    justify-content: space-between;
+}
+  .nav-title{
+      font-size: large;
+      font-weight: bold;
+      margin-left: 2em;
+  }
+  .languages {
+    display: inline;
+    margin-right: 1em;
+  }
+  .button_lang {
+    background-color: #444;
+    color: #FFF;
+    font-size: smaller;
+    padding: 5px 12px;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    margin-left: auto;
+    transition: background-color .3s ease-in-out;
+  }
+  .button_lang:hover, .current_lang {
+    background-color: #777; 
+    transition: background-color .3s ease-in-out;
+  }
+
+  .logout{
+      margin-left: 0.5em;
+      margin-top: 3em;
+  }
+
+  
