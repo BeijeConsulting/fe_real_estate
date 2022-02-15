@@ -9,7 +9,8 @@ import { Link, Navigate } from "react-router-dom"
 import LogoComp from "../../componets/funcComponets/LogoComp/LogoComp"
 import Input from "../../../frontend/components/UI/Input/Input"
 import Button from "../../../frontend/components/UI/Button/Button"
-
+/* API */
+import authAdminApi from "../../../services/backoffice/authAdminApi"
 class AdminLogin extends PureComponent {
 
     constructor(props) {
@@ -21,19 +22,19 @@ class AdminLogin extends PureComponent {
         }
     }
     componentDidMount() {
-        if (this.props.admin.email) {
+        if (this.props.admin.username) {
             this.redirect();
         }
     }
     componentDidUpdate() {
     }
     /* User funcs */
-    setMail = (e) => {
+    setUsername = (e) => {
         let value = e.target.value
         this.setState({
             user: {
                 ...this.state.user,
-                email: value
+                username: value
             }
         })
     }
@@ -48,7 +49,7 @@ class AdminLogin extends PureComponent {
     }
     /* AUTH funcs */
     login = () => {
-        this.props.dispatch(setAdmin(this.state.user));
+        authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
         this.redirect();
     }
 
@@ -71,9 +72,9 @@ class AdminLogin extends PureComponent {
                     <section className="box-inputs">
                         <div>
                             <label>
-                                Indirizzo email
+                                Inserisci Username
                             </label>
-                            <Input onChange={this.setMail} />
+                            <Input onChange={this.setUsername} />
                         </div>
                         <div>
                             <label>
