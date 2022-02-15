@@ -22,6 +22,7 @@ import applicationStore from "./applicationStore";
 // BACKOFFICE SCREENS
 import Profile from "./backoffice/screens/profile/Profile";
 import Cms from "./backoffice/screens/cms/Cms";
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 import * as RoutingBO from "./backoffice/RoutingBO";
 
 // COMMON
@@ -83,8 +84,9 @@ const Routing = () => (
 				<Route path="saved-ads" element={null} />
 			</Route>
 
+
 			{/* BACKOFFICE */}
-			<Route path="admin-login" element={<RoutingBO.Login />} />
+			<Route path="admin-auth" element={<AdminLogin />} />
 			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<RoutingBO.User />} />
