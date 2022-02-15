@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Card from "../../components/UI/Card/Card";
+import Languages from "../../components/Languages/Languages";
 import logo from "../../../common/assets/logo/logo.png";
 
 import { Navigate, Outlet } from "react-router-dom";
@@ -32,10 +33,18 @@ class Auth extends Component {
 		return (
 			<div className="bg-secondary h-screen ">
 				<header className="flex items-center justify-center gap-2 pt-5 pb-5">
-					<img src={logo} alt="logo" className="h-10 " />
-					<h1 className="color-primary uppercase font-extrabold text-4xl">
-						domus
-					</h1>
+					<div className="flex items-center justify-center gap-2 pt-5 pb-5 ">
+						<img
+							src={logo}
+							alt="logo"
+							className="h-10 "
+						/>
+						<h1 className="color-primary uppercase font-extrabold text-4xl">
+							domus
+						</h1>
+					</div>
+					<p className="color-primary text-5xl ">|</p>
+					<Languages classNameContainer="color-primary" />
 				</header>
 
 				<div className="flex items-center justify-center">

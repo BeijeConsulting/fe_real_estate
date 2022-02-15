@@ -114,7 +114,7 @@ class Login extends Component {
 					<Checkbox
 						checked={this.state.rememberMe}
 						onChange={this.onChangeRememberMe}
-						label={t("Login.checkBoxLabel")}
+						label={t("Login.checkboxLabel")}
 						className="font-black"
 					/>
 
