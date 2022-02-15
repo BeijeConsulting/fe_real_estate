@@ -19,10 +19,12 @@ import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 
 // BACKOFFICE SCREENS
 import Profile from "./backoffice/screens/profile/Profile";
+import Cms from "./backoffice/screens/cms/Cms";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
 import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
+
 
 
 
@@ -54,7 +56,7 @@ const Routing = () => (
 
 			{/* BACKOFFICE */}
 			<Route path="admin-login" element={<RoutingBO.Login />} />
-			<Route path="admin" element={<RoutingBO.AsideBar />}>
+			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<RoutingBO.User />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
