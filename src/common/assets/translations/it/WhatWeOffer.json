@@ -1,0 +1,19 @@
+{
+	"searchForProperty": { "text": "Cerca un immobile" },
+	"services": {
+		"newAd": {
+			"preCardText": "Sei un privato o un'agenzia immobiliare?",
+			"title": "inserisci ora un nuovo annuncio!",
+			"button": "Inserisci",
+			"infoTitle": "Hai bisogno di un aiuto?",
+			"infoText": "Chiama il numero 0289623520! Da lunedì a venerdì - dalle 09.00 alle 21.00 . Oppure scrivi a: domus@casa.it"
+		},
+		"assessProperty": {
+			"preCardText": "Vuoi vendere ma non hai idea di quanto vale la tua proprietà?",
+			"title": "valuta ora una tua proprieta'!",
+			"button": "Valuta",
+			"infoTitle": "Tante novita'!",
+			"infoText": "Da ora puoi valutare la tua proprietà direttamente sul nostro sito. Oppure contattando un nostro operatore al numero: 0289623520."
+		}
+	}
+}
