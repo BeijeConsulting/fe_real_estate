@@ -80,7 +80,7 @@ const invalidPassword = (text) =>
  * const fourthValidation = validate.object(data4, mappedValidations);
  *
  * console.log(firstValidation) // { noError: false, errors: { username: 'empty', password: 'empty' } }
- * console.log(secondValidation) // { noError: true, errors: { username: 'empty', password: 'empty' } }
+ * console.log(secondValidation) // { noError: true, errors: { username: '', password: '' } }
  * console.log(thirdValidation) // { noError: false, errors: { username: '', password: 'empty' } }
  * console.log(fourthValidation) // { noError: false, errors: { username: '', password: 'noNumbers' } }
  *
