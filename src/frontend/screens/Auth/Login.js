@@ -11,6 +11,7 @@ import {
 	faLock,
 	faCircleArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
+import loginProfile from '../../assets/images/login-profile.png'
 import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import authApi from "../../../services/frontend/authApi";
@@ -91,9 +92,9 @@ class Login extends Component {
 		return (
 			<>
 				<div className="hidden md:flex ">
-					<img src="" alt="login" />
+					<img src={loginProfile} alt="login-profile" />
 				</div>
-				<form className="flex flex-col items-center ">
+				<form className="flex flex-col items-center py-5">
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
 						{t("Login.title")}
 					</h1>
@@ -114,6 +115,7 @@ class Login extends Component {
 						type="password"
 						onChange={this.onChangePassword}
 						placeholder="Password"
+						value={this.state.data.password}
 					/>
 
 					<div className="flex items-center gap-1 mt-2 mb-4">
@@ -132,7 +134,7 @@ class Login extends Component {
 							/>
 						}
 						label={t("Login.signInButton")}
-						type=""
+						type="secondary"
 					/>
 
 					<p className="font-primary mt-4">
@@ -140,7 +142,7 @@ class Login extends Component {
 					</p>
 					<Link
 						to={"/auth/signup"}
-						className="font-primary"
+						className="font-primary mt-4"
 					>
 						{t("Login.goToRegistration.link")}
 					</Link>
