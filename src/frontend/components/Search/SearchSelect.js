@@ -53,7 +53,7 @@ const SearchSelect = (props) => {
             <div
                 ref={select}
                 style={selectStyle}
-                className='w-full z-30 ml-4 mt-4 transition duration-300 absolute bg-white text-black p-2 rounded-b'
+                className='w-full max-h-48 overflow-hidden overflow-y-scroll  z-30 ml-4 mt-4 transition duration-300 absolute bg-white text-black p-2 rounded-b'
             >
                 {props.options.map(handleOptionsRender)}
             </div>

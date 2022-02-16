@@ -2,13 +2,17 @@ import "./Navbar.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../common/assets/logo/logo-black.png";
+
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";
 
 // ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import Languages from "../Languages/Languages";
+
+// REDUX
+import { connect } from 'react-redux'
 
 const Navbar = (props) => {
 	let routes = [
@@ -41,6 +45,39 @@ const Navbar = (props) => {
 		);
 	};
 
+
+	const handleLogoutClick = () => {
+		// here signout x enrico
+	}
+
+	const handleAuth = () => {
+		if (!props.userMeDuck.user?.id) {
+			return (
+				<>
+					<p
+						onClick={handleNavigate("/auth/login")}
+						className="text-xl nav-btn nav-fill font-primary"
+					>
+						ACCEDI
+					</p>
+					<p
+						onClick={handleNavigate("/auth/signup")}
+						className="text-xl nav-btn nav-outline font-primary"
+					>
+						REGISTRATI
+					</p>
+				</>
+			)
+		} else {
+			return (
+				<>
+					<p onClick={handleNavigate("/user")} className="text-xl nav-btn nav-fill font-primary">AREA PRIVATA</p>
+					<p onClick={handleLogoutClick}><FontAwesomeIcon icon={faArrowRightFromBracket}/> LOG OUT</p>
+				</>
+			)
+		}
+	}
+
 	return (
 		<div
 			className={
@@ -68,18 +105,8 @@ const Navbar = (props) => {
 				{/* DESKTOP ONLY */}
 				<div className="hidden md:flex flex-row space-x-2">
 					<Languages />
-					<p
-						onClick={handleNavigate("/auth/login")}
-						className="text-xl nav-btn nav-fill font-primary"
-					>
-						ACCEDI
-					</p>
-					<p
-						onClick={handleNavigate("/auth/signup")}
-						className="text-xl nav-btn nav-outline font-primary"
-					>
-						REGISTRATI
-					</p>
+					{handleAuth()}
+
 				</div>
 
 				{/* MOBILE SIDEBAR */}
@@ -106,4 +133,8 @@ Navbar.defaultProps = {
 	fixed: false,
 };
 
-export default Navbar;
+const mapStateToProps = state => ({
+	userMeDuck: state.userMeDuck
+})
+
+export default connect(mapStateToProps)(Navbar);
