@@ -1,39 +1,44 @@
+
+//import React
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { connect } from "react-redux";
+
 //import Ant-Design
 import { Button, List } from "antd";
 import "antd/dist/antd.css";
 
-//import React
-import { useNavigate } from "react-router-dom";
-
 //import css
 import "./profile.css"
 
+//import Api
+import { getUserById } from "../../../services/backoffice/usersApi";
 
-const Profile = () => {
+
+const Profile = (props) => {
 
     let navigate = useNavigate()
+    let dataAdmin = {}
+    let data = []
 
-    let data = [
-        {
-            name: 'Pippo',
-            lastName: 'Pippo',
-            birthDate: '01/01/1990',
-            birthPlace: 'Italia',
-        }
-    ]
+    const [state, setState] = useState({
+        data: []
+    })
 
-    let dataContacts = [
-        {
-            email: 'pippo@pippo.it',
-            phoneNumber: '3333333333',
-            businessEmail: 'pippo@beije.it'
-        }
-    ]
+    const getAdminData = async () => {
+        dataAdmin = await getUserById(props.admin.id)
+    }
 
 
     const handleClick = () => {
         navigate('/admin/profile/update-profile')
     }
+
+    useEffect(async () => {
+        await getAdminData()
+        data = [dataAdmin]
+        setState({data})
+    }, [])
 
     return (
         <div className='profile-container' >
@@ -44,10 +49,10 @@ const Profile = () => {
                     size="small"
                     header={<h4 className="info-profile-title">Info</h4>}
                     itemLayout="vertical"
-                    dataSource={data}
+                    dataSource={state.data}
                     renderItem={item => (
                         <List.Item
-                        className="info-profile-items"
+                            className="info-profile-items"
                         >
                             <List.Item.Meta
                                 title={'Nome'}
@@ -55,7 +60,7 @@ const Profile = () => {
                             />
                             <List.Item.Meta
                                 title={'Cognome'}
-                                description={item.lastName}
+                                description={item.surname}
                             />
                             <List.Item.Meta
                                 title={'Data di nascita'}
@@ -75,7 +80,7 @@ const Profile = () => {
                     className="contacts-list"
                     header={<h3 className='contacts-title'>Contatti</h3>}
                     itemLayout="vertical"
-                    dataSource={dataContacts}
+                    dataSource={state.data}
                     renderItem={item => (
                         <List.Item>
                             <List.Item.Meta
@@ -103,4 +108,10 @@ const Profile = () => {
     )
 }
 
-export default Profile
+const mapStateToProps = (state) => (
+    {
+        admin: state.adminDuck.admin
+    }
+)
+
+export default connect(mapStateToProps)(Profile)

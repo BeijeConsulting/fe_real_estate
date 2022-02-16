@@ -8,7 +8,11 @@ import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 
 // BACKOFFICE SCREENS
 // here
+import Profile from "./backoffice/screens/profile/Profile";
+import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
+import * as RoutingBO from "./backoffice/RoutingBO";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
@@ -22,23 +26,14 @@ import SignUpPrivate from "./frontend/screens/Auth/SignUp/SignUpPrivate";
 import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
 import SignUpBusiness from "./frontend/screens/Auth/SignUp/SignUpBusiness";
 import User from "./frontend/screens/User/User";
+import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 
 
-// BACKOFFICE SCREENS
-import Profile from "./backoffice/screens/profile/Profile";
-import Cms from "./backoffice/screens/cms/Cms";
-import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
-import * as RoutingBO from "./backoffice/RoutingBO";
 
-// COMMON
-import NotFound from "./common/screens/NotFound";
-import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
-
-import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 
 const Routing = () => (
 	<Provider store={applicationStore}>

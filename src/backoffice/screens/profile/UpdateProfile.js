@@ -3,14 +3,35 @@ import { UploadOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./updateProfile.css";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../../services/backoffice/usersApi";
+import { connect } from "react-redux";
 
 
-const UpdateProfile = () => {
+const UpdateProfile = (props) => {
+    let dataAdmin = {}
     const [form] = Form.useForm();
-    const props = {
+    const antProps = {
         action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
     }
     const dateFormat = "YYYY-MM-DD";
+
+    const [state, setState] = useState(
+        {
+            data: {}
+        }
+    )
+
+    const getAdminData = async () => {
+        dataAdmin = await getUserById(props.admin.id)
+       console.log('data admin', dataAdmin)
+    }
+
+    useEffect(async() => {
+        await getAdminData()
+        setState({ data: dataAdmin })
+        console.log('state data', state.data)
+    }, [])
 
     return (
         <div className="update-profile-container" >
@@ -19,17 +40,10 @@ const UpdateProfile = () => {
                 className="update-profile-form"
                 layout={"horizontal"}
                 form={form}
-                initialValues={{
-                    name: 'Pippo',
-                    lastName: 'Pippo',
-                    birthPlace: 'Italia',
-                    email: 'pippo@pippo.it',
-                    phoneNumber: '3333333333',
-                    businessEmail: 'pippo@beije.it'
-                }}
+                initialValues={state.data}
             >
                 <span className="update-profile-img"></span>
-                <Upload className="update-profile-upload" {...props}>
+                <Upload className="update-profile-upload" {...antProps}>
                     <Button icon={<UploadOutlined />}>Upload</Button>
                 </Upload>
 
@@ -72,4 +86,10 @@ const UpdateProfile = () => {
 
 }
 
-export default UpdateProfile
+const mapStateToProps = (state) => (
+    {
+        admin: state.adminDuck.admin
+    }
+)
+
+export default connect(mapStateToProps)(UpdateProfile)
