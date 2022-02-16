@@ -8,7 +8,8 @@ import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 // BACKOFFICE SCREENS
 // here
 import Cms from "./backoffice/screens/cms/Cms";
-
+import UsersList from "./backoffice/screens/UsersList/UsersList";
+import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 // COMMON
 import NotFound from "./common/screens/NotFound";
 
@@ -94,10 +95,8 @@ const Routing = () => (
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
-				<Route
-					path="advertisements"
-					element={<RoutingBO.User />}
-				/>
+				<Route path="advertisements" element={<RoutingBO.User />} />
+				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route
 					path="advertisement/:id"
 					element={<RoutingBO.User />}
@@ -118,6 +117,7 @@ const Routing = () => (
 					path="collaborator/:id"
 					element={<RoutingBO.User />}
 				/>
+
 			</Route>
 			<Route path="*" element={<NotFound />} />
 		</Routes>
