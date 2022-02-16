@@ -65,7 +65,6 @@ const VerificationAdv = (props) => {
     /* sincronize  advertisements*/
     const sincAdv = async () => {
         let resultAPI = await getPendingAdvertaisement(props.admin.token)
-        console.log(resultAPI)
         setState({
             advertisements: resultAPI,
             isLoading: false,
