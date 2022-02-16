@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import storage from "../../../common/utils/storage";
 import Input from "../../components/UI/Input/Input";
 import Checkbox from "../../components/UI/Checkbox/Checkbox";
+import Button from "../../components/UI/Button/Button";
+
+import { faUser, faLock, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons"
 import { withTranslation } from "react-i18next";
-import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import authApi from "../../../services/frontend/authApi";
 
@@ -88,43 +90,47 @@ class Login extends Component {
 					<img src="" alt="login" />
 				</div>
 				<form className="flex flex-col items-center ">
-					<h1 className="capitalise font-extrabold text-4xl">
+					<h1 className="capitalise font-primary font-extrabold text-4xl">
 						{t("Login.title")}
 					</h1>
-					<p className="font-light text-sm w-2/3 text-center">
-						{t("Login.description")}
+					<p className="font-primary font-light text-sm w-2/3 text-center">
+					{t("Login.description")}
 					</p>
 
 					<Input
-						image={<FontAwesomeIcon icon={faPerson} />}
-						type="text"
-						onChange={this.onChangeUsername}
-						placeholder="Username"
-						className="rounded bg-secondary text-white pt-2 pb-2 pl-2 pr-2 mb-2 mt-8"
+						image={<FontAwesomeIcon icon={faUser} />}
+						type="email"
+						onChange={this.onChangeEmail}
+						placeholder="Email"
+						value={this.state.data.username}
 					/>
 
 					<Input
-						image={<FontAwesomeIcon icon={faPerson} />}
+						image={<FontAwesomeIcon icon={faLock} />}
 						type="password"
 						onChange={this.onChangePassword}
 						placeholder="Password"
-						className="rounded bg-secondary text-white pt-2 pb-2 pl-2 pr-2 mb-3"
 					/>
 
-					<Checkbox
-						checked={this.state.rememberMe}
-						onChange={this.onChangeRememberMe}
-						label={t("Login.checkboxLabel")}
-						className="font-black"
+
+					<div className="flex items-center gap-1 mt-2 mb-4">
+						<Checkbox
+							checked={this.state.rememberMe}
+							onChange={this.onChangeRememberMe}
+							label={t("Login.checkboxLabel")}
+						/>
+					</div>
+
+
+					<Button
+						onClick={this.onClickLogin}
+						image={<FontAwesomeIcon icon={faCircleArrowRight} />}
+						label={t("Login.signInButton")}
+						type=''
 					/>
 
-					<button onClick={this.onClickLogin}>
-						{t("Login.signInButton")}
-					</button>
-					<p>{t("Login.goToRegistration.label")}</p>
-					<Link to={"/auth/signup"}>
-						{t("Login.goToRegistration.link")}
-					</Link>
+					<p className="font-primary mt-4">{t("Login.goToRegistration.label")}</p>
+					<Link to={"/auth/signup"} className="font-primary">{t("Login.goToRegistration.link")}</Link>
 				</form>
 			</>
 		);

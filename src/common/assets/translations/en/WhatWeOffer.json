@@ -1,0 +1,19 @@
+{
+	"searchForProperty": { "text": "Search for a property" },
+	"services": {
+		"newAd": {
+			"preCardText": "Are you a private individual or a real estate agency?",
+			"title": "insert now a new ad!",
+			"button": "Insert",
+			"infoTitle": "Do you need any help?",
+			"infoText": "Call at 0289623520! Monday - Friday 09.00 - 21.00 . Or write an email to: domus@casa.it"
+		},
+		"assessProperty": {
+			"preCardText": "Do you wont to sell but don't know the right price for your property?",
+			"title": "assess now your property'!",
+			"button": "Assess",
+			"infoTitle": "lot of news'!",
+			"infoText": "Now you can assess your property directly from our site. Or by calling our operators at: 0289623520."
+		}
+	}
+}

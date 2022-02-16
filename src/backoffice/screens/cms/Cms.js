@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './cms.css';
 import 'antd/dist/antd.css';
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
+
+import { connect } from "react-redux"
 
 // ANT DESIGN
 import { UserOutlined, HomeOutlined } from '@ant-design/icons';
@@ -11,21 +13,32 @@ import { Button, Layout, Menu } from 'antd';
 // FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faRectangleList, faUsers, faChartLine } from "@fortawesome/free-solid-svg-icons"
+import { toUpper } from 'lodash';
 
 const { Header, Content, Footer, Sider } = Layout;
 const Cms = (props) => {
+    const location = useLocation();
+    const params = useParams();
+    console.log('location', location)
+    console.log('params', params)
     let navigate = useNavigate();
-    const [title, setTitle] = useState("Dashboard");
+    const [title, setTitle] = useState("DASHBOARD");
     const setTitleNavigate = (title) => () => {
         navigate(
             `${title}`,
             {
                 state: {
-                    title: "pippo",
+                    title: title,
                 }
             });
-        setTitle(title)
+        setTitle(location.state.title.toUpperCase())
     }
+
+    useEffect(() => {
+        if (!props.admin.username) {
+            navigate("/admin-auth")
+        }
+    }, [])
 
     return (
         <>
@@ -77,7 +90,8 @@ const Cms = (props) => {
                         </div>
                     </Header>
                     <Content style={{ margin: '24px 16px 0' }}>
-                        <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                        <div className="site-layout-background">
+                            {/* style={{ padding: 24, minHeight: 360 }} */}
 
                             <Outlet />
                         </div>
@@ -92,4 +106,9 @@ const Cms = (props) => {
 Cms.propTypes = {
 
 };
-export default Cms;
+
+const mapStateToProps = state => ({
+    admin: state.adminDuck.admin
+})
+
+export default connect(mapStateToProps)(Cms);

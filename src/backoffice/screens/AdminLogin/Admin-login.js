@@ -2,7 +2,6 @@ import "./admin-login.css"
 import { PureComponent } from "react"
 /* react redux */
 import { connect } from "react-redux"
-import { setAdmin } from "../../../redux/ducks/adminDuck"
 /* react router */
 import { Link, Navigate } from "react-router-dom"
 /* func components */
@@ -48,9 +47,9 @@ class AdminLogin extends PureComponent {
         })
     }
     /* AUTH funcs */
-    login = () => {
-        authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
-        this.redirect();
+    login = async () => {
+        await authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
+        this.redirect()
     }
 
     redirect = () => {
@@ -90,7 +89,9 @@ class AdminLogin extends PureComponent {
                             </div>
                             <div className="basis-2/4 flex justify-end">
                                 {/* provvisorio */}
-                                <Button></Button>
+                                <Button
+                                    label="loggati"
+                                />
                                 <button onClick={this.login}>
                                     loggati
                                 </button>
