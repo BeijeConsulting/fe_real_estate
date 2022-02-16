@@ -32,6 +32,10 @@
 	background-color: var(--secondary);
 }
 
+.bg-tertiary {
+	background-color: var(--gray);
+}
+
 .bg-gradient {
 	background: rgb(255, 231, 20);
 	background: linear-gradient(

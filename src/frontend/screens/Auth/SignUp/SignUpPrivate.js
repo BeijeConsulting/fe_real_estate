@@ -3,6 +3,8 @@ import formValidation from "../../../utils/formValidation";
 import { Navigate, Link } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 
+import Input from '../../../components/UI/Input/Input'
+import Button from '../../../components/UI/Button/Button'
 class SignUpPrivate extends Component {
 	constructor(props) {
 		super(props);
@@ -120,44 +122,51 @@ class SignUpPrivate extends Component {
 
 		return (
 			<form className="flex flex-col justify-evenly items-center">
-				<input
+				<Input
 					placeholder={t("SignUpPrivate.cf")}
 					type="text"
 					onChange={this.onChangeCF}
 				/>
-				<input
+				<Input
 					placeholder={t("SignUpPrivate.name")}
 					type="text"
 					onChange={this.onChangeName}
 				/>
 
-				<input
+				<Input
 					placeholder={t("SignUpPrivate.surname")}
 					type="text"
 					onChange={this.onChangeSurname}
 				/>
 
-				<input
+				<Input
 					placeholder="username"
 					type="text"
 					onChange={this.onChangeUsername}
 				/>
 
-				<input
+				<Input
 					placeholder="email"
 					type="email"
 					onChange={this.onChangeEmail}
 				/>
-				<input
+
+				<Input
 					placeholder="password"
 					type="password"
 					onChange={this.onChangePassword}
 				/>
 
-				<button onClick={this.onClickSignUp}>{t("SignUpPrivate.signUpButton")}</button>
+				<Button
+				marginTop={'15px'}
+				className="mb-5"
+				onClick={this.onClickSignUp}
+				label={t("SignUpPrivate.signUpButton")}
+				type='secondary'
+				/>
 
-				<p>{t("SignUpPrivate.goToLogin.label")}</p>
-				<Link to={"/auth/login"}>{t("SignUpPrivate.goToLogin.link")}</Link>
+				<p className="font-primary mt-5">{t("SignUpPrivate.goToLogin.label")}</p>
+				<Link className="font-primary mt-2" to={"/auth/login"}>{t("SignUpPrivate.goToLogin.link")}</Link>
 				{this.state.redirectToLogin && (
 					<Navigate to={"/auth/login"} />
 				)}
