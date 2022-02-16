@@ -17,11 +17,11 @@ const Carousel2 = () => {
         <>
 
             <h1 class="font-primary text-3xl font-semibold ml-5 mt-7 sm:text-4xl sm:mt-11">GLI ULTIMI ANNUNCI</h1>
-            <div className="fixed-background">
+            <div className="fixed-background over">
                 <div className="scroll-helper">
                     <div className='cards-container'>
 
-                        <CardCarousel 
+                        <CardCarousel
                             title="Casa Colonica Modena"
                             image={Apartment1}
                             subtitle="Vedi Dettagli"
@@ -32,7 +32,7 @@ const Carousel2 = () => {
                             image={Apartment2}
                             subtitle="Vedi Dettagli"
                         />
-                     
+
                         <CardCarousel
                             title="Appartamento Chiasso"
                             image={Apartment3}
@@ -48,7 +48,7 @@ const Carousel2 = () => {
                     </div>
                 </div>
             </div>
-         
+
         </>
     )
 }
