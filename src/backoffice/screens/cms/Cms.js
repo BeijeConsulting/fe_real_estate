@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './cms.css';
 import 'antd/dist/antd.css';
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
 
+// REDUX
 import { connect } from "react-redux"
+import { setHeaderTitle } from '../../../redux/ducks/cmsDuck';
 
 // ANT DESIGN
 import { UserOutlined, HomeOutlined } from '@ant-design/icons';
@@ -14,25 +16,22 @@ import { Button, Layout, Menu } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faRectangleList, faUsers, faChartLine } from "@fortawesome/free-solid-svg-icons"
 
+
 const { Header, Content, Footer, Sider } = Layout;
 const Cms = (props) => {
     let navigate = useNavigate();
-    const [title, setTitle] = useState("Dashboard");
+
     const setTitleNavigate = (title) => () => {
+        props.dispatch(setHeaderTitle(title))
         navigate(
-            `${title}`,
-            {
-                state: {
-                    title: "pippo",
-                }
-            });
-        setTitle(title)
+            `${title}`);
     }
 
-    useEffect( ()=> {
-         if(!props.admin.username) {
+    useEffect(() => {
+        props.dispatch(setHeaderTitle("dashboard"))
+        if (!props.admin.username) {
             navigate("/admin-auth")
-        } 
+        }
     }, [])
 
     return (
@@ -53,7 +52,7 @@ const Cms = (props) => {
                         <Menu.Item key="1" icon={<UserOutlined />} onClick={setTitleNavigate("profile")}>
                             Profilo
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("")}>
+                        <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("dashboard")}>
                             DashBoard
                         </Menu.Item>
                         <Menu.Item key="3" icon={<FontAwesomeIcon icon={faRectangleList} />} onClick={setTitleNavigate("advertisements")}>
@@ -76,7 +75,7 @@ const Cms = (props) => {
                 </Sider>
                 <Layout>
                     <Header className={"site-layout-sub-header-backgroun header-style"} style={{ padding: 0, backgroundColor: 'var(--gray)' }} >
-                        <div>  <h2 className='nav-title'>{title}</h2> </div>
+                        <div>  <h2 className='nav-title'>{props.title}</h2> </div>
                         <div>
                             <ul className='languages'>
                                 <li className="button_lang languages">It</li>
@@ -86,6 +85,7 @@ const Cms = (props) => {
                     </Header>
                     <Content style={{ margin: '24px 16px 0' }}>
                         <div className="site-layout-background">
+                            {/* style={{ padding: 24, minHeight: 360 }} */}
 
                             <Outlet />
                         </div>
@@ -102,7 +102,8 @@ Cms.propTypes = {
 };
 
 const mapStateToProps = state => ({
-    admin: state.adminDuck.admin
+    admin: state.adminDuck.admin,
+    title: state.cmsDuck.title
 })
 
-export default connect(mapStateToProps) (Cms);
+export default connect(mapStateToProps)(Cms);

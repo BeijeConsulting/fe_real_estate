@@ -1,6 +1,7 @@
 .users-list-background {
     display: flex;
     justify-content: center;
+    overflow-y: scroll;
 }
 
 .users-list-container{
