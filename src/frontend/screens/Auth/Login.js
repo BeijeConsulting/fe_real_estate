@@ -6,7 +6,11 @@ import Input from "../../components/UI/Input/Input";
 import Checkbox from "../../components/UI/Checkbox/Checkbox";
 import Button from "../../components/UI/Button/Button";
 
-import { faUser, faLock, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons"
+import {
+	faUser,
+	faLock,
+	faCircleArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import authApi from "../../../services/frontend/authApi";
@@ -94,14 +98,14 @@ class Login extends Component {
 						{t("Login.title")}
 					</h1>
 					<p className="font-primary font-light text-sm w-2/3 text-center">
-					{t("Login.description")}
+						{t("Login.description")}
 					</p>
 
 					<Input
 						image={<FontAwesomeIcon icon={faUser} />}
-						type="email"
-						onChange={this.onChangeEmail}
-						placeholder="Email"
+						type="text"
+						onChange={this.onChangeUsername}
+						placeholder="Username"
 						value={this.state.data.username}
 					/>
 
@@ -112,7 +116,6 @@ class Login extends Component {
 						placeholder="Password"
 					/>
 
-
 					<div className="flex items-center gap-1 mt-2 mb-4">
 						<Checkbox
 							checked={this.state.rememberMe}
@@ -121,16 +124,26 @@ class Login extends Component {
 						/>
 					</div>
 
-
 					<Button
 						onClick={this.onClickLogin}
-						image={<FontAwesomeIcon icon={faCircleArrowRight} />}
+						image={
+							<FontAwesomeIcon
+								icon={faCircleArrowRight}
+							/>
+						}
 						label={t("Login.signInButton")}
-						type=''
+						type=""
 					/>
 
-					<p className="font-primary mt-4">{t("Login.goToRegistration.label")}</p>
-					<Link to={"/auth/signup"} className="font-primary">{t("Login.goToRegistration.link")}</Link>
+					<p className="font-primary mt-4">
+						{t("Login.goToRegistration.label")}
+					</p>
+					<Link
+						to={"/auth/signup"}
+						className="font-primary"
+					>
+						{t("Login.goToRegistration.link")}
+					</Link>
 				</form>
 			</>
 		);
