@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Card = (props) => {
 	return (
 		<div
-			className={`rounded bg-white flex items-center justify-around  ${props.className}`}
+			className={`rounded bg-white flex items-center ${props.className}`}
 		>
 			{props.children}
 		</div>
