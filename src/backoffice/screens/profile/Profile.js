@@ -1,7 +1,13 @@
+//import Ant-Design
 import { Button, List } from "antd";
 import "antd/dist/antd.css";
+
+//import React
 import { useNavigate } from "react-router-dom";
+
+//import css
 import "./profile.css"
+
 
 const Profile = () => {
 
