@@ -11,7 +11,7 @@ import {
 	faLock,
 	faCircleArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
-import loginProfile from '../../assets/images/login-profile.png'
+import loginProfile from "../../assets/images/login-profile.png";
 import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import authApi from "../../../services/frontend/authApi";
@@ -128,11 +128,7 @@ class Login extends Component {
 
 					<Button
 						onClick={this.onClickLogin}
-						image={
-							<FontAwesomeIcon
-								icon={faCircleArrowRight}
-							/>
-						}
+						image={<FontAwesomeIcon icon={faCircleArrowRight} />}
 						label={t("Login.signInButton")}
 						type="secondary"
 					/>
@@ -140,10 +136,7 @@ class Login extends Component {
 					<p className="font-primary mt-4">
 						{t("Login.goToRegistration.label")}
 					</p>
-					<Link
-						to={"/auth/signup"}
-						className="font-primary mt-4"
-					>
+					<Link to={"/auth/signup"} className="font-primary mt-4">
 						{t("Login.goToRegistration.link")}
 					</Link>
 				</form>

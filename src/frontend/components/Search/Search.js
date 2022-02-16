@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SearchSelect from './SearchSelect'
 import Button from '../UI/Button/Button'
-import { ADV_TYPES } from '../../../common/utils/globalTypes'
+import { ADV_TYPES, BUILDING_TYPES } from '../../../common/utils/globalTypes'
 
 const Search = () => {
 
@@ -28,6 +28,7 @@ const Search = () => {
           ico=""
           value={query.buildingType.label}
           callback={setBuildingType}
+          options={BUILDING_TYPES}
         />
         <p>in</p>
         <SearchSelect
