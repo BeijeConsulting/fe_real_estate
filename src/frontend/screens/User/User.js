@@ -1,29 +1,39 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Navigate, Outlet } from "react-router-dom";
+import React, { Component } from 'react'
+import { Outlet, Navigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar/Navbar';
+import UserNavbar from '../../components/UserNavbar/UserNavbar';
+import MobileUserNavbar from '../../components/UserNavbar/MobileUserNavbar/MobileUserNavbar';
+import { connect } from "react-redux"
 
 class User extends Component {
-	constructor(props) {
-		super(props);
+    constructor(props) {
+        super(props);
+        this.state = {
+        }
+    }
 
-		this.state = {};
-	}
+    render() {
+        return (
+            <>
+                <Navbar />
+                <MobileUserNavbar />
+                <div className='flex'>
+                    <UserNavbar />
+                    <section className='flex flex-col font-primary'>
+                        <Outlet />
+                    </section>
 
-	render() {
-		return (
-			<div>
-				User
-				<Outlet />
-				{this.props.username === undefined && (
-					<Navigate to={"/auth/login"} />
-				)}
-			</div>
-		);
-	}
+                </div>
+                {this.props.username === undefined && (
+                    <Navigate to={"/auth/login"} />
+                )}
+            </>
+        )
+    }
 }
 
 const mapStateToProps = (state) => ({
-	username: state.userMeDuck.user.username,
+    username: state.userMeDuck.user.username,
 });
 
 export default connect(mapStateToProps)(User);

@@ -15,7 +15,6 @@ export const getUsers = async () => {
             fetchedUsers,
             totalElements: response.data.length
         }
-        //console.log("payload", payload)
     }).catch(
         //Error handler
     )

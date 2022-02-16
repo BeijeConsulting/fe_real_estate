@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Route, Routes, Navigate } from "react-router-dom";
 
 // FRONTEND SCREENS
@@ -26,12 +25,15 @@ import SignUpPrivate from "./frontend/screens/Auth/SignUp/SignUpPrivate";
 import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
 import SignUpBusiness from "./frontend/screens/Auth/SignUp/SignUpBusiness";
 import User from "./frontend/screens/User/User";
+import EditProfile from "./frontend/screens/User/EditProfile";
+import PostAdvs from "./frontend/screens/User/PostAdvs";
+import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
+import Dashboard from "./frontend/screens/User/Dashboard";
 
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
-
 
 
 
@@ -43,18 +45,14 @@ const Routing = () => (
 				<Route path="" element={<Home />} />
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
-				<Route
-					path="assess-building"
-					element={<AssessBuilding />}
-				/>
+				<Route path="assess-building" element={<AssessBuilding />} />
 			</Route>
 
 			<Route path=":advType/:buildingType/:city" element={null} />
 			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth" element={<Auth />}>
-				<Route
-					path=""
+				<Route path=""
 					// redirect to /auth/login
 					element={<Navigate to={"login"} replace={true} />}
 				/>
@@ -83,9 +81,10 @@ const Routing = () => (
 			</Route>
 
 			<Route path="user" element={<User />}>
-				<Route path="profile" element={null} />
-				<Route path="post-ad" element={null} />
-				<Route path="saved-ads" element={null} />
+				<Route path="" element={<Dashboard />} />
+				<Route path="edit-profile" element={<EditProfile />} />
+				<Route path="post-advs" element={<PostAdvs />} />
+				<Route path="save-advs" element={<SaveAdvs />} />
 			</Route>
 
 
