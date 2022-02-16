@@ -46,15 +46,10 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
+				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
 				<Route path="building/:buildingId" element={<DetailBuilding />} />
 			</Route>
 
-<<<<<<< HEAD
-			<Route path=":advType/:buildingType/:city" element={null} />
-=======
-			<Route path="adv/:advType/:buildingType/:city" element={<AdvList/>} />
-			<Route path="adv/:buildingId" element={null} />
->>>>>>> 5b405df0858e7b076570bb5dcbf07b72a3fcf8e3
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
