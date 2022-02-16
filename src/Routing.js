@@ -12,7 +12,6 @@ import Cms from "./backoffice/screens/cms/Cms";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
-import UsersList from "./backoffice/screens/UsersList/UsersList";
 
 import Auth from "./frontend/screens/Auth/Auth";
 import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
@@ -31,6 +30,9 @@ import applicationStore from "./applicationStore";
 import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 import * as RoutingBO from "./backoffice/RoutingBO";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
+import UsersList from "./backoffice/screens/UsersList/UsersList";
+import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
+
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -91,6 +93,7 @@ const Routing = () => (
 			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
+				<Route path="businesses" element={<BusinessList />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
 				<Route
 					path="advertisements"
