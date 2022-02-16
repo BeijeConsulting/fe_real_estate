@@ -62,3 +62,12 @@
 }
 
 /* END COMMON CSS */
+
+
+p {
+    margin-bottom: 0 !important
+}
+
+a{
+	color: inherit !important
+}
