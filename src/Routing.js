@@ -26,6 +26,7 @@ import PostAdvs from "./frontend/screens/User/PostAdvs";
 import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
+import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding"
 
 // REDUX
 import { Provider } from "react-redux";
@@ -45,10 +46,10 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
+				<Route path="building/:buildingId" element={<DetailBuilding />} />
 			</Route>
 
 			<Route path=":advType/:buildingType/:city" element={null} />
-			<Route path="building/:buildingId" element={null} />
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
