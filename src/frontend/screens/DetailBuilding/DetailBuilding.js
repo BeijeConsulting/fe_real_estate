@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
+import { useParams } from 'react-router-dom'
+import { Carousel } from 'react-carousel-minimal';
+
+//API
+import javaAcademyService from '../../../services/javaAcademyService';
+
+//Components
 import Navbar from "../../components/Navbar/Navbar"
 import Footer from "../../components/Footer/Footer"
 import Card from "../../components/UI/Card/Card"
 import Button from "../../components/UI/Button/Button"
 import Input from "../../components/UI/Input/Input"
-import { Carousel } from 'react-carousel-minimal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+//Icon
 import { faMapMarkerAlt, faHeart } from "@fortawesome/free-solid-svg-icons"
+
+//Images
 import Avatar from "../../assets/images/jardin.jpeg"
 
 import "./detailBuilding.css"
@@ -28,6 +38,14 @@ class DetailBuilding extends Component {
                 }
             ]
         }
+    }
+
+    componentDidMount() {
+        javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) =>
+            console.log("Res", res)
+        ).catch((error) =>
+            console.log("Error", error)
+        )
     }
 
     render() {
@@ -111,4 +129,14 @@ class DetailBuilding extends Component {
     }
 }
 
-export default DetailBuilding;
+const Wrap = (props) => {
+    const params = useParams()
+    return (
+        <DetailBuilding {...props}
+            params={params}
+        />
+    )
+}
+
+
+export default Wrap;
