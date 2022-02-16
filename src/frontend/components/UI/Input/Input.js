@@ -21,7 +21,7 @@ const Input = (props) => {
 Input.defaultProps = {
   type: "text",
   image: '',
-  className: "rounded-t bg-secondary flex items-center text-white mt-2 px-2 py-2 border-b-2 border-amber-300 font-primary"
+  className: "rounded-t bg-secondary flex items-center text-white mt-4 px-2 py-2 border-b-2 border-amber-300 font-primary"
 };
 
 Input.propTypes = {

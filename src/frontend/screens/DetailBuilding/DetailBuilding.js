@@ -28,7 +28,6 @@ class DetailBuilding extends Component {
                 }
             ]
         }
-
     }
 
     render() {

@@ -4,15 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
-
-// BACKOFFICE SCREENS
-// here
-import Cms from "./backoffice/screens/cms/Cms";
-
-// COMMON
-import NotFound from "./common/screens/NotFound";
-import UsersList from "./backoffice/screens/UsersList/UsersList";
-
+import AdvList from "./frontend/screens/Advertisement/AdvList";
 import Auth from "./frontend/screens/Auth/Auth";
 import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
 import Home from "./frontend/screens/Home/Home";
@@ -27,6 +19,14 @@ import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
 import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding"
+
+// BACKOFFICE SCREENS
+// here
+import Cms from "./backoffice/screens/cms/Cms";
+
+// COMMON
+import NotFound from "./common/screens/NotFound";
+import UsersList from "./backoffice/screens/UsersList/UsersList";
 
 // REDUX
 import { Provider } from "react-redux";
@@ -49,7 +49,12 @@ const Routing = () => (
 				<Route path="building/:buildingId" element={<DetailBuilding />} />
 			</Route>
 
+<<<<<<< HEAD
 			<Route path=":advType/:buildingType/:city" element={null} />
+=======
+			<Route path="adv/:advType/:buildingType/:city" element={<AdvList/>} />
+			<Route path="adv/:buildingId" element={null} />
+>>>>>>> 5b405df0858e7b076570bb5dcbf07b72a3fcf8e3
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""

@@ -7,7 +7,7 @@
 .cards-container {
     overflow-x: auto;
     white-space: nowrap;
-    height:600px;
+    height:420px;
     cursor: pointer;
 
 }
@@ -17,7 +17,7 @@
     .cards-container {
         overflow-x: auto;
         white-space: nowrap;
-        height:600px;
+        height:450px;
         cursor: pointer;
         margin-top: 0.5%;
     
