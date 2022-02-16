@@ -53,12 +53,15 @@ class UsersList extends Component {
         this.setState({
             isLoading: true
         })
+        if(value === "") {
         this.fetchBusinesses ()
+        } else {
+            //Search API
+        }
     }
 
     fetchBusinesses = async () => {
         let payload = await getBusinesses()
-        console.log(payload)
         this.setState({
             businesses: payload.fetchedBusinesses,
             isLoading: false,

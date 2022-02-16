@@ -43,7 +43,6 @@ class UsersList extends Component {
                 },
                 responsive: ["sm"]
             },
-
             {
                 title: '',
                 dataIndex: 'actions',
@@ -69,7 +68,11 @@ class UsersList extends Component {
         this.setState({
             isLoading: true
         })
+        if(value ==="") {
         this.fetchUsers()
+        } else {
+            //Search API
+        }
     }
 
     fetchUsers = async () => {
