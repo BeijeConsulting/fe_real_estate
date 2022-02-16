@@ -9,8 +9,8 @@ const SearchSelect = (props) => {
     const select = useRef()
 
     let selectStyle = isOpened
-        ? { transform: 'translateY(0px)', opacity: 1, display:'block' }
-        : { transform: 'translateY(50px)', opacity: 0}
+        ? { transform: 'translateY(0px)', opacity: 1, pointerEvent:'auto' }
+        : { transform: 'translateY(50px)', opacity: 0, pointerEvents:'none'}
 
 
     const toggleSelect = () => {
@@ -19,14 +19,16 @@ const SearchSelect = (props) => {
 
     const handleCallback = ( value ) => () =>{
         props.callback(value)
+        setIsOpened(false)
     }
 
 
     const handleOptionsRender = (option, key) => {
         return (
             <p 
+                key={option.value + key}
                 className='hover:bg-gray-200 cursor-pointer rounded border-b-gray-300 py-2 px-2 border-b text-xl'
-                onClick={handleCallback(option.value)}
+                onClick={handleCallback(option)}
             >
                 {option.label}
             </p>
@@ -41,7 +43,7 @@ const SearchSelect = (props) => {
                 className='cursor-pointer flex md:mx-4 color-primary underlined'
                 onClick={toggleSelect}
             >
-                <p>{props.value}</p>
+                <p className='font-semibold'>{props.value}</p>
                 <div className=' transition ml-1 text-3xl flex justify-center items-center'>
                     <FontAwesomeIcon className='transition' icon={faChevronDown} rotation={isOpened ? 180 : 0} />
                 </div>
