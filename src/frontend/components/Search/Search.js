@@ -9,9 +9,9 @@ const Search = () => {
   let navigate = useNavigate()
 
   const [query, setQuery] = useState({
-    buildingType: { label: 'Casa' },
-    advType: { label: 'Vendita' },
-    location: { label: 'Scegli dove..' }
+    buildingType: { label: 'Casa', value:'HOUSE' },
+    advType: { label: 'Vendita', value:'SELL' },
+    location: { label: 'Scegli dove..', value:'scegli_dove'}
   })
 
   let imgUrl = "https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg"
@@ -23,10 +23,10 @@ const Search = () => {
   const setLocation = (value) => setQuery({ ...query, location: value })
 
   const handleSubmit = () => {
-    let newUrl = 'adv/' 
+    let newUrl = '' 
       + query.advType.value + "/"
       + query.buildingType.value + "/"
-      + query.location.label
+      + query.location.value
 
     navigate(newUrl.toLowerCase())
   }
