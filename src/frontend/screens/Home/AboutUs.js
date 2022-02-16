@@ -47,7 +47,7 @@ const AboutUs = ({ t }) => {
 
       <div className="blue-container">
 
-        DATI SOCIETARI
+        <h1 class="text-white ml-4"> DATI SOCIETARI </h1>
         
         <p>Domus.it è un sito web di  DomusGroup, a socio unico <br />
           Sede legale: Corso Mantova 3, 20122, Milano <br />
