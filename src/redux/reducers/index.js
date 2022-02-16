@@ -4,11 +4,13 @@ import { combineReducers } from "redux";
 import tokenDuck from "../ducks/tokenDuck";
 import adminDuck from "../ducks/adminDuck";
 import userMeDuck from "../ducks/userMeDuck";
+import cmsDuck from "../ducks/cmsDuck";
 
 const rootReducer = combineReducers({
 	tokenDuck,
 	adminDuck,
 	userMeDuck,
+	cmsDuck
 });
 
 export default rootReducer;
