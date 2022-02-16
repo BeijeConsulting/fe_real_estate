@@ -14,10 +14,11 @@ import { Button, Layout, Menu } from 'antd';
 
 // FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faRectangleList, faUsers, faChartLine } from "@fortawesome/free-solid-svg-icons"
+import { faBriefcase, faRectangleList, faUsers, faChartLine, faStamp } from "@fortawesome/free-solid-svg-icons"
 
 
 const { Header, Content, Footer, Sider } = Layout;
+
 const Cms = (props) => {
     let navigate = useNavigate();
 
@@ -66,6 +67,9 @@ const Cms = (props) => {
                         </Menu.Item>
                         <Menu.Item key="6" icon={<FontAwesomeIcon icon={faBriefcase} />} onClick={setTitleNavigate("collaborators")}>
                             Collaboratori
+                        </Menu.Item>
+                        <Menu.Item key="7" icon={<FontAwesomeIcon icon={faStamp} />} onClick={setTitleNavigate("verification-adv")}>
+                            Autenticazioni
                         </Menu.Item>
                     </Menu>
 

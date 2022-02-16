@@ -1,0 +1,8 @@
+.container-VerificationAdv{
+    height: calc(100vh - 160px);
+    background-color: white;
+    overflow-y: auto;
+    border-radius: 10px;
+    background-color: white;
+
+}
