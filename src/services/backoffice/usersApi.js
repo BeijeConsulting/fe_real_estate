@@ -32,10 +32,18 @@ export const getUserById = async (id) => {
     return userById
 }
 
-export const updateUserInfo = async () => {
-    await javaAcademyServiceInstance.put("/user/update").then((response) => {
-        console.log('response', response)
+export const updateUserInfo = async (content, token) => {
+    const headers = { 
+        'Authorization': 'Bearer ' + token,
+    };
+
+    let updateUser = ''
+    await javaAcademyServiceInstance.put("/user/update", content, {headers}).then((response) => {
+       updateUser = response.data
+       console.log('updateUSer', updateUser)
+        
     }).catch(
         
     )
+    return updateUser
 }

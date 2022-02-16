@@ -15,6 +15,7 @@ const signInAdmin = async ({ username, password }, dispatch) => {
                     id,
                     permission,
                     username,
+                    token
                 })
             );
         });
