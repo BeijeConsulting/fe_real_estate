@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import SearchSelect from './SearchSelect'
 import Button from '../UI/Button/Button'
+import { ADV_TYPES, BUILDING_TYPES } from '../../../common/utils/globalTypes'
 
 const Search = () => {
 
   const [ query, setQuery ] = useState({
-    buildingType: 'Casa',
-    advType: 'Vendita',
-    location: 'Scegli dove..'
+    buildingType: {label:'Casa'},
+    advType: {label:'Vendita'},
+    location: {label:'Scegli dove..'}
   })
 
   let imgUrl = "https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg"
@@ -25,19 +26,21 @@ const Search = () => {
         <p>Cerco</p>
         <SearchSelect
           ico=""
-          value={query.buildingType}
+          value={query.buildingType.label}
           callback={setBuildingType}
+          options={BUILDING_TYPES}
         />
         <p>in</p>
         <SearchSelect
           ico=""
-          value={query.advType}
+          value={query.advType.label}
           callback={setAdvType}
+          options={ADV_TYPES}
         />
         <p>a</p>
         <SearchSelect
           ico=""
-          value={query.location}
+          value={query.location.label}
           callback={setLocation}
         />
       </div>

@@ -1,29 +1,23 @@
 import javaAcademyService from "../javaAcademyService";
-import storage from "../../common/utils/storage";
+
 import { setUser } from "../../redux/ducks/userMeDuck";
 
 const signIn = ({ username, password }, rememberMeObj, dispatch) =>
 	javaAcademyService
 		.signIn({ username, password })
-		.then(({ data: { id, permission, token, username } }) => {
-			localStorage.setItem(
-				storage.LOCAL_STORAGE_KEYS.USER_TOKEN,
-				token
-			);
-
-			localStorage.setItem(
-				storage.LOCAL_STORAGE_KEYS.REMEMBER_ME,
-				JSON.stringify(rememberMeObj)
-			);
-
+		.then(({ data: { id, permission, token, username } }) =>
 			dispatch(
-				setUser({
-					id,
-					permission,
-					username,
-				})
-			);
-		});
+				setUser(
+					{
+						id,
+						permission,
+						username,
+					},
+					rememberMeObj,
+					token
+				)
+			)
+		);
 
 const authApi = {
 	signIn,

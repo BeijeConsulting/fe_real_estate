@@ -30,8 +30,8 @@ class Auth extends Component {
 	render() {
 		return (
 			<div className="bg-secondary h-screen ">
-				<header className="flex items-center justify-center gap-2 pt-5 pb-5">
-					<div className="flex items-center justify-center gap-2 pt-5 pb-5">
+				<header className="flex items-center justify-center gap-2 py-5">
+					<div className="flex items-center justify-center gap-2 py-5">
 						<img
 							src={logo}
 							alt="logo"
@@ -42,11 +42,15 @@ class Auth extends Component {
 						</h1>
 					</div>
 					<p className="color-primary text-5xl">|</p>
-					<Languages classNameContainer="color-primary" />
+					<Languages 
+						fgClass="color-primary" 
+						valueSize={10}
+						icoSize={10}
+					/>
 				</header>
 
 				<div className="flex items-center justify-center">
-					<Card className="pt-2 pr-4 pl-4 pb-2 w-10/12">
+					<Card className="px-5 py-5 w-10/12 max-w-4xl">
 						{/* Login / Registration */}
 						<Outlet />
 					</Card>
