@@ -7,9 +7,9 @@
 .cards-container {
     overflow-x: auto;
     white-space: nowrap;
-    height:420px;
+    height:430px;
     cursor: pointer;
-
+    width: 100vw;
 }
 
 @media screen and (max-width: 680px) {

@@ -42,7 +42,11 @@ class Auth extends Component {
 						</h1>
 					</div>
 					<p className="color-primary text-5xl">|</p>
-					<Languages classNameContainer="color-primary" />
+					<Languages 
+						fgClass="color-primary" 
+						valueSize={10}
+						icoSize={10}
+					/>
 				</header>
 
 				<div className="flex items-center justify-center">

@@ -45,6 +45,15 @@
 	);
 }
 
+.bg-gradient-secondary{
+
+	background: linear-gradient(
+		3deg,
+		rgba(32, 39, 64, 1) 17%,
+		rgba(119, 135, 192, 1) 100%
+	);
+}
+
 .color-gray {
 	color: #e5e5e5;
 }
@@ -63,6 +72,15 @@
     height: 10px;
     width: 50px;
     background-color: #ffe714;
+}
+
+.scale-in-hover {
+    transform: scale(1);
+    transition: 0.2s;
+}
+
+.scale-in-hover:hover{
+    transform: scale(1.03)
 }
 
 /* END COMMON CSS */
