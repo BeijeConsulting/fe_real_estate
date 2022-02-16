@@ -1,9 +1,58 @@
-import React from 'react'
+import React, { useState } from 'react'
+import SearchSelect from './SearchSelect'
+import Button from '../UI/Button/Button'
 
 const Search = () => {
+
+  const [ query, setQuery ] = useState({
+    buildingType: 'Casa',
+    advType: 'Vendita',
+    location: 'Scegli dove..'
+  })
+
+  let imgUrl = "https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg"
+
+
+  const setBuildingType = (value) => setQuery({...query, buildingType: value })
+  const setAdvType = (value) => setQuery({...query, advType: value })
+  const setLocation = (value) => setQuery({...query, location: value })
+  
+
   return (
-    <div className='bg-black flex-1'>
-        w
+    <div className='select-none flex-1 flex flex-col justify-center items-center'>
+
+      <div className='flex flex-col md:flex-row text-white z-30 text-5xl space-x-2'>
+        <p>Cerco</p>
+        <SearchSelect
+          ico=""
+          value={query.buildingType}
+          callback={setBuildingType}
+        />
+        <p>in</p>
+        <SearchSelect
+          ico=""
+          value={query.advType}
+          callback={setAdvType}
+        />
+        <p>a</p>
+        <SearchSelect
+          ico=""
+          value={query.location}
+          callback={setLocation}
+        />
+      </div>
+
+      <Button 
+        type="primary"
+        size={26}
+        label="VEDI 3 CASE"
+        marginTop={25}
+      />
+
+
+      {/* BACKGROUND OVERLAY + BG */}
+      <div className='flex-1 absolute inset-0 -z-20' style={{ backgroundImage: `url(${imgUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}/>
+      <div className='absolute inset-0 flex-1 bg-black opacity-70 -z-10' />
     </div>
   )
 }
