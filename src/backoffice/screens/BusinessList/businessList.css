@@ -5,9 +5,9 @@
 
 .businesses-list-container{
     background-color: white;
-    height: 70vh;
+    height:  calc(100vh - 160px);
     border-radius: 10px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 .businesses-list-header {
