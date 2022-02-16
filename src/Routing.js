@@ -46,8 +46,9 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
+
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
-				<Route path="building/:buildingId" element={<DetailBuilding />} />
+				<Route path="adv/:buildingId" element={<DetailBuilding />} />
 			</Route>
 
 
@@ -68,14 +69,8 @@ const Routing = () => (
 							/>
 						}
 					/>
-					<Route
-						path="private"
-						element={<SignUpPrivate />}
-					/>
-					<Route
-						path="business"
-						element={<SignUpBusiness />}
-					/>
+					<Route path="private" element={<SignUpPrivate />} />
+					<Route path="business" element={<SignUpBusiness />} />
 				</Route>
 				<Route path="forgotpsw" element={<ForgotPsw />} />
 			</Route>
