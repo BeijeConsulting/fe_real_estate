@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Poppins:ital,wght@0,400;1,300&display=swap");
+
+.aboutus-title {
+    margin-left: 41%;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    color:black;
+    margin-top: 45%;
+    position: absolute;
+   }
+
+.aboutus-image {
+   height: 600px;
+   width: 100%;
+   position: absolute;
+   background: center;
+}
+
+.ourvalues-container {
+    height: 600px;
+    width: 100%;
+    margin-top: 54%;
+    border-radius: 10px;
+    background-color: #d8d8d8;
+    position: absolute;
+
+}
+
+.ourvalues-image {
+    float:right;
+    width:60%;
+    height: 100%;
+    position: relative;
+    border-radius: 10px;
+}
+
+
+
+.aboutus-footer {
+    margin-top: 110%;
+}
+
+
+.blue-container {
+    background-color: #202740;
+    height: 300px;
+    width:100%;
+    position: absolute;
+    margin-top: 92%;
+    color: white;
+    font-weight: bold;
+    font-size: 30px;
+    
+}
+
+.blue-container p{
+    font-size: 20px;
+    color:#E0BD06;
+}
+ 
+@media screen and (max-width: 680px) {
+
+    .ourvalues-container {
+        height: 350px;
+        width: 100%;
+        margin-top: 120%;
+        border-radius: 10px;
+        background-color: #d8d8d8;
+        position: absolute;
+    
+    }
+
+    .blue-container {
+        background-color: #202740;
+        height: 255px;
+        width:100%;
+        position: absolute;
+        margin-top: 180%;
+        color: white;
+        font-weight: bold;
+        font-size: 30px;
+        
+    }
+    
+    .blue-container p{
+        font-size: 20px;
+        color:#E0BD06;
+    }
+
+    .aboutus-title {
+        margin-left: 33%;
+        font-family: "Inter", sans-serif;
+        font-weight: bold;
+        font-size: 40px;
+        color:black;
+        margin-top: 101%;
+        position: absolute;
+       }
+       
+       .aboutus-footer {
+        margin-top: 220%;
+    }
+
+
+ 
+
+
+
+}
