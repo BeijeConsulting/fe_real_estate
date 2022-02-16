@@ -71,3 +71,7 @@ p {
 a{
 	color: inherit !important
 }
+
+h1{
+    margin-bottom: 0 !important;
+}
