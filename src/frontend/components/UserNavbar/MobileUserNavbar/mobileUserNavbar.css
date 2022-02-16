@@ -5,8 +5,8 @@
 }
 
 .link-menu:hover{
-    color: #ffeba8;
-    transform: scale(1.05);
+    color: #ffeba8 !important;
+    transform: scale(1.05) !important;
 }
 
 .menu{

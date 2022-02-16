@@ -24,9 +24,9 @@ class User extends Component {
                     </section>
 
                 </div>
-                {/*this.props.username === undefined && (
+                {this.props.username === undefined && (
                     <Navigate to={"/auth/login"} />
-                )*/}
+                )}
             </>
         )
     }
