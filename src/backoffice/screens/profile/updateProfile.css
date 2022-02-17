@@ -1,5 +1,5 @@
 .update-profile-container{    
-    height: 70vh;
+    height: calc(100vh - 170px);
 }
 
 .update-profile-form{
@@ -10,6 +10,7 @@
 }
 
 .update-profile-img{
+    margin-top: 1em;
     height: 100px;
     width: 100px;
     background-color: gray;

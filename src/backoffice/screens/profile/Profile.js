@@ -26,7 +26,7 @@ const Profile = (props) => {
     })
 
     const getAdminData = async () => {
-        dataAdmin = await getUserById(props.admin.id)
+        dataAdmin = await getUserById(props.admin.id, props.admin.token)
     }
 
 
@@ -63,13 +63,13 @@ const Profile = (props) => {
                                 description={item.surname}
                             />
                             <List.Item.Meta
-                                title={'Data di nascita'}
-                                description={item.birthDate}
+                                title={'Username'}
+                                description={item.username}
                             />
-                            <List.Item.Meta
+                            {/*<List.Item.Meta
                                 title={'Luogo di nascita'}
                                 description={item.birthPlace}
-                            />
+                            />*/}
                         </List.Item>
                     )}
                 />
@@ -87,14 +87,14 @@ const Profile = (props) => {
                                 title={'Email personale'}
                                 description={item.email}
                             />
-                            <List.Item.Meta
+                            {/*<List.Item.Meta
                                 title={'Numero di telefono'}
                                 description={item.phoneNumber}
                             />
                             <List.Item.Meta
                                 title={'Email di lavoro'}
                                 description={item.businessEmail}
-                            />
+                            />*/}
                         </List.Item>
                     )}
                 />

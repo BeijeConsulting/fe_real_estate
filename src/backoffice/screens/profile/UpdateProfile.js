@@ -2,81 +2,67 @@ import { Button, Form, Input, DatePicker, Upload } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./updateProfile.css";
-import moment from "moment";
 import { useEffect, useState } from "react";
 import { getUserById, updateUserInfo } from "../../../services/backoffice/usersApi";
 import { connect } from "react-redux";
 
-import storage from "../../../common/utils/storage"
-import defaultExport from "../../../common/utils/storage";
-
+import { useNavigate } from "react-router-dom";
 
 const UpdateProfile = (props) => {
     let dataAdmin = {}
-    let updatedData = {
-        id: '',
-        business: null,
-        email: "",
-        avatarUrl: null,
-        password: "",
-        spamCheck: false,
-        username: "",
-        name: "",
-        surname: "",
-        status: null,
-
-    }
-    let name = ''
-    let data = {}
-
+    let updatedData = {}
+    let navigate = useNavigate()
     const [form] = Form.useForm();
     const antProps = {
-        action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76'
+        action: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.interlinecenter.com%2F%3Fattachment_id%3D337&psig=AOvVaw1M-WHiEIbmWU6iI0nqA9iI&ust=1645182122041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPibgZLLhvYCFQAAAAAdAAAAABAD'
     }
-    const dateFormat = "YYYY-MM-DD";
 
     const [state, setState] = useState({ dataAdmin: {}, updatedData: {} })
 
     const getAdminData = async () => {
-        return dataAdmin = await getUserById(props.admin.id)
-
+        return dataAdmin = await getUserById(props.admin.id, props.admin.token)
     }
 
     const handleName = (e) => {
-        name = e.target.value
-        data = {...updatedData, name: name }
-        setState({ ...state, updatedData: data })
+        let name = e.target.value
+        updatedData = { ...state.updatedData, name: name }
+        setState({ ...state, updatedData: updatedData })
     }
 
     const handleSurname = (e) => {
         let surname = e.target.value
+        updatedData = { ...state.updatedData, surname: surname }
+        setState({ ...state, updatedData: updatedData })
     }
 
-    const handleBirthPlace = (e) => {
-        let birthPlace = e.target.value
-    }
 
     const handleEmail = (e) => {
         let email = e.target.value
+        updatedData = { ...state.updatedData, email: email }
+        setState({ ...state, updatedData: updatedData })
     }
 
-    const handleBusinessEmail = (e) => {
-        let businessEmail = e.target.value
-    }
-
-    const handlePhoneNumber = (e) => {
-        let phoneNumber = e.target.value
-    }
 
     const handleClick = async () => {
-        console.log('content', state.updatedData)
-        console.log('token', props.admin.token)
         let data = await updateUserInfo(state.updatedData, props.admin.token)
+        navigate("/admin/profile")
     }
 
+
+
     useEffect(async () => {
-        data = await getAdminData()
-        setState({ ...state, dataAdmin: dataAdmin })
+        let dataAdmin = await getAdminData()
+
+        updatedData = {
+            email: dataAdmin.email,
+            avatarUrl: dataAdmin.avatarUrl,
+            name: dataAdmin.name,
+            surname: dataAdmin.surname,
+        }
+        setState({ updatedData: updatedData, dataAdmin: dataAdmin })
+        form.resetFields()
+
+        console.log('avatar', dataAdmin)
 
     }, [])
 
@@ -90,38 +76,43 @@ const UpdateProfile = (props) => {
                 form={form}
                 initialValues={state.dataAdmin}
             >
-                <span className="update-profile-img"></span>
-                <Upload className="update-profile-upload" {...antProps}>
+                <span className="update-profile-img">
+                </span>
+                <Upload
+                    className="update-profile-upload"
+                    {...antProps}
+                    accept="image/png, image/jpeg"
+                    
+                >
                     <Button icon={<UploadOutlined />}>Upload</Button>
                 </Upload>
 
                 <div className="update-profile-info">
-                    <Form.Item name="name" label="Nome" initialValue={state.dataAdmin.name}>
+                    <Form.Item name="name" label="Nome">
                         <Input onChange={handleName} placeholder="inserisci nome" />
                     </Form.Item>
                     <Form.Item name="surname" label="Cognome">
                         <Input onChange={handleSurname} placeholder="inserisci cognome" />
                     </Form.Item>
-                    <Form.Item name="birthDate" label="Data di nascita">
-                        <DatePicker
-                            initialValue={moment('01/01/1990', dateFormat)}
-                            format={dateFormat}
-                        />
+                    <Form.Item name="username" label="Username">
+                        <Input placeholder="admin" />
                     </Form.Item>
-                    <Form.Item name="birthPlace" label="Luogo di nascita">
+                    {/*<Form.Item name="birthPlace" label="Luogo di nascita">
                         <Input onChange={handleBirthPlace} placeholder="inserisci luogo di nascita" />
-                    </Form.Item>
+                    </Form.Item>*/}
                 </div>
                 <div className="update-profile-contacts">
-                    <Form.Item name="email" label="Email" initialValue={state.dataAdmin.email}>
+                    <Form.Item name="email" label="Email">
                         <Input onChange={handleEmail} type="email" placeholder="inserisci la tua email" />
                     </Form.Item>
-                    <Form.Item name="phoneNumber" label="Numero di telefono">
+                    {/* <Form.Item name="phoneNumber" label="Numero di telefono">
                         <Input onChange={handlePhoneNumber} placeholder="inserisci numero di telefono " />
                     </Form.Item>
                     <Form.Item name="businessEmail" label="Email aziendale">
                         <Input onChange={handleBusinessEmail} type="email" placeholder="inserisci email aziendale" />
-                    </Form.Item>
+                    </Form.Item> */
+                    }
+
                 </div>
                 <div className="update-profile-button">
                     <Form.Item>

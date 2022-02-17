@@ -21,9 +21,12 @@ export const getUsers = async () => {
     return payload
 }
 
-export const getUserById = async (id) => {
+export const getUserById = async (id, token) => {
     let userById = ''
-    await javaAcademyServiceInstance.get("/user/"+id).then((response) => {
+    const headers = { 
+        'Authorization': 'Bearer ' + token,
+    };
+    await javaAcademyServiceInstance.get("/user/"+id, {headers}).then((response) => {
         userById = response.data
        
     }).catch(
