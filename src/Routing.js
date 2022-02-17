@@ -47,11 +47,9 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
-
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
 				<Route path="adv/:buildingId" element={<DetailBuilding />} />
 			</Route>
-
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
@@ -59,7 +57,7 @@ const Routing = () => (
 					element={<Navigate to={"login"} replace={true} />}
 				/>
 				<Route path="login" element={<Login />} />
-				<Route path="signup" element={<SignUp />}>
+				<Route path="signup" element={<SignUp path={location.pathname} />}>
 					<Route
 						path=""
 						// redirect to /auth/signup/private
@@ -79,79 +77,49 @@ const Routing = () => (
 						element={<SignUpBusiness />}
 					/>
 				</Route>
+				<Route path="forgotpsw" element={<ForgotPsw />} />
+			</Route>
 
-				<Route path=":advType/:buildingType/:city" element={null} />
-				<Route path="building/:buildingId" element={null} />
-
-				<Route path="auth" element={<Auth />}>
-					<Route path=""
-						// redirect to /auth/login
-						element={<Navigate to={"login"} replace={true} />}
-					/>
-					<Route path="login" element={<Login />} />
-					<Route path="signup" element={<SignUp path={location.pathname} />}>
-						<Route
-							path=""
-							// redirect to /auth/signup/private
-							element={
-								<Navigate
-									to={"private"}
-									replace={true}
-								/>
-							}
-						/>
-						<Route
-							path="private"
-							element={<SignUpPrivate />}
-						/>
-						<Route
-							path="business"
-							element={<SignUpBusiness />}
-						/>
-					</Route>
-					<Route path="forgotpsw" element={<ForgotPsw />} />
-				</Route>
-
-				<Route path="user" element={<User />}>
-					<Route path="" element={<Dashboard />} />
-					<Route path="edit-profile" element={<EditProfile />} />
-					<Route path="post-advs" element={<PostAdvs />} />
-					<Route path="save-advs" element={<SaveAdvs />} />
-				</Route>
+			<Route path="user" element={<User />}>
+				<Route path="" element={<Dashboard />} />
+				<Route path="edit-profile" element={<EditProfile />} />
+				<Route path="post-advs" element={<PostAdvs />} />
+				<Route path="save-advs" element={<SaveAdvs />} />
+			</Route>
 
 
-				{/* BACKOFFICE */}
-				<Route path="admin-auth" element={<AdminLogin />} />
-				<Route path="admin" element={<Cms />}>
-					<Route index element={<RoutingBO.DashBoard />} />
-					<Route path="users" element={<UsersList />} />
-					<Route path="user/:id" element={<RoutingBO.User />} />
-					<Route
-						path="advertisements"
-						element={<RoutingBO.User />}
-					/>
-					<Route
-						path="advertisement/:id"
-						element={<RoutingBO.User />}
-					/>
-					<Route
-						path="dashBoard"
-						element={<RoutingBO.DashBoard />}
-					/>
-					<Route
-						path="profile"
-						element={<RoutingBO.User />}
-					/>
-					<Route
-						path="collaborators"
-						element={<RoutingBO.User />}
-					/>
-					<Route
-						path="collaborator/:id"
-						element={<RoutingBO.User />}
-					/>
-				</Route>
-				<Route path="*" element={<NotFound />} />
+			{/* BACKOFFICE */}
+			<Route path="admin-auth" element={<AdminLogin />} />
+			<Route path="admin" element={<Cms />}>
+				<Route index element={<RoutingBO.DashBoard />} />
+				<Route path="users" element={<UsersList />} />
+				<Route path="user/:id" element={<RoutingBO.User />} />
+				<Route
+					path="advertisements"
+					element={<RoutingBO.User />}
+				/>
+				<Route
+					path="advertisement/:id"
+					element={<RoutingBO.User />}
+				/>
+				<Route
+					path="dashBoard"
+					element={<RoutingBO.DashBoard />}
+				/>
+				<Route
+					path="profile"
+					element={<RoutingBO.User />}
+				/>
+				<Route
+					path="collaborators"
+					element={<RoutingBO.User />}
+				/>
+				<Route
+					path="collaborator/:id"
+					element={<RoutingBO.User />}
+				/>
+			</Route>
+			<Route path="*" element={<NotFound />} />
 		</Routes>
 	</Provider>
 )
