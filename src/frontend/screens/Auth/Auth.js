@@ -50,7 +50,7 @@ class Auth extends Component {
 				</header>
 
 				<div className="flex items-center justify-center">
-					<Card className="px-5 py-5 w-10/12 max-w-4xl">
+					<Card className="px-5 py-5 w-10/12 max-w-4xl justify-around">
 						{/* Login / Registration */}
 						<Outlet />
 					</Card>
