@@ -17,6 +17,10 @@
    background: center;
 }
 
+.mobile-pargraph {
+    display: none;
+}
+
 .ourvalues-container {
     height: 600px;
     width: 100%;
@@ -105,9 +109,88 @@
         margin-top: 220%;
     }
 
+    .mobile-pargraph {
+        display: none;
+    }
 
  
 
+
+
+}
+
+@media screen and (max-width: 450px) {
+    
+    .aboutus-image {
+        height: 500px;
+        width: 100%;
+        position: absolute;
+        background: center;
+     }
+
+    .ourvalues-container {
+        height: 350px;
+        width: 100%;
+        margin-top: 140%;
+        border-radius: 10px;
+        background-color: #d8d8d8;
+        position: absolute;
+    
+    }
+
+    .aboutus-title {
+        margin-left: 25%;
+        font-family: "Inter", sans-serif;
+        font-weight: bold;
+        font-size: 30px;
+        color:black;
+        margin-top: 125%;
+        position: absolute;
+       }
+
+       .blue-container {
+        background-color: #202740;
+        height: 200px;
+        width:100%;
+        position: absolute;
+        margin-top: 205%;
+        color: white;
+        font-weight: bold;
+        font-size: 30px;
+       
+        
+    }
+
+    .ourvalues-container {
+        height: 600px;
+        width: 100%;
+        margin-top: 54%;
+        border-radius: 10px;
+        background-color: #d8d8d8;
+        position: absolute;
+        display:none;
+    
+    }
+
+    .blue-container p{
+        font-size: 10px;
+        color:#E0BD06;
+        margin-top: 5%;
+    }
+
+    .aboutus-footer {
+        margin-top: 250%;
+    }
+
+    .mobile-pargraph {
+        display: block;
+        color:black;
+        position: absolute;
+        margin-top: 135%;
+        margin-left: -3%;
+        font-size: 18px;
+        padding: 5%;
+    }
 
 
 }
