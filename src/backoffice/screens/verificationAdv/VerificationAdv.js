@@ -30,7 +30,7 @@ const VerificationAdv = (props) => {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link to={"/advertisement/:" + record.id}>Scheda advertisement</Link>
+                <Link to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
             ,
         }
     ]
