@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const Card = (props) => {
 	return (
 		<div
+			onClick={props.onClick}
 			className={`rounded bg-white flex  ${props.className}`}
 		>
 			{props.children}

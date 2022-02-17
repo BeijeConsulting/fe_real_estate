@@ -4,7 +4,6 @@ import { Route, Routes, Navigate, useParams } from "react-router-dom";
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
-import AdvList from "./frontend/screens/Advertisement/AdvList";
 import Auth from "./frontend/screens/Auth/Auth";
 import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
 import Home from "./frontend/screens/Home/Home";
@@ -18,25 +17,29 @@ import PostAdvs from "./frontend/screens/User/PostAdvs";
 import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
-import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding"
+import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
+import FAQ from "./frontend/screens/FAQ/FAQ";
 
 // BACKOFFICE SCREENS
 // here
+import Profile from "./backoffice/screens/profile/Profile";
+import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
+import * as RoutingBO from "./backoffice/RoutingBO";
+import UsersList from "./backoffice/screens/UsersList/UsersList";
+import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
+import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
-import UsersList from "./backoffice/screens/UsersList/UsersList";
+
+
 
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
-
-// BACKOFFICE SCREENS
-import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
-import * as RoutingBO from "./backoffice/RoutingBO";
-
-import { useLocation } from "react-router-dom";
+import AdvList from "./frontend/screens/Advertisement/AdvList";
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -47,9 +50,13 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
+				<Route path="/FAQ" element={<FAQ />} />
+
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
 				<Route path="adv/:buildingId" element={<DetailBuilding />} />
 			</Route>
+
+
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
@@ -57,7 +64,7 @@ const Routing = () => (
 					element={<Navigate to={"login"} replace={true} />}
 				/>
 				<Route path="login" element={<Login />} />
-				<Route path="signup" element={<SignUp path={location.pathname} />}>
+				<Route path="signup" element={<SignUp />}>
 					<Route
 						path=""
 						// redirect to /auth/signup/private
@@ -93,11 +100,10 @@ const Routing = () => (
 			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
+				<Route path="businesses" element={<BusinessList />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
-				<Route
-					path="advertisements"
-					element={<RoutingBO.User />}
-				/>
+				<Route path="advertisements" element={<RoutingBO.User />} />
+				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route
 					path="advertisement/:id"
 					element={<RoutingBO.User />}
@@ -106,10 +112,8 @@ const Routing = () => (
 					path="dashBoard"
 					element={<RoutingBO.DashBoard />}
 				/>
-				<Route
-					path="profile"
-					element={<RoutingBO.User />}
-				/>
+				<Route path="profile" element={<Profile />} />
+				<Route path="profile/update-profile" element={<UpdateProfile />} />
 				<Route
 					path="collaborators"
 					element={<RoutingBO.User />}
@@ -122,6 +126,6 @@ const Routing = () => (
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	</Provider>
-)
+);
 
 export default Routing;

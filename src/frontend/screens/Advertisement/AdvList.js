@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Button from '../../components/UI/Button/Button'
 import Navbar from '../../components/Navbar/Navbar'
 import AdvCard from '../../components/AdvCard/AdvCard'
+import Filters from '../../components/Filters/Filters'
 
 const AdvList = () => {
 	let { city, advType } = useParams();
@@ -11,16 +12,14 @@ const AdvList = () => {
 
 	let type = "";
 
+	const handleNavigate = (dest) => () => {
+		navigate(dest)
+	}
+
 	switch (advType) {
-		case "rent":
-			type = "Affitto";
-			break;
-		case "sell":
-			type = "Vendita";
-			break;
-		case "short_rent":
-			type = "Affito Breve";
-			break;
+		case 'rent': type = "Affitto"; break;
+		case 'sell': type = "Vendita"; break;
+		case 'short_rent': type = "Affito Breve"; break;
 	}
 
 	return (
@@ -35,6 +34,7 @@ const AdvList = () => {
 				/>
 			</div>
 
+
 			<div className='max-w-5xl p-2 mx-auto'>
 				<p className='text-3xl font-bold'>Ho trovato 2 case in {type} a {city} </p>
 
@@ -46,8 +46,8 @@ const AdvList = () => {
 						right
 					</div>
 				</div>
-			</div>
-		</div>
+			</div >
+		</div >
 	)
 }
 

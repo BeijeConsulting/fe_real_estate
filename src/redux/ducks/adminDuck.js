@@ -1,5 +1,5 @@
 // Actions
-const SET_ADMIN = 'adminDuck/SET_ADMIN'
+const SET_ADMIN = 'generic/adminDuck/SET_ADMIN'
 
 // Action Creators
 export function setAdmin(value) {
