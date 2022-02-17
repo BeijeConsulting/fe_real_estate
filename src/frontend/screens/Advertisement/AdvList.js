@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 
 import Button from '../../components/UI/Button/Button'
 import Navbar from '../../components/Navbar/Navbar'
+import AdvCard from '../../components/AdvCard/AdvCard'
 
 const AdvList = () => {
 
@@ -37,7 +38,7 @@ const AdvList = () => {
 
                 <div className='flex'>
                     <div style={{flex:2}}>
-                        left
+                        <AdvCard />
                     </div>
                     <div className='flex-1'>
                         right
