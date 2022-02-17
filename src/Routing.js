@@ -31,6 +31,9 @@ import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
+import Checker from "./backoffice/screens/Checkers/Checker";
+import CheckersList from "./backoffice/screens/Checkers/CheckersList";
+import AddChecker from "./backoffice/screens/Checkers/AddChecker";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
@@ -41,8 +44,6 @@ import NotFound from "./common/screens/NotFound";
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
-
-
 
 
 
@@ -121,11 +122,15 @@ const Routing = () => (
 				<Route path="profile/update-profile" element={<UpdateProfile />} />
 				<Route
 					path="collaborators"
-					element={<RoutingBO.User />}
+					element={<CheckersList />}
 				/>
 				<Route
 					path="collaborator/:id"
-					element={<RoutingBO.User />}
+					element={<Checker />}
+				/>
+				<Route
+					path="collaborator/add-collaborator"
+					element={<AddChecker />}
 				/>
 			</Route>
 			<Route path="*" element={<NotFound />} />
