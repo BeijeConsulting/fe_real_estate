@@ -7,11 +7,17 @@ import { Link } from "react-router-dom";
 /* redux */
 import { connect } from "react-redux";
 // Import from AntDesign
-import { Table, Input, Tag, Space } from "antd";
+import { Table, Input, Tag, Space, Button } from "antd";
 /* API */
 import { getPendingAdvertaisement } from "../../../services/backoffice/advertisementApi";
 
 const VerificationAdv = (props) => {
+
+    let [state, setState] = useState({
+        advertisements: [],
+        isLoading: true,
+        totalElements: 0,
+    });
     /* definizione colonne */
     let columns = [
         {
@@ -27,20 +33,21 @@ const VerificationAdv = (props) => {
             dataIndex: 'city',
         },
         {
+            title: 'Published Date Time',
+            dataIndex: 'publishedDateTime',
+            render: (text) => {
+                if (text === null)
+                    return (<span style={{ color: "red" }}>[missing data]</span>)
+            }
+        },
+        {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
+                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
             ,
         }
     ]
-
-    let [state, setState] = useState({
-        advertisements: [],
-        columns: columns,
-        isLoading: true,
-        totalElements: 0
-    });
     /* ComponentDidMount */
     useEffect(() => {
         sincAdv()
@@ -49,19 +56,26 @@ const VerificationAdv = (props) => {
     /* sincronize  advertisements*/
     const sincAdv = async () => {
         let resultAPI = await getPendingAdvertaisement(props.admin.token)
-        console.log(resultAPI)
         setState({
             advertisements: resultAPI,
             isLoading: false,
-            totalElements: 0
+            totalElements: 0,
         })
+    }
+
+    /* methods to move between sections  */
+    const GoToChecker = () => {
+
+    }
+    const GoToAdmin = () => {
+
     }
 
 
     return (
         <div className="container-VerificationAdv">
-            io sono  VerificationAdv
-            <div className="container-table-VerificationAdv" >
+            verificationAdv
+            < div className="container-table-VerificationAdv" >
                 <Table dataSource={state.advertisements}
                     columns={columns}
                     loading={state.isLoading}
@@ -71,7 +85,7 @@ const VerificationAdv = (props) => {
                 />
             </div>
 
-        </div>
+        </div >
     )
 }
 const mapStateToProps = (state) => ({

@@ -24,9 +24,7 @@ export const getPendingAdvertaisement = async (token) => {
         { headers }
     )
         .then((response) => {
-            let fetchedAdv = response.data;
-            console.log('fetchedAdv', fetchedAdv);
-            return fetchedAdv
+            return response.data
         }).catch(
             //Error handler
         )
