@@ -18,7 +18,7 @@ import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
 import DetailBuilding from './frontend/screens/DetailBuilding/DetailBuilding'
-
+import NewAdv from "./frontend/screens/User/NewAdv";
 
 // BACKOFFICE SCREENS
 // here
@@ -86,6 +86,7 @@ const Routing = () => (
 
 			<Route path="user" element={<User />}>
 				<Route path="" element={<Dashboard />} />
+				<Route path="new-adv" element={<NewAdv />} />
 				<Route path="edit-profile" element={<EditProfile />} />
 				<Route path="post-advs" element={<PostAdvs />} />
 				<Route path="save-advs" element={<SaveAdvs />} />
