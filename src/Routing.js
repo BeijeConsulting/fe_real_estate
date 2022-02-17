@@ -7,6 +7,7 @@ import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 
 // BACKOFFICE SCREENS
 // here
+import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
 import Cms from "./backoffice/screens/cms/Cms";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
@@ -33,6 +34,10 @@ import Dashboard from "./frontend/screens/User/Dashboard";
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
+
+
+
+
 
 const Routing = () => (
 	<Provider store={applicationStore}>
