@@ -105,6 +105,15 @@ const VerificationAdv = (props) => {
     /* sincronize  advertisements*/
     const sincAdvChecker = async () => {
         let resultAPIChecker = await getPendingAdvertaisement(props.admin.token)
+        /* ant design wanted a key on object to work */
+        resultAPIChecker = resultAPIChecker.map(item => {
+            item = {
+                ...item,
+                key: item.id
+            }
+            return item;
+        })
+
         setState({
             ...state,
             advertisementsChecker: resultAPIChecker,
