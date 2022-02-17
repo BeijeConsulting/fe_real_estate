@@ -1,12 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+
 
 const Footer = () => {
+  
+  
   return (
     <div className='bg-gray  pt-7 font-primary relative'>
       <div className='lg:max-w-6xl mx-auto flex flex-row'>
         <div className='flex-1'>
           <p className='font-semibold lg:text-3xl'>ASSITENZA</p>
-          <p>FAQ</p>
+          <Link to={'/FAQ'} class={'font-bold'}> FAQ </Link>
           <p>NUMERO VERDE</p>
           <p>SERVIZI</p>
           <p>SEGNALA UN PROBLEMA</p>

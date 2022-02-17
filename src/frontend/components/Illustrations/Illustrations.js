@@ -21,21 +21,21 @@ return (
     <div className='single-animation'>
     <img src={icon1}></img>
     <p className='illustration-text'> Scopri i nostri servizi e cosa <br /> possiamo fare per te! </p>
-    <button class="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl"> Vai </button>
+    <button class="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl hover:bg-yellow-500"> Vai </button>
 
     </div>
 
     <div className='single-animation'>
     <img src={icon2}></img>
     <p className='illustration-text'> Vai ai  nostri annunci e naviga <br /> per il mercato immobiliare </p>
-    <button class="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl"> Vai </button>
+    <button class="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl hover:bg-yellow-500"> Vai </button>
 
     </div>
 
     <div className='single-animation  margin'>
     <img src={icon3}></img>
     <p className='illustration-text'> La nostra storia e i nostri <br /> valori fondamentali </p>
-    <button class="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl"> Vai </button>
+    <button class="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl hover:bg-yellow-500"> Vai </button>
 
     </div>
     

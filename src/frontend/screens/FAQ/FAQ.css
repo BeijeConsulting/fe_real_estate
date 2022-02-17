@@ -1,0 +1,50 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap");
+
+.faq-container {
+    height: 700px;
+    width: 90%;
+    background-color: #C4C4C4;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    color: black;
+    border-radius: 10px;
+    margin-top: 1%;
+    font-size: 20px;
+    margin-left: 5%;
+}
+
+.faq-image {
+   background-image: url('../../../assets/images/womanyellow.jpeg');
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
+   width: 35%;
+   height: 85%;
+   border-radius: 10px;
+   margin-left: 2%;
+   margin-top: 4%;
+}
+
+.faq-questions {
+   margin-top: 10%;
+   display: flex;
+   align-items: center;
+   flex-direction: column-reverse;
+   
+}
+
+.faq-questions:hover {
+   
+}
+
+.faq-questions h1 {
+    margin-top: 2%;
+    font-weight: bolder;
+    font-family: "Poppins", sans-serif;
+    font-size: 24px;
+}
+
+.arrow-helper {
+
+}
