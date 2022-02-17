@@ -25,7 +25,7 @@ export const getBusinesses = async (token) => {
 export const searchBusinessByName = async (name, token) => {
     let payload = []
     const headers = { "Authorization":"Bearer " + token}
-    await javaAcademyServiceInstance.get("/businesses/" + name, { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/business_name/" + name, { headers }).then((response) => {
         let fetchedBusinesses= response.data.map( (business)=> {
             return ({
                 username: business.businessName,
