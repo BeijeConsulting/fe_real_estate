@@ -4,6 +4,8 @@ import { withTranslation } from "react-i18next";
 import { Navigate, Link } from "react-router-dom";
 import formValidation from "../../../utils/formValidation";
 
+import Input from '../../../components/UI/Input/Input'
+import Button from '../../../components/UI/Button/Button'
 class SignUpBusiness extends Component {
 	constructor(props) {
 		super(props);
@@ -112,41 +114,46 @@ class SignUpBusiness extends Component {
 
 		return (
 			<form className="flex flex-col justify-evenly items-center">
-				<input
+				<Input
 					placeholder={t("SignUpBusiness.VATNumber")}
 					type="text"
 					onChange={this.onChangeVatNumber}
 				/>
 
-				<input
+				<Input
 					placeholder={t("SignUpBusiness.businessName")}
 					type="text"
 					onChange={this.onChangeBusinessName}
 				/>
 
-				<input
+				<Input
 					placeholder={t("SignUpBusiness.address")}
 					type="text"
 					onChange={this.onChangeAddress}
 				/>
 
-				<input
+				<Input
 					placeholder="email"
 					type="email"
 					onChange={this.onChangeEmail}
 				/>
-				<input
+				<Input
 					placeholder="password"
 					type="password"
 					onChange={this.onChangePassword}
 				/>
 
-				<button onClick={this.onClickSignUp}>
-					{t("SignUpBusiness.signUpButton")}
-				</button>
+				<Button
+					marginTop={'15px'}
+					className="mb-5"
+					type='secondary'
+					onClick={this.onClickSignUp}
+					label={t("SignUpBusiness.signUpButton")}
+				/>
 
-				<p>{t("SignUpBusiness.goToLogin.label")}</p>
-				<Link to={"/auth/login"}>
+
+				<p className="font-primary mt-5">{t("SignUpBusiness.goToLogin.label")}</p>
+				<Link className="font-primary mt-2" to={"/auth/login"}>
 					{t("SignUpBusiness.goToLogin.link")}
 				</Link>
 				{this.state.redirectToLogin && (

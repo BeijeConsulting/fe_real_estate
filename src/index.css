@@ -32,12 +32,25 @@
 	background-color: var(--secondary);
 }
 
+.bg-tertiary {
+	background-color: var(--gray);
+}
+
 .bg-gradient {
 	background: rgb(255, 231, 20);
 	background: linear-gradient(
 		180deg,
 		rgba(255, 231, 20, 1) 17%,
 		rgba(227, 191, 0, 1) 100%
+	);
+}
+
+.bg-gradient-secondary{
+
+	background: linear-gradient(
+		3deg,
+		rgba(32, 39, 64, 1) 17%,
+		rgba(119, 135, 192, 1) 100%
 	);
 }
 
@@ -59,6 +72,15 @@
     height: 10px;
     width: 50px;
     background-color: #ffe714;
+}
+
+.scale-in-hover {
+    transform: scale(1);
+    transition: 0.2s;
+}
+
+.scale-in-hover:hover{
+    transform: scale(1.03)
 }
 
 /* END COMMON CSS */

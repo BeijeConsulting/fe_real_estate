@@ -40,12 +40,16 @@ const SearchSelect = (props) => {
         <div className='relative'>
             {/* SELECT */}
             <div
-                className='cursor-pointer flex md:mx-4 color-primary underlined'
+                className={'cursor-pointer flex md:mx-4 underlined ' + props.fgClass}
                 onClick={toggleSelect}
             >
                 <p className='font-semibold'>{props.value}</p>
                 <div className=' transition ml-1 text-3xl flex justify-center items-center'>
-                    <FontAwesomeIcon className='transition' icon={faChevronDown} rotation={isOpened ? 180 : 0} />
+                    <FontAwesomeIcon 
+                        className='transition' 
+                        icon={faChevronDown} 
+                        rotation={isOpened ? 180 : 0} 
+                    />
                 </div>
             </div>
 
@@ -64,12 +68,12 @@ const SearchSelect = (props) => {
 
 
 SearchSelect.defaultProps = {
+    fgClass:"color-primary",
     value: 'value',
     options: [{label:"lorem", value: 'lorem'}, {label:"ipsum", value: 'ipsum'}]
 }
 
 SearchSelect.propTypes = {
-    value: PropTypes.string,
     options: PropTypes.array
 }
 

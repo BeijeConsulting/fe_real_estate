@@ -1,9 +1,10 @@
 import { javaAcademyServiceInstance } from "../javaAcademyService"
 
-export const getUsers = async () => {
+export const getUsers = async (token) => {
     let payload = []
-    await javaAcademyServiceInstance.get("/users").then((response) => {
-        let fetchedUsers = response.data.map((user) => {
+    const headers = { "Authorization":"Bearer " + token}
+    await javaAcademyServiceInstance.get("/users", { headers }).then((response) => {
+        let fetchedUsers = response.data.map( (user)=> {
             return ({
                 username: user.username,
                 key: user.id,
