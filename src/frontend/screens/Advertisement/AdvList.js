@@ -1,8 +1,14 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+<<<<<<< HEAD
 import Button from "../../components/UI/Button/Button";
 import Navbar from "../../components/Navbar/Navbar";
+=======
+import Button from '../../components/UI/Button/Button'
+import Navbar from '../../components/Navbar/Navbar'
+import AdvCard from '../../components/AdvCard/AdvCard'
+>>>>>>> develop
 
 const AdvList = () => {
 	let { city, advType } = useParams();
@@ -49,4 +55,33 @@ const AdvList = () => {
 	);
 };
 
+<<<<<<< HEAD
 export default AdvList;
+=======
+            <div className='max-w-6xl mx-auto mt-10 flex'>
+                <Button
+                    iconPosition="left"
+                    label="Torna alla Home"
+                    type="secondary"
+                    onClick={() => navigate('/')}
+                />
+            </div>
+
+            <div className='max-w-5xl p-2 mx-auto'>
+                <p className='text-3xl font-bold'>Ho trovato 2 case in {type} a {city} </p>
+
+                <div className='flex'>
+                    <div style={{flex:2}}>
+                        <AdvCard />
+                    </div>
+                    <div className='flex-1'>
+                        right
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+export default AdvList
+>>>>>>> develop
