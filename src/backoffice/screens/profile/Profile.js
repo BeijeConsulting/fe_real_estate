@@ -25,19 +25,19 @@ const Profile = (props) => {
         data: []
     })
 
-    const getAdminData = async () => {
-        dataAdmin = await getUserById(props.admin.id, props.admin.token)
-    }
-
-
     const handleClick = () => {
         navigate('/admin/profile/update-profile')
     }
 
-    useEffect(async () => {
-        await getAdminData()
+    const getAdminData = async () => {
+        dataAdmin = await getUserById(props.admin.id, props.admin.token)
         data = [dataAdmin]
         setState({data})
+    }
+
+    useEffect(() => {
+        getAdminData() 
+       
     }, [])
 
     return (

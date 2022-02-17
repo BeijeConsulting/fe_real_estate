@@ -1,4 +1,6 @@
 {
 	"goToPrivateSignUp": "Private",
-	"goToBusinessSignUp": "Business"
+	"goToBusinessSignUp": "Business",
+	"emptyField" : "Empty field",
+	"invalidField": "Invalid field"
 }
