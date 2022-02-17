@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "./detailsAd.css";
 
+// redux
+import { connect } from "react-redux";
+
+//router
+import { useParams } from "react-router-dom";
+
 // service
 import axios from "axios";
+import { getAdv } from "../../../services/backoffice/advertisementApi";
 
 // Ant design imports
 import { Typography, Carousel, Collapse, Button, Row, Col, List } from "antd";
@@ -12,25 +19,27 @@ const { Link, Title } = Typography;
 const { Panel } = Collapse;
 
 const DetailsAd = (props) => {
-    const title = "Casa dei Puffi";
-    const creator = "Antonio";
-    const revisor = "Antonio";
-
     // hooks
     const [adv, setAdv] = useState([]);
 
-    // axios
-    const getAdv = async () => {
-        let newAdv = null;
-        try {
-            const response = await axios.get(
-                "http://domus-test.eba-733cj72h.eu-south-1.elasticbeanstalk.com/ads"
-            );
-            newAdv = [response.data[0]];
-        } catch (error) { }
-        setAdv(newAdv);
-    };
+    const title = (`${adv[0]?.buildingType} ${adv[0]?.advType} ${adv[0]?.city}`).toUpperCase();
+    const description = adv[0]?.longDescription
+    const creator = "Antonio";
+    const revisor = "Antonio";
 
+    //router
+    const param = useParams();
+    console.log('PARAM', adv.id,);
+
+
+
+    // axios
+    const createAdv = async () => {
+        console.log(props.admin.token);
+        let resultApi = await getAdv(props.admin.token, param.id)
+        console.log('ADVV', resultApi)
+        setAdv(resultApi);
+    }
     // func Ant Design
     //carousel
     function onChange(a, b, c) {
@@ -58,325 +67,331 @@ const DetailsAd = (props) => {
     }
 
     // useEffect
-    useEffect(() => {
-        getAdv();
-        console.log("STATO", adv);
+    useEffect(async () => {
+        await createAdv()
     }, []);
     return (
+
         <>
-            <div className="container">
-                {/* title */}
-                <Title className="title" level={2}>
-                    {title}
-                </Title>
-
-                <div className="container-head">
-                    {/* link name creator */}
-                    <Link href="https://ant.design" target="_blank">
-                        Creato da: <span className="link">{creator}</span>
-                    </Link>
-                    {/* link revisor?? */}
-                    <Link href="https://ant.design" target="_blank">
-                        Revisionato da: <span className="link">{revisor}</span>
-                    </Link>
-                </div>
-
-                {/* carousell */}
-                <div className="container-carousel">
-                    <Carousel className="carousel" afterChange={onChange}>
-                        <div className="photo">
-                            <h3 style={contentStyle}>1</h3>
-                        </div>
-                        <div className="photo">
-                            <h3 style={contentStyle}>2</h3>
-                        </div>
-                        <div className="photo">
-                            <h3 style={contentStyle}>3</h3>
-                        </div>
-                        <div className="photo">
-                            <h3 style={contentStyle}>4</h3>
-                        </div>
-                    </Carousel>
-                </div>
-
-                {/* description */}
-                <div className="description">
-                    <Title className="title" level={4}>
-                        Descrizione
+            {
+                adv &&
+                <div className="container">
+                    {/* title */}
+                    <Title className="title" level={2}>
+                        {title}
                     </Title>
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting
-                        industry. Lorem Ipsum has been the industry's standard dummy text
-                        ever since the 1500s, when an unknown printer took a galley of type
-                        and scrambled it to make a type specimen book. It has survived not
-                        only five centuries.
-                    </p>
-                </div>
 
-                {/* collapse */}
+                    <div className="container-head">
+                        {/* link name creator */}
+                        <Link href="https://ant.design" target="_blank">
+                            Creato da: <span className="link">{creator}</span>
+                        </Link>
+                        {/* link revisor?? */}
+                        <Link href="https://ant.design" target="_blank">
+                            Revisionato da: <span className="link">{revisor}</span>
+                        </Link>
+                    </div>
 
-                <div className="collapse">
-                    <Collapse onChange={callback}>
-                        <Panel className="title-collapse" header="INFORMAZIONI 1" key="1">
-                            {/* section1 */}
-                            <Row>
-                                <Col span={8}>
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    {" "}
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={item.id} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={item.address}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={item.advType}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={Item.areaMsq}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    {" "}
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                            </Row>
-                        </Panel>
-                        <Panel className="title-collapse" header="INFORMAZIONI 2" key="2">
-                            {/* section2 */}
-                            <Row>
-                                <Col span={8}>
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    {" "}
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    {" "}
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                            </Row>
-                        </Panel>
-                        <Panel className="title-collapse" header="INFORMAZIONI 3" key="3">
-                            {/* section3 */}
-                            <Row>
-                                <Col span={8}>
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    {" "}
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                                <Col span={8}>
-                                    {" "}
-                                    <List
-                                        className="info-list"
-                                        size="small"
-                                        itemLayout="vertical"
-                                        dataSource={adv}
-                                        renderItem={(item, key) => (
-                                            <List.Item key={key} className="info-profile-items">
-                                                <List.Item.Meta title={"Id"} description={"address"} />
-                                                <List.Item.Meta
-                                                    title={"Indirizzo"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Tipo Annuncio"}
-                                                    description={"address"}
-                                                />
-                                                <List.Item.Meta
-                                                    title={"Area mq"}
-                                                    description={"address"}
-                                                />
-                                            </List.Item>
-                                        )}
-                                    />
-                                </Col>
-                            </Row>
-                        </Panel>
-                    </Collapse>
-                </div>
+                    {/* carousell */}
+                    <div className="container-carousel">
+                        <Carousel className="carousel" afterChange={onChange}>
+                            <div className="photo">
+                                <h3 style={contentStyle}>1</h3>
+                            </div>
+                            <div className="photo">
+                                <h3 style={contentStyle}>2</h3>
+                            </div>
+                            <div className="photo">
+                                <h3 style={contentStyle}>3</h3>
+                            </div>
+                            <div className="photo">
+                                <h3 style={contentStyle}>4</h3>
+                            </div>
+                        </Carousel>
+                    </div>
 
-                {/* bottons */}
-                <div className="container-button">
-                    <Button type="primary">Approva</Button>
-                    <Button type="danger">Rifiuta</Button>
+                    {/* description */}
+                    <div className="description">
+                        <Title className="title" level={4}>
+                            Descrizione
+                        </Title>
+                        <p>
+                            {description}
+                        </p>
+                    </div>
+
+                    {/* collapse */}
+
+                    <div className="collapse">
+                        <Collapse onChange={callback}>
+                            <Panel className="title-collapse" header="INFORMAZIONI LOCAZIONE" key="1">
+                                {/* section1 */}
+                                <Row>
+                                    <Col span={8}>
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Tipo Abitazione"} description={item.buildingType} />
+                                                    <List.Item.Meta
+                                                        title={"Indirizzo"}
+                                                        description={item.address}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Numero  Civico"}
+                                                        description={item.houseNumber}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Città"}
+                                                        description={item.city}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        {" "}
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta
+                                                        title={"CAP"}
+                                                        description={item.zipcode}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tipo Annuncio"}
+                                                        description={item.advType}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Stato dell'Atto"}
+                                                        description={Item.deedState}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Planimetria"}
+                                                        description={item.planimetry}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        {" "}
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Costruttore Id"} description={item.buildingId} />
+
+                                                    <List.Item.Meta
+                                                        title={"Tour Guidato"}
+                                                        description={item.guidedTour}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tour Virtuale"}
+                                                        description={item.virtualTour}
+                                                    />
+                                                    <List.Item.Meta title={"Prezzo"} description={item.price + '€'} />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Panel>
+                            <Panel className="title-collapse" header="INFORMAZIONI 2" key="2">
+                                {/* section2 */}
+                                <Row>
+                                    <Col span={8}>
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Id"} description={"address"} />
+                                                    <List.Item.Meta
+                                                        title={"Indirizzo"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tipo Annuncio"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Area mq"}
+                                                        description={"address"}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        {" "}
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Id"} description={"address"} />
+                                                    <List.Item.Meta
+                                                        title={"Indirizzo"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tipo Annuncio"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Area mq"}
+                                                        description={"address"}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        {" "}
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Id"} description={"address"} />
+                                                    <List.Item.Meta
+                                                        title={"Indirizzo"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tipo Annuncio"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Area mq"}
+                                                        description={"address"}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Panel>
+                            <Panel className="title-collapse" header="INFORMAZIONI 3" key="3">
+                                {/* section3 */}
+                                <Row>
+                                    <Col span={8}>
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Id"} description={"address"} />
+                                                    <List.Item.Meta
+                                                        title={"Indirizzo"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tipo Annuncio"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Area mq"}
+                                                        description={"address"}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        {" "}
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Id"} description={"address"} />
+                                                    <List.Item.Meta
+                                                        title={"Indirizzo"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tipo Annuncio"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Area mq"}
+                                                        description={"address"}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                    <Col span={8}>
+                                        {" "}
+                                        <List
+                                            className="info-list"
+                                            size="small"
+                                            itemLayout="vertical"
+                                            dataSource={adv}
+                                            renderItem={(item, key) => (
+                                                <List.Item key={key} className="info-profile-items">
+                                                    <List.Item.Meta title={"Id"} description={"address"} />
+                                                    <List.Item.Meta
+                                                        title={"Indirizzo"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Tipo Annuncio"}
+                                                        description={"address"}
+                                                    />
+                                                    <List.Item.Meta
+                                                        title={"Area mq"}
+                                                        description={"address"}
+                                                    />
+                                                </List.Item>
+                                            )}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Panel>
+                        </Collapse>
+                    </div>
+
+                    {/* bottons */}
+                    <div className="container-button">
+                        <Button type="primary">Approva</Button>
+                        <Button type="danger">Rifiuta</Button>
+                    </div>
                 </div>
-            </div>
+            }
         </>
+
     );
 };
 
 DetailsAd.propTypes = {};
 
-export default DetailsAd;
+
+// redux
+const mapStateToProps = (state) => ({
+    admin: state.adminDuck.admin
+})
+export default connect(mapStateToProps)(DetailsAd)
 
