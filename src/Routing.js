@@ -51,8 +51,8 @@ const Routing = () => {
 					<Route path="assess-building" element={<AssessBuilding />} />
 				</Route>
 
-				<Route path=":advType/:buildingType/:city" element={null} />
-				<Route path="building/:buildingId" element={null} />
+				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
+				<Route path="building/:buildingId" element={<DetailBuilding />} />
 
 				<Route path="auth" element={<Auth />}>
 					<Route path=""
