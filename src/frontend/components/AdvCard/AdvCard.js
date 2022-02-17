@@ -1,41 +1,55 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import PhotosCarousel from '../PhotosCarousel/PhotosCarousel'
 
 // components
 import Card from '../UI/Card/Card'
+import AdvAuthor from './AdvAuthor'
 
-const AdvCard = () => {
-
-    let photos = [
-        "https://www.cinematographe.it/wp-content/uploads/2021/01/shrek.jpg",
-        "https://www.lascimmiapensa.com/wp-content/uploads/2021/11/Shrek.jpg"
-    ]
-
-
-    let adv = {
-        author: "Roberta Brogia"
-    }
+const AdvCard = ( props ) => {
 
 
     return (
-        <Card className=' overflow-hidden '>
-            <div className='relative'>
-
-                <div className='p-2 backdrop-blur-sm absolute bottom-0 left-0 z-10 right-0 h-18'>
-                    <p className='text-white font-bold text-2xl'>Roberta Brogia</p>
-                </div>
-                <PhotosCarousel
-                    photos={photos}
-                    className='md:h-60 md:w-96 2xl:h-64 lg:w-96'
+        <Card className=' flex-col md:flex-row overflow-hidden '>
+            <div className='relative flex-1'>
+                {/* BLURRED USER SECTION */}
+                <AdvAuthor 
+                    avatarUrl={props.authorAvatarUrl}
+                    displayName={props.authorName}
                 />
 
-            </div>
-            <div className='p-2 flex-col flex'>
-                <p className='block font-primary font-bold text-2xl '>title</p>
+                {/* PHOTOS */}
+                <PhotosCarousel
+                    photos={props.photos}
+                    className='md:h-60 md:w-96 2xl:h-64 lg:w-96'
+                />
             </div>
 
+            <div onClick={props.onClick} className=' bg-white hover:bg-gray-50 transition cursor-pointer  p-4 flex-col flex flex-1'>
+                {/* INFO-RIGHT */}
+                <p className='font-primary font-semibold text-xl text-gray-700'>{props.city}</p>
+                <p className='block font-primary font-bold text-3xl '>{props.title}</p>
+                <p className='font-primary'>{props.description.slice(0, 90) + ".."}</p>
+            </div>
         </Card>
     )
+}
+
+let description = "Lorem ipsum dolor sit amet, consectetur adipiscing elite Vestibulum ultricies suscipit rhoncus. Curabitur sed feugiat mi, sed mollis tortor. Duis aliquet dapibus nulla non venenatis. Duis rutrum mauris vitae lacus sagittis facilisis. Mauris vehicula nulla quis interdum tempor. "
+
+let photos = [
+    "https://www.cinematographe.it/wp-content/uploads/2021/01/shrek.jpg",
+    "https://www.lascimmiapensa.com/wp-content/uploads/2021/11/Shrek.jpg"
+]
+
+AdvCard.defaultProps = {
+    id: 0,
+    title:'BILOCALE IN PERIFERIA',
+    description: description,
+    city:'Milano',
+    photos: photos,
+    authorName:"Jessica Beije",
+    authorAvatarUrl:"https://bit.ly/3GYboVJ"
 }
 
 export default AdvCard
