@@ -4,7 +4,6 @@ export const getAdvertaisement = () => {
     javaAcademyServiceInstance.get(`/ads`)
         .then((response) => {
             let fetchedAdv = response.data;
-            console.log('y', fetchedAdv[0]);
             return fetchedAdv
         }).catch(
             //Error handler
@@ -21,7 +20,6 @@ export const getPendingAdvertaisement = async (token) => {
         { headers }
     )
         .then((response) => {
-            console.log(response.data);
             return response.data
         }).catch(
             //Error handler
