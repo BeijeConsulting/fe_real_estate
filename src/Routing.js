@@ -1,9 +1,24 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
 
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
 import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
+import Auth from "./frontend/screens/Auth/Auth";
+import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
+import Home from "./frontend/screens/Home/Home";
+import Login from "./frontend/screens/Auth/Login";
+import SignUpPrivate from "./frontend/screens/Auth/SignUp/SignUpPrivate";
+import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
+import SignUpBusiness from "./frontend/screens/Auth/SignUp/SignUpBusiness";
+import User from "./frontend/screens/User/User";
+import EditProfile from "./frontend/screens/User/EditProfile";
+import PostAdvs from "./frontend/screens/User/PostAdvs";
+import SaveAdvs from "./frontend/screens/User/SaveAdvs";
+import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
+import Dashboard from "./frontend/screens/User/Dashboard";
+import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
+import FAQ from "./frontend/screens/FAQ/FAQ";
 
 // BACKOFFICE SCREENS
 // here
@@ -22,23 +37,12 @@ import AddChecker from "./backoffice/screens/Checkers/AddChecker";
 // COMMON
 import NotFound from "./common/screens/NotFound";
 
-import Auth from "./frontend/screens/Auth/Auth";
-import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
-import Home from "./frontend/screens/Home/Home";
-import Login from "./frontend/screens/Auth/Login";
-import SignUpPrivate from "./frontend/screens/Auth/SignUp/SignUpPrivate";
-import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
-import SignUpBusiness from "./frontend/screens/Auth/SignUp/SignUpBusiness";
-import User from "./frontend/screens/User/User";
-import EditProfile from "./frontend/screens/User/EditProfile";
-import PostAdvs from "./frontend/screens/User/PostAdvs";
-import SaveAdvs from "./frontend/screens/User/SaveAdvs";
-import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
-import Dashboard from "./frontend/screens/User/Dashboard";
+
 
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
+import AdvList from "./frontend/screens/Advertisement/AdvList";
 
 
 
@@ -51,10 +55,13 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
+				<Route path="/FAQ" element={<FAQ />} />
+
+				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
+				<Route path="adv/:buildingId" element={<DetailBuilding />} />
 			</Route>
 
-			<Route path=":advType/:buildingType/:city" element={null} />
-			<Route path="building/:buildingId" element={null} />
+
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
@@ -124,7 +131,6 @@ const Routing = () => (
 					path="collaborator/add-collaborator"
 					element={<AddChecker />}
 				/>
-
 			</Route>
 			<Route path="*" element={<NotFound />} />
 		</Routes>

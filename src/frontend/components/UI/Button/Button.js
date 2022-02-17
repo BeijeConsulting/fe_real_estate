@@ -6,14 +6,15 @@ import { faCircleArrowRight, faCircleArrowLeft } from "@fortawesome/free-solid-s
 const Button = (props) => {
 	let btnStyle =
 		props.type === "secondary"
-			? "bg-gradient-secondary text-white"
-			: "bg-gradient";
+			? "bg-gradient-secondary text-white "
+			: "bg-gradient ";
 
 	return (
 		<div
 			style={{ marginTop: props.marginTop }}
 			className={
 				btnStyle +
+				props.className +
 				" scale-in-hover cursor-pointer rounded-full flex justify-center items-center"
 			}
 			onClick={props.onClick}

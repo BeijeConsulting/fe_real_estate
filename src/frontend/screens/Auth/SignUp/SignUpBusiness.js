@@ -99,6 +99,21 @@ class SignUpBusiness extends Component {
 		return noError;
 	};
 
+	translateErrorMessage = (str) => {
+		switch (str) {
+			case 'empty':
+				return this.props.t('SignUp.emptyField')
+			case 'invalid':
+				return this.props.t('SignUp.invalidField')
+			default:
+				return ''
+		}
+	}
+
+	resetError = (str) => () => {
+		this.setState({ errors: { ...this.state.errors, [str]: '' } })
+	}
+
 	// Submit
 
 	onClickSignUp = (e) => {
@@ -118,29 +133,40 @@ class SignUpBusiness extends Component {
 					placeholder={t("SignUpBusiness.VATNumber")}
 					type="text"
 					onChange={this.onChangeVatNumber}
+					onCloseError={this.resetError('vatNumber')}
+					errorMessage={this.translateErrorMessage(this.state.errors.vatNumber)}
 				/>
 
 				<Input
 					placeholder={t("SignUpBusiness.businessName")}
 					type="text"
 					onChange={this.onChangeBusinessName}
+					onCloseError={this.resetError('businessName')}
+					errorMessage={this.translateErrorMessage(this.state.errors.businessName)}
 				/>
 
 				<Input
 					placeholder={t("SignUpBusiness.address")}
 					type="text"
 					onChange={this.onChangeAddress}
+					onCloseError={this.resetError('address')}
+					errorMessage={this.translateErrorMessage(this.state.errors.address)}
+
 				/>
 
 				<Input
 					placeholder="email"
 					type="email"
 					onChange={this.onChangeEmail}
+					onCloseError={this.resetError('email')}
+					errorMessage={this.translateErrorMessage(this.state.errors.email)}
 				/>
 				<Input
 					placeholder="password"
 					type="password"
 					onChange={this.onChangePassword}
+					onCloseError={this.resetError('password')}
+					errorMessage={this.translateErrorMessage(this.state.errors.password)}
 				/>
 
 				<Button

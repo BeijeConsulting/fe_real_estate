@@ -23,7 +23,7 @@ const Navbar = (props) => {
 		{ label: "HOME", route: "/" },
 		{ label: "ANNUNCI", route: "/" },
 		{ label: "SERVIZI", route: "/what-we-offer" },
-		{ label: "CHI SIAMO", route: "about-us" },
+		{ label: "CHI SIAMO", route: "/about-us" },
 	];
 
 	let [sidebarOpened, setSidebarOpened] = useState(false);
