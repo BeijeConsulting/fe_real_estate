@@ -10,7 +10,7 @@ const Footer = () => {
       <div className='lg:max-w-6xl mx-auto flex flex-row'>
         <div className='flex-1'>
           <p className='font-semibold lg:text-3xl'>ASSITENZA</p>
-          <Link to={'/FAQ'} className={'font-bold'}> FAQ </Link>
+          <Link to={'/FAQ'} className={'font-bold'}> <p className="font-bold text-black"> FAQ </p> </Link>
           <p>NUMERO VERDE</p>
           <p>SERVIZI</p>
           <p>SEGNALA UN PROBLEMA</p>

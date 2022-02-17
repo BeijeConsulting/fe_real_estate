@@ -17,13 +17,8 @@ import PostAdvs from "./frontend/screens/User/PostAdvs";
 import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
-<<<<<<< HEAD
 import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
 import FAQ from "./frontend/screens/FAQ/FAQ";
-=======
-import DetailBuilding from './frontend/screens/DetailBuilding/DetailBuilding'
-
->>>>>>> 715beaad2e17db20c0cedae2f346733086ca5f92
 
 // BACKOFFICE SCREENS
 // here
@@ -55,20 +50,13 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
-<<<<<<< HEAD
 				<Route path="/FAQ" element={<FAQ />} /> 
 
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
 				<Route path="adv/:buildingId" element={<DetailBuilding />} />
 			</Route>
             
-		// {<Route path="/FAQ" element={<FAQ />} /> }
-=======
-			</Route>
-
-			<Route path=":advType/:buildingType/:city" element={<AdvList/>} />
-			<Route path="adv/:buildingId" element={<DetailBuilding />} />
->>>>>>> 715beaad2e17db20c0cedae2f346733086ca5f92
+		
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
