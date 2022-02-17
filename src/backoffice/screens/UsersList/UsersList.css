@@ -3,6 +3,10 @@
     justify-content: center;
 }
 
+a{
+    color: #008dff !important
+}
+
 .users-list-container{
     background-color: white;
     height: calc(100vh - 170px);

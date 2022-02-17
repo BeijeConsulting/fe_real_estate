@@ -6,10 +6,14 @@ import { Component } from "react";
 // Import API
 import { getBusinesses } from "../../../services/backoffice/businessApi";
 
+// Import Connect   
+import { connect } from "react-redux";
+
 // Import from AntDesign
 import { Table, Input, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
 const { Search } = Input;
+
 
 class UsersList extends Component {
     constructor(props) {
@@ -61,7 +65,7 @@ class UsersList extends Component {
     }
 
     fetchBusinesses = async () => {
-        let payload = await getBusinesses()
+        let payload = await getBusinesses(this.props.admin.token)
         this.setState({
             businesses: payload.fetchedBusinesses,
             isLoading: false,
@@ -97,4 +101,8 @@ class UsersList extends Component {
     }
 }
 
-export default UsersList
+const mapStateToProps = state => ({
+    admin: state.adminDuck.admin
+})
+
+export default connect(mapStateToProps) (UsersList)
