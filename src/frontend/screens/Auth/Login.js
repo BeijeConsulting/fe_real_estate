@@ -115,6 +115,7 @@ class Login extends Component {
 						type="password"
 						onChange={this.onChangePassword}
 						placeholder="Password"
+						value={this.state.data.password}
 					/>
 
 					<div className="flex items-center gap-1 mt-2 mb-4">
