@@ -30,6 +30,7 @@ import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
+import UserProfile from "./backoffice/screens/UserProfile/UserProfile";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
@@ -101,7 +102,7 @@ const Routing = () => (
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
-				<Route path="user/:id" element={<RoutingBO.User />} />
+				<Route path="user/:id" element={<UserProfile />} />
 				<Route path="advertisements" element={<RoutingBO.User />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route

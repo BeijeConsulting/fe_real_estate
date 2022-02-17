@@ -1,0 +1,15 @@
+.user-background {
+    display: flex;
+    justify-content: center;
+}
+
+a{
+    color: #008dff !important
+}
+
+.user-container{
+    background-color: white;
+    height: calc(100vh - 170px);
+    border-radius: 10px;
+    overflow-y: auto;
+}
