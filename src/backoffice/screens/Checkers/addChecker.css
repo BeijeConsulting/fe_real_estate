@@ -1,0 +1,33 @@
+.add-checker-container{
+    height: calc(100vh - 170px);
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    align-content: center;
+    justify-content: space-evenly;
+}
+.add-checker-container > span{
+    margin: 1em 0 0 2em;
+    font-size: 17px;
+}
+.add-checker-form{
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+}
+.add-checker-form > div{
+    width: 70%;
+}
+
+.button-save-checker{
+    align-self: center;
+}
+
+@media (max-width:650px){
+    .add-checker-form > div{
+        width: 100%;
+    }
+    .button-save-checker{
+        margin-bottom: 1em;
+    }
+}
