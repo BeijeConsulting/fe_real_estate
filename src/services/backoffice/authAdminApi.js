@@ -3,7 +3,7 @@ import storage from "../../common/utils/storage"
 import { setAdmin } from "../../redux/ducks/adminDuck"
 
 const signInAdmin = async ({ username, password }, dispatch) => {
-    console.log({ username, password })
+
     await javaAcademyService.signIn({ username, password })
         .then(({ data: { id, permission, token, username } }) => {
             localStorage.setItem(
@@ -15,6 +15,7 @@ const signInAdmin = async ({ username, password }, dispatch) => {
                     id,
                     permission,
                     username,
+                    token,
                 })
             );
         });

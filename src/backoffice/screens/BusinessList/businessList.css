@@ -1,4 +1,4 @@
-.users-list-background {
+.businesses-list-background {
     display: flex;
     justify-content: center;
 }
@@ -7,14 +7,14 @@ a{
     color: #008dff !important
 }
 
-.users-list-container{
+.businesses-list-container{
     background-color: white;
     height: calc(100vh - 170px);
     border-radius: 10px;
     overflow-y: auto;
 }
 
-.users-list-header {
+.businesses-list-header {
     border: 1px solid var(--gray);
     padding: 10px;
     margin-bottom: 10px;
@@ -24,11 +24,11 @@ a{
 
 @media only screen and (min-width: 600px) {
     
-    .users-list-table {
+    .businesses-list-table {
         width: 100%;
     }
 
-    .users-list-container{
+    .businesses-list-container{
         padding: 10px;
         margin: 10px;
     }

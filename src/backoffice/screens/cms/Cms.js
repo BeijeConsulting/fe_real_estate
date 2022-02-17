@@ -14,10 +14,11 @@ import { Button, Layout, Menu } from 'antd';
 
 // FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBriefcase, faRectangleList, faUsers, faChartLine } from "@fortawesome/free-solid-svg-icons"
+import { faBriefcase, faRectangleList, faUsers, faChartLine, faStamp } from "@fortawesome/free-solid-svg-icons"
 
 
 const { Header, Content, Footer, Sider } = Layout;
+
 const Cms = (props) => {
     let navigate = useNavigate();
 
@@ -40,12 +41,6 @@ const Cms = (props) => {
                 <Sider
                     breakpoint="lg"
                     collapsedWidth="0"
-                    onBreakpoint={broken => {
-                        console.log(broken);
-                    }}
-                    onCollapse={(collapsed, type) => {
-                        console.log(collapsed, type);
-                    }}
                 >
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
@@ -61,11 +56,14 @@ const Cms = (props) => {
                         <Menu.Item key="4" icon={<FontAwesomeIcon icon={faUsers} />} onClick={setTitleNavigate("users")}>
                             Users
                         </Menu.Item>
-                        <Menu.Item key="5" icon={<HomeOutlined />} onClick={setTitleNavigate("Business")}>
+                        <Menu.Item key="5" icon={<HomeOutlined />} onClick={setTitleNavigate("businesses")}>
                             Business
                         </Menu.Item>
                         <Menu.Item key="6" icon={<FontAwesomeIcon icon={faBriefcase} />} onClick={setTitleNavigate("collaborators")}>
                             Collaboratori
+                        </Menu.Item>
+                        <Menu.Item key="7" icon={<FontAwesomeIcon icon={faStamp} />} onClick={setTitleNavigate("verification-adv")}>
+                            Autenticazioni
                         </Menu.Item>
                     </Menu>
 
