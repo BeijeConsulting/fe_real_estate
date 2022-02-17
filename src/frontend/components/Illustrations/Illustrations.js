@@ -35,7 +35,7 @@ return (
     <div className='single-animation  margin'>
     <img src={icon3}></img>
     <p className='illustration-text'> La nostra storia e i nostri <br /> valori fondamentali </p>
-    <button class="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl"> Vai </button>
+    <button className="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl"> Vai </button>
 
     </div>
     

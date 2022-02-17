@@ -5,6 +5,7 @@ import logo from "../../../common/assets/logo/logo-black.png";
 
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";
+import Languages from "../Languages/Languages";
 
 // ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +13,6 @@ import {
 	faBars,
 	faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import Languages from "../Languages/Languages";
 
 // REDUX
 import { connect } from "react-redux";
