@@ -22,6 +22,7 @@ import FAQ from "./frontend/screens/FAQ/FAQ";
 
 // BACKOFFICE SCREENS
 // here
+import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
 import Profile from "./backoffice/screens/profile/Profile";
 import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
@@ -111,7 +112,7 @@ const Routing = () => (
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route
 					path="advertisement/:id"
-					element={<RoutingBO.User />}
+					element={<DetailsAd />}
 				/>
 				<Route
 					path="dashBoard"
