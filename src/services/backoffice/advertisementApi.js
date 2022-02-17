@@ -5,7 +5,6 @@ export const getAdv = async (token, id) => {
     let headers = {
         'Authorization': `Bearer ${token}`,
     }
-
     const result = await javaAcademyServiceInstance.get(
         `/adv/${id}`,
         { headers }

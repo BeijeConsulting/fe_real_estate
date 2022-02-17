@@ -126,7 +126,7 @@ const DetailsAd = (props) => {
                             <Panel className="title-collapse" header="INFORMAZIONI LOCAZIONE" key="1">
                                 {/* section1 */}
                                 <Row>
-                                    <Col span={8}>
+                                    <Col span={8} xs={24} sm={24} md={8} lg={8} xl={8}>
                                         <List
                                             className="info-list"
                                             size="small"
@@ -151,7 +151,7 @@ const DetailsAd = (props) => {
                                             )}
                                         />
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={8} xs={24} sm={24} md={8} lg={8} xl={8}>
                                         {" "}
                                         <List
                                             className="info-list"
@@ -180,7 +180,7 @@ const DetailsAd = (props) => {
                                             )}
                                         />
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={8} xs={24} sm={24} md={8} lg={8} xl={8}>
                                         {" "}
                                         <List
                                             className="info-list"
@@ -208,7 +208,7 @@ const DetailsAd = (props) => {
                             <Panel className="title-collapse" header="INFORMAZIONI ABITAZIONE" key="2">
                                 {/* section2 */}
                                 <Row>
-                                    <Col span={8}>
+                                    <Col span={8} xs={24} sm={24} md={8} lg={8} xl={8}>
                                         <List
                                             className="info-list"
                                             size="small"
@@ -241,7 +241,7 @@ const DetailsAd = (props) => {
                                             )}
                                         />
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={8} xs={24} sm={24} md={8} lg={8} xl={8}>
                                         {" "}
                                         <List
                                             className="info-list"
@@ -275,7 +275,7 @@ const DetailsAd = (props) => {
                                             )}
                                         />
                                     </Col>
-                                    <Col span={8}>
+                                    <Col span={8} xs={24} sm={24} md={8} lg={8} xl={8}>
                                         {" "}
                                         <List
                                             className="info-list"
@@ -314,7 +314,7 @@ const DetailsAd = (props) => {
                             <Panel className="title-collapse" header="INFORMAZIONI ANNUNCIO" key="3">
                                 {/* section3 */}
                                 <Row>
-                                    <Col span={12}>
+                                    <Col span={12} xs={24} sm={24} md={12} lg={12} xl={12}>
                                         <List
                                             className="info-list"
                                             size="small"
@@ -339,7 +339,7 @@ const DetailsAd = (props) => {
                                             )}
                                         />
                                     </Col>
-                                    <Col span={12}>
+                                    <Col span={12} xs={24} sm={24} md={12} lg={12} xl={12}>
                                         {" "}
                                         <List
                                             className="info-list"
