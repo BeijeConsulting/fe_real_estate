@@ -28,7 +28,6 @@ const INIT_STATE = {
 const cmsDuck = (state = INIT_STATE, action) => {
     switch (action.type) {
         case SET_TITLE:
-            console.log('ci sono entrato', action.payload.title);
             return { ...state, title: action.payload.title };
 
         case SET_TO_IDLE:

@@ -8,7 +8,7 @@ class EditProfile extends Component {
             <div className='flex flex-col m-4 font-primary'>
                 <h1 className='text-2xl font-bold'>Modifica il tuo profilo</h1>
                 <Card>
-                    <div className='flex flex-row '>
+                    <div className='flex flex-row'>
                         <div className='flex flex-col p-4'>
                             <h1 className='text-lg font-semibold'>Dati anagrafici</h1>
                             <div className='flex flex-row p-4'>

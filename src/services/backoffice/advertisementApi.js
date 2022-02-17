@@ -4,7 +4,6 @@ export const getAdvertaisement = () => {
     javaAcademyServiceInstance.get(`/ads`)
         .then((response) => {
             let fetchedAdv = response.data;
-            console.log('y', fetchedAdv[0]);
             return fetchedAdv
         }).catch(
             //Error handler

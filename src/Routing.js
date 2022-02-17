@@ -10,6 +10,9 @@ import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
 import Cms from "./backoffice/screens/cms/Cms";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
+import * as RoutingBO from "./backoffice/RoutingBO";
+import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
 // COMMON
 import NotFound from "./common/screens/NotFound";
 
@@ -30,11 +33,6 @@ import Dashboard from "./frontend/screens/User/Dashboard";
 // REDUX
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
-
-// BACKOFFICE SCREENS
-import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
-import * as RoutingBO from "./backoffice/RoutingBO";
-
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -92,6 +90,7 @@ const Routing = () => (
 			<Route path="admin" element={<Cms />}>
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
+				<Route path="businesses" element={<BusinessList />} />
 				<Route path="user/:id" element={<RoutingBO.User />} />
 				<Route path="advertisements" element={<RoutingBO.User />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />

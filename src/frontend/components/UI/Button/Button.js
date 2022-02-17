@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowRight, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Button = (props) => {
 	let btnStyle =
 		props.type === "secondary"
-			? "bg-secondary text-white"
+			? "bg-gradient-secondary text-white"
 			: "bg-gradient";
 
 	return (
@@ -14,27 +14,38 @@ const Button = (props) => {
 			style={{ marginTop: props.marginTop }}
 			className={
 				btnStyle +
-				" cursor-pointer rounded-full flex justify-center items-center"
+				" scale-in-hover cursor-pointer rounded-full flex justify-center items-center"
 			}
 			onClick={props.onClick}
 		>
+
+			{props.iconPosition === "left" &&
+				<FontAwesomeIcon
+					size={"2x"}
+					icon={faCircleArrowLeft}
+					className="ml-1 my-1"
+				/>
+			}
 			<p
-				className="mr-2 ml-4 font-primary font-semibold"
+				className="mx-4 font-primary font-semibold"
 				style={{ fontSize: props.size }}
 			>
 				{props.label}
 			</p>
 
-			<FontAwesomeIcon
-				size={"2x"}
-				icon={faCircleArrowRight}
-				className="mr-1"
-			/>
+			{props.iconPosition === "right" &&
+				<FontAwesomeIcon
+					size={"2x"}
+					icon={faCircleArrowRight}
+					className="mr-1 my-1"
+				/>
+			}
 		</div>
 	);
 };
 
 Button.defaultProps = {
+	iconPosition: 'right',
 	label: "label",
 	size: 20,
 	marginTop: 0,

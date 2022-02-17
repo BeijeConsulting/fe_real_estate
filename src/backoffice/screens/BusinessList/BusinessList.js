@@ -1,10 +1,10 @@
-import "./UsersList.css"
+import "./businessList.css"
 import 'antd/dist/antd.css' //Css Antdesign
 
 import { Component } from "react";
 
-// Import Routing
-import { getUsers } from "../../../services/backoffice/usersApi";
+// Import API
+import { getBusinesses } from "../../../services/backoffice/businessApi";
 
 // Import Connect   
 import { connect } from "react-redux";
@@ -14,49 +14,35 @@ import { Table, Input, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
 const { Search } = Input;
 
+
 class UsersList extends Component {
     constructor(props) {
         super(props)
 
         let columns = [
             {
-                title: 'Username',
+                title: 'Name',
                 dataIndex: 'username',
             },
             {
-                title: 'Email',
-                dataIndex: 'email',
+                title: 'Phone Number',
+                dataIndex: 'phoneNumber',
             },
             {
-                title: 'Tipo',
-                dataIndex: 'commercialId',
-                render: (text) => {
-                    let color = ""
-                    let type = ""
-                    if (text !== undefined && text === true) {
-                        color = "green"
-                        type = "BUSINESS"
-                    } else {
-                        color = "blue"
-                        type = "USER"
-                    }
-                    return (
-                        <Tag color={color}>{type}</Tag>
-                    )
-                },
-                responsive: ["sm"]
+                title: 'Reference',
+                dataIndex: 'manager',
             },
             {
                 title: '',
                 dataIndex: 'actions',
                 render: (text, record) =>
-                    <Link to={"/admin/user/" + record.key}>Scheda utente</Link>
+                    <Link to={"/admin/business/" + record.key}>Scheda business</Link>
                 ,
             }
         ]
 
         this.state = {
-            users: [],
+            businesses: [],
             columns: columns,
             isLoading: true,
             totalElements: 0
@@ -64,24 +50,24 @@ class UsersList extends Component {
     }
 
     componentDidMount() {
-        this.fetchUsers()
+        this.fetchBusinesses ()
     }
 
     searchByName = (value) => {
         this.setState({
             isLoading: true
         })
-        if(value ==="") {
-        this.fetchUsers()
+        if(value === "") {
+        this.fetchBusinesses ()
         } else {
             //Search API
         }
     }
 
-    fetchUsers = async () => {
-        let payload = await getUsers(this.props.admin.token)
+    fetchBusinesses = async () => {
+        let payload = await getBusinesses(this.props.admin.token)
         this.setState({
-            users: payload.fetchedUsers,
+            businesses: payload.fetchedBusinesses,
             isLoading: false,
             totalElements: payload.totalElements
         })
@@ -89,19 +75,19 @@ class UsersList extends Component {
 
     render() {
         return (
-            <div className="users-list-background">
-                <div className="users-list-container">
-                    <div className="users-list-header">
+            <div className="businesses-list-background">
+                <div className="businesses-list-container">
+                    <div className="businesses-list-header">
                         <Search
-                            placeholder="Search by username"
+                            placeholder="Search by Business name"
                             enterButton
                             allowClear
                             onSearch={this.searchByName}
                             className="icon-correction"
                             size="large" />
                     </div>
-                    <div className="users-list-table">
-                        <Table dataSource={this.state.users}
+                    <div className="businesses-list-table">
+                        <Table dataSource={this.state.businesses}
                             columns={this.state.columns}
                             loading={this.state.isLoading}
                             tableLayout="fixed"
