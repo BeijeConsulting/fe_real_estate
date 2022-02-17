@@ -15,38 +15,22 @@ const VerificationAdv = (props) => {
     /* definizione colonne */
     let columns = [
         {
-            title: 'Username',
-            dataIndex: 'username',
+            title: 'Bulding Type',
+            dataIndex: 'buildingType',
         },
         {
-            title: 'Email',
-            dataIndex: 'email',
+            title: 'advType',
+            dataIndex: 'advType',
         },
         {
-            title: 'Tipo',
-            dataIndex: 'commercialId',
-            render: (text) => {
-                let color = ""
-                let type = ""
-                if (text !== undefined && text === true) {
-                    color = "green"
-                    type = "BUSINESS"
-                } else {
-                    color = "blue"
-                    type = "USER"
-                }
-                return (
-                    <Tag color={color}>{type}</Tag>
-                )
-            },
-            responsive: ["sm"]
+            title: 'City',
+            dataIndex: 'city',
         },
-
         {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link to={"/admin/user/" + record.key}>Scheda utente</Link>
+                <Link to={"/advertisement/:" + record.id}>Scheda advertisement</Link>
             ,
         }
     ]
@@ -65,6 +49,7 @@ const VerificationAdv = (props) => {
     /* sincronize  advertisements*/
     const sincAdv = async () => {
         let resultAPI = await getPendingAdvertaisement(props.admin.token)
+        console.log(resultAPI)
         setState({
             advertisements: resultAPI,
             isLoading: false,

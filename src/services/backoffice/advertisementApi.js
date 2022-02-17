@@ -16,7 +16,7 @@ export const getPendingAdvertaisement = async (token) => {
     let headers = {
         'Authorization': `Bearer ${token}`,
     }
-    await javaAcademyServiceInstance.get(
+    const result = await javaAcademyServiceInstance.get(
         `/pending`,
         { headers }
     )
@@ -27,5 +27,5 @@ export const getPendingAdvertaisement = async (token) => {
         }).catch(
             //Error handler
         )
-
+    return result
 }
