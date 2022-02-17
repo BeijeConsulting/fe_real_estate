@@ -162,10 +162,10 @@ class DetailBuilding extends Component {
                             </textarea>
                             <div className="flex flex-row">
                                 <Button
-                                    className="w-auto"
+                                    className=""
                                     label={"Invia"} />
                                 <Button
-                                    className="w-auto"
+                                    className=""
                                     label={"Annulla"} />
                             </div>
                         </Card>
