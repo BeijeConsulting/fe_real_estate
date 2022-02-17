@@ -34,6 +34,7 @@ import applicationStore from "./applicationStore";
 // BACKOFFICE SCREENS
 import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 import * as RoutingBO from "./backoffice/RoutingBO";
+import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
 
 
 const Routing = () => (
@@ -99,7 +100,7 @@ const Routing = () => (
 				/>
 				<Route
 					path="advertisement/:id"
-					element={<RoutingBO.User />}
+					element={<DetailsAd />}
 				/>
 				<Route
 					path="dashBoard"

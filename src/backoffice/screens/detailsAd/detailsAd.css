@@ -1,0 +1,55 @@
+.container {
+    height: 75vh !important;
+    padding: 4px;
+    overflow: auto;
+  }
+  
+  .container-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .title {
+    margin-top: 1em;
+    text-align: center;
+  }
+  
+  .link {
+    color: #008dff !important;
+  }
+  
+  .container-carousel {
+    margin-top: 1em;
+  }
+  
+  .carousel {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+  }
+  
+  .description {
+    margin: 1.5em;
+  }
+  
+  .collapse {
+    margin-top: 3em;
+    margin-bottom: 2em;
+  }
+  .title-collapse {
+    font-weight: bold;
+  }
+  
+  .container-button {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+    align-items: center;
+    margin-left: 40%;
+    justify-content: space-between;
+    width: 30vh;
+  }
+  
+  
