@@ -107,6 +107,21 @@ class SignUpPrivate extends Component {
 		return noError;
 	};
 
+	translateErrorMessage = (str) => {
+		switch (str) {
+			case 'empty':
+				return this.props.t('SignUp.emptyField')
+			case 'invalid':
+				return this.props.t('SignUp.invalidField')
+			default:
+				return ''
+		}
+	}
+
+	resetError = (str) => () => {
+		this.setState({ errors: { ...this.state.errors, [str]: '' } })
+	}
+
 	// Submit
 
 	onClickSignUp = (e) => {
@@ -126,43 +141,55 @@ class SignUpPrivate extends Component {
 					placeholder={t("SignUpPrivate.cf")}
 					type="text"
 					onChange={this.onChangeCF}
+					onCloseError={this.resetError('cf')}
+					errorMessage={this.translateErrorMessage(this.state.errors.cf)}
 				/>
 				<Input
 					placeholder={t("SignUpPrivate.name")}
 					type="text"
 					onChange={this.onChangeName}
+					onCloseError={this.resetError('name')}
+					errorMessage={this.translateErrorMessage(this.state.errors.name)}
 				/>
 
 				<Input
 					placeholder={t("SignUpPrivate.surname")}
 					type="text"
 					onChange={this.onChangeSurname}
+					onCloseError={this.resetError('surname')}
+					errorMessage={this.translateErrorMessage(this.state.errors.surname)}
 				/>
 
 				<Input
 					placeholder="username"
 					type="text"
 					onChange={this.onChangeUsername}
+					onCloseError={this.resetError('username')}
+					errorMessage={this.translateErrorMessage(this.state.errors.username)}
 				/>
 
 				<Input
 					placeholder="email"
 					type="email"
 					onChange={this.onChangeEmail}
+					onCloseError={this.resetError('email')}
+					errorMessage={this.translateErrorMessage(this.state.errors.email)}
 				/>
 
 				<Input
 					placeholder="password"
 					type="password"
 					onChange={this.onChangePassword}
+					onCloseError={this.resetError('password')}
+					errorMessage={this.translateErrorMessage(this.state.errors.password)}
 				/>
 
 				<Button
-				marginTop={'15px'}
-				className="mb-5"
-				onClick={this.onClickSignUp}
-				label={t("SignUpPrivate.signUpButton")}
-				type='secondary'
+					marginTop={'15px'}
+					className="mb-5"
+					onClick={this.onClickSignUp}
+					label={t("SignUpPrivate.signUpButton")}
+					type='secondary'
 				/>
 
 				<p className="font-primary mt-5">{t("SignUpPrivate.goToLogin.label")}</p>
