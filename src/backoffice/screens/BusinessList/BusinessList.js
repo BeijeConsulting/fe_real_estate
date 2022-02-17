@@ -4,7 +4,7 @@ import 'antd/dist/antd.css' //Css Antdesign
 import { Component } from "react";
 
 // Import API
-import { getBusinesses } from "../../../services/backoffice/businessApi";
+import { getBusinesses, searchBusinessByName } from "../../../services/backoffice/businessApi";
 
 // Import Connect   
 import { connect } from "react-redux";
@@ -60,8 +60,17 @@ class UsersList extends Component {
         if(value === "") {
         this.fetchBusinesses ()
         } else {
-            //Search API
+            this.fetchBusinessesByName (value)
         }
+    }
+
+    fetchBusinessesByName = async (name) => {
+        let payload = await searchBusinessByName(name, this.props.admin.token)
+        this.setState({
+            businesses: payload.fetchedBusinesses,
+            isLoading: false,
+            totalElements: payload.totalElements
+        })
     }
 
     fetchBusinesses = async () => {

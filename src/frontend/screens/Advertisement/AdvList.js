@@ -12,8 +12,8 @@ const AdvList = () => {
     let navigate = useNavigate()
 
     let type = '';
-    
-    const handleNavigate = ( dest ) => () => {
+
+    const handleNavigate = (dest) => () => {
         navigate(dest)
     }
 
@@ -44,12 +44,14 @@ const AdvList = () => {
                 <div className='flex mt-10 space-x-4'>
                     <div style={{ flex: 2 }}>
                         {/* CARD LIST HERE */}
-                        <AdvCard 
+                        <AdvCard
                             onClick={handleNavigate(`/adv/${1}`)}
                         />
                     </div>
-                    <Filters />
-                   
+                    <div className='flex-1 md:block hidden'>
+                        <Filters />
+                    </div>
+
                 </div>
             </div>
         </div>

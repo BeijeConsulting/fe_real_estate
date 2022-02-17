@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
 
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
@@ -17,8 +17,9 @@ import PostAdvs from "./frontend/screens/User/PostAdvs";
 import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
-import DetailBuilding from './frontend/screens/DetailBuilding/DetailBuilding'
 import NewAdv from "./frontend/screens/User/NewAdv";
+import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
+import FAQ from "./frontend/screens/FAQ/FAQ";
 
 // BACKOFFICE SCREENS
 // here
@@ -50,10 +51,13 @@ const Routing = () => (
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
+				<Route path="/FAQ" element={<FAQ />} />
+
+				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
+				<Route path="adv/:buildingId" element={<DetailBuilding />} />
 			</Route>
 
-			<Route path=":advType/:buildingType/:city" element={<AdvList/>} />
-			<Route path="adv/:buildingId" element={<DetailBuilding />} />
+
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
@@ -120,7 +124,6 @@ const Routing = () => (
 					path="collaborator/:id"
 					element={<RoutingBO.User />}
 				/>
-
 			</Route>
 			<Route path="*" element={<NotFound />} />
 		</Routes>
