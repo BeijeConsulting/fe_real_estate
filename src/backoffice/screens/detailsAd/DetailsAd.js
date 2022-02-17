@@ -56,8 +56,8 @@ const DetailsAd = (props) => {
         console.log(a, b, c);
     }
     // useEffect
-    useEffect(async () => {
-        await createAdv();
+    useEffect(() => {
+        createAdv();
     }, []);
     return (
 
