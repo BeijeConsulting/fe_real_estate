@@ -48,7 +48,7 @@ const CheckersList = (props) => {
     }
 
     const addChecker = () => {
-        navigate("/collaborator/add-collaborator")
+        navigate("/admin/collaborator/add-collaborator")
     }
 
     useEffect(() => {
