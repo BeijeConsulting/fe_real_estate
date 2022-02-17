@@ -26,7 +26,7 @@ const FAQ = () => {
             <div className='faq-container'>
                 <div className='faq-questions'>
 
-                    <div class="text-2xl bg-zinc-200 rounded-lg w-full h-16 mt-8 flex items-center p-2 justify-between hover:border hover:border-yellow-500 cursor-pointer">
+                    <div className="text-2xl bg-zinc-200 rounded-lg w-full h-16 mt-8 flex items-center p-2 justify-between hover:border hover:border-yellow-500 cursor-pointer">
                         Non riesco ad aggiungere un annuncio
                         <FontAwesomeIcon icon={faCircleArrowRight} />
                     </div>
@@ -36,11 +36,11 @@ const FAQ = () => {
                             <FontAwesomeIcon icon={faCircleArrowRight} />
                         </div>
                     </div>
-                    <div class="text-2xl bg-zinc-200 rounded-lg w-full h-16 mt-8 flex items-center p-2 justify-between hover:border hover:border-yellow-500 cursor-pointer">
+                    <div className="text-2xl bg-zinc-200 rounded-lg w-full h-16 mt-8 flex items-center p-2 justify-between hover:border hover:border-yellow-500 cursor-pointer">
                         Come creo un account business?
                         <FontAwesomeIcon icon={faCircleArrowRight} />
                     </div>
-                    <div class="text-2xl bg-zinc-200 rounded-lg w-full h-16 mt-8 flex items-center p-2 justify-between hover:border hover:border-yellow-500 cursor-pointer">
+                    <div className="text-2xl bg-zinc-200 rounded-lg w-full h-16 mt-8 flex items-center p-2 justify-between hover:border hover:border-yellow-500 cursor-pointer">
                         Ho problemi con la valutazione
                         <FontAwesomeIcon icon={faCircleArrowRight} />
                     </div>
@@ -49,16 +49,16 @@ const FAQ = () => {
 
                 <div className='faq-image'> </div>
             </div>
-            <h2 class="text-4xl mt-8 font-bold ml-8"> NON RIESCI A TROVARE QUELLO CHE CERCHI? </h2>
-            <h3 class="ml-8 text-xl"> CHIAMACI A QUESTI NUMERI! </h3>
-            <p class="ml-8 font-semibold text-xl">+39 0371 678965</p>
-            <p class="ml-8 font-semibold text-xl">+39 0382 786912</p>
+            <h2 className="text-4xl mt-8 font-bold ml-8"> NON RIESCI A TROVARE QUELLO CHE CERCHI? </h2>
+            <h3 className="ml-8 text-xl"> CHIAMACI A QUESTI NUMERI! </h3>
+            <p className="ml-8 font-semibold text-xl">+39 0371 678965</p>
+            <p className="ml-8 font-semibold text-xl">+39 0382 786912</p>
 
-            <div class="flex items-end justify-end -mt-4">
+            <div className="flex items-end justify-end -mt-4">
                 <img src={YellowWoman} />
             </div>
 
-            <div class="mt-8">
+            <div className="mt-8">
                 <Footer />
             </div>
 
