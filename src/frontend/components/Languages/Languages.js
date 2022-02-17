@@ -5,37 +5,38 @@ import { useTranslation } from "react-i18next";
 // ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+import SearchSelect from "../Search/SearchSelect";
 
 const Languages = (props) => {
 
-	const [opened, setOpened] = useState(false)
 	const { i18n } = useTranslation();
 
-	const changeLanguage = (lang) => () => {
-		i18n.changeLanguage(lang);
+	let langs = [
+		{ label: 'IT', value:'it'},
+		{ label: 'EN', value: 'en'}
+	]
+
+	const changeLanguage = ( e ) => {
+		i18n.changeLanguage(e.value);
 	};
 
+
+
+
 	return (
-		<div
-			className={`flex flex-col items-center justify-center relative  ${props.classNameContainer}`}
-		>
-			<div onMouseOver={() => setOpened(true)}>
-				<FontAwesomeIcon icon={faGlobe} />
-			</div>
-			<div className={`${opened ? "block" : "hidden"} bg-white absolute top-10`}>
-				<p className="cursor-pointer" onClick={changeLanguage("it")}>
-					IT
-				</p>
-				<p className="cursor-pointer" onClick={changeLanguage("en")}>
-					ENG
-				</p>
-			</div>
+		<div>
+			<SearchSelect 
+				fgClass={props.fgClass}
+				value={<FontAwesomeIcon className='text-2xl' icon={faGlobe} />}
+				callback={changeLanguage}
+				options={langs}
+			/>
 		</div>
 	);
 };
 
 Languages.defaultProps = {
-	classNameContainer: "",
+	fgClass: "",
 };
 
 Languages.propTypes = {

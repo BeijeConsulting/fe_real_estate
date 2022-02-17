@@ -5,6 +5,7 @@ import logo from "../../../common/assets/logo/logo-black.png";
 
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";
+import Languages from "../Languages/Languages";
 
 // ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +13,6 @@ import {
 	faBars,
 	faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import Languages from "../Languages/Languages";
 
 // REDUX
 import { connect } from "react-redux";
@@ -37,54 +37,7 @@ const Navbar = (props) => {
 		setSidebarOpened(!sidebarOpened);
 	};
 
-	const handleLinkRender = (link, key) => {
-		return (
-			<p
-				key={"navbar-" + key}
-				onClick={handleNavigate(link.route)}
-				className="nav-link"
-			>
-				{link.label}
-			</p>
-		);
-	};
-
 	const handleLogoutClick = () => props.dispatch(logout());
-
-	const handleAuth = () => {
-		if (!props.userMeDuck.user?.id) {
-			return (
-				<>
-					<p
-						onClick={handleNavigate("/auth/login")}
-						className="text-xl nav-btn nav-fill font-primary"
-					>
-						ACCEDI
-					</p>
-					<p
-						onClick={handleNavigate("/auth/signup")}
-						className="text-xl nav-btn nav-outline font-primary"
-					>
-						REGISTRATI
-					</p>
-				</>
-			);
-		} else {
-			return (
-				<>
-					<p
-						onClick={handleNavigate("/user")}
-						className="text-xl nav-btn nav-fill font-primary"
-					>
-						AREA PRIVATA
-					</p>
-					<p onClick={handleLogoutClick} className="cursor-pointer">
-						<FontAwesomeIcon icon={faArrowRightFromBracket} /> LOG OUT
-					</p>
-				</>
-			);
-		}
-	};
 
 	return (
 		<div
@@ -101,14 +54,18 @@ const Navbar = (props) => {
 
 					{/* DESKTOP ONLY */}
 					<div className="hidden md:flex lg:text-2xl flex-row pl-6 font-bold font-primary space-x-4 items-center">
-						{routes.map(handleLinkRender)}
+						{routes.map(handleLinkRender(handleNavigate))}
 					</div>
 				</div>
 
 				{/* DESKTOP ONLY */}
 				<div className="hidden md:flex flex-row space-x-2">
 					<Languages />
-					{handleAuth()}
+					{handleAuth(
+						!props.userMeDuck.user?.id,
+						handleNavigate,
+						handleLogoutClick
+					)}
 				</div>
 
 				{/* MOBILE SIDEBAR */}
@@ -125,6 +82,53 @@ const Navbar = (props) => {
 			</div>
 		</div>
 	);
+};
+
+const handleLinkRender = (handleNavigate) => (link, key) => {
+	return (
+		<p
+			key={"navbar-" + key}
+			onClick={handleNavigate(link.route)}
+			className="nav-link"
+		>
+			{link.label}
+		</p>
+	);
+};
+
+const handleAuth = (userNotLoggedIn, handleNavigate, handleLogoutClick) => {
+	if (userNotLoggedIn) {
+		return (
+			<>
+				<p
+					onClick={handleNavigate("/auth/login")}
+					className="text-xl nav-btn nav-fill font-primary"
+				>
+					ACCEDI
+				</p>
+				<p
+					onClick={handleNavigate("/auth/signup")}
+					className="text-xl nav-btn nav-outline font-primary"
+				>
+					REGISTRATI
+				</p>
+			</>
+		);
+	} else {
+		return (
+			<>
+				<p
+					onClick={handleNavigate("/user")}
+					className="text-xl nav-btn nav-fill font-primary"
+				>
+					AREA PRIVATA
+				</p>
+				<p onClick={handleLogoutClick} className="cursor-pointer">
+					<FontAwesomeIcon icon={faArrowRightFromBracket} /> LOG OUT
+				</p>
+			</>
+		);
+	}
 };
 
 Navbar.defaultProps = {
