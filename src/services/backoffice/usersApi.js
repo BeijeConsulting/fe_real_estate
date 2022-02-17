@@ -20,5 +20,34 @@ export const getUsers = async (token) => {
         //Error handler
     )
     return payload
+}
 
+export const getUserById = async (id, token) => {
+    let userById = ''
+    const headers = { 
+        'Authorization': 'Bearer ' + token,
+    };
+    await javaAcademyServiceInstance.get("/user/"+id, {headers}).then((response) => {
+        userById = response.data
+       
+    }).catch(
+        //Error handler
+    )
+    return userById
+}
+
+export const updateUserInfo = async (content, token) => {
+    const headers = { 
+        'Authorization': 'Bearer ' + token,
+    };
+
+    let updateUser = ''
+    await javaAcademyServiceInstance.put("/user/update", content, {headers}).then((response) => {
+       updateUser = response.data
+       console.log('updateUSer', updateUser)
+        
+    }).catch(
+        
+    )
+    return updateUser
 }
