@@ -43,3 +43,44 @@
     font-size: 24px;
 }
 
+
+
+@media screen and (max-width:450px) {
+
+.faq-image {
+    background-image: url('../../../assets/images/womanyellow.jpeg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 35%;
+    height: 85%;
+    border-radius: 10px;
+    margin-left: 2%;
+    margin-top: 4%;
+    display: none;
+ }
+
+
+ .faq-questions {
+    margin-top: 30%;
+    display: flex;
+    align-items: center;
+    flex-direction: column-reverse;
+    
+ }
+
+ .faq-container {
+    height: 700px;
+    width: 90%;
+    background-color: #C4C4C4;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    color: black;
+    border-radius: 10px;
+    margin-top: 3%;
+    font-size: 20px;
+    margin-left: 5%;
+}
+
+}
