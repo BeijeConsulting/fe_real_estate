@@ -1,4 +1,5 @@
 {
 	"goToPrivateSignUp": "Privato",
-	"goToBusinessSignUp": "Azienda"
+	"goToBusinessSignUp": "Azienda",
+	"emptyField" : "Campo vuoto"
 }
