@@ -16,6 +16,7 @@ const ROUTES = {
 				SELF: "adv/:buildingId",
 				getPath: (buildingId) => "adv/" + buildingId,
 			},
+			MAP: "map",
 			AUTH: {
 				SELF: "auth",
 				LOGIN: "login",
@@ -29,6 +30,7 @@ const ROUTES = {
 			USER: {
 				SELF: "user",
 				DASHBOARD: "",
+				NEW_ADV: "new-adv",
 				EDIT_PROFILE: "edit-profile",
 				POSTED_ADS: "posted-ads",
 				SAVED_ADS: "saved-ads",

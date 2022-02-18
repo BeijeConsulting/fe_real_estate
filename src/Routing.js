@@ -17,8 +17,10 @@ import PostAdvs from "./frontend/screens/User/PostAdvs";
 import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
+import NewAdv from "./frontend/screens/User/NewAdv";
 import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
 import FAQ from "./frontend/screens/FAQ/FAQ";
+import Map from "./frontend/screens/Map/Map";
 
 // BACKOFFICE SCREENS
 // here
@@ -51,7 +53,6 @@ import SyncRoutingLanguage from "./common/screens/SyncRoutingLanguage";
 
 const Routing = () => (
 	<Provider store={applicationStore}>
-		{/* <SyncLangParam /> */}
 		<Routes>
 			{/* FRONTEND */}
 			{/* Redirect */}
@@ -74,6 +75,8 @@ const Routing = () => (
 					path={ROUTES.FE.BASE.DETAILS_AD.SELF}
 					element={<DetailBuilding />}
 				/>
+
+				<Route path={ROUTES.FE.BASE.MAP} element={<Map />} />
 
 				<Route path={ROUTES.FE.BASE.AUTH.SELF} element={<Auth />}>
 					{/* Redirect */}
@@ -110,6 +113,7 @@ const Routing = () => (
 
 				<Route path={ROUTES.FE.BASE.USER.SELF} element={<User />}>
 					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
+					<Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
 					<Route
 						path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
 						element={<EditProfile />}
@@ -145,5 +149,4 @@ const Routing = () => (
 		</Routes>
 	</Provider>
 );
-
 export default Routing;

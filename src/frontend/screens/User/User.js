@@ -19,7 +19,7 @@ class User extends Component {
 				<MobileUserNavbar />
 				<div className="flex">
 					<UserNavbar />
-					<section className="flex flex-col font-primary">
+					<section className="flex flex-col font-primary w-full">
 						<Outlet />
 					</section>
 				</div>

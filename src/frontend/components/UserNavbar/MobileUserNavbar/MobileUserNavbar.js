@@ -7,6 +7,7 @@ import {
 	faBookmark,
 	faHouseChimney,
 	faList,
+	faUser,
 	faColumns,
 	faChevronCircleDown,
 } from "@fortawesome/free-solid-svg-icons";
@@ -42,8 +43,12 @@ const MobileUserNavbar = () => {
 						to={ROUTES.FE.BASE.USER.EDIT_PROFILE}
 						onClick={openToggle}
 					>
-						<FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
+						<FontAwesomeIcon className={"mr-2"} icon={faUser} />
 						Modifica profilo
+					</Link>
+					<Link className={"m-2 link-menu"} to={"new-adv"} onClick={openToggle}>
+						<FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
+						Pubblica annuncio
 					</Link>
 					<Link
 						className={"m-2 link-menu"}
