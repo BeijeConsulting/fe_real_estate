@@ -113,7 +113,6 @@ const VerificationAdv = (props) => {
             }
             return item;
         })
-
         setState({
             ...state,
             advertisementsChecker: resultAPIChecker,
@@ -124,6 +123,14 @@ const VerificationAdv = (props) => {
     }
     const sincAdvAdmin = async () => {
         let resultAPIAdmin = await getRefusedAdvertaisement(props.admin.token)
+        /* ant design wanted a key on object to work */
+        resultAPIAdmin = resultAPIAdmin.map(item => {
+            item = {
+                ...item,
+                key: item.id
+            }
+            return item;
+        })
         setState({
             ...state,
             advertisementsAdmin: resultAPIAdmin,
