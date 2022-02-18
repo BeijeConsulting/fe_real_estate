@@ -36,46 +36,61 @@ const NewAdv = () => {
 
           <div className='mb-5'>
             <label className='uppercase font-primary color-secondary' style={{ display: 'block' }}>Dimensioni</label>
-            <Input placeholder="Es. 100 m" style={{ width: 320 }} />
+            <Input placeholder="Es. 100 m"
+            // style={{ width: 320 }}
+            />
           </div>
 
           <div className='mb-5'>
             <label className='uppercase font-primary color-secondary' style={{ display: 'block' }}>Prezzo</label>
-            <Input placeholder="Prezzo" style={{ width: 320 }} />
+            <Input placeholder="Prezzo"
+            // style={{ width: 320 }}
+            />
           </div>
 
           <div className='mb-5'>
             <label className='uppercase font-primary color-secondary' style={{ display: 'block' }}>Spese condominiali mensili</label>
-            <Input placeholder="Es: 500$" style={{ width: 320 }} />
+            <Input placeholder="Es: 500$"
+            // style={{ width: 320 }}
+            />
           </div>
 
           <div className="flex gap-3">
             <div className='mb-5'>
               <label className='uppercase font-primary color-secondary' style={{ display: 'block' }}>Città</label>
-              <Input placeholder="Città" style={{ width: 155 }} />
+              <Input placeholder="Città"
+              // style={{ width: 155 }}
+              />
             </div>
 
             <div className='mb-5'>
               <label className='uppercase font-primary color-secondary' style={{ display: 'block' }}>CAP</label>
-              <Input placeholder="CAP" style={{ width: 153 }} />
+              <Input placeholder="CAP"
+              // style={{ width: 153 }}
+              />
             </div>
           </div>
 
           <div className='mb-5'>
             <label className='uppercase font-primary color-secondary' style={{ display: 'block' }}>Indirizzo/via</label>
-            <Input placeholder="Es: Viale Genova 43" style={{ width: 320 }} />
+            <Input placeholder="Es: Viale Genova 43"
+            // style={{ width: 320 }}
+            />
           </div>
 
           <div>
-            <Button label='Avanti' className='w-80' />
+            <Button label='Avanti' />
           </div>
         </form>
-        <Divider type='vertical'/>
-        <div style={{ marginTop: '26px', marginRight: '16px', marginLeft: '56px', marginBottom: '0' }} className='flex-col hidden md:flex'>
+
+        <Divider type='vertical' />
+
+        <div style={{ marginTop: '26px', marginRight: '16px', marginBottom: '0' }}
+        className='flex md:ml-14'>
           <Steps direction="vertical" current={current} onChange={handleStepChange} >
-            <Step  />
-            <Step  />
-            <Step  />
+            <Step />
+            <Step />
+            <Step />
           </Steps>
         </div>
       </div>
