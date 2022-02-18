@@ -12,14 +12,13 @@ class Auth extends Component {
 
 		this.state = {
 			logged: false,
+			redirectHome: false,
 		};
 	}
 
 	componentDidMount = () => {
 		if (!this.props.username) {
-			const token = localStorage.getItem(
-				storage.LOCAL_STORAGE_KEYS.USER_TOKEN
-			);
+			const token = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN);
 
 			if (!!token) {
 				// make call to validate token
@@ -27,26 +26,23 @@ class Auth extends Component {
 		}
 	};
 
+	setRedirectHome = () => this.setState({ redirectHome: true });
+
 	render() {
 		return (
 			<div className="bg-secondary h-screen ">
 				<header className="flex items-center justify-center gap-2 py-5">
-					<div className="flex items-center justify-center gap-2 py-5">
-						<img
-							src={logo}
-							alt="logo"
-							className="h-10 "
-						/>
+					<div
+						className="flex items-center justify-center gap-2 py-5 cursor-pointer"
+						onClick={this.setRedirectHome}
+					>
+						<img src={logo} alt="logo" className="h-10 " />
 						<h1 className="color-primary uppercase font-extrabold text-4xl">
 							domus
 						</h1>
 					</div>
 					<p className="color-primary text-5xl">|</p>
-					<Languages
-						fgClass="color-primary"
-						valueSize={10}
-						icoSize={10}
-					/>
+					<Languages fgClass="color-primary" valueSize={10} icoSize={10} />
 				</header>
 
 				<div className="flex items-center justify-center">
@@ -56,7 +52,7 @@ class Auth extends Component {
 					</Card>
 				</div>
 				{/* Routing */}
-				{this.props.username !== undefined && (
+				{(this.props.username !== undefined || this.state.redirectHome) && (
 					<Navigate to={"/"} />
 				)}
 			</div>

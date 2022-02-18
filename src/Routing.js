@@ -46,46 +46,71 @@ import NotFound from "./common/screens/NotFound";
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
+import { ROUTES } from "./utils/properties";
+import SyncRoutingLanguage from "./common/screens/SyncRoutingLanguage";
 
 const Routing = () => (
 	<Provider store={applicationStore}>
+		{/* <SyncLangParam /> */}
 		<Routes>
 			{/* FRONTEND */}
-			<Route path="">
-				<Route path="" element={<Home />} />
-				<Route path="about-us" element={<AboutUs />} />
-				<Route path="what-we-offer" element={<WhatWeOffer />} />
-				<Route path="assess-building" element={<AssessBuilding />} />
-				<Route path="/FAQ" element={<FAQ />} />
-
-				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
-				<Route path="adv/:buildingId" element={<DetailBuilding />} />
-			</Route>
-
-			<Route path="auth" element={<Auth />}>
+			{/* Redirect */}
+			<Route
+				path=""
+				element={<Navigate to={ROUTES.FE.BASE.SELF} replace={true} />}
+			/>
+			<Route path={ROUTES.FE.BASE.SELF} element={<SyncRoutingLanguage />}>
+				<Route path={ROUTES.FE.BASE.HOME} element={<Home />} />
+				<Route path={ROUTES.FE.BASE.ABOUT_US} element={<AboutUs />} />
+				<Route path={ROUTES.FE.BASE.WHAT_WE_OFFER} element={<WhatWeOffer />} />
 				<Route
-					path=""
-					// redirect to /auth/login
-					element={<Navigate to={"login"} replace={true} />}
+					path={ROUTES.FE.BASE.ASSESS_BUILDING}
+					element={<AssessBuilding />}
 				/>
-				<Route path="login" element={<Login />} />
-				<Route path="signup" element={<SignUp />}>
+				<Route path={ROUTES.FE.BASE.FAQ} element={<FAQ />} />
+
+				<Route path={ROUTES.FE.BASE.ADS_LIST} element={<AdvList />} />
+				<Route path={ROUTES.FE.BASE.DETAILS_AD} element={<DetailBuilding />} />
+
+				<Route path={ROUTES.FE.BASE.AUTH.SELF} element={<Auth />}>
+					{/* Redirect */}
 					<Route
 						path=""
-						// redirect to /auth/signup/private
-						element={<Navigate to={"private"} replace={true} />}
+						element={<Navigate to={ROUTES.FE.BASE.AUTH.LOGIN} replace={true} />}
 					/>
-					<Route path="private" element={<SignUpPrivate />} />
-					<Route path="business" element={<SignUpBusiness />} />
+					<Route path={ROUTES.FE.BASE.AUTH.LOGIN} element={<Login />} />
+					<Route path={ROUTES.FE.BASE.AUTH.SIGNUP.SELF} element={<SignUp />}>
+						{/* Redirect */}
+						<Route
+							path=""
+							element={
+								<Navigate
+									to={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
+									replace={true}
+								/>
+							}
+						/>
+						<Route
+							path={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
+							element={<SignUpPrivate />}
+						/>
+						<Route
+							path={ROUTES.FE.BASE.AUTH.SIGNUP.BUSINESS}
+							element={<SignUpBusiness />}
+						/>
+					</Route>
+					<Route
+						path={ROUTES.FE.BASE.AUTH.FORGOT_PASSWORD}
+						element={<ForgotPsw />}
+					/>
 				</Route>
-				<Route path="forgotpsw" element={<ForgotPsw />} />
-			</Route>
 
-			<Route path="user" element={<User />}>
-				<Route path="" element={<Dashboard />} />
-				<Route path="edit-profile" element={<EditProfile />} />
-				<Route path="post-advs" element={<PostAdvs />} />
-				<Route path="save-advs" element={<SaveAdvs />} />
+				<Route path="user" element={<User />}>
+					<Route path="" element={<Dashboard />} />
+					<Route path="edit-profile" element={<EditProfile />} />
+					<Route path="post-advs" element={<PostAdvs />} />
+					<Route path="save-advs" element={<SaveAdvs />} />
+				</Route>
 			</Route>
 
 			{/* BACKOFFICE */}
