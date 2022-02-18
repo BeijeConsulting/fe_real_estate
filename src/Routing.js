@@ -59,7 +59,7 @@ const Routing = () => (
 				<Route path="/FAQ" element={<FAQ />} />
 
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
-				<Route path="adv/:buildingId" element={<DetailBuilding />} />
+				<Route path="v" element={<DetailBuilding />} />
 			</Route>
 
 
