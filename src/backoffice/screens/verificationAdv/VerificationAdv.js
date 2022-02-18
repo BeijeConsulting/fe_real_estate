@@ -54,7 +54,7 @@ const VerificationAdv = (props) => {
                     return (<span style={{ color: "red" }}>[missing data]</span>)
                 } else {
                     text = utilsMethods.ModdingData(text)
-                    return (<span >[{text}]</span>)
+                    return (<span >{text}</span>)
                 }
             },
             responsive: ["sm"]
@@ -88,7 +88,7 @@ const VerificationAdv = (props) => {
                     return (<span style={{ color: "red" }}>[missing data]</span>)
                 } else {
                     text = utilsMethods.ModdingData(text)
-                    return (<span >[{text}]</span>)
+                    return (<span >{text}</span>)
                 }
             },
             responsive: ["sm"]
