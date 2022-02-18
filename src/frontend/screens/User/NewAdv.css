@@ -4,8 +4,26 @@
     height: inherit;
 }
 
+
+.new-adv-container {
+    height: 0;
+}
+
+
+
 @media screen and (min-width: 374px) and (max-width:769px) {
     .ant-divider.ant-divider-vertical {
         display: none;
+    }
+    .new-adv-container {
+        height: 90vh;
+    }
+    .ant-steps.ant-steps-vertical {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    .ant-steps.ant-steps-vertical > .ant-steps-item {
+        flex: 0 0 auto;
     }
 }
