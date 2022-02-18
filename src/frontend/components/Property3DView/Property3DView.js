@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component, Suspense } from "react";
-
-import { OrbitControls } from "@react-three/drei";
+import Button from "../../components/UI/Button/Button";
+import { Loader, OrbitControls } from "@react-three/drei";
 
 import luxuryHouse from "../../assets/3DModels/luxury house/luxury house interior.obj";
 import luxuryHouseMtl from "../../assets/3DModels/luxury house/luxury house interior.mtl";
@@ -50,9 +50,7 @@ class Property3DView extends Component {
 					zIndex: "9",
 				}}
 			>
-				<button className="bg-red-600" onClick={this.onClickClose}>
-					Close
-				</button>
+				<Button label="Close" onClick={this.onClickClose} />
 
 				<Canvas
 					style={{
@@ -84,6 +82,8 @@ class Property3DView extends Component {
 						/>
 					</Suspense>
 				</Canvas>
+
+				<Loader />
 			</div>
 		);
 	}
