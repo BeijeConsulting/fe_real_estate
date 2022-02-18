@@ -28,6 +28,7 @@ const Filters = () => {
                     <input
                         className='border-2 text-center'
                         value={filters.minPrice + " €"}
+                        readOnly
                     />
                 </div>
                 <div className='flex flex-col'>
@@ -35,6 +36,7 @@ const Filters = () => {
                     <input
                         className='border-2 text-center'
                         value={filters.maxPrice + " €"}
+                        readOnly
                     />
                 </div>
             </div>
