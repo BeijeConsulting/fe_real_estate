@@ -20,6 +20,8 @@ import Dashboard from "./frontend/screens/User/Dashboard";
 import NewAdv from "./frontend/screens/User/NewAdv";
 import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
 import FAQ from "./frontend/screens/FAQ/FAQ";
+import Map from "./frontend/screens/Map/Map";
+
 
 // BACKOFFICE SCREENS
 // here
@@ -66,7 +68,7 @@ const Routing = () => {
 						<Route path="adv/:buildingId" element={<DetailBuilding />} />
 					</Route>
 
-
+			<Route path="/map" element={<Map />} />
 
 					<Route path="auth" element={<Auth />}>
 						<Route path=""
