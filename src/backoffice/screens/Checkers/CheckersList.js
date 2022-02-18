@@ -48,7 +48,7 @@ const CheckersList = (props) => {
     }
 
     const addChecker = () => {
-        navigate("/collaborator/add-collaborator")
+        navigate("/admin/collaborator/add-collaborator")
     }
 
     useEffect(() => {
@@ -59,7 +59,7 @@ const CheckersList = (props) => {
         <>
             <div className="users-list-background">
                 <div className="users-list-container">
-                    <Button onClick={addChecker}>Aggiungi collaboratore</Button>
+                    <Button className="checkers-button" onClick={addChecker} type="primary">Aggiungi collaboratore</Button>
                     <div className="users-list-table">
                         <Table
                             dataSource={state.users}

@@ -31,7 +31,7 @@ const AdvCard = ( props ) => {
                 <p className='block font-primary font-bold text-3xl '>{props.title}</p>
                 <p className='font-primary'>{props.description.slice(0, 90) + ".."}</p>
 
-                <p>3 locali • 4 mq</p>
+                <p className='mt-2 text-right text-xl font-bold font-primary'>{props.roomNumber} locali • {props.squareMeters} mq</p>
                 <p className='bottom-4 right-6 absolute text-4xl font-primary font-bold'>{props.price} <span className='text-lg'>€</span></p>
             </div>
         </Card>
@@ -43,6 +43,8 @@ AdvCard.defaultProps = {
     title:'BILOCALE IN PERIFERIA',
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elite Vestibulum ultricies suscipit rhoncus. Curabitur sed feugiat mi, sed mollis tortor. Duis aliquet dapibus nulla non venenatis. Duis rutrum mauris vitae lacus sagittis facilisis. Mauris vehicula nulla quis interdum tempor. "    ,
     city:'Milano',
+    roomNumber: 2,
+    squareMeters: 10,
     price: 1000,
     photos:[
         "https://www.cinematographe.it/wp-content/uploads/2021/01/shrek.jpg",

@@ -26,11 +26,15 @@ import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
 import Profile from "./backoffice/screens/profile/Profile";
 import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
+import CmsBusiness from "./backoffice/screens/cmsBusiness/CmsBusiness";
 import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
+import BusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/BusinessDetails";
+import BusinessAdv from "./backoffice/screens/cmsBusiness/businessAdv/BusinessAdv";
+import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/BusinessUsers";
 import Checker from "./backoffice/screens/Checkers/Checker";
 import CheckersList from "./backoffice/screens/Checkers/CheckersList";
 import AddChecker from "./backoffice/screens/Checkers/AddChecker";
@@ -59,7 +63,7 @@ const Routing = () => (
 				<Route path="/FAQ" element={<FAQ />} />
 
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
-				<Route path="adv/:buildingId" element={<DetailBuilding />} />
+				<Route path="v" element={<DetailBuilding />} />
 			</Route>
 
 
@@ -107,6 +111,11 @@ const Routing = () => (
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
+				<Route path="business/:id" element={<CmsBusiness />} >
+					<Route path="details" element={<BusinessDetails />} />
+					<Route path="advertisements" element={<BusinessAdv />} />
+					<Route path="users" element={<BusinessUsers />} />
+				</Route>
 				<Route path="user/:id" element={<RoutingBO.User />} />
 				<Route path="advertisements" element={<RoutingBO.User />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
