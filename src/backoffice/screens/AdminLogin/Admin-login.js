@@ -79,7 +79,7 @@ class AdminLogin extends PureComponent {
                             <label>
                                 Password
                             </label>
-                            <Input onChange={this.setPassword} />
+                            <Input type={"password"} onChange={this.setPassword} />
                         </div>
                         <section className="mt-4 flex">
                             <div className="basis-2/4  flex">
