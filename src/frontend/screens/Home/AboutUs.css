@@ -14,7 +14,10 @@
    height: 600px;
    width: 100%;
    position: absolute;
-   background: center;
+   background-image: url('../../../assets/images/WhoWeAre.jpeg');
+   background-position: center;
+   background-size: cover;
+   background-repeat: no-repeat;
 }
 
 .mobile-pargraph {
@@ -31,7 +34,7 @@
 
 }
 
-.ourvalues-image {
+.ourvalues-image img{
     float:right;
     width:60%;
     height: 100%;
@@ -126,6 +129,10 @@
         width: 100%;
         position: absolute;
         background: center;
+        background-image: url('../../../assets/images/WhoWeAre.jpeg');
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
      }
 
     .ourvalues-container {
@@ -186,8 +193,8 @@
         display: block;
         color:black;
         position: absolute;
-        margin-top: 135%;
-        margin-left: -3%;
+        margin-top: 140%;
+        margin-left: 1%;
         font-size: 18px;
         padding: 5%;
     }

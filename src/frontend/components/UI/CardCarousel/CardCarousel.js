@@ -1,5 +1,6 @@
 import React from 'react'
-import './cardcarousel.css'
+import './cardcarousel.css';
+
 
 const CardCarousel = (props) => {
   return (

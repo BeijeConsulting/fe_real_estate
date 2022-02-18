@@ -50,7 +50,7 @@ const Cms = (props) => {
                         <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("dashboard")}>
                             DashBoard
                         </Menu.Item>
-                        <Menu.Item key="3" icon={<FontAwesomeIcon icon={faRectangleList} />} onClick={setTitleNavigate("advertisements")}>
+                        <Menu.Item key="3" icon={<FontAwesomeIcon icon={faRectangleList} />} onClick={setTitleNavigate("advertisement/1")}>
                             Annunci
                         </Menu.Item>
                         <Menu.Item key="4" icon={<FontAwesomeIcon icon={faUsers} />} onClick={setTitleNavigate("users")}>

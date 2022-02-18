@@ -14,12 +14,13 @@ import Input from "../../components/UI/Input/Input";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //Icon
-import { faMapMarkerAlt, faHeart, faMapLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { faMapMarkerAlt, faHeart, faMapLocationDot, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 //Images
 import Avatar from "../../assets/images/jardin.jpeg";
 
 import "./detailBuilding.css";
+import Textarea from "../../components/UI/Textarea/Textarea";
 
 class DetailBuilding extends Component {
     constructor(props) {
@@ -61,7 +62,9 @@ class DetailBuilding extends Component {
                     date: adv.publishedDateTime,
                     buildingType: adv.buildingType,
                     price: adv.price,
-                    zipCode: adv.zipcode
+                    zipCode: adv.zipcode,
+                    elevator: adv.elevator,
+                    reception: adv.reception
                 };
             }
 
@@ -138,7 +141,7 @@ class DetailBuilding extends Component {
 
                         <div className="flex flex-row">
                             <Card className="flex flex-col my-10 w-1/2 p-4 mx-auto">
-                                <h1>Descrizione</h1>
+                                <h1 className="text-2xl font-bold">Descrizione</h1>
                                 <p>
                                     Lorem Ipsum is simply dummy text of the printing and typesetting
                                     industry. Lorem Ipsum has been the industry's standard dummy
@@ -149,24 +152,51 @@ class DetailBuilding extends Component {
                                 </p>
                             </Card>
                             <Card className="flex flex-col m-10 w-1/2 p-4 mx-auto">
-                                <h1>Informazioni nel dettaglio</h1>
-                                <p>BAGNI BALCONI ASCENSORE GARAGE</p>
+                                <h1 className="text-2xl font-bold">Informazioni nel dettaglio</h1>
+                                <div className="flex flex-row m-2">
+                                    <h1 className="text-base font-medium">Ascensore:</h1>
+                                    {
+                                        !this.state.adv.elevator &&
+                                        <FontAwesomeIcon className={"text-2xl text-red-700 ml-2"} icon={faXmark} />
+                                    }
+                                    {
+                                        !!this.state.adv.elevator &&
+                                        <FontAwesomeIcon className={"text-2xl text-green-700 ml-2"} icon={faCheck} />
+                                    }
+                                </div>
+                                <div className="flex flex-row m-2">
+                                    <h1 className="text-base font-medium">Reception:</h1>
+                                    {
+                                        !this.state.adv.reception &&
+                                        <FontAwesomeIcon className={"text-2xl text-red-700 ml-2"} icon={faXmark} />
+                                    }
+                                    {
+                                        !!this.state.adv.reception &&
+                                        <FontAwesomeIcon className={"text-2xl text-green-700 ml-2"} icon={faCheck} />
+                                    }
+
+                                </div>
                             </Card>
                         </div>
-                        <Card className="flex flex-col p-6 mx-auto mb-10 text-center">
-                            <h1 className="text-lg font-bold">Contatta il venditore</h1>
+                        <Card className="flex flex-col p-4 mx-auto mb-10 items-center">
+                            <h1 className="text-2xl font-bold">Contatta il venditore</h1>
                             <Input
-                                className="w-auto rounded-r-sm m-2 p-2"
+                                className="rounded border-2 border-slate-900 focus:outline-none w-80 bg-slate-200 mb-2 p-2 text-slate-900"
                                 placeholder={"Inserisci la tua email"} />
-                            <textarea className="w-auto">
-                            </textarea>
-                            <div className="flex flex-row">
+
+                            <Textarea
+                                minHeight={"50px"}
+                                maxHeight={"280px"}
+                                placeholder="Inserisci qui il testo da inviare"
+                            />
+
+                            <div className="flex flex-row mt-2">
+                                <Button
+                                    className="mr-2"
+                                    label={"Annulla"} />
                                 <Button
                                     className=""
                                     label={"Invia"} />
-                                <Button
-                                    className=""
-                                    label={"Annulla"} />
                             </div>
                         </Card>
                     </div>

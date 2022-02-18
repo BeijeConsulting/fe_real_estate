@@ -22,6 +22,7 @@ import FAQ from "./frontend/screens/FAQ/FAQ";
 
 // BACKOFFICE SCREENS
 // here
+import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
 import Profile from "./backoffice/screens/profile/Profile";
 import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
@@ -34,6 +35,10 @@ import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
 import BusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/BusinessDetails";
 import BusinessAdv from "./backoffice/screens/cmsBusiness/businessAdv/BusinessAdv";
 import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/BusinessUsers";
+import Checker from "./backoffice/screens/Checkers/Checker";
+import CheckersList from "./backoffice/screens/Checkers/CheckersList";
+import AddChecker from "./backoffice/screens/Checkers/AddChecker";
+
 // COMMON
 import NotFound from "./common/screens/NotFound";
 
@@ -43,6 +48,8 @@ import NotFound from "./common/screens/NotFound";
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
+
+
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -56,7 +63,7 @@ const Routing = () => (
 				<Route path="/FAQ" element={<FAQ />} />
 
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
-				<Route path="adv/:buildingId" element={<DetailBuilding />} />
+				<Route path="v" element={<DetailBuilding />} />
 			</Route>
 
 
@@ -114,7 +121,7 @@ const Routing = () => (
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route
 					path="advertisement/:id"
-					element={<RoutingBO.User />}
+					element={<DetailsAd />}
 				/>
 				<Route
 					path="dashBoard"
@@ -124,11 +131,15 @@ const Routing = () => (
 				<Route path="profile/update-profile" element={<UpdateProfile />} />
 				<Route
 					path="collaborators"
-					element={<RoutingBO.User />}
+					element={<CheckersList />}
 				/>
 				<Route
 					path="collaborator/:id"
-					element={<RoutingBO.User />}
+					element={<Checker />}
+				/>
+				<Route
+					path="collaborator/add-collaborator"
+					element={<AddChecker />}
 				/>
 			</Route>
 			<Route path="*" element={<NotFound />} />
