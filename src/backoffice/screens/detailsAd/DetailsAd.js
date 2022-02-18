@@ -65,7 +65,7 @@ const DetailsAd = (props) => {
             {
                 adv.length !== 0 &&
 
-                <div lassName="container-all" >
+                <div className="container-all" >
                     <div className="container-advdetails">
                         {/* title */}
                         <Title className="title" level={2}>

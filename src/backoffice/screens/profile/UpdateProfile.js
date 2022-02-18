@@ -1,4 +1,4 @@
-import { Button, Form, Input, DatePicker, Upload } from "antd";
+import { Button, Form, Input, Modal, Upload } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./updateProfile.css";
@@ -17,7 +17,7 @@ const UpdateProfile = (props) => {
         action: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.interlinecenter.com%2F%3Fattachment_id%3D337&psig=AOvVaw1M-WHiEIbmWU6iI0nqA9iI&ust=1645182122041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPibgZLLhvYCFQAAAAAdAAAAABAD'
     }
 
-    const [state, setState] = useState({ dataAdmin: null, updatedData: {} })
+    const [state, setState] = useState({ dataAdmin: null, updatedData: {}, isModalOpened: false })
 
     const getAdminData = async () => {
         dataAdmin = await getUserById(props.admin.id, props.admin.token)
@@ -54,6 +54,10 @@ const UpdateProfile = (props) => {
 
 
     const handleClick = async () => {
+        setState({ ...state, isModalOpened: true })
+    }
+
+    const saveChanges = async () => {
         let data = await updateUserInfo(state.updatedData, props.admin.token)
         navigate("/admin/profile")
     }
@@ -123,6 +127,9 @@ const UpdateProfile = (props) => {
                             <Button type="primary" onClick={handleClick}>Salva</Button>
                         </Form.Item>
                     </div>
+                    <Modal visible={state.isModalOpened} onOk={saveChanges} onCancel={handleClick} getContainer={false}>
+                        <p>Vuoi salvare questi cambiamenti?</p>
+                    </Modal>
                 </Form>
             </div >
         }
