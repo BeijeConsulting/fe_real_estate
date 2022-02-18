@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useParams } from "react-router-dom";
 
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
@@ -22,6 +22,7 @@ import FAQ from "./frontend/screens/FAQ/FAQ";
 
 // BACKOFFICE SCREENS
 // here
+import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
 import Profile from "./backoffice/screens/profile/Profile";
 import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
@@ -31,6 +32,9 @@ import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
 import UserProfile from "./backoffice/screens/UserProfile/UserProfile";
+import Checker from "./backoffice/screens/Checkers/Checker";
+import CheckersList from "./backoffice/screens/Checkers/CheckersList";
+import AddChecker from "./backoffice/screens/Checkers/AddChecker";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
@@ -42,22 +46,24 @@ import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
 
+
+
 const Routing = () => (
 	<Provider store={applicationStore}>
 		<Routes>
 			{/* FRONTEND */}
 			<Route path="">
-				<Route path=""  element={<Home />} />
+				<Route path="" element={<Home />} />
 				<Route path="about-us" element={<AboutUs />} />
 				<Route path="what-we-offer" element={<WhatWeOffer />} />
 				<Route path="assess-building" element={<AssessBuilding />} />
-				<Route path="/FAQ" element={<FAQ />} /> 
+				<Route path="/FAQ" element={<FAQ />} />
 
 				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
 				<Route path="adv/:buildingId" element={<DetailBuilding />} />
 			</Route>
-            
-		
+
+
 
 			<Route path="auth" element={<Auth />}>
 				<Route path=""
@@ -107,7 +113,7 @@ const Routing = () => (
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route
 					path="advertisement/:id"
-					element={<RoutingBO.User />}
+					element={<DetailsAd />}
 				/>
 				<Route
 					path="dashBoard"
@@ -117,13 +123,16 @@ const Routing = () => (
 				<Route path="profile/update-profile" element={<UpdateProfile />} />
 				<Route
 					path="collaborators"
-					element={<RoutingBO.User />}
+					element={<CheckersList />}
 				/>
 				<Route
 					path="collaborator/:id"
-					element={<RoutingBO.User />}
+					element={<Checker />}
 				/>
-
+				<Route
+					path="collaborator/add-collaborator"
+					element={<AddChecker />}
+				/>
 			</Route>
 			<Route path="*" element={<NotFound />} />
 		</Routes>
