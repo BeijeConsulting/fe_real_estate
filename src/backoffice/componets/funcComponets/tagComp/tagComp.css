@@ -1,0 +1,16 @@
+.container-TagComp{
+    padding: 7px 12px;
+    margin-left:5px ;
+    cursor: pointer;
+}
+.selected{
+    background-color: white;
+    color: #008dff;
+    font-weight: bold;
+}
+.unselected{
+    background-color: rgb(224, 224, 224);
+    color: black;
+    font-weight: bold;
+}
+

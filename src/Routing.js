@@ -23,19 +23,25 @@ import FAQ from "./frontend/screens/FAQ/FAQ";
 
 // BACKOFFICE SCREENS
 // here
+import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
 import Profile from "./backoffice/screens/profile/Profile";
 import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
-import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
+import CmsBusiness from "./backoffice/screens/cmsBusiness/CmsBusiness";
+import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login";
 import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
+import BusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/BusinessDetails";
+import BusinessAdv from "./backoffice/screens/cmsBusiness/businessAdv/BusinessAdv";
+import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/BusinessUsers";
+import Checker from "./backoffice/screens/Checkers/Checker";
+import CheckersList from "./backoffice/screens/Checkers/CheckersList";
+import AddChecker from "./backoffice/screens/Checkers/AddChecker";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
-
-
 
 // REDUX
 import { Provider } from "react-redux";
@@ -99,40 +105,31 @@ const Routing = () => {
 						<Route path="save-advs" element={<SaveAdvs />} />
 					</Route>
 
-
-					{/* BACKOFFICE */}
-					<Route path="admin-auth" element={<AdminLogin />} />
-					<Route path="admin" element={<Cms />}>
-						<Route index element={<RoutingBO.DashBoard />} />
-						<Route path="users" element={<UsersList />} />
-						<Route path="businesses" element={<BusinessList />} />
-						<Route path="user/:id" element={<RoutingBO.User />} />
-						<Route path="advertisements" element={<RoutingBO.User />} />
-						<Route path="verification-adv" element={<VerificationAdv />} />
-						<Route
-							path="advertisement/:id"
-							element={<RoutingBO.User />}
-						/>
-						<Route
-							path="dashBoard"
-							element={<RoutingBO.DashBoard />}
-						/>
-						<Route path="profile" element={<Profile />} />
-						<Route path="profile/update-profile" element={<UpdateProfile />} />
-						<Route
-							path="collaborators"
-							element={<RoutingBO.User />}
-						/>
-						<Route
-							path="collaborator/:id"
-							element={<RoutingBO.User />}
-						/>
-					</Route>
-					<Route path="*" element={<NotFound />} />
-				</Routes>
-			</Provider>
-		</>
-	)
-};
-
+			{/* BACKOFFICE */}
+			<Route path="admin-auth" element={<AdminLogin />} />
+			<Route path="admin" element={<Cms />}>
+				<Route index element={<RoutingBO.DashBoard />} />
+				<Route path="users" element={<UsersList />} />
+				<Route path="businesses" element={<BusinessList />} />
+				<Route path="business/:id" element={<CmsBusiness />}>
+					<Route path="details" element={<BusinessDetails />} />
+					<Route path="advertisements" element={<BusinessAdv />} />
+					<Route path="users" element={<BusinessUsers />} />
+				</Route>
+				<Route path="user/:id" element={<RoutingBO.User />} />
+				<Route path="advertisements" element={<RoutingBO.User />} />
+				<Route path="verification-adv" element={<VerificationAdv />} />
+				<Route path="advertisement/:id" element={<DetailsAd />} />
+				<Route path="dashBoard" element={<RoutingBO.DashBoard />} />
+				<Route path="profile" element={<Profile />} />
+				<Route path="profile/update-profile" element={<UpdateProfile />} />
+				<Route path="collaborators" element={<CheckersList />} />
+				<Route path="collaborator/:id" element={<Checker />} />
+				<Route path="collaborator/add-collaborator" element={<AddChecker />} />
+			</Route>
+			<Route path="*" element={<NotFound />} />
+		</Routes>
+	</Provider>
+</>
+)};
 export default Routing;
