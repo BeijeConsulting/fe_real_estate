@@ -5,6 +5,7 @@ import logo from "../../../common/assets/logo/logo-black.png";
 
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";
+import Languages from "../Languages/Languages";
 
 // ICONS
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,7 +13,6 @@ import {
 	faBars,
 	faArrowRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import Languages from "../Languages/Languages";
 
 // REDUX
 import { connect } from "react-redux";
@@ -23,7 +23,7 @@ const Navbar = (props) => {
 		{ label: "HOME", route: "/" },
 		{ label: "ANNUNCI", route: "/" },
 		{ label: "SERVIZI", route: "/what-we-offer" },
-		{ label: "CHI SIAMO", route: "about-us" },
+		{ label: "CHI SIAMO", route: "/about-us" },
 	];
 
 	let [sidebarOpened, setSidebarOpened] = useState(false);

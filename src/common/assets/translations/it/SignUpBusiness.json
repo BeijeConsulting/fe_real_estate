@@ -4,7 +4,7 @@
 	"address": "Indirizzo",
 	"signUpButton": "Registrati",
 	"goToLogin": {
-		"label": "Already registered?",
-		"link": "Log in"
+		"label": "Hai un account?",
+		"link": "Effettua il login"
 	}
 }

@@ -10,10 +10,20 @@
 	--primary: #ffe714;
 	--secondary: #202740;
 	--gray: #e5e5e5;
+	--white: #ffffff;
+	--red:#ee0909;
 }
 
 .font-primary {
 	font-family: "Poppins", sans-serif;
+}
+
+.background-error{
+	background-color: var(--red);
+}
+
+.color-error {
+	color: var(--white);
 }
 
 .color-primary {
@@ -30,6 +40,10 @@
 
 .bg-secondary {
 	background-color: var(--secondary);
+}
+
+.bg-tertiary {
+	background-color: var(--gray);
 }
 
 .bg-gradient {

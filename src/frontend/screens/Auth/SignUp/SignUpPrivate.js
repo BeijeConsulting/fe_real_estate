@@ -3,6 +3,8 @@ import formValidation from "../../../utils/formValidation";
 import { Navigate, Link } from "react-router-dom";
 import { withTranslation } from "react-i18next";
 
+import Input from '../../../components/UI/Input/Input'
+import Button from '../../../components/UI/Button/Button'
 class SignUpPrivate extends Component {
 	constructor(props) {
 		super(props);
@@ -105,6 +107,21 @@ class SignUpPrivate extends Component {
 		return noError;
 	};
 
+	translateErrorMessage = (str) => {
+		switch (str) {
+			case 'empty':
+				return this.props.t('SignUp.emptyField')
+			case 'invalid':
+				return this.props.t('SignUp.invalidField')
+			default:
+				return ''
+		}
+	}
+
+	resetError = (str) => () => {
+		this.setState({ errors: { ...this.state.errors, [str]: '' } })
+	}
+
 	// Submit
 
 	onClickSignUp = (e) => {
@@ -120,44 +137,63 @@ class SignUpPrivate extends Component {
 
 		return (
 			<form className="flex flex-col justify-evenly items-center">
-				<input
+				<Input
 					placeholder={t("SignUpPrivate.cf")}
 					type="text"
 					onChange={this.onChangeCF}
+					onCloseError={this.resetError('cf')}
+					errorMessage={this.translateErrorMessage(this.state.errors.cf)}
 				/>
-				<input
+				<Input
 					placeholder={t("SignUpPrivate.name")}
 					type="text"
 					onChange={this.onChangeName}
+					onCloseError={this.resetError('name')}
+					errorMessage={this.translateErrorMessage(this.state.errors.name)}
 				/>
 
-				<input
+				<Input
 					placeholder={t("SignUpPrivate.surname")}
 					type="text"
 					onChange={this.onChangeSurname}
+					onCloseError={this.resetError('surname')}
+					errorMessage={this.translateErrorMessage(this.state.errors.surname)}
 				/>
 
-				<input
+				<Input
 					placeholder="username"
 					type="text"
 					onChange={this.onChangeUsername}
+					onCloseError={this.resetError('username')}
+					errorMessage={this.translateErrorMessage(this.state.errors.username)}
 				/>
 
-				<input
+				<Input
 					placeholder="email"
 					type="email"
 					onChange={this.onChangeEmail}
+					onCloseError={this.resetError('email')}
+					errorMessage={this.translateErrorMessage(this.state.errors.email)}
 				/>
-				<input
+
+				<Input
 					placeholder="password"
 					type="password"
 					onChange={this.onChangePassword}
+					onCloseError={this.resetError('password')}
+					errorMessage={this.translateErrorMessage(this.state.errors.password)}
 				/>
 
-				<button onClick={this.onClickSignUp}>{t("SignUpPrivate.signUpButton")}</button>
+				<Button
+					marginTop={'15px'}
+					className="mb-5"
+					onClick={this.onClickSignUp}
+					label={t("SignUpPrivate.signUpButton")}
+					type='secondary'
+				/>
 
-				<p>{t("SignUpPrivate.goToLogin.label")}</p>
-				<Link to={"/auth/login"}>{t("SignUpPrivate.goToLogin.link")}</Link>
+				<p className="font-primary mt-5">{t("SignUpPrivate.goToLogin.label")}</p>
+				<Link className="font-primary mt-2" to={"/auth/login"}>{t("SignUpPrivate.goToLogin.link")}</Link>
 				{this.state.redirectToLogin && (
 					<Navigate to={"/auth/login"} />
 				)}

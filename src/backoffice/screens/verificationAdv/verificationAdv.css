@@ -1,0 +1,15 @@
+a{
+    color: #008dff !important;
+}
+.container-VerificationAdv{
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+    border-radius: 10px;
+}
+.container-tags{
+    display: flex;
+    background-color: rgb(241, 241, 241)
+}
+.container-table-VerificationAdv{
+    padding: 5px 10px;
+}

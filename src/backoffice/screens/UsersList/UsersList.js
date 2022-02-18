@@ -6,6 +6,9 @@ import { Component } from "react";
 // Import Routing
 import { getUsers } from "../../../services/backoffice/usersApi";
 
+// Import Connect   
+import { connect } from "react-redux";
+
 // Import from AntDesign
 import { Table, Input, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
@@ -43,7 +46,6 @@ class UsersList extends Component {
                 },
                 responsive: ["sm"]
             },
-
             {
                 title: '',
                 dataIndex: 'actions',
@@ -69,11 +71,15 @@ class UsersList extends Component {
         this.setState({
             isLoading: true
         })
+        if(value ==="") {
         this.fetchUsers()
+        } else {
+            //Search API
+        }
     }
 
     fetchUsers = async () => {
-        let payload = await getUsers()
+        let payload = await getUsers(this.props.admin.token)
         this.setState({
             users: payload.fetchedUsers,
             isLoading: false,
@@ -109,4 +115,8 @@ class UsersList extends Component {
     }
 }
 
-export default UsersList
+const mapStateToProps = state => ({
+    admin: state.adminDuck.admin
+})
+
+export default connect(mapStateToProps) (UsersList)

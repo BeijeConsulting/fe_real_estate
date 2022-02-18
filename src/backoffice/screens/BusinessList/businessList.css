@@ -1,0 +1,35 @@
+.businesses-list-background {
+    display: flex;
+    justify-content: center;
+}
+
+a{
+    color: #008dff !important
+}
+
+.businesses-list-container{
+    background-color: white;
+    height: calc(100vh - 170px);
+    border-radius: 10px;
+    overflow-y: auto;
+}
+
+.businesses-list-header {
+    border: 1px solid var(--gray);
+    padding: 10px;
+    margin-bottom: 10px;
+    padding-right: 20%;
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    
+    .businesses-list-table {
+        width: 100%;
+    }
+
+    .businesses-list-container{
+        padding: 10px;
+        margin: 10px;
+    }
+}
