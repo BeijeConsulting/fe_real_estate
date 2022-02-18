@@ -23,7 +23,7 @@ const NewAdv = () => {
       <div className='my-4'>
         <h1 className='uppercase font-primary font-light text-center text-4xl'>crea nuovo annuncio</h1>
       </div>
-      <div className='flex justify-around gap-10'>
+      <div className='flex justify-around gap-10 '>
         <form style={{ marginTop: '16px', marginRight: '16px', marginLeft: '16px', marginBottom: '0' }} className='flex flex-col '>
           <div className='mb-5'>
             <label className='uppercase font-primary color-secondary' style={{ display: 'block' }}>Tipo di immobile</label>
@@ -86,7 +86,7 @@ const NewAdv = () => {
         <Divider type='vertical' />
 
         <div style={{ marginTop: '26px', marginRight: '16px', marginBottom: '0' }}
-        className='flex md:ml-14'>
+          className='flex md:ml-14'>
           <Steps direction="vertical" current={current} onChange={handleStepChange} >
             <Step />
             <Step />
