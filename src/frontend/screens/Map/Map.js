@@ -33,7 +33,7 @@ const MapScreen = () => {
 
             <Navbar />
             <div className='h-20 flex justify-center items-center p-2'>
-                <p className='font-primary font-bold text-3xl'>LA NOSTRA MAPPA</p>
+                <p className='font-primary font-bold text-3xl'>TRACCIA UN AREA SULLA MAPPA</p>
             </div>
 
             <Map
