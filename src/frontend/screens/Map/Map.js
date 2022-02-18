@@ -41,7 +41,7 @@ const MapScreen = () => {
                 center={position}
                 style="mapbox://styles/mapbox/streets-v9"
                 containerStyle={{
-                    height: '100vh',
+                    height: '100%',
                     width: '100vw',
                 }}
             >
