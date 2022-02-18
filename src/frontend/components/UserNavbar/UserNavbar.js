@@ -12,7 +12,7 @@ import "./userNavabar.css"
 
 const UserNavbar = () => {
     return (
-        <div className="hidden md:flex flex-col min-h-screen bg-secondary">
+        <div className="hidden md:flex flex-col min-h-screen min-w-max bg-secondary">
             <nav className='md:flex flex-col p-10 text-lg font-primary color-primary'>
                 <Link className={"m-2 link-menu"} to={""}>
                     <FontAwesomeIcon className={"mr-2"} icon={faColumns} />

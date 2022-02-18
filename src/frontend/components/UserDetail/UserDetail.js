@@ -3,7 +3,7 @@ import React from 'react'
 const UserDetail = () => {
     return (
         <div className='flex flex-row'>
-            <div>UserDetail</div>
+            <img className='avatar' src='' alt='' />
         </div>
     )
 }
