@@ -33,6 +33,7 @@ import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
 import BusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/BusinessDetails";
+import UpdateBusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/UpdateBusinessDetails";
 import BusinessAdv from "./backoffice/screens/cmsBusiness/businessAdv/BusinessAdv";
 import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/BusinessUsers";
 import Checker from "./backoffice/screens/Checkers/Checker";
@@ -48,6 +49,7 @@ import NotFound from "./common/screens/NotFound";
 import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
+
 
 
 
@@ -113,6 +115,7 @@ const Routing = () => (
 				<Route path="businesses" element={<BusinessList />} />
 				<Route path="business/:id" element={<CmsBusiness />} >
 					<Route path="details" element={<BusinessDetails />} />
+					<Route path="details/update-details" element={<UpdateBusinessDetails />} />
 					<Route path="advertisements" element={<BusinessAdv />} />
 					<Route path="users" element={<BusinessUsers />} />
 				</Route>

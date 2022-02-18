@@ -7,7 +7,6 @@ import { getUserById, updateUserInfo } from "../../../services/backoffice/usersA
 import { connect } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { get } from "lodash";
 
 const UpdateProfile = (props) => {
     let dataAdmin = {}
