@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Component, Suspense } from "react";
 import Button from "../../components/UI/Button/Button";
-import { OrbitControls } from "@react-three/drei";
+import { Loader, OrbitControls } from "@react-three/drei";
 
 import luxuryHouse from "../../assets/3DModels/luxury house/luxury house interior.obj";
 import luxuryHouseMtl from "../../assets/3DModels/luxury house/luxury house interior.mtl";
@@ -82,6 +82,8 @@ class Property3DView extends Component {
 						/>
 					</Suspense>
 				</Canvas>
+
+				<Loader />
 			</div>
 		);
 	}
