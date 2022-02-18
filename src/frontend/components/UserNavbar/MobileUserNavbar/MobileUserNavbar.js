@@ -33,11 +33,11 @@ const MobileUserNavbar = () => {
                         <FontAwesomeIcon className={"mr-2"} icon={faColumns} />
                         Dashboard
                     </Link>
-                    <Link className={"m-2 link-menu"} to={"edit-profile"}>
+                    <Link className={"m-2 link-menu"} to={"edit-profile"} onClick={openToggle}>
                         <FontAwesomeIcon className={"mr-2"} icon={faUser} />
                         Modifica profilo
                     </Link>
-                    <Link className={"m-2 link-menu"} to={"new-adv"}>
+                    <Link className={"m-2 link-menu"} to={"new-adv"} onClick={openToggle}>
                         <FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
                         Pubblica annuncio
                     </Link>

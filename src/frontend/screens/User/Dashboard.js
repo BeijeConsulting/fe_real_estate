@@ -44,8 +44,6 @@ class Dashboard extends Component {
                     <div className='max-w-lg max-h-xs'>
                         <AdvCard />
                     </div>
-                    <BlueSection
-                    />
                 </div>
             </>
         )
