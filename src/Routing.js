@@ -25,12 +25,15 @@ import FAQ from "./frontend/screens/FAQ/FAQ";
 import Profile from "./backoffice/screens/profile/Profile";
 import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
+import CmsBusiness from "./backoffice/screens/cmsBusiness/CmsBusiness";
 import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login"
 import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
-
+import BusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/BusinessDetails";
+import BusinessAdv from "./backoffice/screens/cmsBusiness/businessAdv/BusinessAdv";
+import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/BusinessUsers";
 // COMMON
 import NotFound from "./common/screens/NotFound";
 
@@ -101,6 +104,11 @@ const Routing = () => (
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
+				<Route path="businesses/:id" element={<CmsBusiness />} >
+					<Route path="details" element={<BusinessDetails />} />
+					<Route path="advertisements" element={<BusinessAdv />} />
+					<Route path="users" element={<BusinessUsers />} />
+				</Route>
 				<Route path="user/:id" element={<RoutingBO.User />} />
 				<Route path="advertisements" element={<RoutingBO.User />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
