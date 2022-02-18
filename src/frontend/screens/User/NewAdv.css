@@ -1,0 +1,11 @@
+.ant-divider.ant-divider-vertical {
+    position: relative;
+    top: 10px;
+    height: inherit;
+}
+
+@media screen and (min-width: 374px) and (max-width:769px) {
+    .ant-divider.ant-divider-vertical {
+        display: none;
+    }
+}
