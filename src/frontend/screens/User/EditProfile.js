@@ -12,39 +12,39 @@ class EditProfile extends Component {
                         <div className='flex flex-col p-4'>
                             <h1 className='text-lg font-semibold'>Dati anagrafici</h1>
                             <div className='flex flex-row p-4'>
-                                <h1>Nome: </h1>
-                                <Input />
+                                <h1 className="text-xl font-sans " > Nome: </h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-14"}/>
                             </div>
                             <div className='flex flex-row p-4'>
-                                <h1>Cognome:</h1>
-                                <Input />
+                                <h1 className="text-xl font-sans ml-2">Cognome:</h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-24"}/>
                             </div>
                             <div className='flex flex-row p-4'>
-                                <h1>Data di nascita:</h1>
-                                <Input />
+                                <h1 className="text-xl font-sans ml-2">Data di nascita:</h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-36"}/>
                             </div>
                             <div className='flex flex-row p-4'>
-                                <h1>Numero di telefono:</h1>
-                                <Input />
+                                <h1 className="text-xl font-sans">Numero di telefono:</h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-44"}/>
                             </div>
                         </div>
                         <div className='flex flex-col p-4'>
                             <h1 className="text-lg font-semibold">Dati utente</h1>
                             <div className='flex flex-row p-4'>
-                                <h1>Username: </h1>
-                                <Input />
+                                <h1 className="text-xl font-sans">Username: </h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-24"}/>
                             </div>
                             <div className='flex flex-row p-4'>
-                                <h1>Email:</h1>
-                                <Input />
+                                <h1 className="text-xl font-sans">Email:</h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-14"}/>
                             </div>
                             <div className='flex flex-row p-4'>
-                                <h1>Password:</h1>
-                                <Input />
+                                <h1 className="text-xl font-sans">Password:</h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-24"}/>
                             </div>
                             <div className='flex flex-row p-4'>
-                                <h1>value:</h1>
-                                <Input />
+                                <h1 className="text-xl font-sans">value:</h1>
+                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-14"}/>
                             </div>
                         </div>
                     </div>
