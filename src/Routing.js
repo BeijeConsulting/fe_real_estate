@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate, useParams, useLocation } from "react-router-dom";
 
 // FRONTEND SCREENS
 import AboutUs from "./frontend/screens/Home/AboutUs";
@@ -17,6 +17,7 @@ import PostAdvs from "./frontend/screens/User/PostAdvs";
 import SaveAdvs from "./frontend/screens/User/SaveAdvs";
 import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
 import Dashboard from "./frontend/screens/User/Dashboard";
+import NewAdv from "./frontend/screens/User/NewAdv";
 import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
 import FAQ from "./frontend/screens/FAQ/FAQ";
 
@@ -47,46 +48,62 @@ import { Provider } from "react-redux";
 import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
 
-const Routing = () => (
-	<Provider store={applicationStore}>
-		<Routes>
-			{/* FRONTEND */}
-			<Route path="">
-				<Route path="" element={<Home />} />
-				<Route path="about-us" element={<AboutUs />} />
-				<Route path="what-we-offer" element={<WhatWeOffer />} />
-				<Route path="assess-building" element={<AssessBuilding />} />
-				<Route path="/FAQ" element={<FAQ />} />
+const Routing = () => {
+	const location = useLocation();
+	return (
+		<>
+			<Provider store={applicationStore}>
+				<Routes>
+					{/* FRONTEND */}
+					<Route path="">
+						<Route path="" element={<Home />} />
+						<Route path="about-us" element={<AboutUs />} />
+						<Route path="what-we-offer" element={<WhatWeOffer />} />
+						<Route path="assess-building" element={<AssessBuilding />} />
+						<Route path="/FAQ" element={<FAQ />} />
 
-				<Route path=":advType/:buildingType/:city" element={<AdvList />} />
-				<Route path="adv/:buildingId" element={<DetailBuilding />} />
-			</Route>
+						<Route path=":advType/:buildingType/:city" element={<AdvList />} />
+						<Route path="adv/:buildingId" element={<DetailBuilding />} />
+					</Route>
 
-			<Route path="auth" element={<Auth />}>
-				<Route
-					path=""
-					// redirect to /auth/login
-					element={<Navigate to={"login"} replace={true} />}
-				/>
-				<Route path="login" element={<Login />} />
-				<Route path="signup" element={<SignUp />}>
-					<Route
-						path=""
-						// redirect to /auth/signup/private
-						element={<Navigate to={"private"} replace={true} />}
-					/>
-					<Route path="private" element={<SignUpPrivate />} />
-					<Route path="business" element={<SignUpBusiness />} />
-				</Route>
-				<Route path="forgotpsw" element={<ForgotPsw />} />
-			</Route>
 
-			<Route path="user" element={<User />}>
-				<Route path="" element={<Dashboard />} />
-				<Route path="edit-profile" element={<EditProfile />} />
-				<Route path="post-advs" element={<PostAdvs />} />
-				<Route path="save-advs" element={<SaveAdvs />} />
-			</Route>
+
+					<Route path="auth" element={<Auth />}>
+						<Route path=""
+							// redirect to /auth/login
+							element={<Navigate to={"login"} replace={true} />}
+						/>
+						<Route path="login" element={<Login />} />
+						<Route path="signup" element={<SignUp path={location.pathname} />}>
+							<Route
+								path=""
+								// redirect to /auth/signup/private
+								element={
+									<Navigate
+										to={"private"}
+										replace={true}
+									/>
+								}
+							/>
+							<Route
+								path="private"
+								element={<SignUpPrivate />}
+							/>
+							<Route
+								path="business"
+								element={<SignUpBusiness />}
+							/>
+						</Route>
+						<Route path="forgotpsw" element={<ForgotPsw />} />
+					</Route>
+
+					<Route path="user" element={<User />}>
+						<Route path="" element={<Dashboard />} />
+						<Route path="new-adv" element={<NewAdv />} />
+						<Route path="edit-profile" element={<EditProfile />} />
+						<Route path="post-advs" element={<PostAdvs />} />
+						<Route path="save-advs" element={<SaveAdvs />} />
+					</Route>
 
 			{/* BACKOFFICE */}
 			<Route path="admin-auth" element={<AdminLogin />} />
@@ -113,6 +130,6 @@ const Routing = () => (
 			<Route path="*" element={<NotFound />} />
 		</Routes>
 	</Provider>
-);
-
+</>
+)};
 export default Routing;
