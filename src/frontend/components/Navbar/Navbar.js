@@ -30,7 +30,7 @@ const Navbar = (props) => {
 		},
 		{
 			label: "ANNUNCI",
-			route: `/${i18n.language}/${ROUTES.FE.BASE.ADS_LIST}`,
+			route: `/${i18n.language}/${ROUTES.FE.BASE.ADS_LIST.SELF}`,
 		},
 		{
 			label: "SERVIZI",
@@ -142,7 +142,7 @@ const handleAuth = (
 		return (
 			<>
 				<p
-					onClick={handleNavigate("/user")}
+					onClick={handleNavigate(`/${lang}/${ROUTES.FE.BASE.USER.SELF}`)}
 					className="text-xl nav-btn nav-fill font-primary"
 				>
 					AREA PRIVATA

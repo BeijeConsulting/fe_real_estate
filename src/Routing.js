@@ -69,8 +69,11 @@ const Routing = () => (
 				/>
 				<Route path={ROUTES.FE.BASE.FAQ} element={<FAQ />} />
 
-				<Route path={ROUTES.FE.BASE.ADS_LIST} element={<AdvList />} />
-				<Route path={ROUTES.FE.BASE.DETAILS_AD} element={<DetailBuilding />} />
+				<Route path={ROUTES.FE.BASE.ADS_LIST.SELF} element={<AdvList />} />
+				<Route
+					path={ROUTES.FE.BASE.DETAILS_AD.SELF}
+					element={<DetailBuilding />}
+				/>
 
 				<Route path={ROUTES.FE.BASE.AUTH.SELF} element={<Auth />}>
 					{/* Redirect */}
@@ -105,11 +108,14 @@ const Routing = () => (
 					/>
 				</Route>
 
-				<Route path="user" element={<User />}>
-					<Route path="" element={<Dashboard />} />
-					<Route path="edit-profile" element={<EditProfile />} />
-					<Route path="post-advs" element={<PostAdvs />} />
-					<Route path="save-advs" element={<SaveAdvs />} />
+				<Route path={ROUTES.FE.BASE.USER.SELF} element={<User />}>
+					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
+					<Route
+						path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
+						element={<EditProfile />}
+					/>
+					<Route path={ROUTES.FE.BASE.USER.POSTED_ADS} element={<PostAdvs />} />
+					<Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
 				</Route>
 			</Route>
 
