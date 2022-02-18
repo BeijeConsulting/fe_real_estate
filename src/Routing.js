@@ -111,7 +111,7 @@ const Routing = () => (
 				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
-				<Route path="businesses/:id" element={<CmsBusiness />} >
+				<Route path="business/:id" element={<CmsBusiness />} >
 					<Route path="details" element={<BusinessDetails />} />
 					<Route path="advertisements" element={<BusinessAdv />} />
 					<Route path="users" element={<BusinessUsers />} />
