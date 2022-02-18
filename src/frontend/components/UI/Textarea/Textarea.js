@@ -18,7 +18,7 @@ const Textarea = (props) => {
 }
 
 Textarea.defaultProps = {
-    className: "rounded border-2 p-2 border-slate-900 focus:outline-none h-32 w-80 bg-slate-200 text-slate-900"
+    className: "rounded border-2 mb-2 p-2 border-slate-900 focus:outline-none h-32 w-80 bg-slate-200 text-slate-900"
 };
 
 Textarea.propTypes = {

@@ -4,21 +4,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faPenToSquare, faBookmark,
     faHouseChimney, faList,
-    faColumns
+    faColumns, faUser
 } from '@fortawesome/free-solid-svg-icons'
+
+import "./userNavabar.css"
 
 
 const UserNavbar = () => {
     return (
-        <div className="hidden md:flex flex-col h-screen bg-secondary">
+        <div className="hidden md:flex flex-col min-h-screen bg-secondary">
             <nav className='md:flex flex-col p-10 text-lg font-primary color-primary'>
                 <Link className={"m-2 link-menu"} to={""}>
                     <FontAwesomeIcon className={"mr-2"} icon={faColumns} />
                     Dashboard
                 </Link>
                 <Link className={"m-2 link-menu"} to={"edit-profile"}>
-                    <FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
+                    <FontAwesomeIcon className={"mr-2"} icon={faUser} />
                     Modifica profilo
+                </Link>
+                <Link className={"m-2 link-menu"} to={"new-adv"}>
+                    <FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
+                    Pubblica annuncio
                 </Link>
                 <Link className={"m-2 link-menu"} to={"post-advs"}>
                     <FontAwesomeIcon className={"mr-2"} icon={faList} />

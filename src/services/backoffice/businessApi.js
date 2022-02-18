@@ -2,9 +2,9 @@ import { javaAcademyServiceInstance } from "../javaAcademyService"
 
 export const getBusinesses = async (token) => {
     let payload = []
-    const headers = { "Authorization":"Bearer " + token}
+    const headers = { "Authorization": "Bearer " + token }
     await javaAcademyServiceInstance.get("/businesses", { headers }).then((response) => {
-        let fetchedBusinesses= response.data.map( (business)=> {
+        let fetchedBusinesses = response.data.map((business) => {
             return ({
                 username: business.businessName,
                 key: business.id,
@@ -24,9 +24,9 @@ export const getBusinesses = async (token) => {
 
 export const searchBusinessByName = async (name, token) => {
     let payload = []
-    const headers = { "Authorization":"Bearer " + token}
+    const headers = { "Authorization": "Bearer " + token }
     await javaAcademyServiceInstance.get("/business_name/" + name, { headers }).then((response) => {
-        let fetchedBusinesses= response.data.map( (business)=> {
+        let fetchedBusinesses = response.data.map((business) => {
             return ({
                 username: business.businessName,
                 key: business.id,
@@ -44,6 +44,15 @@ export const searchBusinessByName = async (name, token) => {
     return payload
 }
 
+export const getUsersBusiness = async (id, token) => {
+    const result = await javaAcademyServiceInstance.get()
+        .then(response => {
+
+        }
+        ).catch()
+
+    return result
+}
 
 export const getBusinessById = async (id, token) => {
     let userById = ''
