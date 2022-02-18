@@ -52,4 +52,18 @@ export const getUsersBusiness = async (id, token) => {
         ).catch()
 
     return result
-} 
+}
+
+export const getBusinessById = async (id, token) => {
+    let userById = ''
+    const headers = {
+        'Authorization': 'Bearer ' + token,
+    };
+    await javaAcademyServiceInstance.get("/business/" + id, { headers }).then((response) => {
+        userById = response.data
+
+    }).catch(
+        //Error handler
+    )
+    return userById
+}

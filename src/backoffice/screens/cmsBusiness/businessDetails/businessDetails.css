@@ -1,0 +1,47 @@
+.business-detail-container{
+    height: calc(100vh - 170px);
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+   
+}
+
+.business-info-list > div{
+    padding: 0 ;
+}
+.business-info-box{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    width: 300px;
+    padding: 10px;
+    justify-self: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+.manager-profile-box{
+    grid-column-start: 3;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    width: 300px;
+    padding: 10px;
+    justify-self: center;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+}
+.button-business{
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 4;
+    justify-self: center;
+}
+
+@media (max-width: 640px){
+    .business-detail-container{
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+}
