@@ -42,7 +42,7 @@ const MapScreen = () => {
                 style="mapbox://styles/mapbox/streets-v9"
                 containerStyle={{
                     height: '100vh',
-                    width: '100vw',
+                    width: '100vw'
                 }}
             >
                 <DrawControl
