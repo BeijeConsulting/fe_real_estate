@@ -1,81 +1,23 @@
 import PropTypes from "prop-types";
 import React, { Component, Suspense } from "react";
 
-import { OrbitControls, TrackballControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 
-import dragon from "../../assets/3DModels/dragon/Dragon 2.5_fbx.fbx";
-import dragonGroundTexture from "../../assets/3DModels/dragon/textures/Dragon_ground_color.jpg";
-import smartphone from "../../assets/3DModels/Smartphone-3D-Model/Smartphone 3D Model.obj";
-import { TextureLoader } from "three";
-import { useFBX } from "@react-three/drei";
+import luxuryHouse from "../../assets/3DModels/luxury house/luxury house interior.obj";
+import luxuryHouseMtl from "../../assets/3DModels/luxury house/luxury house interior.mtl";
+// import dragon from "../../assets/3DModels/dragon/Dragon 2.5_fbx.fbx";
+// import dragonGroundTexture from "../../assets/3DModels/dragon/textures/Dragon_ground_color.jpg";
+// import smartphone from "../../assets/3DModels/Smartphone-3D-Model/Smartphone 3D Model.obj";
+// import smartphoneMTL from "../../assets/3DModels/Smartphone-3D-Model/Smartphone 3D Model.mtl";
 
-import house from "../../assets/3DModels/house/H01.obj";
+// import houseMTL from "../../assets/3DModels/house/H01.mtl";
+// import house from "../../assets/3DModels/house/H01.obj";
 
-import { Canvas, useLoader } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 
-import { OBJLoader } from "three/examples/jsm/loaders/OBJLoader";
-
-import { MeshNormalMaterial } from "three";
-
-function ShowModelFBX({ src, srcMap, ...props }) {
-	let fbx = useFBX(src);
-	if (!!srcMap) {
-		// eslint-disable-next-line react-hooks/rules-of-hooks
-		const dragonGroundMap = useLoader(TextureLoader, srcMap);
-		if (!!srcMap) {
-			fbx.traverse(function (child) {
-				if (child.isMesh) {
-					child.material.forEach((m) => (m.map = dragonGroundMap));
-				}
-			});
-		}
-	}
-	return (
-		<mesh {...props}>
-			<primitive object={fbx} />
-		</mesh>
-	);
-}
-
-function ShowModelObj({ src, ...props }) {
-	const obj = useLoader(OBJLoader, src);
-
-	const mtl = new MeshNormalMaterial();
-
-	obj.traverse(function (child) {
-		if (child.isMesh) {
-			child.material = mtl;
-		}
-	});
-
-	return <mesh {...props}>{!!obj && <primitive object={obj} />}</mesh>;
-}
-
-const Scene = () => {
-	return (
-		<Canvas
-			style={{
-				background: "white",
-				height: "60vh",
-				width: "80vw",
-			}}
-		>
-			<Suspense fallback={null}>
-				<ambientLight intensity={1} />
-				<pointLight intensity={1} position={[10, 10, 10]} />
-				{/* <TrackballControls /> */}
-				<OrbitControls />
-				<ShowModelFBX
-					src={dragon}
-					srcMap={dragonGroundTexture}
-					position={[40, 0, 0]}
-				/>
-				<ShowModelObj src={house} position={[-50, 0, 0]} scale={0.1} />
-				<ShowModelObj src={smartphone} position={[0, -20, 0]} scale={0.1} />
-			</Suspense>
-		</Canvas>
-	);
-};
+import OBJMTLShow from "./OBJMTLShow";
+// import FBXTexureShow from "./FBXTextureShow";
+// import GLBShow from "./GLBShow";
 
 class Property3DView extends Component {
 	constructor(props) {
@@ -89,12 +31,14 @@ class Property3DView extends Component {
 		this.props.onClickClose();
 	};
 
+	chooseLoader = () => {};
+
 	render() {
 		return (
 			<div
 				style={{
 					alignItems: "center",
-					backgroundColor: "rgba(0,0,0,0.4)",
+					backgroundColor: "rgba(0, 0, 0, 0.4)",
 					display: "flex",
 					flexDirection: "column",
 					height: "100vh",
@@ -110,7 +54,36 @@ class Property3DView extends Component {
 					Close
 				</button>
 
-				<Scene />
+				<Canvas
+					style={{
+						background: "white",
+						height: "60vh",
+						width: "80vw",
+					}}
+				>
+					<Suspense fallback={null}>
+						<ambientLight intensity={1} />
+						<pointLight intensity={1} position={[10, 10, 10]} />
+						<OrbitControls />
+						{/* <FBXTexureShow
+							src={dragon}
+							srcTexture={dragonGroundTexture}
+							position={[40, 0, 0]}
+						/>
+						<OBJMTLShow
+							src={smartphone}
+							mtlSrc={smartphoneMTL}
+							position={[0, -20, 0]}
+							scale={0.1}
+						/> */}
+						<OBJMTLShow
+							src={luxuryHouse}
+							mtlSrc={luxuryHouseMtl}
+							position={[0, 0, 0]}
+							scale={0.4}
+						/>
+					</Suspense>
+				</Canvas>
 			</div>
 		);
 	}
