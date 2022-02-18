@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
+// COMPONENTS
 import Button from '../../components/UI/Button/Button'
 import Navbar from '../../components/Navbar/Navbar'
 import AdvCard from '../../components/AdvCard/AdvCard'
 import Filters from '../../components/Filters/Filters'
+import { findAds } from '../../../services/frontend/advertisementApi'
+
+// API
+
 
 const AdvList = () => {
 
@@ -12,6 +17,16 @@ const AdvList = () => {
     let navigate = useNavigate()
 
     let type = '';
+
+    useEffect(() => {
+        findAds({
+            advType: "SALE",
+            city: "Firenze",
+            buildingType: "HOUSE"
+        })
+
+    }, [])
+
 
     const handleNavigate = (dest) => () => {
         navigate(dest)
