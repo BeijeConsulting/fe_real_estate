@@ -51,3 +51,20 @@ export const updateUserInfo = async (content, token) => {
     )
     return updateUser
 }
+
+// get name from seller id
+
+export const getNameUserFromSellerId = async (token, idSeller) => {
+    let nameSeller = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.get(
+        `/adv/${idSeller}`,
+        { headers }
+    ).then((response) => {
+        nameSeller = response;
+        console.log('nameSeller', nameSeller);
+    });
+    return nameSeller
+};
