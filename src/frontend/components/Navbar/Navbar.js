@@ -2,6 +2,7 @@ import "./Navbar.css";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../common/assets/logo/logo-black.png";
+import { useTranslation } from "react-i18next";
 
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";
@@ -17,13 +18,28 @@ import {
 // REDUX
 import { connect } from "react-redux";
 import { logout } from "../../../redux/ducks/userMeDuck";
+import { ROUTES } from "../../../utils/properties";
 
 const Navbar = (props) => {
+	const { i18n } = useTranslation();
+
 	let routes = [
-		{ label: "HOME", route: "/" },
-		{ label: "ANNUNCI", route: "/" },
-		{ label: "SERVIZI", route: "/what-we-offer" },
-		{ label: "CHI SIAMO", route: "/about-us" },
+		{
+			label: "HOME",
+			route: `/${i18n.language}/${ROUTES.FE.BASE.HOME}`,
+		},
+		{
+			label: "ANNUNCI",
+			route: `/${i18n.language}/${ROUTES.FE.BASE.ADS_LIST.SELF}`,
+		},
+		{
+			label: "SERVIZI",
+			route: `/${i18n.language}/${ROUTES.FE.BASE.WHAT_WE_OFFER}`,
+		},
+		{
+			label: "CHI SIAMO",
+			route: `/${i18n.language}/${ROUTES.FE.BASE.ABOUT_US}`,
+		},
 	];
 
 	let [sidebarOpened, setSidebarOpened] = useState(false);
@@ -64,7 +80,8 @@ const Navbar = (props) => {
 					{handleAuth(
 						!props.userMeDuck.user?.id,
 						handleNavigate,
-						handleLogoutClick
+						handleLogoutClick,
+						i18n.language
 					)}
 				</div>
 
@@ -96,18 +113,25 @@ const handleLinkRender = (handleNavigate) => (link, key) => {
 	);
 };
 
-const handleAuth = (userNotLoggedIn, handleNavigate, handleLogoutClick) => {
+const handleAuth = (
+	userNotLoggedIn,
+	handleNavigate,
+	handleLogoutClick,
+	lang
+) => {
 	if (userNotLoggedIn) {
 		return (
 			<>
 				<p
-					onClick={handleNavigate("/auth/login")}
+					onClick={handleNavigate(`/${lang}/${ROUTES.FE.BASE.AUTH.SELF}`)}
 					className="text-xl nav-btn nav-fill font-primary"
 				>
 					ACCEDI
 				</p>
 				<p
-					onClick={handleNavigate("/auth/signup")}
+					onClick={handleNavigate(
+						`/${lang}/${ROUTES.FE.BASE.AUTH.SELF}/${ROUTES.FE.BASE.AUTH.SIGNUP.SELF}`
+					)}
 					className="text-xl nav-btn nav-outline font-primary"
 				>
 					REGISTRATI
@@ -118,7 +142,7 @@ const handleAuth = (userNotLoggedIn, handleNavigate, handleLogoutClick) => {
 		return (
 			<>
 				<p
-					onClick={handleNavigate("/user")}
+					onClick={handleNavigate(`/${lang}/${ROUTES.FE.BASE.USER.SELF}`)}
 					className="text-xl nav-btn nav-fill font-primary"
 				>
 					AREA PRIVATA
