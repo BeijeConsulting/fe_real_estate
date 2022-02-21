@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
 import BlueSection from '../../components/BlueSection/BlueSection'
+import { Link } from 'react-router-dom'
+import AdvCard from '../../components/AdvCard/AdvCard'
 
 
 class Dashboard extends Component {
@@ -20,24 +22,28 @@ class Dashboard extends Component {
                 <div className='flex flex-col m-2 p-2'>
                     <div className='flex flex-row space-x-2'>
                         <h1 className='text-xl font-bold'>Riepilogo utente</h1>
-                        <FontAwesomeIcon icon={faPenToSquare} />
+                        <Link to={"edit-profile"}>
+                            <FontAwesomeIcon className={"mt-1 h-5 text-slate-900"} icon={faPenToSquare} />
+                        </Link>
                     </div>
-                    <div className='flex flex-col m-2 '>
-                        <p>Nome: Emilio</p>
-                        <p>Cognome: Di Mari</p>
-                        <p>Email: dimar******@***.it</p>
-                        <p>Password: *****</p>
+                    <div className='flex flex-col m-2 text-lg '>
+                        <span className='font-semibold'>Nome: </span>
+                        <span className='font-semibold'>Cognome: </span>
+                        <span className='font-semibold'>Email: </span>
+                        <span className='font-semibold'>Password: </span>
                     </div>
                 </div>
                 <div className='flex flex-col m-2 p-2'>
                     <h1 className='text-xl font-bold'>Annunci salvati:</h1>
-                    <h4>Non c'è nessun annuncio salvato...</h4>
+                    <div className='max-w-lg max-h-xs'>
+                        <AdvCard />
+                    </div>
                 </div>
                 <div className='flex flex-col m-2 p-2'>
                     <h1 className='text-xl font-bold'>I tuoi annunci:</h1>
-                    <h4>Non hai pubblicato alcun annuncio...</h4>
-                    <BlueSection
-                        text="Pubblica un nuovo annuncio gratis" />
+                    <div className='max-w-lg max-h-xs'>
+                        <AdvCard />
+                    </div>
                 </div>
             </>
         )

@@ -17,7 +17,7 @@ const AboutUs = ({ t }) => {
 
       <NavBar />
 
-      <div className="aboutus-image" style={{ backgroundImage: `url(${PeopleFirst})` }}>
+      <div className="aboutus-image">
 
 
         <div className="w-96 text-3xl font-bold bg-secondary text-white mt-80 z-50 position:relative h-12; lg:mt-96 lg:h-14 flex items-center justify-center">LA NOSTRA STORIA</div>
@@ -31,7 +31,7 @@ const AboutUs = ({ t }) => {
       <div className="ourvalues-container">
 
         <div className="ourvalues-image">
-          <img src={Family} style={{ height: "100%", borderRadius: '10px' }} />
+          <img src={Family} />
         </div>
 
         <div className="ourvalues-text">

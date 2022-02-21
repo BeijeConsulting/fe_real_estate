@@ -36,7 +36,7 @@ class UsersList extends Component {
                 title: '',
                 dataIndex: 'actions',
                 render: (text, record) =>
-                    <Link to={"/admin/business/" + record.key}>Scheda business</Link>
+                    <Link to={"/admin/business/" + record.key + "/details"}>Scheda business</Link>
                 ,
             }
         ]
@@ -50,17 +50,17 @@ class UsersList extends Component {
     }
 
     componentDidMount() {
-        this.fetchBusinesses ()
+        this.fetchBusinesses()
     }
 
     searchByName = (value) => {
         this.setState({
             isLoading: true
         })
-        if(value === "") {
-        this.fetchBusinesses ()
+        if (value === "") {
+            this.fetchBusinesses()
         } else {
-            this.fetchBusinessesByName (value)
+            this.fetchBusinessesByName(value)
         }
     }
 
@@ -114,4 +114,4 @@ const mapStateToProps = state => ({
     admin: state.adminDuck.admin
 })
 
-export default connect(mapStateToProps) (UsersList)
+export default connect(mapStateToProps)(UsersList)

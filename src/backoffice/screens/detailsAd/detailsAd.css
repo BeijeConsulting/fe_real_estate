@@ -1,0 +1,88 @@
+.container-all {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .container-advdetails {
+    height: 75vh !important;
+    width: 100%;
+    padding: 4px;
+    overflow: auto;
+  }
+  
+  .container-head {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .title {
+    margin-top: 1em;
+    text-align: center;
+  }
+  
+  .link {
+    color: #008dff !important;
+  }
+  
+  .container-carousel {
+    margin-top: 1em;
+  }
+  
+  .carousel {
+    margin: auto;
+    width: 70%;
+    padding: 10px;
+  }
+
+.adv-photos{
+    height: 60%;
+    color: #fff;
+    line-height: 60vh;
+    text-align: center;
+    background-image: url( "https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?cs=srgb&dl=pexels-binyamin-mellish-106399.jpg&fm=jpg");
+    background-size: cover;
+
+}
+
+@media (max-width: 480px) {
+    .adv-photos {line-height: 20vh;}
+    }
+    
+    @media (min-width: 481px) and (max-width: 767px) {
+        .adv-photos {line-height: 20vh;}
+    }
+    
+    @media (min-width: 768px) and (max-width: 979px) {
+        .adv-photos { line-height: 30vh;}
+    }
+  
+  .description {
+    margin: 1.5em;
+  }
+  
+  .collapse-container {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+  .collapse{
+
+  }
+  .title-collapse {
+    font-weight: bold;
+  }
+  
+  .container-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* margin-bottom: 1em;
+    margin-left: 40%;
+    justify-content: space-between;
+    width: 30vh; */
+  }
+  
+  

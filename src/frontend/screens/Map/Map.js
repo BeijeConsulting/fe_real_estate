@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../components/Navbar/Navbar'
 import "./Map.css"
 
@@ -10,14 +10,14 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 
 const MapScreen = () => {
     const [features, setFeatures] = useState({});
-    let position = [9.2338125, 45.6101413]
 
+    let position = [9.2338125, 45.6101413]
     let token = "pk.eyJ1IjoiYW5nZWxvY2lwdWxsbyIsImEiOiJja3pzYjRqbjM0OXRsMm5ueTdwcGI4djhqIn0.ZQ1mKWAxe35aj6e8U2z_3A"
+
 
     const Map = ReactMapboxGl({
         accessToken: token,
     })
-
 
     const onDrawUpdate = () => {
 
@@ -28,12 +28,10 @@ const MapScreen = () => {
     }
 
     return (
-        <div className='h-screen'>
-            <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.0/mapbox-gl-draw.css' type='text/css' />
-
+        <div className='h-screen flex flex-col'>
             <Navbar />
             <div className='h-20 flex justify-center items-center p-2'>
-                <p className='font-primary font-bold text-3xl'>LA NOSTRA MAPPA</p>
+                <p className='font-primary font-bold text-3xl'>TRACCIA UN AREA SULLA MAPPA</p>
             </div>
 
             <Map
@@ -41,8 +39,13 @@ const MapScreen = () => {
                 center={position}
                 style="mapbox://styles/mapbox/streets-v9"
                 containerStyle={{
+<<<<<<< HEAD
                     height: '100%',
                     width: '100vw',
+=======
+                    flex: 1,
+                    width: '100vw'
+>>>>>>> develop
                 }}
             >
                 <DrawControl
@@ -52,7 +55,7 @@ const MapScreen = () => {
                         combine_features: false,
                         uncombine_features: false,
                         point: false,
-                        line_string:false
+                        line_string: false
 
                     }}
                 />

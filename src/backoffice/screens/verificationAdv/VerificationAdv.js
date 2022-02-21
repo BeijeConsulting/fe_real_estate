@@ -2,6 +2,8 @@ import "./verificationAdv.css";
 import 'antd/dist/antd.css' //Css Antdesign
 
 import React, { useState, useEffect } from 'react';
+/* FuncComponet */
+import TagComp from "../../componets/funcComponets/tagComp/TagComp";
 /* react router */
 import { Link } from "react-router-dom";
 /* redux */
@@ -9,17 +11,29 @@ import { connect } from "react-redux";
 // Import from AntDesign
 import { Table, Input, Tag, Space, Button } from "antd";
 /* API */
-import { getPendingAdvertaisement } from "../../../services/backoffice/advertisementApi";
+import { getPendingAdvertaisement, getRefusedAdvertaisement } from "../../../services/backoffice/advertisementApi";
+/* utils */
+import utilsMethods from "../../../common/utils/utilsMethods";
 
 const VerificationAdv = (props) => {
 
     let [state, setState] = useState({
-        advertisements: [],
-        isLoading: true,
-        totalElements: 0,
+        /* table Chaker */
+        advertisementsChecker: [],
+        isLoadingChecker: true,
+        totalElementsChecker: 0,
+
+        /* table Admin  */
+        advertisementsAdmin: [],
+        isLoadingAdmin: true,
+        totalElementsAdmin: 0,
+
+        /* flags tables */
+        goToAdminFlag: null,
+        goToCheckerFlag: null,
     });
     /* definizione colonne */
-    let columns = [
+    let columnsChecker = [
         {
             title: 'Bulding Type',
             dataIndex: 'buildingType',
@@ -36,9 +50,48 @@ const VerificationAdv = (props) => {
             title: 'Published Date Time',
             dataIndex: 'publishedDateTime',
             render: (text) => {
-                if (text === null)
+                if (text === null) {
                     return (<span style={{ color: "red" }}>[missing data]</span>)
-            }
+                } else {
+                    text = utilsMethods.ModdingData(text)
+                    return (<span >{text}</span>)
+                }
+            },
+            responsive: ["sm"]
+        },
+        {
+            title: '',
+            dataIndex: 'actions',
+            render: (text, record) =>
+                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
+            ,
+        }
+    ]
+    let columnsAdmin = [
+        {
+            title: 'Bulding Type',
+            dataIndex: 'buildingType',
+        },
+        {
+            title: 'advType',
+            dataIndex: 'advType',
+        },
+        {
+            title: 'City',
+            dataIndex: 'city',
+        },
+        {
+            title: 'Published Date Time',
+            dataIndex: 'publishedDateTime',
+            render: (text) => {
+                if (text === null) {
+                    return (<span style={{ color: "red" }}>[missing data]</span>)
+                } else {
+                    text = utilsMethods.ModdingData(text)
+                    return (<span >{text}</span>)
+                }
+            },
+            responsive: ["sm"]
         },
         {
             title: '',
@@ -50,42 +103,105 @@ const VerificationAdv = (props) => {
     ]
     /* ComponentDidMount */
     useEffect(() => {
-        sincAdv()
+        goToChecker()
     }, [])
 
     /* sincronize  advertisements*/
-    const sincAdv = async () => {
-        let resultAPI = await getPendingAdvertaisement(props.admin.token)
+    const sincAdvChecker = async () => {
+        let resultAPIChecker = await getPendingAdvertaisement(props.admin.token)
+        /* ant design wanted a key inside an object to work */
+        resultAPIChecker = resultAPIChecker.map(item => {
+            item = {
+                ...item,
+                key: item.id
+            }
+            return item;
+        })
         setState({
-            advertisements: resultAPI,
-            isLoading: false,
-            totalElements: 0,
+            ...state,
+            advertisementsChecker: resultAPIChecker,
+            isLoadingChecker: false,
+            goToCheckerFlag: true,
+            goToAdminFlag: false,
+        })
+    }
+    const sincAdvAdmin = async () => {
+        let resultAPIAdmin = await getRefusedAdvertaisement(props.admin.token)
+        /* ant design wanted a key inside an object to work */
+        resultAPIAdmin = resultAPIAdmin.map(item => {
+            item = {
+                ...item,
+                key: item.id
+            }
+            return item;
+        })
+        setState({
+            ...state,
+            advertisementsAdmin: resultAPIAdmin,
+            isLoadingAdmin: false,
+            goToCheckerFlag: false,
+            goToAdminFlag: true,
         })
     }
 
     /* methods to move between sections  */
-    const GoToChecker = () => {
+    const goToChecker = () => {
+        setState({
+            ...state,
+            goToCheckerFlag: true,
+            goToAdminFlag: false,
+        })
+        sincAdvChecker()
 
     }
-    const GoToAdmin = () => {
-
+    const goToAdmin = () => {
+        setState({
+            ...state,
+            goToCheckerFlag: false,
+            goToAdminFlag: true,
+        })
+        sincAdvAdmin()
     }
 
 
     return (
-        <div className="container-VerificationAdv">
-            verificationAdv
-            < div className="container-table-VerificationAdv" >
-                <Table dataSource={state.advertisements}
-                    columns={columns}
-                    loading={state.isLoading}
-                    tableLayout="fixed"
-                    scroll={{ scrollToFirstRowOnChange: true }}
-                    pagination={{ showSizeChanger: false, total: state.totalElements, hideOnSinglePage: true }}
-                />
+        <>
+            <div className="container-tags">
+                <TagComp
+                    key={Math.random()}
+                    clickTag={goToChecker}
+                    label={"Pending"} refClass={state.goToCheckerFlag === true ? "selected" : "unselected"} />
+                <TagComp
+                    key={Math.random()}
+                    clickTag={goToAdmin}
+                    label={"Refused"} refClass={state.goToAdminFlag === true ? "selected" : "unselected"} />
             </div>
+            <div className="container-VerificationAdv">
+                < div className="container-table-VerificationAdv" >
+                    {
+                        state.goToCheckerFlag &&
+                        <Table dataSource={state.advertisementsChecker}
+                            columns={columnsChecker}
+                            loading={state.isLoadingChecker}
+                            tableLayout="fixed"
+                            scroll={{ scrollToFirstRowOnChange: true }}
+                            pagination={{ showSizeChanger: false, total: state.totalElementsChecker, hideOnSinglePage: true }}
+                        />
+                    }
+                    {
+                        state.goToAdminFlag &&
+                        <Table dataSource={state.advertisementsAdmin}
+                            columns={columnsAdmin}
+                            loading={state.isLoadingAdmin}
+                            tableLayout="fixed"
+                            scroll={{ scrollToFirstRowOnChange: true }}
+                            pagination={{ showSizeChanger: false, total: state.totalElementsAdmin, hideOnSinglePage: true }}
+                        />
+                    }
+                </div>
 
-        </div >
+            </div >
+        </>
     )
 }
 const mapStateToProps = (state) => ({
