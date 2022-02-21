@@ -89,7 +89,7 @@ const AddChecker = (props) => {
             </Form>
 
             <Button className="button-save-checker" type="primary" onClick={openCloseModal}>Salva Collaboratore</Button>
-            <Modal visible={state.isModalOpened} onOk={saveChecker} onCancel={openCloseModal}>
+            <Modal visible={state.isModalOpened} onOk={saveChecker} onCancel={openCloseModal} getContainer={false}>
                 <p>Vuoi salvare questo collaboratore?</p>
             </Modal>
         </div>
