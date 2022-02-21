@@ -22,6 +22,28 @@ export const getUsers = async (token) => {
     return payload
 }
 
+export const getUsersPaged = async (token, pageId, total) => {
+    let payload = []
+    const headers = { "Authorization": "Bearer " + token }
+    await javaAcademyServiceInstance.get("/user/pages/"+ pageId +"/"+ total, { headers }).then((response) => {
+        let fetchedUsers = response.data.map((user) => {
+            return ({
+                username: user.username,
+                key: user.id,
+                email: user.email,
+                commercialId: user.business
+            })
+        })
+        payload = {
+            fetchedUsers,
+            totalElements: response.data.length
+        }
+    }).catch(
+        //Error handler
+    )
+    return payload
+}
+
 export const getUserById = async (id, token) => {
     let userById = ''
     const headers = {
