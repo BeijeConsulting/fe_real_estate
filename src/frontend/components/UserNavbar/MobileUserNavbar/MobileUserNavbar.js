@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faPenToSquare, faBookmark,
-    faHouseChimney, faList,
+    faHouseChimney, faList, faUser,
     faColumns, faChevronCircleDown
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -34,8 +34,12 @@ const MobileUserNavbar = () => {
                         Dashboard
                     </Link>
                     <Link className={"m-2 link-menu"} to={"edit-profile"} onClick={openToggle}>
-                        <FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
+                        <FontAwesomeIcon className={"mr-2"} icon={faUser} />
                         Modifica profilo
+                    </Link>
+                    <Link className={"m-2 link-menu"} to={"new-adv"} onClick={openToggle}>
+                        <FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
+                        Pubblica annuncio
                     </Link>
                     <Link className={"m-2 link-menu"} to={"post-advs"} onClick={openToggle}>
                         <FontAwesomeIcon className={"mr-2"} icon={faList} />

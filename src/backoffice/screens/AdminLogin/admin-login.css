@@ -7,6 +7,9 @@
     justify-content: center;
     align-items: center;
 }
+.container-auth-admin input{
+    color: white !important;
+}
 .box-auth-admin{
     color: white;
     flex-basis: 375px;

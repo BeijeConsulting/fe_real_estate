@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 // Import from AntDesign
 import { Table, Button } from "antd";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 
 //pulsante add checker, lista collaboratori metti utenti
@@ -26,6 +27,14 @@ const CheckersList = (props) => {
             title: 'Email',
             dataIndex: 'email',
         },
+        {
+            title: '',
+            dataIndex: 'actions',
+            render: (text, record) =>
+                <Link to={"/admin/user/" + record.key}>Scheda utente</Link>
+                
+            ,
+        }
 
     ]
     const [state, setState] = useState(

@@ -57,3 +57,42 @@ export const getBusinessName = async (token, id) => {
     });
     return BusinessName
 };
+export const getUsersBusiness = async (id, token) => {
+    const result = await javaAcademyServiceInstance.get()
+        .then(response => {
+
+        }
+        ).catch()
+
+    return result
+}
+
+export const getBusinessById = async (id, token) => {
+    let userById = ''
+    const headers = {
+        'Authorization': 'Bearer ' + token,
+    };
+    await javaAcademyServiceInstance.get("/business/" + id, { headers }).then((response) => {
+        userById = response.data
+
+    }).catch(
+        //Error handler
+    )
+    return userById
+}
+
+export const updateBusinessInfo = async (id, content, token) => {
+    const headers = {
+        'Authorization': 'Bearer ' + token,
+    };
+
+    let updateUser = ''
+    await javaAcademyServiceInstance.put("/business/" + id, { content }, { headers }).then((response) => {
+        updateUser = response.data
+        console.log('updateUSer', updateUser)
+
+    }).catch(
+
+    )
+    return updateUser
+}

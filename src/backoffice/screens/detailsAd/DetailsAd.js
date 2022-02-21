@@ -66,6 +66,7 @@ const DetailsAd = (props) => {
         <>
             {
                 adv.length !== 0 &&
+
                 <div className="container-all" >
                     <div className="container-advdetails">
                         {/* title */}
@@ -377,7 +378,6 @@ const DetailsAd = (props) => {
                 </div>
             }
         </>
-
     );
 };
 

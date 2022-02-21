@@ -16,7 +16,7 @@ const Carousel2 = () => {
     return (
         <>
 
-            <h1 className="font-primary text-3xl font-semibold ml-5 mt-7 sm:text-4xl sm:mt-11">GLI ULTIMI ANNUNCI</h1>
+            <h1 className="font-primary max-w-5xl mx-auto text-3xl font-semibold ml-5 mt-7 sm:text-4xl sm:mt-11">GLI ULTIMI ANNUNCI</h1>
             <div className="fixed-background over">
                 <div className="scroll-helper">
                     <div className='cards-container'>

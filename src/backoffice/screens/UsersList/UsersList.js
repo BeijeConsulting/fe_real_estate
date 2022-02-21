@@ -4,7 +4,7 @@ import 'antd/dist/antd.css' //Css Antdesign
 import { Component } from "react";
 
 // Import Routing
-import { getUsers } from "../../../services/backoffice/usersApi";
+import { getUsersPaged } from "../../../services/backoffice/usersApi";
 
 // Import Connect   
 import { connect } from "react-redux";
@@ -59,32 +59,46 @@ class UsersList extends Component {
             users: [],
             columns: columns,
             isLoading: true,
-            totalElements: 0
+            totalElements: 0,
+            searchQuery: ""
         }
     }
 
     componentDidMount() {
-        this.fetchUsers()
+        this.fetchUsersPaged(0, 10)
     }
 
     searchByName = (value) => {
         this.setState({
+            searchQuery: value,
             isLoading: true
         })
-        if(value ==="") {
-        this.fetchUsers()
+        if (value === "") {
+            this.fetchUsersPaged(0)
         } else {
             //Search API
         }
     }
 
-    fetchUsers = async () => {
-        let payload = await getUsers(this.props.admin.token)
+    fetchUsersPaged = async (page, count) => {
+        let payload = await getUsersPaged(this.props.admin.token, page, count)
         this.setState({
             users: payload.fetchedUsers,
             isLoading: false,
-            totalElements: payload.totalElements
+            totalElements: 100 //Missing total from API
         })
+    }
+
+    pageHandler = async (pagination) => {
+        this.setState({
+            isLoading: true
+        })
+        if(this.state.searchQuery === "") {
+        this.fetchUsersPaged(pagination.current-1, pagination.pageSize)
+        }
+        else {
+            //Search API
+        }
     }
 
     render() {
@@ -106,7 +120,12 @@ class UsersList extends Component {
                             loading={this.state.isLoading}
                             tableLayout="fixed"
                             scroll={{ scrollToFirstRowOnChange: true }}
-                            pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true }}
+                            pagination={{
+                                defaultPageSize: 10, 
+                                total: this.state.totalElements,
+                                hideOnSinglePage: true,
+                            }}
+                            onChange={this.pageHandler}
                         />
                     </div>
                 </div>
@@ -119,4 +138,4 @@ const mapStateToProps = state => ({
     admin: state.adminDuck.admin
 })
 
-export default connect(mapStateToProps) (UsersList)
+export default connect(mapStateToProps)(UsersList)
