@@ -11,58 +11,55 @@ import icon3 from '../../../assets/images/icon3Home.jpg'
 
 // Routing
 import { useNavigate } from 'react-router-dom';
+import Button from '../UI/Button/Button';
 
 const Illustrations = (props) => {
-  
-const navigate = useNavigate();
 
-const navigateToAboutUs = () => {
-    navigate('about-us')
-}
+    const navigate = useNavigate();
 
-const navigateToWhatWeOffer = () => {
-    navigate('what-we-offer')
-}
+    const navigateTo = (dest) => () => {
+        navigate(dest)
+    }
 
 
 
 
     return (
-    <>
-    
-    <h1 className="font-primary text-3xl font-semibold mt-5 sm:ml-44 sm:text-4xl lg:ml-6"> PENSATO PER TE </h1>
-    
-    <div className={props.className}>
-    
-    <div className='single-animation'>
-    <img src={icon1}></img>
-    <p className='illustration-text'> Scopri i nostri servizi e cosa <br /> possiamo fare per te! </p>
-    <button className="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl hover:bg-yellow-500" onClick={navigateToWhatWeOffer}> Vai </button>
+        <div className='max-w-6xl mt-16 mx-auto'>
+            <h1 className="font-primary text-3xl font-semibold mt-5 mb-6 sm:ml-44 sm:text-4xl lg:ml-6">DOMUS e' la soluzione adatta a te. </h1>
+            <div className=' flex flex-col md:flex-row justify-between'>
 
-    </div>
+                <Item
+                    img={icon1}
+                    label="Scopri i servizi che offriamo."
+                    onClick={navigateTo('/')}
+                />
 
-    <div className='single-animation'>
-    <img src={icon2}></img>
-    <p className='illustration-text'> Vai ai  nostri annunci e naviga <br /> per il mercato immobiliare </p>
-    <button className="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl hover:bg-yellow-500"> Vai </button>
-
-    </div>
-
-    <div className='single-animation  margin'>
-    <img src={icon3}></img>
-    <p className='illustration-text'> La nostra storia e i nostri <br /> valori fondamentali </p>
-    <button className="font-sans text-xl bg-yellow-400 rounded-2xl w-1/4 h-10 lg:mt-2 border border-black sm:mt-8 sm:w-1/3 sm:h-12 sm:text-2xl hover:bg-yellow-500" onClick={navigateToAboutUs}> Vai </button>
-
-    </div>
-    
-    
-    
-    
-    
-    </div>
-    </>
-
-)
+                <Item
+                    img={icon2}
+                    label="Esplora la Mappa."
+                    onClick={navigateTo('/map')}
+                />
+                <Item
+                    img={icon3}
+                    label="Scopri chi siamo e in cosa crediamo."
+                    onClick={navigateTo('/about-us')}
+                />
+            </div>
+        </div>
+    )
 }
+
+
+const Item = ({ img, label, onClick }) => {
+    return (
+        <div className='single-animation flex flex-col justify-center items-center'>
+            <img className='max-h-56' src={img}></img>
+            <p className='illustration-text'>{label} </p>
+            <Button marginTop={15} label="VAI" onClick={onClick} />
+        </div>
+    )
+}
+
 
 export default Illustrations

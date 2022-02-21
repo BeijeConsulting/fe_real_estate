@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 import { Table, Input, Tag, Space, Button } from "antd";
 /* API */
 import { getPendingAdvertaisement, getRefusedAdvertaisement } from "../../../services/backoffice/advertisementApi";
+/* utils */
+import utilsMethods from "../../../common/utils/utilsMethods";
 
 const VerificationAdv = (props) => {
 
@@ -51,7 +53,8 @@ const VerificationAdv = (props) => {
                 if (text === null) {
                     return (<span style={{ color: "red" }}>[missing data]</span>)
                 } else {
-                    return (<span >[{text}]</span>)
+                    text = utilsMethods.ModdingData(text)
+                    return (<span >{text}</span>)
                 }
             },
             responsive: ["sm"]
@@ -84,7 +87,8 @@ const VerificationAdv = (props) => {
                 if (text === null) {
                     return (<span style={{ color: "red" }}>[missing data]</span>)
                 } else {
-                    return (<span >[{text}]</span>)
+                    text = utilsMethods.ModdingData(text)
+                    return (<span >{text}</span>)
                 }
             },
             responsive: ["sm"]
@@ -105,7 +109,7 @@ const VerificationAdv = (props) => {
     /* sincronize  advertisements*/
     const sincAdvChecker = async () => {
         let resultAPIChecker = await getPendingAdvertaisement(props.admin.token)
-        /* ant design wanted a key on object to work */
+        /* ant design wanted a key inside an object to work */
         resultAPIChecker = resultAPIChecker.map(item => {
             item = {
                 ...item,
@@ -113,7 +117,6 @@ const VerificationAdv = (props) => {
             }
             return item;
         })
-
         setState({
             ...state,
             advertisementsChecker: resultAPIChecker,
@@ -124,6 +127,14 @@ const VerificationAdv = (props) => {
     }
     const sincAdvAdmin = async () => {
         let resultAPIAdmin = await getRefusedAdvertaisement(props.admin.token)
+        /* ant design wanted a key inside an object to work */
+        resultAPIAdmin = resultAPIAdmin.map(item => {
+            item = {
+                ...item,
+                key: item.id
+            }
+            return item;
+        })
         setState({
             ...state,
             advertisementsAdmin: resultAPIAdmin,

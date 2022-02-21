@@ -45,3 +45,18 @@ export const getRefusedAdvertaisement = async (token) => {
         )
     return result
 }
+
+
+export const getAdvBusinessName = async (token, businessName) => {
+    let newAdvListForBusiness = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.get(
+        `/business/advertisements/${businessName}`,
+        { headers }
+    ).then((response) => {
+        newAdvListForBusiness = response.data;
+    });
+    return newAdvListForBusiness
+};
