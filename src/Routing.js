@@ -22,6 +22,7 @@ import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
 import FAQ from "./frontend/screens/FAQ/FAQ";
 import Map from "./frontend/screens/Map/Map";
 
+
 // BACKOFFICE SCREENS
 // here
 import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
