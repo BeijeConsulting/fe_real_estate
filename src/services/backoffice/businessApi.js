@@ -67,3 +67,19 @@ export const getBusinessById = async (id, token) => {
     )
     return userById
 }
+
+export const updateBusinessInfo = async (id, content, token) => {
+    const headers = {
+        'Authorization': 'Bearer ' + token,
+    };
+
+    let updateUser = ''
+    await javaAcademyServiceInstance.put("/business/"+id, {content}, { headers }).then((response) => {
+        updateUser = response.data
+        console.log('updateUSer', updateUser)
+
+    }).catch(
+
+    )
+    return updateUser
+}
