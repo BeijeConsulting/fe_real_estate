@@ -44,7 +44,10 @@ const BusinessUsers = props => {
     }, [])
     /* sincronize BusinessUsers */
     const sincBusinessUsers = async () => {
+
+        //API is Missing
         let resultAPI = await getUsersBusiness()
+        
         console.log(resultAPI)
         /* ant design wanted a key inside an object to work */
         /*         resultAPI = resultAPI.map(item => {
