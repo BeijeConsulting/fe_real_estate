@@ -44,6 +44,19 @@ export const searchBusinessByName = async (name, token) => {
     return payload
 }
 
+export const getBusinessName = async (token, id) => {
+    let BusinessName = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.get(
+        `/business/${id}`,
+        { headers }
+    ).then((response) => {
+        BusinessName = response.data.businessName;
+    });
+    return BusinessName
+};
 export const getUsersBusiness = async (id, token) => {
     const result = await javaAcademyServiceInstance.get()
         .then(response => {
@@ -74,7 +87,7 @@ export const updateBusinessInfo = async (id, content, token) => {
     };
 
     let updateUser = ''
-    await javaAcademyServiceInstance.put("/business/"+id, {content}, { headers }).then((response) => {
+    await javaAcademyServiceInstance.put("/business/" + id, { content }, { headers }).then((response) => {
         updateUser = response.data
         console.log('updateUSer', updateUser)
 
