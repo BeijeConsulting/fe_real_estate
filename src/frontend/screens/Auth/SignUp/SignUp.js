@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { withTranslation } from "react-i18next";
-
-import { Link, Outlet } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 
 import business from '../../../assets/illustrations/business.svg'
 
@@ -24,7 +24,7 @@ class SignUp extends Component {
 
 						<div className="my-4 px-2 py-2 flex rounded bg-tertiary text-lg font-medium ">
 							<Link
-								className={`uppercase px-2 rounded font-primary ${path === '/auth/signup/private' ? 'bg-primary ' : ''}`}
+								className={`uppercase px-2 rounded font-primary ${path === `/${this.props.lang}/auth/signup/private'` ? 'bg-primary ' : ''}`}
 								to={"private"}
 							>
 
@@ -54,4 +54,14 @@ class SignUp extends Component {
 	}
 }
 
-export default withTranslation()(SignUp);
+SignUp.propTypes = {
+	path: PropTypes.string.isRequired,
+};
+
+const LocationWrap = (props) => {
+	const params = useParams()
+	const location = useLocation();
+	return <SignUp {...props} path={location.pathname} lang={params.lang} />;
+};
+
+export default withTranslation()(LocationWrap);

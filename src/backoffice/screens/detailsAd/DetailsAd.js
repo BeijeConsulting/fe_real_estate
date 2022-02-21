@@ -9,6 +9,7 @@ import { getAdv } from "../../../services/backoffice/advertisementApi";
 // Ant design imports
 import { Typography, Carousel, Collapse, Button, Row, Col, List } from "antd";
 import Item from "antd/lib/list/Item";
+import { getNameUserFromSellerId } from "../../../services/backoffice/usersApi";
 const { Link, Title } = Typography;
 const { Panel } = Collapse;
 
@@ -48,6 +49,7 @@ const DetailsAd = (props) => {
     const createAdv = async () => {
         let resultApi = await getAdv(props.admin.token, param.id)
         let formatData = [formatDataFromApi(resultApi[0])]
+        // let  nameSeller  = getNameUserFromSellerId(props.admin.token,  formatData )
         setAdv(formatData);
     }
     // func Ant Design
@@ -65,7 +67,7 @@ const DetailsAd = (props) => {
             {
                 adv.length !== 0 &&
 
-                <div lassName="container-all" >
+                <div className="container-all" >
                     <div className="container-advdetails">
                         {/* title */}
                         <Title className="title" level={2}>

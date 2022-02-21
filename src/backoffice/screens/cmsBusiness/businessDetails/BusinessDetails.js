@@ -1,4 +1,4 @@
-import { useParams} from "react-router-dom";
+import { useNavigate, useParams} from "react-router-dom";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
 
@@ -13,6 +13,7 @@ import { getAddressById } from "../../../../services/backoffice/addressApi";
 const BusinessDetails = (props) => {
 
     let params = useParams()
+    let navigate = useNavigate()
     let businessData = {}
     let data = []
 
@@ -26,9 +27,14 @@ const BusinessDetails = (props) => {
         data = [businessData]
         setState({ data, isLoading: false})
     }
+
     const getAddress = async () => {
         let businessAddress = await getAddressById(params.id, props.admin.token)
-      
+    }
+
+    const clickUpdate = () => {
+        navigate("/admin/business/"+params.id+"/details/update-details")
+
     }
 
     useEffect(() => {
@@ -100,7 +106,7 @@ const BusinessDetails = (props) => {
             <Button
                 className='button-business'
                 type="primary"
-                
+                onClick={clickUpdate}
             > Modifica Dati </Button>
         </div >
     )
