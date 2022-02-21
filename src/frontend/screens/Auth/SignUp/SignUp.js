@@ -3,7 +3,7 @@ import { withTranslation } from "react-i18next";
 
 import { Link, Outlet } from "react-router-dom";
 
-import loginProfile from "../../../assets/images/login-profile.png"
+import business from '../../../assets/illustrations/business.svg'
 
 class SignUp extends Component {
 	constructor(props) {
@@ -22,15 +22,19 @@ class SignUp extends Component {
 				<div className="flex flex-col  w-screen">
 					<div className="flex items-center justify-center">
 
-						<div className="my-4 px-5 py-2 rounded-full bg-tertiary text-lg font-medium ">
-							<Link className={`uppercase font-primary ${path === '/auth/signup/private' ? 'bg-primary rounded-full py-1 px-1 transition-all' : ''}`}
-							to={"private"}
+						<div className="my-4 px-2 py-2 flex rounded bg-tertiary text-lg font-medium ">
+							<Link
+								className={`uppercase px-2 rounded font-primary ${path === '/auth/signup/private' ? 'bg-primary ' : ''}`}
+								to={"private"}
 							>
-								{" "}
-								{t("SignUp.goToPrivateSignUp")}{" "}
-							</Link>{" "}
-							{" | "}
-							<Link className={`uppercase font-primary ${path === '/auth/signup/business' ? 'bg-primary rounded-full py-1 px-1 transition-all' : ''}`} to={"business"}>
+
+								{t("SignUp.goToPrivateSignUp")}
+							</Link>
+							<p className='px-2 text-gray-300'>|</p>
+							<Link
+								className={` uppercase px-2 rounded font-primary ${path === '/auth/signup/business' ? 'bg-primary' : ''}`}
+								to={"business"}
+							>
 								{t("SignUp.goToBusinessSignUp")}
 							</Link>
 						</div>
@@ -38,7 +42,7 @@ class SignUp extends Component {
 
 					<div className="flex justify-around items-center">
 						<div className="hidden md:flex flex-col ">
-							<img src={loginProfile} alt="login-profile" />
+							<img className='max-w-md' src={business} alt="login-profile" />
 						</div>
 						<div className="flex flex-col items-center justify-evenly">
 							<Outlet />

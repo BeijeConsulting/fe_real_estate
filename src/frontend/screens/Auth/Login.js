@@ -90,9 +90,9 @@ class Login extends Component {
 		const { t } = this.props;
 
 		return (
-			<>
-				<div className="hidden md:flex ">
-					<img src={loginProfile} alt="login-profile" />
+			<div className='flex flex-row py-10'>
+				<div className="hidden md:flex items-center">
+					<img className='max-h-72' src={loginProfile} alt="login-profile" />
 				</div>
 				<form className="flex flex-col items-center py-5">
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
@@ -140,7 +140,7 @@ class Login extends Component {
 						{t("Login.goToRegistration.link")}
 					</Link>
 				</form>
-			</>
+			</div>
 		);
 	}
 }
