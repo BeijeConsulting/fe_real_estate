@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //COMPONENTS
 import SearchSelect from "./SearchSelect";
@@ -16,30 +16,32 @@ import { findAds } from "../../../services/frontend/advertisementApi";
 const Search = () => {
 	let navigate = useNavigate();
 
+	const [results, setResults] = useState([])
 	const [query, setQuery] = useState({
 		buildingType: { label: "Casa", value: "HOUSE" },
 		advType: { label: "Vendita", value: "SALE" },
 		location: "Scegli dove...",
 	});
 
-	const [results, setResults] = useState([])
+	
 
 	let imgUrl = "https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg";
 
-	const setBuildingType = (value) => setQuery({ ...query, buildingType: value });
-	const setAdvType = (value) => setQuery({ ...query, advType: value });
-	const setLocation = (value) => {
-		setQuery({ ...query, location: value });
 
+	useEffect(() => {
 		findAds({
 			advType: query.advType.value.toUpperCase(),
-			city: value,
+			city: query.location,
 			buildingType: query.buildingType.value.toUpperCase()
+		}).then(res => {
+			setResults(res.data)
 		})
-			.then(res => {
-				setResults(res.data)
-			})
-	}
+	}, [query])
+	
+
+	const setBuildingType = (value) => { setQuery({ ...query, buildingType: value }); }
+	const setAdvType = (value) => { setQuery({ ...query, advType: value }); }
+	const setLocation = (value) => { setQuery({ ...query, location: value }); }
 
 	const handleSubmit = () => {
 		let newUrl = ROUTES.FE.BASE.ADS_LIST.getPath(

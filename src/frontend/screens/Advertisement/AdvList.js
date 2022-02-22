@@ -6,9 +6,9 @@ import Button from '../../components/UI/Button/Button'
 import Navbar from '../../components/Navbar/Navbar'
 import AdvCard from '../../components/AdvCard/AdvCard'
 import Filters from '../../components/Filters/Filters'
-import { findAds } from '../../../services/frontend/advertisementApi'
 
 // API
+import { findAds } from '../../../services/frontend/advertisementApi'
 
 
 const AdvList = () => {
@@ -24,7 +24,8 @@ const AdvList = () => {
         findAds({
             advType: advType.toUpperCase(),
             city: cityCapital,
-            buildingType: buildingType.toUpperCase()
+            buildingType: buildingType.toUpperCase(),
+            maxPrice: 149000
         })
             .then(res => {
                 console.log(res.data)
