@@ -11,8 +11,8 @@ const ServiceCard = (props) => {
 	return (
 		<div
 			className={`h-fit flex flex-col max-w-xs items-center justify-center overflow-hidden rounded-xl white
-            md:h-64 md:max-w-2xl md:${
-							props.reverse ? "flex-row-reverse" : "flex-row"
+            md:h-64 md:max-w-2xl ${
+							props.reverse ? "md:flex-row-reverse" : "md:flex-row"
 						} lg:max-w-3xl
                 
             `}
