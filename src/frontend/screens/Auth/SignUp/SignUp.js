@@ -24,7 +24,7 @@ class SignUp extends Component {
 
 						<div className="my-4 px-2 py-2 flex rounded bg-tertiary text-lg font-medium ">
 							<Link
-								className={`uppercase px-2 rounded font-primary ${path === `/${this.props.lang}/auth/signup/private'` ? 'bg-primary ' : ''}`}
+								className={`uppercase px-2 rounded font-primary hover:text-black ${path === `/${this.props.lang}/auth/signup/private` ? 'bg-primary text-black' : 'text-gray-300'}`}
 								to={"private"}
 							>
 
@@ -32,7 +32,7 @@ class SignUp extends Component {
 							</Link>
 							<p className='px-2 text-gray-300'>|</p>
 							<Link
-								className={` uppercase px-2 rounded font-primary ${path === '/auth/signup/business' ? 'bg-primary' : ''}`}
+								className={`uppercase px-2 rounded font-primary hover:text-black  ${path === `/${this.props.lang}/auth/signup/business` ? 'bg-primary text-black ' : 'text-gray-300'}`}
 								to={"business"}
 							>
 								{t("SignUp.goToBusinessSignUp")}

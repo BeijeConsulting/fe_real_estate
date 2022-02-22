@@ -136,7 +136,7 @@ class Login extends Component {
 					<p className="font-primary mt-4">
 						{t("Login.goToRegistration.label")}
 					</p>
-					<Link to={"/auth/signup"} className="font-primary mt-4">
+					<Link to={"/:lang/auth/signup"} className="font-primary mt-4">
 						{t("Login.goToRegistration.link")}
 					</Link>
 				</form>

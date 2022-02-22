@@ -10,30 +10,38 @@ const ServiceCard = (props) => {
 
 	return (
 		<div
-			className={`h-60 white flex ${
-				props.reverseRow ? "flex-row-reverse" : ""
-			} items-center justify-center rounded-xl overflow-hidden`}
+			className={`h-fit flex flex-col max-w-xs items-center justify-center overflow-hidden rounded-xl white
+            md:h-64 md:max-w-2xl md:${
+							props.reverse ? "flex-row-reverse" : "flex-row"
+						} lg:max-w-3xl
+                
+            `}
 		>
+			{/* Redirect section */}
 			<div
-				className={`h-full bg-secondary w-screen max-w-lg p-6 flex flex-col 
-                ${
-				props.reverseRow ? "items-end" : "items-start"
-			}  justify-between ${props.classNameRedirectSection}`}
+				className={`bg-secondary flex flex-col h-60 max-w-xs p-6 
+                md:h-full w-screen md:max-w-lg
+                    ${
+											props.reverse ? "items-end" : "items-start"
+										} justify-between           
+                    ${props.classNameRedirectSection}
+                `}
 			>
 				<p
-					className={`text-white text-2xl 
-                        ${props.reverseRow ? "text-right" : "text-left"}
-                        font-bold uppercase w-80 whitespace-pre-wrap`}
+					className={`
+                     drop-shadow-sm text-xl text-white ${
+												props.reverse ? "text-right" : "text-left"
+											} 
+                     md:text-2xl font-bold uppercase w-80 whitespace-pre-wrap
+                    `}
 				>
 					{props.title}
 				</p>
-				<Button
-					label={props.buttonText}
-					onClick={goTo(props.redirectPath)}
-				/>
+				<Button label={props.buttonText} onClick={goTo(props.redirectPath)} />
 			</div>
+			{/* Description */}
 			<div
-				className={`h-full w-screen max-w-xs p-3`}
+				className={`h-52 md:h-full w-screen max-w-xs p-3`}
 				style={{ backgroundColor: "#403F3F" }}
 			>
 				{props.children}
@@ -46,7 +54,7 @@ ServiceCard.defaultProps = {
 	buttonText: "Awesome button",
 	classNameRedirectSection: "",
 	redirectPath: "/not-found",
-	reverseRow: false,
+	reverse: false,
 	title: "Awesome title",
 };
 
@@ -54,7 +62,7 @@ ServiceCard.propTypes = {
 	buttonText: PropTypes.string,
 	classNameRedirectSection: PropTypes.string,
 	redirectPath: PropTypes.string,
-	reverseRow: PropTypes.bool,
+	reverse: PropTypes.bool,
 	title: PropTypes.string,
 };
 
