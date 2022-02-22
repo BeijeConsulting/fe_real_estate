@@ -1,19 +1,18 @@
 import "./checkersList.css"
-import 'antd/dist/antd.css' //Css Antdesign
-import { useNavigate } from "react-router-dom";
-import { getUsers } from "../../../services/backoffice/usersApi";
-// Import Routing
+//import react
+import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+//import Api
+import { getChecherList } from "../../../services/backoffice/checkerApi";
 
 // Import Connect   
 import { connect } from "react-redux";
 
 // Import from AntDesign
 import { Table, Button } from "antd";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import 'antd/dist/antd.css'
 
 
-//pulsante add checker, lista collaboratori metti utenti
 const CheckersList = (props) => {
 
     let navigate = useNavigate()
@@ -22,6 +21,14 @@ const CheckersList = (props) => {
         {
             title: 'Username',
             dataIndex: 'username',
+        },
+        {
+            title: 'Name',
+            dataIndex: 'name',
+        },
+        {
+            title: 'Surname',
+            dataIndex: 'surname',
         },
         {
             title: 'Email',
@@ -41,18 +48,16 @@ const CheckersList = (props) => {
         {
             users: [],
             isLoading: true,
-            totalElements: 0
         }
     )
 
 
     const fetchCheckers = async () => {
-        let payload = await getUsers(props.admin.token)
-
+        let payload = await getChecherList(props.admin.token)
+        console.log('payload', payload)
         setState({
-            users: payload.fetchedUsers,
+            users: payload,
             isLoading: false,
-            totalElements: payload.totalElements
         })
     }
 
@@ -76,7 +81,6 @@ const CheckersList = (props) => {
                             loading={state.isLoading}
                             tableLayout="fixed"
                             scroll={{ scrollToFirstRowOnChange: true }}
-                            pagination={{ showSizeChanger: false, total: state.totalElements, hideOnSinglePage: true }}
                         />
                     </div>
                 </div>

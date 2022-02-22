@@ -21,7 +21,6 @@ const UpdateProfile = (props) => {
 
     const getAdminData = async () => {
         dataAdmin = await getUserById(props.admin.id, props.admin.token)
-        console.log('data admin', dataAdmin)
         updatedData = {
             email: dataAdmin.email,
             avatarUrl: dataAdmin.avatarUrl,
@@ -65,7 +64,6 @@ const UpdateProfile = (props) => {
     useEffect(() => {
         getAdminData()
         form.resetFields()
-        console.log('admin data', state.dataAdmin)
 
     }, [])
 

@@ -9,7 +9,7 @@ export const getUsers = async (token) => {
                 username: user.username,
                 key: user.id,
                 email: user.email,
-                commercialId: user.business
+                commercialId: user.business,
             })
         })
         payload = {
@@ -25,7 +25,7 @@ export const getUsers = async (token) => {
 export const getUsersPaged = async (token, pageId, total) => {
     let payload = []
     const headers = { "Authorization": "Bearer " + token }
-    await javaAcademyServiceInstance.get("/user/pages/"+ pageId +"/"+ total, { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/user/pages/" + pageId + "/" + total, { headers }).then((response) => {
         let fetchedUsers = response.data.map((user) => {
             return ({
                 username: user.username,
@@ -90,3 +90,22 @@ export const getNameUserFromSellerId = async (token, idSeller) => {
     });
     return nameSeller
 };
+
+
+export const createUser = async (content) => {
+    let payload = {
+        createUser: '',
+        statusRes: ''
+    }
+    await javaAcademyServiceInstance.post("/user", content).then((response) => {
+        payload = {
+            createUser: response.data,
+            statusRes: response.status
+        }
+
+
+    }).catch(
+
+    )
+    return payload
+}

@@ -4,10 +4,12 @@ import { connect } from "react-redux"
 import "./addChecker.css"
 
 import { createChecker } from "../../../services/backoffice/checkerApi";
+import { createUser } from "../../../services/backoffice/usersApi";
 
 const AddChecker = (props) => {
     const { Text } = Typography;
     const [form] = Form.useForm();
+    let status =''
 
     let checker = {
         name: '',
@@ -56,8 +58,12 @@ const AddChecker = (props) => {
         setState({ ...state, isModalOpened: !state.isModalOpened })
     }
 
+    const saveUser = async () => {
+        status = await createUser(state.checker)
+    }
+
     const saveChecker = async () => {
-        await createChecker(state.checker, props.admin.token)
+        saveUser()
     }
 
 
