@@ -10,7 +10,7 @@ const AdvCard = ( props ) => {
 
 
     return (
-        <Card className=' flex-col md:flex-row overflow-hidden '>
+        <Card className=' flex-col md:flex-row overflow-hidden mb-6 shadow'>
             <div className='relative flex-1'>
                 {/* BLURRED USER SECTION */}
                 <AdvAuthor 
@@ -29,10 +29,10 @@ const AdvCard = ( props ) => {
                 {/* INFO-RIGHT */}
                 <p className='font-primary font-semibold text-xl text-gray-700'>{props.city}</p>
                 <p className='block font-primary font-bold text-3xl '>{props.title}</p>
-                <p className='font-primary'>{props.description.slice(0, 90) + ".."}</p>
+                <p className='font-primary'>{props.description?.slice(0, 90) + ".."}</p>
 
                 <p className='mt-2 text-right text-xl font-bold font-primary'>{props.roomNumber} locali • {props.squareMeters} mq</p>
-                <p className='bottom-4 right-6 absolute text-4xl font-primary font-bold'>{props.price} <span className='text-lg'>€</span></p>
+                <p className='bottom-4 right-6 absolute text-4xl font-primary font-bold'>{props.price.toLocaleString()} <span className='text-lg'>€</span></p>
             </div>
         </Card>
     )
