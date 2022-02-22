@@ -137,6 +137,12 @@ class SignUpPrivate extends Component {
 
 		return (
 			<form className="flex flex-col justify-evenly items-center">
+				<h1 className="capitalise font-primary font-extrabold text-4xl">
+					Registrati
+				</h1>
+				<p className="font-primary font-light text-sm mt-2 text-center">
+					Registrati come Privato
+				</p>
 				<Input
 					placeholder={t("SignUpPrivate.cf")}
 					type="text"

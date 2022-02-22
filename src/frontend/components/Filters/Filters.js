@@ -15,6 +15,10 @@ const Filters = () => {
         setFilters({ ...filters, minPrice: val[0], maxPrice: val[1] })
     }
 
+    const handleSubmit = () => {
+        
+    }
+
     return (
 
         <Card className='p-4 flex-col'>
@@ -52,6 +56,7 @@ const Filters = () => {
             <Button
                 className='w-3/4 mx-auto mt-4'
                 label="Applica Filtri"
+                onClick={handleSubmit}
             />
         </Card>
 
