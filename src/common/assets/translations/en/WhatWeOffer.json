@@ -1,4 +1,8 @@
 {
+	"helmet": {
+		"title": "DOMUS - Services",
+		"description": "Try our tools to sell and buy properties"
+	},
 	"title": "Our services",
 	"services": {
 		"newAd": {

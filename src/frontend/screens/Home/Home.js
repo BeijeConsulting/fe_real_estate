@@ -20,6 +20,12 @@ const Home = () => {
 
 	return (
 		<div className="fixed-background">
+			{/* SEO */}
+			<Helmet>
+				<meta name="description" content={t("Home.helmet.description")} />
+				<title>DOMUS</title>
+			</Helmet>
+			{/* Home */}
 			<div className="home-container">
 				<Navbar fixed />
 
@@ -40,11 +46,6 @@ const Home = () => {
 
 				<Footer />
 			</div>
-			{/* SEO */}
-			<Helmet>
-				<meta name="description" content={t("Home.helmet.description")} />
-				<title>DOMUS</title>
-			</Helmet>
 		</div>
 	);
 };
