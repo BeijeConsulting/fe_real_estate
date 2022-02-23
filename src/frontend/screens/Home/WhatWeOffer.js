@@ -1,9 +1,18 @@
-import "./WhatWeOffer.css";
 import React from "react";
+
+// style
+import "./WhatWeOffer.css";
+
+// components
 import NavBar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import ServiceCard from "../../components/whatWeOffer/ServiceCard";
-import { withTranslation } from "react-i18next";
+
+// translations
+import { useTranslation } from "react-i18next";
+
+// seo
+import { Helmet } from "react-helmet";
 
 const CLASSES = {
 	CARD: "flex flex-col items-start mt-4 mb-2 my-8",
@@ -12,9 +21,20 @@ const CLASSES = {
 		"flex flex-col items-start justify-evenly text-sm text-white font-bold",
 };
 
-const WhatWeOffer = ({ t }) => {
+const WhatWeOffer = () => {
+	const { t } = useTranslation();
+
 	return (
 		<div className="w-screen h-screen fixed overflow-auto flex flex-col justify-between items-center">
+			{/* SEO */}
+			<Helmet>
+				<meta
+					name="description"
+					content={t("WhatWeOffer.helmet.description")}
+				/>
+				<title>{t("WhatWeOffer.helmet.title")}</title>
+			</Helmet>
+			{/* WhatWeOffer */}
 			<header className="w-screen mb-4">
 				<NavBar />
 			</header>
@@ -67,4 +87,4 @@ const WhatWeOffer = ({ t }) => {
 	);
 };
 
-export default withTranslation()(WhatWeOffer);
+export default WhatWeOffer;
