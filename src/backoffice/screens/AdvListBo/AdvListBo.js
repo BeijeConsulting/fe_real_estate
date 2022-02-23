@@ -8,6 +8,7 @@ import "../../screens/UsersList/UsersList.css"
 
 // axios
 import { getAllAds, getAllAdsPaginations } from '../../../services/backoffice/advertisementApi';
+import { getCities } from "../../../services/frontend/advertisementApi";
 
 //redux
 import { connect } from "react-redux";
@@ -17,6 +18,7 @@ import { useParams, Link } from "react-router-dom";
 
 // ant design
 import { Table, Input, Tag, Button, Select } from "antd";
+import { SearchOutlined } from '@ant-design/icons'
 const { Search } = Input;
 const { Option } = Select;
 
@@ -119,7 +121,7 @@ const AdvListBo = (props) => {
 
     useEffect(() => {
         getListAdv()
-        console.log('STATE USEEFFECT', advList);
+        
     }, []);
 
     return (
