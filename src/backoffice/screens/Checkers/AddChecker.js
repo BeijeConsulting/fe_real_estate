@@ -1,14 +1,16 @@
 import { Button, Form, Input, Modal, Typography } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux"
 import "./addChecker.css"
 
 import { createChecker } from "../../../services/backoffice/checkerApi";
-import { createUser } from "../../../services/backoffice/usersApi";
+import { createUser, getUserByUsername } from "../../../services/backoffice/usersApi";
 
 const AddChecker = (props) => {
     const { Text } = Typography;
     const [form] = Form.useForm();
+    let navigate = useNavigate()
     let status =''
 
     let checker = {
@@ -63,7 +65,12 @@ const AddChecker = (props) => {
     }
 
     const saveChecker = async () => {
-        saveUser()
+        await saveUser()
+        if(status.status === 200){
+            let user = await getUserByUsername(state.checker.username, props.admin.token)
+            await createChecker(user.id, {}, props.admin.token)
+        }
+        navigate('/admin/collaborators')
     }
 
 

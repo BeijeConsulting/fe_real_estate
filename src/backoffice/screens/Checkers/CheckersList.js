@@ -3,12 +3,13 @@ import "./checkersList.css"
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 //import Api
-import { getChecherList } from "../../../services/backoffice/checkerApi";
+import { getChecherList, changeCheckerPermit } from "../../../services/backoffice/checkerApi";
 
 // Import Connect   
 import { connect } from "react-redux";
 
 // Import from AntDesign
+import { UserDeleteOutlined } from '@ant-design/icons'
 import { Table, Button } from "antd";
 import 'antd/dist/antd.css'
 
@@ -25,10 +26,12 @@ const CheckersList = (props) => {
         {
             title: 'Name',
             dataIndex: 'name',
+            responsive: ["sm"],
         },
         {
             title: 'Surname',
             dataIndex: 'surname',
+            responsive: ["sm"],
         },
         {
             title: 'Email',
@@ -38,9 +41,21 @@ const CheckersList = (props) => {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link to={"/admin/user/" + record.key}>Scheda utente</Link>
-                
-            ,
+                <Link to={"/admin/collaborator/" + record.key}>Scheda utente</Link>
+
+        },
+        {
+            title: '',
+            dataIndex: 'actions',
+            render: (text, record) => {
+                return (
+                    record.key === props.admin.id ? '' :
+                        <Button type="primary" onClick={handleChangePermit(record.key)} danger>
+                            <UserDeleteOutlined style={{fontSize: '20px', margin: 0}} />
+                            </Button>
+                )
+            }
+
         }
 
     ]
@@ -48,13 +63,25 @@ const CheckersList = (props) => {
         {
             users: [],
             isLoading: true,
+            refresh: false
         }
     )
+
+    const handleChangePermit = (id) => () => {
+        removePermit(id)
+        setState({
+            ...state,
+            refresh: !state.refresh
+        })
+    }
+
+    const removePermit = async (id) => {
+        let changePermit = await changeCheckerPermit(id, {}, props.admin.token)
+    }
 
 
     const fetchCheckers = async () => {
         let payload = await getChecherList(props.admin.token)
-        console.log('payload', payload)
         setState({
             users: payload,
             isLoading: false,
@@ -67,7 +94,7 @@ const CheckersList = (props) => {
 
     useEffect(() => {
         let data = fetchCheckers()
-    }, [])
+    }, [state.refresh])
 
     return (
         <>

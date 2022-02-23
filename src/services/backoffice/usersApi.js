@@ -66,7 +66,6 @@ export const updateUserInfo = async (content, token) => {
     let updateUser = ''
     await javaAcademyServiceInstance.put("/user/update", content, { headers }).then((response) => {
         updateUser = response.data
-        console.log('updateUSer', updateUser)
 
     }).catch(
 
@@ -93,19 +92,28 @@ export const getNameUserFromSellerId = async (token, idSeller) => {
 
 
 export const createUser = async (content) => {
-    let payload = {
-        createUser: '',
-        statusRes: ''
-    }
+    let createUser = ''
+
     await javaAcademyServiceInstance.post("/user", content).then((response) => {
-        payload = {
-            createUser: response.data,
-            statusRes: response.status
-        }
+        createUser = response
 
 
     }).catch(
 
     )
-    return payload
+    return createUser
+}
+
+export const getUserByUsername = async (username, token) => {
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    let userByUsername = ''
+    await javaAcademyServiceInstance.get("/finduser/" + username, { headers }).then((response) => {
+        userByUsername = response.data
+
+    }).catch(
+        //Error handler
+    )
+    return userByUsername
 }
