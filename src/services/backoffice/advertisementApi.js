@@ -1,5 +1,34 @@
 import { javaAcademyServiceInstance } from "../javaAcademyService"
 
+
+export const getAllAds = async (token) => {
+    let newAdvList = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.get(
+        `/ads`,
+        { headers }
+    ).then((response) => {
+        newAdvList = response.data;
+    });
+    return newAdvList
+};
+
+export const getAllAdsPaginations = async (token, pageId, total) => {
+    let advListPage = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.get(
+        `/adv/pages/${pageId}/${total}`,
+        { headers }
+    ).then((response) => {
+        advListPage = response.data;
+    });
+    return advListPage
+};
+
 export const getAdv = async (token, id) => {
     let newAdv = null;
     let headers = {
@@ -13,6 +42,37 @@ export const getAdv = async (token, id) => {
     });
     return newAdv
 };
+
+export const postAdvState = async (token, id, state) => {
+    let updateAdv = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.post(
+        `/${state}/${id}`,
+        {},
+        { headers }
+    ).then((response) => {
+        updateAdv = response.data;
+    });
+    return updateAdv
+}
+export const disableAdv = async (token, id) => {
+    let disableAdv = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.put(
+        `/advertisement/disable/${id}`,
+        {},
+        { headers }
+    ).then((response) => {
+        disableAdv = response.data;
+    });
+    return disableAdv
+}
+
+
 
 export const getPendingAdvertaisement = async (token) => {
     let headers = {

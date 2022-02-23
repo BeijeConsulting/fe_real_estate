@@ -41,6 +41,7 @@ import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/Busine
 import Checker from "./backoffice/screens/Checkers/Checker";
 import CheckersList from "./backoffice/screens/Checkers/CheckersList";
 import AddChecker from "./backoffice/screens/Checkers/AddChecker";
+import AdvListBo from "./backoffice/screens/AdvListBo/AdvListBo";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
@@ -51,6 +52,7 @@ import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
 import { ROUTES } from "./utils/properties";
 import SyncRoutingLanguage from "./common/screens/SyncRoutingLanguage";
+
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -140,7 +142,7 @@ const Routing = () => (
 					<Route path="users" element={<BusinessUsers />} />
 				</Route>
 				<Route path="user/:id" element={<RoutingBO.User />} />
-				<Route path="advertisements" element={<RoutingBO.User />} />
+				<Route path="advertisements" element={<AdvListBo />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route path="advertisement/:id" element={<DetailsAd />} />
 				<Route path="dashBoard" element={<RoutingBO.DashBoard />} />
