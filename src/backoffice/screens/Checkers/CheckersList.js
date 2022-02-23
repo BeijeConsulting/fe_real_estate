@@ -31,7 +31,7 @@ const CheckersList = (props) => {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link to={"/admin/user/" + record.key}>Scheda utente</Link>
+                <Link to={"/admin/user/" + record.key +"/details"}>Scheda utente</Link>
                 
             ,
         }

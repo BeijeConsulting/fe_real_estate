@@ -62,12 +62,11 @@ export const updateUserInfo = async (content, token) => {
     const headers = {
         'Authorization': 'Bearer ' + token,
     };
-
+    console.log("gonna update theese", content)
     let updateUser = ''
     await javaAcademyServiceInstance.put("/user/update", content, { headers }).then((response) => {
         updateUser = response.data
         console.log('updateUSer', updateUser)
-
     }).catch(
 
     )

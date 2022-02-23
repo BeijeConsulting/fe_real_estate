@@ -1,17 +1,18 @@
 import { Button, Form, Input, Modal, Upload } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
-import "./updateProfile.css";
 import { useEffect, useState } from "react";
-import { getUserById, updateUserInfo } from "../../../services/backoffice/usersApi";
+import { getUserById, updateUserInfo } from "../../../../services/backoffice/usersApi";
 import { connect } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
 
-import { useNavigate } from "react-router-dom";
-
-const UpdateProfile = (props) => {
+const UpdateUserDetails = (props) => {
     let dataAdmin = {}
     let updatedData = {}
+
+    let params = useParams()
     let navigate = useNavigate()
+
     const [form] = Form.useForm();
     const antProps = {
         action: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.interlinecenter.com%2F%3Fattachment_id%3D337&psig=AOvVaw1M-WHiEIbmWU6iI0nqA9iI&ust=1645182122041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPibgZLLhvYCFQAAAAAdAAAAABAD'
@@ -19,8 +20,8 @@ const UpdateProfile = (props) => {
 
     const [state, setState] = useState({ dataAdmin: null, updatedData: {}, isModalOpened: false })
 
-    const getAdminData = async () => {
-        dataAdmin = await getUserById(props.admin.id, props.admin.token)
+    const getUserData = async () => {
+        dataAdmin = await getUserById(params.id, props.admin.token)
         updatedData = {
             email: dataAdmin.email,
             avatarUrl: dataAdmin.avatarUrl,
@@ -58,17 +59,14 @@ const UpdateProfile = (props) => {
     }
 
     const saveChanges = async () => {
-        let data = await updateUserInfo(state.updatedData, props.admin.token)
-        navigate("/admin/profile")
+        await updateUserInfo(state.updatedData, props.admin.token)
+        navigate("/admin/user" + params.id + "details")
     }
 
     useEffect(() => {
-        getAdminData()
+        getUserData()
         form.resetFields()
     }, [])
-
-
-
 
     return (
 
@@ -104,19 +102,19 @@ const UpdateProfile = (props) => {
                             <Input placeholder="admin" />
                         </Form.Item>
                         {/*<Form.Item name="birthPlace" label="Luogo di nascita">
-                        <Input onChange={handleBirthPlace} placeholder="inserisci luogo di nascita" />
-                    </Form.Item>*/}
+                            <Input onChange={handleBirthPlace} placeholder="inserisci luogo di nascita" />
+                        </Form.Item>*/}
                     </div>
                     <div className="update-profile-contacts">
                         <Form.Item name="email" label="Email">
                             <Input onChange={handleEmail} type="email" placeholder="inserisci la tua email" />
                         </Form.Item>
                         {/* <Form.Item name="phoneNumber" label="Numero di telefono">
-                        <Input onChange={handlePhoneNumber} placeholder="inserisci numero di telefono " />
-                    </Form.Item>
-                    <Form.Item name="businessEmail" label="Email aziendale">
-                        <Input onChange={handleBusinessEmail} type="email" placeholder="inserisci email aziendale" />
-                    </Form.Item> */
+                            <Input onChange={handlePhoneNumber} placeholder="inserisci numero di telefono " />
+                        </Form.Item>
+                        <Form.Item name="businessEmail" label="Email aziendale">
+                            <Input onChange={handleBusinessEmail} type="email" placeholder="inserisci email aziendale" />
+                        </Form.Item> */
                         }
 
                     </div>
@@ -142,4 +140,4 @@ const mapStateToProps = (state) => (
     }
 )
 
-export default connect(mapStateToProps)(UpdateProfile)
+export default connect(mapStateToProps)(UpdateUserDetails)

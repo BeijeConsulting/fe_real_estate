@@ -41,7 +41,10 @@ import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/Busine
 import Checker from "./backoffice/screens/Checkers/Checker";
 import CheckersList from "./backoffice/screens/Checkers/CheckersList";
 import AddChecker from "./backoffice/screens/Checkers/AddChecker";
-import UserProfile from "./backoffice/screens/UserProfile/UserProfile";
+import CmsUser from "./backoffice/screens/CmsUser/CmsUser";
+import UserDetails from "./backoffice/screens/CmsUser/UserDetails/UserDetails";
+import UpdateUserDetails from "./backoffice/screens/CmsUser/UserDetails/UpdateUserDetails";
+import UserAdv from "./backoffice/screens/CmsUser/UserAdv/UserAdv";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
@@ -140,7 +143,20 @@ const Routing = () => (
 					<Route path="advertisements" element={<BusinessAdv />} />
 					<Route path="users" element={<BusinessUsers />} />
 				</Route>
-				<Route path="user/:id" element={<UserProfile />} />
+				<Route path="user/:id" element={<CmsUser />} >
+					<Route
+						path="details"
+						element={<UserDetails />}
+					/>
+					<Route
+						path="details/update-details"
+						element={<UpdateUserDetails />}
+					/>
+					<Route
+						path="advertisements"
+						element={<UserAdv />}
+					/>
+				</Route>
 				<Route path="advertisements" element={<RoutingBO.User />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route path="advertisement/:id" element={<DetailsAd />} />
