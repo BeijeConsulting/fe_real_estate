@@ -15,7 +15,7 @@ const AdvertisementsStatistic = () => {
         <div className="advertisementsStatistic-container">
             <Row>
                 <Col span={24}>
-                    <Card loading={false} title="Affluenza utenti">
+                    <Card loading={false} title="Posizione Annunci">
                         <MapAdvertisementsChart />
                     </Card>
                 </Col>
