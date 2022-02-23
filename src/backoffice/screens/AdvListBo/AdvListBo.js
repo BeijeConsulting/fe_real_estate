@@ -26,7 +26,7 @@ const AdvListBo = (props) => {
 
     const paginationOptions = {
         numPage: 1,
-        elementForPage: 1,
+        elementForPage: 10,
     }
 
     // pagination func
@@ -44,6 +44,7 @@ const AdvListBo = (props) => {
             return item;
         })
         setAdvList(listData);
+        setTotalElements(paginationList.totPages * paginationOptions.elementForPage)
         setIsLoading(false)
         // }
         // else {
@@ -53,21 +54,16 @@ const AdvListBo = (props) => {
 
     //axios
     const getListAdv = async () => {
-        let resultApi = await getAllAds(props.admin.token)
-        console.log('HOOK PAGINATION', paginationOptions.numPage, paginationOptions.elementForPage);
         let paginationList = await getAllAdsPaginations(props.admin.token, paginationOptions.numPage, paginationOptions.elementForPage)
-        console.log(paginationList);
         let listData = paginationList.resList.map(item => {
             item = {
                 ...item,
                 key: item.id
             }
-            console.log("ITEM", item);
             return item;
         })
-        console.log('getall', resultApi);
         setAdvList(listData);
-        // setTotalElements(paginationList.resList.length)
+        setTotalElements(paginationList.totPages * paginationOptions.elementForPage)
         setIsLoading(false)
     }
 
@@ -140,17 +136,16 @@ const AdvListBo = (props) => {
                             size="large" />
                     </div>
                     < div className="users-list-table" >
-                        {
-                            advList.length !== 0 &&
+                        
                             <Table dataSource={advList}
                                 columns={columnsAdv}
                                 loading={isLoading}
                                 tableLayout="fixed"
                                 scroll={{ scrollToFirstRowOnChange: true }}
-                                pagination={{ defaultPageSize: paginationOptions.elementForPage, showSizeChanger: false, total: 100, hideOnSinglePage: true }}
+                                pagination={{ defaultPageSize: paginationOptions.elementForPage, showSizeChanger: false, total: totalElements, hideOnSinglePage: true }}
                                 onChange={pageHandler}
                             />
-                        }
+                        
                     </div>
                 </div>
             </div>

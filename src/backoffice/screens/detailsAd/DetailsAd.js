@@ -50,48 +50,36 @@ const DetailsAd = (props) => {
     const createAdv = async () => {
         let resultApi = await getAdv(props.admin.token, param.id)
         let formatData = [formatDataFromApi(resultApi[0])]
-        console.log('formatData', resultApi);
         // let nameSeller = await getNameUserFromSellerId(props.admin.token, formatData[0].seller.id)
 
         let seller = {
-            username: formatData[0].seller.username,
-            idSeller: formatData[0].seller.id,
+            username: formatData[0].seller?.username,
+            idSeller: formatData[0].seller?.id,
         }
 
         let checker = {
-            username: formatData[0].checker.username,
-            idChecker: formatData[0].checker.id,
+            username: formatData[0].checker?.username,
+            idChecker: formatData[0].checker?.id,
         }
         setAdv(formatData);
         setSeller(seller)
         setChecker(checker)
     }
-    // func Ant Design
-    //carousel
-    function onChange(a, b, c) {
-        console.log(a, b, c);
-    }
+
 
     //buttons funs
     const approveAdv = async () => {
         let data = await postAdvState(props.admin.token, param.id, "approve")
-        console.log("data", data);
-        console.log("approvato", adv);
     }
     const refuseAdv = async () => {
         let data = await postAdvState(props.admin.token, param.id, "refuse")
-        console.log("data", data);
-        console.log("rifiutato", adv);
     }
     const deleteAdv = async () => {
         let data = await disableAdv(props.admin.token, param.id)
-        console.log("data", data);
-        console.log("eliminato", adv);
     }
     // useEffect
     useEffect(() => {
         createAdv();
-        console.log('seller', seller);
 
     }, []);
     return (
@@ -127,13 +115,13 @@ const DetailsAd = (props) => {
                         <div className="container-head">
                             {/* link name creator */}
                             <span> Creato da:&nbsp;
-                                <Link to={`/admin/user/${seller.idSeller}`}>
+                                <Link to={`/admin/user/${seller.idSeller}/details`}>
                                     {seller.username}
                                 </Link>
                             </span>
                             {/* link revisor?? */}
                             <span> Revisionato da:&nbsp;
-                                <Link to={`/admin/user/${checker.idChecker}`}>
+                                <Link to={`/admin/user/${checker.idChecker}/details`}>
                                     {checker.username}
                                 </Link>
                             </span>
