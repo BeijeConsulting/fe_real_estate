@@ -1,32 +1,53 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+//COMPONENTS
 import SearchSelect from "./SearchSelect";
 import Button from "../UI/Button/Button";
+import LocationSelect from "./LocationSelect";
+
+// CONSTS
 import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
-import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../utils/properties";
+
+import { useNavigate } from "react-router-dom";
+import { findAds } from "../../../services/frontend/advertisementApi";
+
 
 const Search = () => {
 	let navigate = useNavigate();
 
+	const [results, setResults] = useState([])
 	const [query, setQuery] = useState({
 		buildingType: { label: "Casa", value: "HOUSE" },
-		advType: { label: "Vendita", value: "SELL" },
-		location: { label: "Scegli dove..", value: "scegli_dove" },
+		advType: { label: "Vendita", value: "SALE" },
+		location: "Scegli dove...",
 	});
 
-	let imgUrl =
-		"https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg";
+	
 
-	const setBuildingType = (value) =>
-		setQuery({ ...query, buildingType: value });
-	const setAdvType = (value) => setQuery({ ...query, advType: value });
-	const setLocation = (value) => setQuery({ ...query, location: value });
+	let imgUrl = "https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg";
+
+
+	useEffect(() => {
+		findAds({
+			advType: query.advType.value.toUpperCase(),
+			city: query.location,
+			buildingType: query.buildingType.value.toUpperCase()
+		}).then(res => {
+			setResults(res.data)
+		})
+	}, [query])
+	
+
+	const setBuildingType = (value) => { setQuery({ ...query, buildingType: value }); }
+	const setAdvType = (value) => { setQuery({ ...query, advType: value }); }
+	const setLocation = (value) => { setQuery({ ...query, location: value }); }
 
 	const handleSubmit = () => {
 		let newUrl = ROUTES.FE.BASE.ADS_LIST.getPath(
 			query.advType.value,
 			query.buildingType.value,
-			query.location.value
+			query.location
 		);
 
 		navigate(newUrl.toLowerCase());
@@ -50,17 +71,18 @@ const Search = () => {
 					options={ADV_TYPES}
 				/>
 				<p>a</p>
-				<SearchSelect
+				<LocationSelect
 					ico=""
-					value={query.location.label}
+					value={query.location}
 					callback={setLocation}
 				/>
 			</div>
 
 			<Button
+				disabled={results.length <= 0 ? true : false}
 				type="primary"
 				size={26}
-				label="VEDI 3 CASE"
+				label={`VEDI ${results.length} CASE`}
 				marginTop={25}
 				onClick={handleSubmit}
 			/>

@@ -22,7 +22,6 @@ import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
 import FAQ from "./frontend/screens/FAQ/FAQ";
 import Map from "./frontend/screens/Map/Map";
 
-
 // BACKOFFICE SCREENS
 // here
 import AdvertisementsStatistic from "./backoffice/screens/cmsDashBoard/advertisementsStatistic/AdvertisementsStatistic";
@@ -45,6 +44,10 @@ import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/Busine
 import Checker from "./backoffice/screens/Checkers/Checker";
 import CheckersList from "./backoffice/screens/Checkers/CheckersList";
 import AddChecker from "./backoffice/screens/Checkers/AddChecker";
+import CmsUser from "./backoffice/screens/CmsUser/CmsUser";
+import UserDetails from "./backoffice/screens/CmsUser/UserDetails/UserDetails";
+import UpdateUserDetails from "./backoffice/screens/CmsUser/UserDetails/UpdateUserDetails";
+import UserAdv from "./backoffice/screens/CmsUser/UserAdv/UserAdv";
 
 // COMMON
 import NotFound from "./common/screens/NotFound";
@@ -55,6 +58,7 @@ import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
 import { ROUTES } from "./utils/properties";
 import SyncRoutingLanguage from "./common/screens/SyncRoutingLanguage";
+import PublicProfile from "./frontend/screens/UsersSection/PublicProfile";
 
 const Routing = () => (
 	<Provider store={applicationStore}>
@@ -66,23 +70,45 @@ const Routing = () => (
 				element={<Navigate to={ROUTES.FE.BASE.SELF} replace={true} />}
 			/>
 			<Route path={ROUTES.FE.BASE.SELF} element={<SyncRoutingLanguage />}>
+				{/* Home */}
 				<Route path={ROUTES.FE.BASE.HOME} element={<Home />} />
+
+				{/* About us */}
 				<Route path={ROUTES.FE.BASE.ABOUT_US} element={<AboutUs />} />
+
+				{/* What we offer */}
 				<Route path={ROUTES.FE.BASE.WHAT_WE_OFFER} element={<WhatWeOffer />} />
+
+				{/* Assess buildings */}
 				<Route
 					path={ROUTES.FE.BASE.ASSESS_BUILDING}
 					element={<AssessBuilding />}
 				/>
+
+				{/* Frequently asked questions */}
 				<Route path={ROUTES.FE.BASE.FAQ} element={<FAQ />} />
 
+				{/* Advertisements' list */}
 				<Route path={ROUTES.FE.BASE.ADS_LIST.SELF} element={<AdvList />} />
+
+				{/* Property's details */}
 				<Route
 					path={ROUTES.FE.BASE.DETAILS_AD.SELF}
 					element={<DetailBuilding />}
 				/>
 
+				{/* Map */}
 				<Route path={ROUTES.FE.BASE.MAP} element={<Map />} />
 
+				{/* Users section ( public, no auth ) */}
+				<Route path={ROUTES.FE.BASE.USERS_SECTION.SELF}>
+					<Route
+						path={ROUTES.FE.BASE.USERS_SECTION.PUBLIC_PROFILE.SELF}
+						element={<PublicProfile />}
+					/>
+				</Route>
+
+				{/* Auth - Sign In - Sign Up */}
 				<Route path={ROUTES.FE.BASE.AUTH.SELF} element={<Auth />}>
 					{/* Redirect */}
 					<Route
@@ -116,6 +142,7 @@ const Routing = () => (
 					/>
 				</Route>
 
+				{/* User section ( private, auth needed ) */}
 				<Route path={ROUTES.FE.BASE.USER.SELF} element={<User />}>
 					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
 					<Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
@@ -143,7 +170,14 @@ const Routing = () => (
 					<Route path="advertisements" element={<BusinessAdv />} />
 					<Route path="users" element={<BusinessUsers />} />
 				</Route>
-				<Route path="user/:id" element={<RoutingBO.User />} />
+				<Route path="user/:id" element={<CmsUser />}>
+					<Route path="details" element={<UserDetails />} />
+					<Route
+						path="details/update-details"
+						element={<UpdateUserDetails />}
+					/>
+					<Route path="advertisements" element={<UserAdv />} />
+				</Route>
 				<Route path="advertisements" element={<RoutingBO.User />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route path="advertisement/:id" element={<DetailsAd />} />

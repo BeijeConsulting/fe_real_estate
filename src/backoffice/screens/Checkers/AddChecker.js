@@ -1,13 +1,17 @@
 import { Button, Form, Input, Modal, Typography } from "antd";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux"
 import "./addChecker.css"
 
 import { createChecker } from "../../../services/backoffice/checkerApi";
+import { createUser, getUserByUsername } from "../../../services/backoffice/usersApi";
 
 const AddChecker = (props) => {
     const { Text } = Typography;
     const [form] = Form.useForm();
+    let navigate = useNavigate()
+    let status =''
 
     let checker = {
         name: '',
@@ -56,8 +60,17 @@ const AddChecker = (props) => {
         setState({ ...state, isModalOpened: !state.isModalOpened })
     }
 
+    const saveUser = async () => {
+        status = await createUser(state.checker)
+    }
+
     const saveChecker = async () => {
-        await createChecker(state.checker, props.admin.token)
+        await saveUser()
+        if(status.status === 200){
+            let user = await getUserByUsername(state.checker.username, props.admin.token)
+            await createChecker(user.id, {}, props.admin.token)
+        }
+        navigate('/admin/collaborators')
     }
 
 
