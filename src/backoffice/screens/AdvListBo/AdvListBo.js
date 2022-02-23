@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 //utils
 import utilsMethods from '../../../common/utils/utilsMethods';
+import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
 // css
 import "../../screens/UsersList/UsersList.css"
 
@@ -15,8 +16,9 @@ import { connect } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
 // ant design
-import { Table, Input, Tag, Space } from "antd";
+import { Table, Input, Tag, Button, Select } from "antd";
 const { Search } = Input;
+const { Option } = Select;
 
 const AdvListBo = (props) => {
     // hooks
@@ -126,14 +128,29 @@ const AdvListBo = (props) => {
             <div className="users-list-background">
                 <div className="users-list-container">
                     <div className="users-list-header">
-                        {/* seachbar */}
-                        <Search
-                            placeholder="Search by advertisement name"
-                            enterButton
-                            allowClear
-                            onSearch={searchByAdvName}
-                            className="icon-correction"
-                            size="large" />
+                    <Select defaultValue="Adv Type" style={{ width: 120 }}
+                            options={ADV_TYPES}>
+                        </Select>
+                        <Select defaultValue="Building" style={{ width: 120 }}
+                            options={BUILDING_TYPES}
+                        >
+                        </Select>
+                        <Select defaultValue="From" style={{ width: 120 }}
+                            options={this.state.places}>
+                        </Select>
+                        <Button type="primary" icon={<SearchOutlined style={{ paddingBottom: 100 }} />}>
+                            Search
+                        </Button>
+                        <Button
+                            type="secondary"
+                        >
+                            More filters
+                        </Button>
+
+
+import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
+const { Option } = Select;
+
                     </div>
                     < div className="users-list-table" >
                         
