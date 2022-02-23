@@ -86,14 +86,13 @@ const BasicColumnPlot = () => {
     ];
     const config = {
         height: 300,
-        autoFit: false,
         appendPadding: 0,
         data,
         yField: 'value',
         xField: 'type',
         label: true,
     };
-    return <Column style={{ width: "100%" }}  {...config} />
+    return <Column  {...config} />
 }
 
 export default BasicColumnPlot;
