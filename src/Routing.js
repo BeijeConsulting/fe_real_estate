@@ -25,6 +25,7 @@ import Map from "./frontend/screens/Map/Map";
 
 // BACKOFFICE SCREENS
 // here
+import AdvertisementsStatistic from "./backoffice/screens/cmsDashBoard/advertisementsStatistic/AdvertisementsStatistic";
 import UserStatistic from "./backoffice/screens/cmsDashBoard/userStatistic/UserStatistic";
 import CmsDashBoard from "./backoffice/screens/cmsDashBoard/CmsDashBoard";
 import DetailsAd from "./backoffice/screens/detailsAd/DetailsAd";
@@ -165,7 +166,7 @@ const Routing = () => (
 				<Route path="advertisement/:id" element={<DetailsAd />} />
 				<Route path="dashBoard" element={<CmsDashBoard />} >
 					<Route path="users" element={<UserStatistic />} />
-					<Route path="advertisements" element={<RoutingBO.DashBoard />} />
+					<Route path="advertisements" element={<AdvertisementsStatistic />} />
 					<Route path="businesses" element={<RoutingBO.DashBoard />} />
 				</Route>
 				<Route path="profile" element={<Profile />} />
