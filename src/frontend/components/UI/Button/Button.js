@@ -9,6 +9,13 @@ const Button = (props) => {
 			? "bg-gradient-secondary text-white "
 			: "bg-gradient ";
 
+
+	const handleClick = () => {
+		if (!props.disabled) {
+			props.onClick()
+		}
+	}
+
 	return (
 		<div
 			style={{ marginTop: props.marginTop }}
@@ -17,7 +24,7 @@ const Button = (props) => {
 				props.className +
 				" scale-in-hover cursor-pointer rounded-full flex justify-center items-center"
 			}
-			onClick={props.onClick}
+			onClick={handleClick}
 		>
 
 			{props.iconPosition === "left" &&
@@ -50,6 +57,7 @@ Button.defaultProps = {
 	label: "label",
 	size: 20,
 	marginTop: 0,
+	disabled: false,
 	onClick: () => undefined,
 };
 

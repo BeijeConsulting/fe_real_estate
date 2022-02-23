@@ -21,7 +21,6 @@ const UpdateProfile = (props) => {
 
     const getAdminData = async () => {
         dataAdmin = await getUserById(props.admin.id, props.admin.token)
-        console.log('data admin', dataAdmin)
         updatedData = {
             email: dataAdmin.email,
             avatarUrl: dataAdmin.avatarUrl,
@@ -54,7 +53,8 @@ const UpdateProfile = (props) => {
 
 
     const handleClick = async () => {
-        setState({ ...state, isModalOpened: true })
+        let isModalOpened = state.isModalOpened
+        setState({ ...state, isModalOpened: !isModalOpened })
     }
 
     const saveChanges = async () => {
@@ -65,8 +65,6 @@ const UpdateProfile = (props) => {
     useEffect(() => {
         getAdminData()
         form.resetFields()
-        console.log('admin data', state.dataAdmin)
-
     }, [])
 
 

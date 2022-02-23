@@ -7,7 +7,7 @@ const ADV_TYPES = [
     },
     {
         label:'Vendita',
-        value:'SELL'
+        value:'SALE'
     },
     {
         label:'Affitto Breve',

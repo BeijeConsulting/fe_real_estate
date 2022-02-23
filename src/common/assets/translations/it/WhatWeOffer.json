@@ -1,5 +1,9 @@
 {
-	"searchForProperty": { "text": "Cerca un immobile" },
+	"helmet": {
+		"title": "DOMUS - Servizi",
+		"description": "Prova i nostri strumenti per vendere e comprare casa"
+	},
+	"title": "I nostri servizi",
 	"services": {
 		"newAd": {
 			"preCardText": "Sei un privato o un'agenzia immobiliare?",

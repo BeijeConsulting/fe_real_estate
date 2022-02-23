@@ -1,4 +1,8 @@
 {
+	"helmet": {
+		"title": "DOMUS - Registrazione Privato",
+		"description": "Crea un account da privato e inizia a comprare o vendere immobili."
+	},
 	"cf": "Codice fiscale",
 	"name": "Nome",
 	"surname": "Cognome",

@@ -106,7 +106,6 @@ export const getRefusedAdvertaisement = async (token) => {
     return result
 }
 
-
 export const getAdvBusinessName = async (token, businessName) => {
     let newAdvListForBusiness = null;
     let headers = {
@@ -120,3 +119,19 @@ export const getAdvBusinessName = async (token, businessName) => {
     });
     return newAdvListForBusiness
 };
+
+export const getUserAdvertisements = async (token, userId) => {
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    const result = await javaAcademyServiceInstance.get(
+        `/user/advertisements`,
+        { headers }
+    )
+        .then((response) => {
+            return response.data
+        }).catch(
+            //Error handler
+        )
+    return result
+}
