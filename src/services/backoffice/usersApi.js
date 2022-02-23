@@ -89,3 +89,16 @@ export const getNameUserFromSellerId = async (token, idSeller) => {
     });
     return nameSeller
 };
+
+export const deleteUser = async (token, id) => {
+    let deleteCheck = ''
+    let headers = {
+        'Authorization': 'Bearer ' + token,
+    }
+    console.log("token", token)
+    console.log("id", id)
+    const result = await javaAcademyServiceInstance.put('/user/disable/' + id, {}, { headers } ).then( (response) => 
+        deleteCheck = response
+    )
+    return deleteCheck
+}
