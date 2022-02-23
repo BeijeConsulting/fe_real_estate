@@ -6,6 +6,8 @@ import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import WhatWeOffer from "./WhatWeOffer.json";
+import BoProfile from "./BoProfile.json";
+import BoProfileUpdate from "./BoUpdateProfile.json"
 
 const it = {
 	AboutUs,
@@ -16,6 +18,8 @@ const it = {
 	SignUpPrivate,
 	SignUpBusiness,
 	WhatWeOffer,
+	BoProfile,
+	BoProfileUpdate
 };
 
 export default it;

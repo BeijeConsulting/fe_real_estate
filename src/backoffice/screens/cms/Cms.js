@@ -15,6 +15,7 @@ import { Button, Layout, Menu } from 'antd';
 // FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faRectangleList, faUsers, faChartLine, faStamp } from "@fortawesome/free-solid-svg-icons"
+import Language from '../../componets/funcComponets/languages/Language';
 
 
 const { Header, Content, Footer, Sider } = Layout;
@@ -74,11 +75,8 @@ const Cms = (props) => {
                 <Layout>
                     <Header className={"site-layout-sub-header-backgroun header-style"} style={{ padding: 0, backgroundColor: 'var(--gray)' }} >
                         <div>  <h2 className='nav-title'>{props.title}</h2> </div>
-                        <div>
-                            <ul className='languages'>
-                                <li className="button_lang languages">It</li>
-                                <li className="button_lang languages">En</li>
-                            </ul>
+                        <div className='languages'>
+                            <Language />
                         </div>
                     </Header>
                     <Content style={{ margin: '24px 16px 0' }}>
