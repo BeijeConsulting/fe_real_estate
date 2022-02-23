@@ -14,7 +14,9 @@ const BasicAreaPlotChart = () => {
     const asyncFetch = () => {
         fetch('https://gw.alipayobjects.com/os/bmw-prod/360c3eae-0c73-46f0-a982-4746a6095010.json')
             .then((response) => response.json())
-            .then((json) => setData(json))
+            .then((json) => {
+                setData(json)
+            })
             .catch((error) => {
                 console.log('fetch data failed', error);
             });
