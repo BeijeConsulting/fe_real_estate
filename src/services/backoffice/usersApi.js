@@ -115,6 +115,8 @@ export const getUserByUsername = async (username, token) => {
         //Error handler
     )
     return userByUsername
+}
+
 export const deleteUser = async (token, id) => {
     let deleteCheck = ''
     let headers = {
