@@ -1,4 +1,8 @@
 {
+	"helmet": {
+		"title": "DOMUS - Sign Up Private",
+		"description": "Create an account as private and begin to buy or sell properties."
+	},
 	"cf": "Fiscal code",
 	"name": "Name",
 	"surname": "Surname",

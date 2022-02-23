@@ -1,10 +1,21 @@
 import React, { Component } from "react";
+
+// utils
 import formValidation from "../../../utils/formValidation";
+
+// routing
 import { Navigate, Link } from "react-router-dom";
+
+// components
+import Input from "../../../components/UI/Input/Input";
+import Button from "../../../components/UI/Button/Button";
+
+// translations
 import { withTranslation } from "react-i18next";
 
-import Input from '../../../components/UI/Input/Input'
-import Button from '../../../components/UI/Button/Button'
+// seo
+import { Helmet } from "react-helmet";
+
 class SignUpPrivate extends Component {
 	constructor(props) {
 		super(props);
@@ -17,14 +28,8 @@ class SignUpPrivate extends Component {
 			name: [formValidation.nonEmptyText],
 			surname: [formValidation.nonEmptyText],
 			username: [formValidation.nonEmptyText],
-			email: [
-				formValidation.nonEmptyText,
-				formValidation.invalidEmail,
-			],
-			password: [
-				formValidation.nonEmptyText,
-				formValidation.invalidPassword,
-			],
+			email: [formValidation.nonEmptyText, formValidation.invalidEmail],
+			password: [formValidation.nonEmptyText, formValidation.invalidPassword],
 		};
 
 		this.state = {
@@ -109,18 +114,18 @@ class SignUpPrivate extends Component {
 
 	translateErrorMessage = (str) => {
 		switch (str) {
-			case 'empty':
-				return this.props.t('SignUp.emptyField')
-			case 'invalid':
-				return this.props.t('SignUp.invalidField')
+			case "empty":
+				return this.props.t("SignUp.emptyField");
+			case "invalid":
+				return this.props.t("SignUp.invalidField");
 			default:
-				return ''
+				return "";
 		}
-	}
+	};
 
 	resetError = (str) => () => {
-		this.setState({ errors: { ...this.state.errors, [str]: '' } })
-	}
+		this.setState({ errors: { ...this.state.errors, [str]: "" } });
+	};
 
 	// Submit
 
@@ -136,74 +141,90 @@ class SignUpPrivate extends Component {
 		const { t } = this.props;
 
 		return (
-			<form className="flex flex-col justify-evenly items-center">
-				<h1 className="capitalise font-primary font-extrabold text-4xl">
-					Registrati
-				</h1>
-				<p className="font-primary font-light text-sm mt-2 text-center">
-					Registrati come Privato
-				</p>
-				<Input
-					placeholder={t("SignUpPrivate.cf")}
-					type="text"
-					onChange={this.onChangeCF}
-					onCloseError={this.resetError('cf')}
-					errorMessage={this.translateErrorMessage(this.state.errors.cf)}
-				/>
-				<Input
-					placeholder={t("SignUpPrivate.name")}
-					type="text"
-					onChange={this.onChangeName}
-					onCloseError={this.resetError('name')}
-					errorMessage={this.translateErrorMessage(this.state.errors.name)}
-				/>
+			<>
+				{/* SEO */}
+				<Helmet>
+					<meta
+						name="description"
+						content={t("SignUpPrivate.helmet.description")}
+					/>
+					<title>{t("SignUpPrivate.helmet.title")}</title>
+				</Helmet>
+				<form className="flex flex-col justify-evenly items-center">
+					<h1 className="capitalise font-primary font-extrabold text-4xl">
+						Registrati
+					</h1>
+					<p className="font-primary font-light text-sm mt-2 text-center">
+						Registrati come Privato
+					</p>
+					<Input
+						placeholder={t("SignUpPrivate.cf")}
+						type="text"
+						onChange={this.onChangeCF}
+						onCloseError={this.resetError("cf")}
+						errorMessage={this.translateErrorMessage(this.state.errors.cf)}
+					/>
+					<Input
+						placeholder={t("SignUpPrivate.name")}
+						type="text"
+						onChange={this.onChangeName}
+						onCloseError={this.resetError("name")}
+						errorMessage={this.translateErrorMessage(this.state.errors.name)}
+					/>
 
-				<Input
-					placeholder={t("SignUpPrivate.surname")}
-					type="text"
-					onChange={this.onChangeSurname}
-					onCloseError={this.resetError('surname')}
-					errorMessage={this.translateErrorMessage(this.state.errors.surname)}
-				/>
+					<Input
+						placeholder={t("SignUpPrivate.surname")}
+						type="text"
+						onChange={this.onChangeSurname}
+						onCloseError={this.resetError("surname")}
+						errorMessage={this.translateErrorMessage(this.state.errors.surname)}
+					/>
 
-				<Input
-					placeholder="username"
-					type="text"
-					onChange={this.onChangeUsername}
-					onCloseError={this.resetError('username')}
-					errorMessage={this.translateErrorMessage(this.state.errors.username)}
-				/>
+					<Input
+						placeholder="username"
+						type="text"
+						onChange={this.onChangeUsername}
+						onCloseError={this.resetError("username")}
+						errorMessage={this.translateErrorMessage(
+							this.state.errors.username
+						)}
+					/>
 
-				<Input
-					placeholder="email"
-					type="email"
-					onChange={this.onChangeEmail}
-					onCloseError={this.resetError('email')}
-					errorMessage={this.translateErrorMessage(this.state.errors.email)}
-				/>
+					<Input
+						placeholder="email"
+						type="email"
+						onChange={this.onChangeEmail}
+						onCloseError={this.resetError("email")}
+						errorMessage={this.translateErrorMessage(this.state.errors.email)}
+					/>
 
-				<Input
-					placeholder="password"
-					type="password"
-					onChange={this.onChangePassword}
-					onCloseError={this.resetError('password')}
-					errorMessage={this.translateErrorMessage(this.state.errors.password)}
-				/>
+					<Input
+						placeholder="password"
+						type="password"
+						onChange={this.onChangePassword}
+						onCloseError={this.resetError("password")}
+						errorMessage={this.translateErrorMessage(
+							this.state.errors.password
+						)}
+					/>
 
-				<Button
-					marginTop={'15px'}
-					className="mb-5"
-					onClick={this.onClickSignUp}
-					label={t("SignUpPrivate.signUpButton")}
-					type='secondary'
-				/>
+					<Button
+						marginTop={"15px"}
+						className="mb-5"
+						onClick={this.onClickSignUp}
+						label={t("SignUpPrivate.signUpButton")}
+						type="secondary"
+					/>
 
-				<p className="font-primary mt-5">{t("SignUpPrivate.goToLogin.label")}</p>
-				<Link className="font-primary mt-2" to={"/auth/login"}>{t("SignUpPrivate.goToLogin.link")}</Link>
-				{this.state.redirectToLogin && (
-					<Navigate to={"/auth/login"} />
-				)}
-			</form>
+					<p className="font-primary mt-5">
+						{t("SignUpPrivate.goToLogin.label")}
+					</p>
+					<Link className="font-primary mt-2" to={"/auth/login"}>
+						{t("SignUpPrivate.goToLogin.link")}
+					</Link>
+					{this.state.redirectToLogin && <Navigate to={"/auth/login"} />}
+				</form>
+			</>
 		);
 	}
 }

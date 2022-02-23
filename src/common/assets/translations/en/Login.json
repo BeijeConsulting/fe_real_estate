@@ -1,4 +1,8 @@
 {
+	"helmet": {
+		"title": "DOMUS - LOGIN",
+		"description": "Sign In with your account."
+	},
 	"title": "Private Area",
 	"description": "Enter your credentials and access your Domus private area",
 	"checkboxLabel": "Remember my credentials",
