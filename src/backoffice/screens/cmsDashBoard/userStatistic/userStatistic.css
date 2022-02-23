@@ -1,0 +1,8 @@
+.container-userStatistic{
+    height: calc(100vh - 195px);
+    padding: 15px;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+}
+
