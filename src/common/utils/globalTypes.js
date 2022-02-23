@@ -2,30 +2,30 @@
 
 const ADV_TYPES = [
     {
-        label:'Affitto',
-        value:'RENT'
+        label: 'Affitto',
+        value: 'RENT'
     },
     {
-        label:'Vendita',
-        value:'SALE'
+        label: 'Vendita',
+        value: 'SALE'
     },
     {
-        label:'Affitto Breve',
-        value:'SHORT_RENT'
+        label: 'Affitto Breve',
+        value: 'SHORT_RENT'
     }
 ]
 
 
 const BUILDING_TYPES = [
-    { label: 'Casa', value: 'HOUSE'},
-    { label: 'Nuova Costruzione', value: 'NEW_CONSTRUCTION'},
-    { label: 'retail_space', value: 'RETAIL_SPACE'},
-    { label: 'Terreno', value: 'TERRAIN'},
-    { label: 'Garage', value: 'GARAGE'},
-    { label: 'Stanza', value: 'ROOM'},
-    { label: 'Letto', value: 'BED'},
-    { label: 'Attico', value: 'BASEMENT_ATTIC'},
-    { label: 'Posto per Barca', value: 'BOAT_SPOT'},
+    { label: 'Attico', value: 'BASEMENT_ATTIC' },
+    { label: 'Letto', value: 'BED' },
+    { label: 'Posto per Barca', value: 'BOAT_SPOT' },
+    { label: 'Casa', value: 'HOUSE' },
+    { label: 'Garage', value: 'GARAGE' },
+    { label: 'Nuova Costruzione', value: 'NEW_CONSTRUCTION' },
+    { label: 'retail_space', value: 'RETAIL_SPACE' },
+    { label: 'Stanza', value: 'ROOM' },
+    { label: 'Terreno', value: 'TERRAIN' },
 ]
 
 const SEARCH_TYPES = ["CITY", "MAP", "TIME_FROM"]
