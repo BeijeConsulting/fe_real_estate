@@ -56,115 +56,138 @@ import applicationStore from "./applicationStore";
 import AdvList from "./frontend/screens/Advertisement/AdvList";
 import { ROUTES } from "./utils/properties";
 import SyncRoutingLanguage from "./common/screens/SyncRoutingLanguage";
+import PublicProfile from "./frontend/screens/UsersSection/PublicProfile";
 
 const Routing = () => (
-  <Provider store={applicationStore}>
-    <Routes>
-      {/* FRONTEND */}
-      {/* Redirect */}
-      <Route
-        path=""
-        element={<Navigate to={ROUTES.FE.BASE.SELF} replace={true} />}
-      />
-      <Route path={ROUTES.FE.BASE.SELF} element={<SyncRoutingLanguage />}>
-        <Route path={ROUTES.FE.BASE.HOME} element={<Home />} />
-        <Route path={ROUTES.FE.BASE.ABOUT_US} element={<AboutUs />} />
-        <Route path={ROUTES.FE.BASE.WHAT_WE_OFFER} element={<WhatWeOffer />} />
-        <Route
-          path={ROUTES.FE.BASE.ASSESS_BUILDING}
-          element={<AssessBuilding />}
-        />
-        <Route path={ROUTES.FE.BASE.FAQ} element={<FAQ />} />
+	<Provider store={applicationStore}>
+		<Routes>
+			{/* FRONTEND */}
+			{/* Redirect */}
+			<Route
+				path=""
+				element={<Navigate to={ROUTES.FE.BASE.SELF} replace={true} />}
+			/>
+			<Route path={ROUTES.FE.BASE.SELF} element={<SyncRoutingLanguage />}>
+				{/* Home */}
+				<Route path={ROUTES.FE.BASE.HOME} element={<Home />} />
 
-        <Route path={ROUTES.FE.BASE.ADS_LIST.SELF} element={<AdvList />} />
-        <Route
-          path={ROUTES.FE.BASE.DETAILS_AD.SELF}
-          element={<DetailBuilding />}
-        />
+				{/* About us */}
+				<Route path={ROUTES.FE.BASE.ABOUT_US} element={<AboutUs />} />
 
-        <Route path={ROUTES.FE.BASE.MAP} element={<Map />} />
+				{/* What we offer */}
+				<Route path={ROUTES.FE.BASE.WHAT_WE_OFFER} element={<WhatWeOffer />} />
 
-        <Route path={ROUTES.FE.BASE.AUTH.SELF} element={<Auth />}>
-          {/* Redirect */}
-          <Route
-            path=""
-            element={<Navigate to={ROUTES.FE.BASE.AUTH.LOGIN} replace={true} />}
-          />
-          <Route path={ROUTES.FE.BASE.AUTH.LOGIN} element={<Login />} />
-          <Route path={ROUTES.FE.BASE.AUTH.SIGNUP.SELF} element={<SignUp />}>
-            {/* Redirect */}
-            <Route
-              path=""
-              element={
-                <Navigate
-                  to={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
-                  replace={true}
-                />
-              }
-            />
-            <Route
-              path={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
-              element={<SignUpPrivate />}
-            />
-            <Route
-              path={ROUTES.FE.BASE.AUTH.SIGNUP.BUSINESS}
-              element={<SignUpBusiness />}
-            />
-          </Route>
-          <Route
-            path={ROUTES.FE.BASE.AUTH.FORGOT_PASSWORD}
-            element={<ForgotPsw />}
-          />
-        </Route>
+				{/* Assess buildings */}
+				<Route
+					path={ROUTES.FE.BASE.ASSESS_BUILDING}
+					element={<AssessBuilding />}
+				/>
 
-        <Route path={ROUTES.FE.BASE.USER.SELF} element={<User />}>
-          <Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
-          <Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
-          <Route
-            path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
-            element={<EditProfile />}
-          />
-          <Route path={ROUTES.FE.BASE.USER.POSTED_ADS} element={<PostAdvs />} />
-          <Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
-        </Route>
-      </Route>
+				{/* Frequently asked questions */}
+				<Route path={ROUTES.FE.BASE.FAQ} element={<FAQ />} />
 
-      {/* BACKOFFICE */}
-      <Route path="admin-auth" element={<AdminLogin />} />
-      <Route path="admin" element={<Cms />}>
-        <Route index element={<RoutingBO.DashBoard />} />
-        <Route path="users" element={<UsersList />} />
-        <Route path="businesses" element={<BusinessList />} />
-        <Route path="business/:id" element={<CmsBusiness />}>
-          <Route path="details" element={<BusinessDetails />} />
-          <Route
-            path="details/update-details"
-            element={<UpdateBusinessDetails />}
-          />
-          <Route path="advertisements" element={<BusinessAdv />} />
-          <Route path="users" element={<BusinessUsers />} />
-        </Route>
-        <Route path="advertisements" element={<AdvListBo />} />
-        <Route path="user/:id" element={<CmsUser />}>
-          <Route path="details" element={<UserDetails />} />
-          <Route
-            path="details/update-details"
-            element={<UpdateUserDetails />}
-          />
-          <Route path="advertisements" element={<UserAdv />} />
-        </Route>
-        <Route path="advertisements" element={<RoutingBO.User />} />
-        <Route path="verification-adv" element={<VerificationAdv />} />
-        <Route path="advertisement/:id" element={<DetailsAd />} />
-        <Route path="dashBoard" element={<RoutingBO.DashBoard />} />
-        <Route path="profile" element={<Profile />} />
-        <Route path="profile/update-profile" element={<UpdateProfile />} />
-        <Route path="collaborators" element={<CheckersList />} />
-        <Route path="collaborator/:id" element={<Checker />} />
-        <Route path="collaborator/add-collaborator" element={<AddChecker />} />
-      </Route>
-      <Route path="*" element={<NotFound />} />
-    </Routes>
-  </Provider>
+				{/* Advertisements' list */}
+				<Route path={ROUTES.FE.BASE.ADS_LIST.SELF} element={<AdvList />} />
+
+				{/* Property's details */}
+				<Route
+					path={ROUTES.FE.BASE.DETAILS_AD.SELF}
+					element={<DetailBuilding />}
+				/>
+
+				{/* Map */}
+				<Route path={ROUTES.FE.BASE.MAP} element={<Map />} />
+
+				{/* Users section ( public, no auth ) */}
+				<Route path={ROUTES.FE.BASE.USERS_SECTION.SELF}>
+					<Route
+						path={ROUTES.FE.BASE.USERS_SECTION.PUBLIC_PROFILE.SELF}
+						element={<PublicProfile />}
+					/>
+				</Route>
+
+				{/* Auth - Sign In - Sign Up */}
+				<Route path={ROUTES.FE.BASE.AUTH.SELF} element={<Auth />}>
+					{/* Redirect */}
+					<Route
+						path=""
+						element={<Navigate to={ROUTES.FE.BASE.AUTH.LOGIN} replace={true} />}
+					/>
+					<Route path={ROUTES.FE.BASE.AUTH.LOGIN} element={<Login />} />
+					<Route path={ROUTES.FE.BASE.AUTH.SIGNUP.SELF} element={<SignUp />}>
+						{/* Redirect */}
+						<Route
+							path=""
+							element={
+								<Navigate
+									to={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
+									replace={true}
+								/>
+							}
+						/>
+						<Route
+							path={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
+							element={<SignUpPrivate />}
+						/>
+						<Route
+							path={ROUTES.FE.BASE.AUTH.SIGNUP.BUSINESS}
+							element={<SignUpBusiness />}
+						/>
+					</Route>
+					<Route
+						path={ROUTES.FE.BASE.AUTH.FORGOT_PASSWORD}
+						element={<ForgotPsw />}
+					/>
+				</Route>
+
+				{/* User section ( private, auth needed ) */}
+				<Route path={ROUTES.FE.BASE.USER.SELF} element={<User />}>
+					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
+					<Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
+					<Route
+						path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
+						element={<EditProfile />}
+					/>
+					<Route path={ROUTES.FE.BASE.USER.POSTED_ADS} element={<PostAdvs />} />
+					<Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
+				</Route>
+			</Route>
+
+			{/* BACKOFFICE */}
+			<Route path="admin-auth" element={<AdminLogin />} />
+			<Route path="admin" element={<Cms />}>
+				<Route index element={<RoutingBO.DashBoard />} />
+				<Route path="users" element={<UsersList />} />
+				<Route path="businesses" element={<BusinessList />} />
+				<Route path="business/:id" element={<CmsBusiness />}>
+					<Route path="details" element={<BusinessDetails />} />
+					<Route
+						path="details/update-details"
+						element={<UpdateBusinessDetails />}
+					/>
+					<Route path="advertisements" element={<BusinessAdv />} />
+					<Route path="users" element={<BusinessUsers />} />
+				</Route>
+				<Route path="user/:id" element={<CmsUser />}>
+					<Route path="details" element={<UserDetails />} />
+					<Route
+						path="details/update-details"
+						element={<UpdateUserDetails />}
+					/>
+					<Route path="advertisements" element={<UserAdv />} />
+				</Route>
+				<Route path="advertisements" element={<AdvListBo />} />
+				<Route path="verification-adv" element={<VerificationAdv />} />
+				<Route path="advertisement/:id" element={<DetailsAd />} />
+				<Route path="dashBoard" element={<RoutingBO.DashBoard />} />
+				<Route path="profile" element={<Profile />} />
+				<Route path="profile/update-profile" element={<UpdateProfile />} />
+				<Route path="collaborators" element={<CheckersList />} />
+				<Route path="collaborator/:id" element={<Checker />} />
+				<Route path="collaborator/add-collaborator" element={<AddChecker />} />
+			</Route>
+			<Route path="*" element={<NotFound />} />
+		</Routes>
+	</Provider>
 );
 export default Routing;

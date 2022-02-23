@@ -17,6 +17,13 @@ const ROUTES = {
 				getPath: (buildingId) => "adv/" + buildingId,
 			},
 			MAP: "map",
+			USERS_SECTION: {
+				SELF: "users-section",
+				PUBLIC_PROFILE: {
+					SELF: "public-profile/:username",
+					getPath: (username) => "public-profile/" + username,
+				},
+			},
 			AUTH: {
 				SELF: "auth",
 				LOGIN: "login",

@@ -7,31 +7,31 @@ import { getCities } from '../../../services/frontend/advertisementApi'
 const LocationSelect = (props) => {
 
     const [isOpened, setIsOpened] = useState(false)
-    const [ cities, setCities ] = useState([])
+    const [cities, setCities] = useState([])
     const select = useRef()
 
     let selectStyle = isOpened
-        ? { transform: 'translateY(0px)', opacity: 1, pointerEvent:'auto' }
-        : { transform: 'translateY(50px)', opacity: 0, pointerEvents:'none'}
+        ? { transform: 'translateY(0px)', opacity: 1, pointerEvent: 'auto' }
+        : { transform: 'translateY(50px)', opacity: 0, pointerEvents: 'none' }
 
 
 
     useEffect(() => {
 
         getCities()
-        .then(res => {
-            setCities(res.data)
-        })
+            .then(res => {
+                setCities(res.data)
+            })
 
     }, [])
-    
+
 
 
     const toggleSelect = () => {
         setIsOpened(!isOpened)
     }
 
-    const handleCallback = ( value ) => () =>{
+    const handleCallback = (value) => () => {
         props.callback(value)
         setIsOpened(false)
     }
@@ -39,7 +39,7 @@ const LocationSelect = (props) => {
 
     const handleOptionsRender = (city, key) => {
         return (
-            <p 
+            <p
                 key={city + key}
                 className='hover:bg-gray-200 cursor-pointer rounded border-b-gray-300 py-2 px-2 border-b text-xl'
                 onClick={handleCallback(city)}
@@ -59,10 +59,10 @@ const LocationSelect = (props) => {
             >
                 <p className='font-semibold'>{props.value}</p>
                 <div className=' transition ml-1 text-3xl flex justify-center items-center'>
-                    <FontAwesomeIcon 
-                        className='transition' 
-                        icon={faChevronDown} 
-                        rotation={isOpened ? 180 : 0} 
+                    <FontAwesomeIcon
+                        className='transition'
+                        icon={faChevronDown}
+                        rotation={isOpened ? 180 : 0}
                     />
                 </div>
             </div>
@@ -73,6 +73,11 @@ const LocationSelect = (props) => {
                 style={selectStyle}
                 className='w-full max-h-48 overflow-hidden overflow-y-scroll  z-30 ml-4 mt-4 transition duration-300 absolute bg-white text-black p-2 rounded-b'
             >
+                <input
+                    className='text-lg border-2 border-gray-400 rounded px-2 py-1 w-full focus:outline-none'
+                    onChange={null}
+                    placeholder="Cerca una citta'..."
+                />
                 {cities.map(handleOptionsRender)}
             </div>
 
@@ -82,9 +87,9 @@ const LocationSelect = (props) => {
 
 
 LocationSelect.defaultProps = {
-    fgClass:"color-primary",
+    fgClass: "color-primary",
     value: 'value',
-    options: [{label:"lorem", value: 'lorem'}, {label:"ipsum", value: 'ipsum'}]
+    options: [{ label: "lorem", value: 'lorem' }, { label: "ipsum", value: 'ipsum' }]
 }
 
 LocationSelect.propTypes = {
