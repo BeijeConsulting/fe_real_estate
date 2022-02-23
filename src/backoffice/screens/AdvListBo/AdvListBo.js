@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import utilsMethods from '../../../common/utils/utilsMethods';
 import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
 // css
-import "../../screens/UsersList/UsersList.css"
+import "./advListBo.css"
 
 // axios
 import { getAllAds, getAllAdsPaginations } from '../../../services/backoffice/advertisementApi';
@@ -27,6 +27,7 @@ const AdvListBo = (props) => {
     const [advList, setAdvList] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [totalElements, setTotalElements] = useState(0);
+    const [places, setPlaces] = useState([{}])
 
     const paginationOptions = {
         numPage: 1,
@@ -117,11 +118,21 @@ const AdvListBo = (props) => {
         }
     ]
 
-    //useEffect
+    const getPlaces = async () => {
+        let payload = await getCities()
+        payload = payload.data.map((element) => {
+            return({
+                label: element,
+                value: element
+            })
+        })
+        setPlaces(payload)
+    }
 
+    //useEffect
     useEffect(() => {
         getListAdv()
-        
+        getPlaces()
     }, []);
 
     return (
@@ -138,7 +149,7 @@ const AdvListBo = (props) => {
                         >
                         </Select>
                         <Select defaultValue="From" style={{ width: 120 }}
-                            options={this.state.places}>
+                            options={places}>
                         </Select>
                         <Button type="primary" icon={<SearchOutlined style={{ paddingBottom: 100 }} />}>
                             Search
@@ -148,11 +159,6 @@ const AdvListBo = (props) => {
                         >
                             More filters
                         </Button>
-
-
-import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
-const { Option } = Select;
-
                     </div>
                     < div className="users-list-table" >
                         
