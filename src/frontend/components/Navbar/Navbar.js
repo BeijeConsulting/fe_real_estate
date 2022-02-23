@@ -29,8 +29,8 @@ const Navbar = (props) => {
 			route: `/${i18n.language}/${ROUTES.FE.BASE.HOME}`,
 		},
 		{
-			label: "ANNUNCI",
-			route: `/${i18n.language}/${ROUTES.FE.BASE.ADS_LIST.SELF}`,
+			label: "MAPPA",
+			route: `/${i18n.language}/${ROUTES.FE.BASE.MAP}`,
 		},
 		{
 			label: "SERVIZI",

@@ -53,7 +53,8 @@ const UpdateProfile = (props) => {
 
 
     const handleClick = async () => {
-        setState({ ...state, isModalOpened: true })
+        let isModalOpened = state.isModalOpened
+        setState({ ...state, isModalOpened: !isModalOpened })
     }
 
     const saveChanges = async () => {
@@ -64,7 +65,6 @@ const UpdateProfile = (props) => {
     useEffect(() => {
         getAdminData()
         form.resetFields()
-
     }, [])
 
 

@@ -62,11 +62,10 @@ export const updateUserInfo = async (content, token) => {
     const headers = {
         'Authorization': 'Bearer ' + token,
     };
-
+    console.log("gonna update theese", content)
     let updateUser = ''
     await javaAcademyServiceInstance.put("/user/update", content, { headers }).then((response) => {
         updateUser = response.data
-
     }).catch(
 
     )
@@ -116,4 +115,15 @@ export const getUserByUsername = async (username, token) => {
         //Error handler
     )
     return userByUsername
+export const deleteUser = async (token, id) => {
+    let deleteCheck = ''
+    let headers = {
+        'Authorization': 'Bearer ' + token,
+    }
+    console.log("token", token)
+    console.log("id", id)
+    const result = await javaAcademyServiceInstance.put('/user/disable/' + id, {}, { headers } ).then( (response) => 
+        deleteCheck = response
+    )
+    return deleteCheck
 }

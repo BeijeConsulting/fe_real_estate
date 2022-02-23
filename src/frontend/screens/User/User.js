@@ -23,9 +23,9 @@ class User extends Component {
 						<Outlet />
 					</section>
 				</div>
-				{this.props.username === undefined && (
+				{/* {this.props.username === undefined && (
 					<Navigate to={`../${ROUTES.FE.BASE.AUTH.SELF}`} />
-				)}
+				)} */}
 			</>
 		);
 	}

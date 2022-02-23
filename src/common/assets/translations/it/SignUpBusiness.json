@@ -1,4 +1,8 @@
 {
+	"helmet": {
+		"title": "DOMUS - Registrazione Business",
+		"description": "Crea un account Business e inizia a comprare o vendere immobili."
+	},
 	"VATNumber": "Partita iva",
 	"businessName": "Nome azienda",
 	"address": "Indirizzo",
