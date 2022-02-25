@@ -43,7 +43,6 @@ const UserStatistic = (props) => {
     }, [])
     /* componentDidUpdate*/
     useEffect(() => {
-        console.log(state.customLabelChartState)
     }, [state])
 
     return (
@@ -56,7 +55,7 @@ const UserStatistic = (props) => {
                 </Col>
                 <Col span={24} lg={12}>
                     <Card loading={false} title={`Totale utenti: 5000`} >
-                        <CustomLabelChart />
+                        <CustomLabelChart data={state.customLabelChartState} />
                     </Card>
                 </Col>
                 <Col span={24} lg={12}>

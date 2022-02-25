@@ -1,20 +1,12 @@
-
+import PropTypes from 'prop-types'
+import { Spin } from 'antd';
 import { Pie, G2 } from '@ant-design/plots';
 
 const CustomLabelChart = (props) => {
 
     /* Chart  configuration*/
     const G = G2.getEngine('canvas');
-    const data = [
-        {
-            sex: '男',
-            sold: 0.1,
-        },
-        {
-            sex: '女',
-            sold: 0.1,
-        },
-    ];
+    const data = props.data
     const config = {
         appendPadding: 10,
         data,
@@ -33,7 +25,7 @@ const CustomLabelChart = (props) => {
                         width: 30,
                         height: 40,
                         img:
-                            obj.sex === '男'
+                            obj.sex === 'male'
                                 ? 'https://gw.alipayobjects.com/zos/rmsportal/oeCxrAewtedMBYOETCln.png'
                                 : 'https://gw.alipayobjects.com/zos/rmsportal/mweUsJpBWucJRixSfWVP.png',
                     },
@@ -46,7 +38,7 @@ const CustomLabelChart = (props) => {
                         text: obj.sex,
                         textAlign: 'center',
                         textBaseline: 'top',
-                        fill: obj.sex === '男' ? '#1890ff' : '#f04864',
+                        fill: obj.sex === 'male' ? '#1890ff' : '#f04864',
                     },
                 });
                 return group;
@@ -62,6 +54,30 @@ const CustomLabelChart = (props) => {
 
 
 
-    return <Pie style={{ height: "300px" }} {...config} />
+    return (
+        <>
+            {
+                props.data !== undefined &&
+                <Pie style={{ height: "300px" }} {...config} />
+            }
+            {
+                props.data === undefined &&
+                <div className='container flex  justify-center items-center h-72'>
+                    <Spin />
+                </div>
+            }
+        </>
+
+    )
 }
+
+CustomLabelChart.dafultProps = {
+    data: undefined
+}
+
+CustomLabelChart.propTypes = {
+    data: PropTypes.array
+}
+
+
 export default CustomLabelChart
