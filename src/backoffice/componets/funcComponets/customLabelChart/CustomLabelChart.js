@@ -1,7 +1,7 @@
 
 import { Pie, G2 } from '@ant-design/plots';
 
-const CustomLabelChart = () => {
+const CustomLabelChart = (props) => {
 
     /* Chart  configuration*/
     const G = G2.getEngine('canvas');

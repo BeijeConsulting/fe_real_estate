@@ -5,9 +5,8 @@ import ReactMapboxGl, { Feature, Layer } from "react-mapbox-gl";
 import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
 
 const MapAdvertisementsChart = () => {
-    const [state, setState] = useState([]);
+
     /* configuration  mapbox */
-    const [features, setFeatures] = useState({});
     let position = [12.434910805347544, 42.1288911097786];
     let token = "pk.eyJ1IjoiYW5nZWxvY2lwdWxsbyIsImEiOiJja3pzYjRqbjM0OXRsMm5ueTdwcGI4djhqIn0.ZQ1mKWAxe35aj6e8U2z_3A";
     const Map = ReactMapboxGl({
