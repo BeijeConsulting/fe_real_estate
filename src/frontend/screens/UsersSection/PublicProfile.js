@@ -8,6 +8,10 @@ import avatar from "../../assets/images/avatar.jpg";
 import NavBar from "../../components/Navbar/Navbar";
 import AdvCard from "../../components/AdvCard/AdvCard";
 import { getUserByUsername } from "../../../services/frontend/users";
+import {
+	findAds,
+	getUserAds,
+} from "../../../services/frontend/advertisementApi";
 import { useNavigate, useParams } from "react-router-dom";
 
 const PublicProfile = () => {
@@ -22,10 +26,11 @@ const PublicProfile = () => {
 	}, [params.username]);
 
 	useEffect(() => {
-		if (!!state.user) {
-			// chiamata api
+		if (!!state.user?.id) {
+			findAds({ userId: state.user.id }).then((res) => console.log(res.data));
+			getUserAds(state.user.id).then((ads_) => console.log(ads_));
 		}
-		console.log(state.user);
+		// console.log(state.user);
 	}, [state.user]);
 
 	const handleAdvRender = useCallback(
@@ -51,20 +56,29 @@ const PublicProfile = () => {
 	);
 
 	return (
-		<div className="flex flex-col items-center bg-gray h-screen ">
-			<div className="h-fit w-screen">
-				<NavBar />
-			</div>
-			<div className="h-fit max-w-xl md:max-w-3xl">
-				{/*  */}
-				<header className="relative h-32 overflow-hidden w-full">
-					<img alt="banner" className="absolute left-0 -top-16" src={banner} />
-					<div className="absolute flex bottom-0 h-fit items-end justify-between left-0 w-full z-10">
-						<p className="bg-white/[0.6] font-bold text-xl p-2">
+		<div className="flex flex-col items-center bg-gray h-screen w-screen">
+			<NavBar fixed />
+			<div className="h-10"></div>
+			<div className="h-fit w-fit max-w-xl md:max-w-3xl">
+				{/* Header */}
+				{/* Note: the sizes in header's className rule every size inside it. */}
+				<header
+					className={`relative h-52 w-96 overflow-hidden md:h-96 md:w-screen md:max-w-3xl `}
+				>
+					{/* Banner image */}
+					<div
+						className={`absolute flex h-full items-center justify-center left-0 top-0 w-full`}
+					>
+						<img alt="banner" className={`h-full w-full`} src={banner} />
+					</div>
+					<div className="absolute bottom-0 flex h-fit items-end justify-between left-0 w-full z-10">
+						{/* Username */}
+						<p className="bg-white/[0.6] font-bold text-xl p-2 md:text-3xl">
 							{state.user?.username ?? "Unknown"}
 						</p>
+						{/* Image profile user */}
 						<img
-							className="bg-white/[0.6] h-16 w-16"
+							className="bg-white/[0.6] h-16 w-16 md:h-36 md:w-36"
 							src={avatar}
 							alt="profile-img"
 						/>
