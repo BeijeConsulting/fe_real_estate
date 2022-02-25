@@ -4,6 +4,48 @@
         "BusinessName": "Business name",
         "Phone": "Phone number",
         "Ref": "Reference",
-        "FactsCard": "Facts card"
+        "FactsCard": "Business card"
+    },
+    "BusinessCms":{
+        "Details": "Details",
+        "Ads":"Advertisements",
+        "Users": "Users"
+    },
+    "Detail": {
+        "Info": "Business info",
+        "Name": "Business name",
+        "Vat": "Vat code",
+        "Address": "Address"
+    },
+    "Manager": {
+        "Info": "Manager info",
+        "Name": "Name",
+        "Surname": "Surname",
+        "Phone": "Phone number"
+    },
+    "Button": "Edit data",
+    "UpdateBusiness": {
+        "BusinessName":"Business name",
+        "Vat": "Vat code",
+        "Address": "Address",
+        "Manager": {
+            "Info": "Manager Info",
+            "Name": "Name",
+            "Surname": "Surname",
+            "Phone": "Phone number"
+        },
+        "SaveButton": "Save"
+    },
+    "Adv":{
+        "Search": "Search by advertisement name",
+        "BuildingType":"Building type",
+        "AdvType": "Advertisement type",
+        "City": "City",
+        "Published": "Published date"
+    },
+    "Users": {
+        "Username": "Username",
+        "Email": "Email",
+        "Type": "Type"
     }
 }

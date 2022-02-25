@@ -1,10 +1,14 @@
 {
-    "Checkers": {
+    "Checker": {
         "Add": "Aggiungi collaboratore",
         "Username": "Username",
         "Name": "Nome",
         "Surname": "Cognome",
         "Email": "Email",
-        "Factscard???":""
+        "FactsCard":"Scheda collaboratore",
+        "Button": "Salva"
+    },
+    "Modal": {
+        "Text": "Vuoi salvare questo collaboratore?"
     }
 }

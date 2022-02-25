@@ -4,6 +4,25 @@
         "Username": "Username",
         "Email": "Email",
         "Type": "Type",
-        "FactsCard":"Facts card"
+        "FactsCard": "User card"
+    },
+    "CmsUser": {
+        "Details": "Details",
+        "Info": {
+            "Info": "Info",
+            "Name": "Name",
+            "Surname": "Surname",
+            "Username": "Username",
+            "Contacts": "Contacts",
+            "Email": "Personal email",
+            "Delete": "Delete"
+        },
+        "Ads": "Advertisements",
+        "Adv": {
+            "BuildingType": "Building type",
+            "AdvType": "Advertisement type",
+            "City": "City",
+            "Published": "Published date"
+        }
     }
 }

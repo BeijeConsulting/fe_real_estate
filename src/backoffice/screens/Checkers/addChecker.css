@@ -10,9 +10,17 @@
     font-size: 17px;
 }
 .add-checker-form{
-    width: 60%;
+    display: flex;
+    flex-direction: row;
+    gap: 5em;
+}
+.form-item{
     display: flex;
     flex-direction: column;
+    align-items: baseline;
+}
+.ant-form-item-label > label::after{
+    content: none!important ;
 }
 
 .button-save-checker{

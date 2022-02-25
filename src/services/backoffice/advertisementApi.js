@@ -21,7 +21,7 @@ export const getAllAdsPaginations = async (token, pageId, total) => {
         'Authorization': `Bearer ${token}`,
     }
     const result = await javaAcademyServiceInstance.get(
-        `/adv/pages/${pageId}/${total}`,
+        `/advertisement/pages/${pageId}/${total}`,
         { headers }
     ).then((response) => {
         advListPage = response.data;
