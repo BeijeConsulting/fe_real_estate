@@ -3,7 +3,7 @@ import { javaAcademyServiceInstance } from "../javaAcademyService"
 export const getBusinesses = async (token) => {
     let payload = []
     const headers = { "Authorization": "Bearer " + token }
-    await javaAcademyServiceInstance.get("/businesses", { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/business", { headers }).then((response) => {
         let fetchedBusinesses = response.data.map((business) => {
             return ({
                 username: business.businessName,

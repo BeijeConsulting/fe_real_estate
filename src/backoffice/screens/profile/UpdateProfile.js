@@ -7,11 +7,13 @@ import { getUserById, updateUserInfo } from "../../../services/backoffice/usersA
 import { connect } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const UpdateProfile = (props) => {
     let dataAdmin = {}
     let updatedData = {}
     let navigate = useNavigate()
+    const { t } = useTranslation()
     const [form] = Form.useForm();
     const antProps = {
         action: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.interlinecenter.com%2F%3Fattachment_id%3D337&psig=AOvVaw1M-WHiEIbmWU6iI0nqA9iI&ust=1645182122041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPibgZLLhvYCFQAAAAAdAAAAABAD'
@@ -103,22 +105,11 @@ const UpdateProfile = (props) => {
                         <Form.Item name="username" label="Username">
                             <Input placeholder="admin" />
                         </Form.Item>
-                        {/*<Form.Item name="birthPlace" label="Luogo di nascita">
-                        <Input onChange={handleBirthPlace} placeholder="inserisci luogo di nascita" />
-                    </Form.Item>*/}
                     </div>
                     <div className="update-profile-contacts">
                         <Form.Item name="email" label="Email">
                             <Input onChange={handleEmail} type="email" placeholder="inserisci la tua email" />
                         </Form.Item>
-                        {/* <Form.Item name="phoneNumber" label="Numero di telefono">
-                        <Input onChange={handlePhoneNumber} placeholder="inserisci numero di telefono " />
-                    </Form.Item>
-                    <Form.Item name="businessEmail" label="Email aziendale">
-                        <Input onChange={handleBusinessEmail} type="email" placeholder="inserisci email aziendale" />
-                    </Form.Item> */
-                        }
-
                     </div>
                     <div className="update-profile-button">
                         <Form.Item>

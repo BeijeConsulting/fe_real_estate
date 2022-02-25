@@ -1,0 +1,14 @@
+{
+	"Info": {
+        "Info": "Info",
+        "Name": "Name",
+        "Surname": "Surname",
+        "Username": "Username"
+    },
+	"Contacts": {
+        "Contacts": "Contacts",
+        "PersonalEmail": "Personal email"
+
+    }, 
+    "EditProfile": "Edit Profile"
+}

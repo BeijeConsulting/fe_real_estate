@@ -9,9 +9,11 @@ import Avatar from "../../assets/images/jardin.jpeg";
 //Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faMapMarkerAlt,
-	faHeart,
+	faMapMarkerAlt, faHeart,
 	faMapLocationDot,
+	faBath, faDoorOpen,
+	faMaximize, faStairs,
+	faHouse, faCalendarDays
 } from "@fortawesome/free-solid-svg-icons";
 
 //API
@@ -45,37 +47,57 @@ class DetailBuilding extends Component {
 						"https://www.diotti.com/media/wysiwyg/easyrelooking/easyrelooking-render-02.jpg",
 				},
 			],
-			canvasView: false,
+			canvasView: false
 		};
 	}
 
-	componentDidMount() {
-		javaAcademyService.getAds().then((res) => {
-			const adv = res.data.find(
-				(adv) => adv.id === parseInt(this.props.params.buildingId)
-			);
-			console.log(adv);
-
+	getApiDetailBuilding = () => {
+		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
+			const adv = res.data;
 			let details = {};
-
 			if (!!adv) {
 				details = {
 					address: adv.address,
 					advType: adv.advType,
-					city: adv.city,
-					date: adv.publishedDateTime,
+					areaMsq: adv.areaMsq,
+					attic: adv.attic,
+					balcony: adv.balcony,
+					basement: adv.basement,
+					bathrooms: adv.bathrooms,
 					buildingType: adv.buildingType,
-					price: adv.price,
-					zipCode: adv.zipcode,
+					buildingYear: adv.buildingYear,
+					city: adv.city,
+					condition: adv.condition,
+					cooling: adv.cooling,
+					date: adv.publishedDateTime,
+					deedState: adv.deedState,
 					elevator: adv.elevator,
-					reception: adv.reception,
+					energyRating: adv.energyRating,
+					floor: adv.floor,
+					floors: adv.floors,
+					furniture: adv.furniture,
+					guidedTour: adv.guidedTour,
+					heating: adv.heating,
+					houseNumber: adv.houseNumber,
+					description: adv.longDescription,
+					parkingSpots: adv.parkingSpots,
 					pool: adv.pool,
+					price: adv.price,
+					reception: adv.reception,
+					rooms: adv.rooms,
 					terrace: adv.terrace,
+					virtualTour: adv.virtualTour,
+					yard: adv.yard,
+					zipCode: adv.zipcode,
 				};
 			}
 
 			this.setState({ adv: details });
 		});
+	}
+
+	componentDidMount() {
+		this.getApiDetailBuilding();
 	}
 
 	openCanvas = (e) => {
@@ -91,14 +113,14 @@ class DetailBuilding extends Component {
 		return (
 			<>
 				<Navbar fixed />
-				{this.state.canvasView && (
+				{this.state.canvasView && this.state.adv.virtualTour && (
 					<div>
 						<Property3DView onClickClose={this.closeCanvas} />
 					</div>
 				)}
 				<div className="flex flex-col font-primary bg-slate-200">
 					<div className="mx-auto xl:max-w-5xl xl:mx-auto">
-						<div className="flex flex-row mx-auto mt-20 bg-white p-1 md:p-3">
+						<div className="flex flex-row mt-20 bg-white p-1 md:p-3">
 							<h1 className="text-xl ml-2 my-2 md:text-2xl font-bold bg-white rounded">
 								BILOCALE IN PERIFERIA A NAPOLI
 							</h1>
@@ -108,7 +130,7 @@ class DetailBuilding extends Component {
 								</h1>
 							</div>
 						</div>
-						<div className="flex flex-col items-left w-100 md:flex-row bg-white rounded md:mx-auto">
+						<div className="flex flex-col items-left md:flex-row bg-white rounded md:mx-auto">
 							<Carousel
 								width="750px"
 								height="450px"
@@ -123,15 +145,11 @@ class DetailBuilding extends Component {
 								thumbnails={true}
 								thumbnailWidth="100px"
 								style={{
-									width: "80%",
+									width: "75%",
 									margin: "15px 25px",
 								}}
 							/>
-							<div
-								className={
-									"flex flex-col md:h-60 md:w-1/4 p-2 md:mt-10 md:mx-auto"
-								}
-							>
+							<div className={"flex flex-col md:h-60 md:w-1/4 p-2 md:mt-3 md:mx-auto"}>
 								<div className="flex flex-row">
 									<div className="flex flex-row mx-2">
 										<FontAwesomeIcon
@@ -146,18 +164,55 @@ class DetailBuilding extends Component {
 										className={" h-6 text-gray-500"}
 										icon={faHeart}
 									/>
+
 								</div>
-								<div className="flex flex-col p-2">
-									<div className="flex flex-row md:m-4 ">
+								<div className="flex flex-col p-2 mt-3 gap-4">
+									<div className="flex flex-row">
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faMapLocationDot}
 										/>
 										<h1 className="text-lg font-medium">
-											{this.state.adv.address}
+											{this.state.adv.address}, {this.state.adv.houseNumber}
 										</h1>
 									</div>
-									<div className="price text-right mr-10">
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faMaximize} />
+										<h1 className="text-lg font-medium">{this.state.adv.areaMsq} m<sup>2</sup> </h1>
+									</div>
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faDoorOpen} />
+										<h1 className="text-lg font-medium">{this.state.adv.rooms} camere</h1>
+									</div>
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faBath} />
+										<h1 className="text-lg font-medium">{this.state.adv.bathrooms} bagni</h1>
+									</div>
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faHouse} />
+										<h1 className="text-lg font-medium">{this.state.adv.condition}</h1>
+									</div>
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faStairs} />
+										<h1 className="text-lg font-medium">{this.state.adv.floor}° piano</h1>
+									</div>
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faCalendarDays} />
+										<h1 className="text-lg font-medium">Pubblicato il {new Date(this.state.adv.date).toLocaleDateString()}</h1>
+									</div>
+									<div className="price">
 										{this.state.adv.price}€
 									</div>
 									<button onClick={this.openCanvas}>Open 3D View</button>
@@ -170,44 +225,85 @@ class DetailBuilding extends Component {
 								<img className={"avatar"} src={Avatar} alt=""></img>
 								<h3 className="text-lg font-semibold m-2">Jessica Beje</h3>
 							</div>
-							<Card className="flex flex-col my-10 p-4 md:mx-auto">
-								<h1 className="text-2xl font-bold">Descrizione</h1>
-								<p>
-									Lorem Ipsum is simply dummy text of the printing and
-									typesetting industry. Lorem Ipsum has been the industry's
-									standard dummy text ever since the 1500s, when an unknown
-									printer took a galley of type and scrambled it to make a type
-									specimen book. It has survived not only five centuries, but
-									also the leap into electronic typesetting, remaining
-									essentially unchanged.
-								</p>
-							</Card>
-							<Card className="flex flex-col mb-6 p-4">
-								<h1 className="text-2xl font-bold">
-									Informazioni nel dettaglio
-								</h1>
-								<div className="flex flex-row">
-									<BuildingInfobox
-										title={"Ascensore:"}
-										adv={this.state.adv.elevator}
-									/>
-									<BuildingInfobox
-										title={"Reception:"}
-										adv={this.state.adv.elevator}
-									/>
-								</div>
-								<div className="flex flex-row">
-									<BuildingInfobox
-										title={"Piscina:"}
-										adv={this.state.adv.pool}
-									/>
 
-									<BuildingInfobox
-										title={"Terrazza"}
-										adv={this.state.adv.terrace}
-									/>
-								</div>
-							</Card>
+							<div className="flex flex-col my-10 md:flex md:flex-row">
+								<Card className="flex flex-col w-1/3 p-4 mr-6">
+									<h1 className="text-2xl font-bold text-center">Descrizione</h1>
+									<p>
+										Lorem Ipsum is simply dummy text of the printing and
+										typesetting industry. Lorem Ipsum has been the industry's
+										standard dummy text ever since the 1500s, when an unknown
+										printer took a galley of type and scrambled it to make a type
+										specimen book.
+									</p>
+								</Card>
+								<Card className="flex flex-col w-4/6 p-4">
+									<h1 className="text-2xl text-center font-bold">
+										Informazioni nel dettaglio
+									</h1>
+									<div className="flex flex-row">
+										<BuildingInfobox
+											title={"Ascensore:"}
+											adv={this.state.adv.elevator}
+										/>
+										<BuildingInfobox
+											title={"Reception:"}
+											adv={this.state.adv.reception}
+										/>
+										<BuildingInfobox
+											title={"Piscina:"}
+											adv={this.state.adv.pool}
+										/>
+										<BuildingInfobox
+											title={"Terrazza"}
+											adv={this.state.adv.terrace}
+										/>
+										<BuildingInfobox
+											title={"Soffitta"}
+											adv={this.state.adv.attic}
+										/>
+										<BuildingInfobox
+											title={"Balcone"}
+											adv={this.state.adv.balcony}
+										/>
+									</div>
+									<div className="flex flex-row">
+
+										<BuildingInfobox
+											title={"Cantina"}
+											adv={this.state.adv.basement}
+										/>
+
+										<BuildingInfobox
+											title={"Aria condizionata"}
+											adv={this.state.adv.cooling}
+										/>
+
+										<BuildingInfobox
+											title={"Classe energetica"}
+											adv={this.state.adv.energyRating}
+										/>
+										<BuildingInfobox
+											title={"Arredato"}
+											adv={this.state.adv.furniture}
+										/>
+										<BuildingInfobox
+											title={"Posto auto"}
+											adv={this.state.adv.parkingSpots}
+										/>
+									</div>
+									<div className="flex flex-row">
+										<BuildingInfobox
+											title={"Portineria"}
+											adv={this.state.adv.reception}
+										/>
+										<BuildingInfobox
+											title={"Giardino"}
+											adv={this.state.adv.yard}
+										/>
+									</div>
+								</Card>
+							</div>
 						</div>
 						<ContactSeller />
 					</div>
