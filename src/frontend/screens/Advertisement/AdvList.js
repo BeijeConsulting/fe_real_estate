@@ -46,12 +46,12 @@ const AdvList = () => {
 			pool: query.get("pool"),
 			terrace: query.get("terrace"),
 		}).then((res) => {
-			let list = [...res.data];
+			let list = [...res.data.resList];
 
 			if (sortType) {
 				setAdvList(sortList(sortType, list));
 			} else {
-				setAdvList(res.data);
+				setAdvList(list);
 			}
 		});
 	}, [location.search, location.pathname, sortType]);
