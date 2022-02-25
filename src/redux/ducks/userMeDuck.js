@@ -28,7 +28,7 @@ const userMeDuck = (state = INIT_STATE, action) => {
 				storage.LOCAL_STORAGE_KEYS.USER_TOKEN,
 				action.payload.token
 			);
-
+			console.log(action.payload.token);
 			localStorage.setItem(
 				storage.LOCAL_STORAGE_KEYS.REMEMBER_ME,
 				JSON.stringify(action.payload.rememberMeObj)
