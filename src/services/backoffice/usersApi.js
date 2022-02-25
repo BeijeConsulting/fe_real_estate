@@ -3,7 +3,7 @@ import { javaAcademyServiceInstance } from "../javaAcademyService"
 export const getUsers = async (token) => {
     let payload = []
     const headers = { "Authorization": "Bearer " + token }
-    await javaAcademyServiceInstance.get("/users", { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/admin/users", { headers }).then((response) => {
         let fetchedUsers = response.data.map((user) => {
             return ({
                 username: user.username,
@@ -26,7 +26,8 @@ export const getUsersPaged = async (token, pageId, total) => {
     let payload = []
     const headers = { "Authorization": "Bearer " + token }
     await javaAcademyServiceInstance.get("/user/pages/" + pageId + "/" + total, { headers }).then((response) => {
-        let fetchedUsers = response.data.map((user) => {
+        console.log('data', response)
+        let fetchedUsers = response.data.resList.map((user) => {
             return ({
                 username: user.username,
                 key: user.id,
@@ -36,7 +37,7 @@ export const getUsersPaged = async (token, pageId, total) => {
         })
         payload = {
             fetchedUsers,
-            totalElements: response.data.length
+            totalElements: response.data.resList.length
         }
     }).catch(
         //Error handler

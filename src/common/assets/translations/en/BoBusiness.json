@@ -1,0 +1,9 @@
+{
+    "Business": {
+        "Searchbar": "Search by business name",
+        "BusinessName": "Business name",
+        "Phone": "Phone number",
+        "Ref": "Reference",
+        "FactsCard": "Facts card"
+    }
+}
