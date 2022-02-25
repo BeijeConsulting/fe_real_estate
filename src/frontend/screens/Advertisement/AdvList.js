@@ -9,6 +9,7 @@ import { Select } from 'antd'
 
 //UTILS
 import sortList from '../../../common/utils/sortList'
+import noHouseFound from '../../assets/illustrations/noHouseFound.svg'
 
 // API
 import { findAds } from '../../../services/frontend/advertisementApi'
@@ -16,6 +17,7 @@ import { findAds } from '../../../services/frontend/advertisementApi'
 // HOOKS
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import useURLQuery from '../../hooks/useQuery'
+import typesTranslator from '../../utils/typesTranslator'
 
 const { Option } = Select
 
@@ -30,7 +32,6 @@ const AdvList = () => {
     const [advList, setAdvList] = useState([])
     const [sortType, setSortType] = useState()
 
-    let type = '';
     let cityCapital = city.charAt(0).toUpperCase() + city.slice(1);
 
     useEffect(() => {
@@ -64,12 +65,6 @@ const AdvList = () => {
 
     const handleSorting = (e) => setSortType(e)
 
-    switch (advType) {
-        case 'rent': type = "Affitto"; break;
-        case 'sale': type = "Vendita"; break;
-        case 'short_rent': type = "Affito Breve"; break;
-    }
-
 
     const handleAdvRender = (adv, key) => {
         return (
@@ -77,11 +72,13 @@ const AdvList = () => {
                 key={'advard-' + key + adv.id}
                 id={adv.id}
                 city={adv.city}
+                address={adv.address}
                 squareMeters={adv.areaMsq}
                 description={adv?.longDescription}
                 roomNumber={adv.rooms}
                 price={adv.price}
                 onClick={handleNavigate(`/${lang}/adv/${adv.id}`)}
+                onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv.seller.username}`)}
                 authorName={adv.seller.username}
             />
         )
@@ -102,7 +99,7 @@ const AdvList = () => {
             </div>
 
             <div className='max-w-5xl lg:max-w-6xl p-2 mx-auto'>
-                <p className='text-3xl font-bold'>Ho trovato {advList.length} {buildingType} in {type} a {cityCapital} </p>
+                <p className='text-3xl font-bold'>Ho trovato {advList.length} {typesTranslator.building(buildingType)} in {typesTranslator.adv(advType)} a {cityCapital} </p>
 
                 <Select onChange={handleSorting} className='w-40 mt-6' placeholder="Ordina per..">
                     <Option value="price-asc">Dal meno caro</Option>
@@ -113,6 +110,15 @@ const AdvList = () => {
                     <div style={{ flex: 2 }}>
                         {/* CARD LIST HERE */}
                         {advList.map(handleAdvRender)}
+
+                        {advList.length <= 0 &&
+                            <div className='font-primary text-center'>
+                                <img className='mx-auto max-h-80 mb-6' src={noHouseFound} />
+                                <p className='text-3xl font-bold'>Non ho trovato {typesTranslator.building(buildingType)} per te</p>
+                                <p className=''>Ma tranquillo, è sicuramente in costruzione!</p>
+                            </div>
+                        }
+
                     </div>
                     <div className='flex-1 md:block hidden'>
                         <Filters />

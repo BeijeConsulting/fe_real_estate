@@ -82,7 +82,7 @@ const Search = () => {
 				disabled={results.length <= 0 ? true : false}
 				type="primary"
 				size={26}
-				label={`VEDI ${results.length} CASE`}
+				label={ results.length >= 1 ? `VEDI ${results.length} CASE` : `NON HO TROVATO CASE`}
 				marginTop={25}
 				onClick={handleSubmit}
 			/>

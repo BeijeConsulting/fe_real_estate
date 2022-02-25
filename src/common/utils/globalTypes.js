@@ -17,15 +17,15 @@ const ADV_TYPES = [
 
 
 const BUILDING_TYPES = [
-    { label: 'Casa', value: 'HOUSE'},
-    { label: 'Nuova Costruzione', value: 'NEW_CONSTRUCTION'},
-    { label: 'retail_space', value: 'RETAIL_SPACE'},
-    { label: 'Terreno', value: 'TERRAIN'},
-    { label: 'Garage', value: 'GARAGE'},
-    { label: 'Stanza', value: 'ROOM'},
-    { label: 'Letto', value: 'BED'},
-    { label: 'Attico', value: 'BASEMENT_ATTIC'},
-    { label: 'Posto per Barca', value: 'BOAT_SPOT'},
+    { label: 'Casa', pluralLabel:'Case', value: 'HOUSE',},
+    { label: 'Nuova Costruzione', pluralLabel:'Nuove Costruzioni', value: 'NEW_CONSTRUCTION'},
+    { label: 'retail_space', pluralLabel:'spaces', value: 'RETAIL_SPACE'},
+    { label: 'Terreno', pluralLabel:'Terreni', value: 'TERRAIN'},
+    { label: 'Garage', pluralLabel:'Garage', value: 'GARAGE'},
+    { label: 'Stanza', pluralLabel:'Stanze', value: 'ROOM'},
+    { label: 'Letto', pluralLabel:'Letti', value: 'BED'},
+    { label: 'Attico', pluralLabel:'Attici', value: 'BASEMENT_ATTIC'},
+    { label: 'Posto per Barca', pluralLabel:'Posti per barche', value: 'BOAT_SPOT'},
 ]
 
 const SEARCH_TYPES = ["CITY", "MAP", "TIME_FROM"]
