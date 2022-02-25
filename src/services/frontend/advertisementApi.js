@@ -14,8 +14,11 @@ const getUserAds = (userId) =>
 	client.get(`/user/ads/${userId}`).then((res) => res.data);
 
 //Add new advertisement in database
-const addNewAdv = async () => {
-	return await client.post("/adv");
+const addNewAdv = async (token, adv) => {
+	let headers = {
+		'Authorization': `Bearer ${token}`,
+	  }
+	return await client.post("/advertisement",adv, {headers});
 };
 
 export { findAds, getCities, getUserAds, addNewAdv };
