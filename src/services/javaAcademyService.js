@@ -19,7 +19,7 @@ const signIn = ({ username, password }) =>
 		}
 	);
 
-const getDetailBuilding = (id) => javaAcademyServiceInstance.get(`/adv/${id}`);
+const getDetailBuilding = (id) => javaAcademyServiceInstance.get(`/advertisement/${id}`);
 
 const getAds = () => javaAcademyServiceInstance.get(`/ads`);
 
