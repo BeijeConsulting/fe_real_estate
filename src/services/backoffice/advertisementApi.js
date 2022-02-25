@@ -79,7 +79,7 @@ export const getPendingAdvertaisement = async (token) => {
         'Authorization': `Bearer ${token}`,
     }
     const result = await javaAcademyServiceInstance.get(
-        `/pending`,
+        `/checker/pending`,
         { headers }
     )
         .then((response) => {
@@ -95,7 +95,7 @@ export const getRefusedAdvertaisement = async (token) => {
         'Authorization': `Bearer ${token}`,
     }
     const result = await javaAcademyServiceInstance.get(
-        `/listRefused`,
+        `/admin/listRefused`,
         { headers }
     )
         .then((response) => {
