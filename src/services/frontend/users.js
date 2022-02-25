@@ -1,15 +1,19 @@
+import { LOCAL_STORAGE_KEYS } from "../../common/utils/storage";
 import { javaAcademyServiceInstance } from "../javaAcademyService";
 
-const tokenDefault =
-	"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIkFETUlOIiwiVVNFUiIsIkNIRUNLRVIiXSwiaWF0IjoxNjQ1NjMyMDI5LCJleHAiOjE2NDU2MzU2Mjl9.aRNY-zBzbyp-0hsDm-5Fld4d6v49H-WVRbZ7r_p60ro";
+export const getUserByUsername = async (username) => {
+	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 
-export const getUserByUsername = async (username, token = tokenDefault) => {
+	if (!token) {
+		return null;
+	}
+
 	let user = "";
 	const headers = {
 		Authorization: "Bearer " + token,
 	};
 	await javaAcademyServiceInstance
-		.get("/finduser/" + username, { headers })
+		.get("/user/find/" + username, { headers })
 		.then((response) => {
 			user = response.data;
 		})

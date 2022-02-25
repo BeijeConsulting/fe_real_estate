@@ -14,9 +14,12 @@ import "./profile.css"
 //import Api
 import { getUserById } from "../../../services/backoffice/usersApi";
 
+//import translations 
+import { useTranslation } from "react-i18next";
+
 
 const Profile = (props) => {
-
+    const { t } = useTranslation()
     let navigate = useNavigate()
     let dataAdmin = {}
     let data = []
@@ -47,7 +50,7 @@ const Profile = (props) => {
                 <List
                     className="info-list"
                     size="small"
-                    header={<h4 className="info-profile-title">Info</h4>}
+                    header={<h4 className="info-profile-title">{t("BoProfile.Info.Info")}</h4>}
                     itemLayout="vertical"
                     dataSource={state.data}
                     renderItem={item => (
@@ -55,21 +58,17 @@ const Profile = (props) => {
                             className="info-profile-items"
                         >
                             <List.Item.Meta
-                                title={'Nome'}
+                                title={t("BoProfile.Info.Name")}
                                 description={item.name}
                             />
                             <List.Item.Meta
-                                title={'Cognome'}
+                                title={t("BoProfile.Info.Surname")}
                                 description={item.surname}
                             />
                             <List.Item.Meta
-                                title={'Username'}
+                                title={t("BoProfile.Info.Username")}
                                 description={item.username}
                             />
-                            {/*<List.Item.Meta
-                                title={'Luogo di nascita'}
-                                description={item.birthPlace}
-                            />*/}
                         </List.Item>
                     )}
                 />
@@ -78,23 +77,15 @@ const Profile = (props) => {
             <div className='contacts-profile-box'>
                 <List
                     className="contacts-list"
-                    header={<h3 className='contacts-title'>Contatti</h3>}
+                    header={<h3 className='contacts-title'>{t("BoProfile.Contacts.Contacts")}</h3>}
                     itemLayout="vertical"
                     dataSource={state.data}
                     renderItem={item => (
                         <List.Item>
                             <List.Item.Meta
-                                title={'Email personale'}
+                                title={t("BoProfile.Contacts.PersonalEmail")}
                                 description={item.email}
                             />
-                            {/*<List.Item.Meta
-                                title={'Numero di telefono'}
-                                description={item.phoneNumber}
-                            />
-                            <List.Item.Meta
-                                title={'Email di lavoro'}
-                                description={item.businessEmail}
-                            />*/}
                         </List.Item>
                     )}
                 />
@@ -103,7 +94,7 @@ const Profile = (props) => {
                 className='button-profile'
                 type="primary"
                 onClick={handleClick}
-            > Modifica Dati </Button>
+            >{t("BoProfile.EditProfile")}</Button>
         </div >
     )
 }

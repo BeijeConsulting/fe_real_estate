@@ -7,7 +7,7 @@ import { getCities } from '../../../services/frontend/advertisementApi'
 const LocationSelect = (props) => {
 
     const [isOpened, setIsOpened] = useState(false)
-    const [cities, setCities] = useState([])
+    const [cities, setCities] = useState({ all: [], filtered: [] })
     const select = useRef()
 
     let selectStyle = isOpened
@@ -20,7 +20,7 @@ const LocationSelect = (props) => {
 
         getCities()
             .then(res => {
-                setCities(res.data)
+                setCities({ all: res.data, filtered:res.data })
             })
 
     }, [])
@@ -36,6 +36,13 @@ const LocationSelect = (props) => {
         setIsOpened(false)
     }
 
+    const handleOnChange = (e) => {
+        let input = e.target.value.toLowerCase()
+
+        setCities({...cities, 
+            filtered: cities.all.filter(city => city.toLowerCase().includes(input) )
+        })
+    }
 
     const handleOptionsRender = (city, key) => {
         return (
@@ -74,11 +81,11 @@ const LocationSelect = (props) => {
                 className='w-full max-h-48 overflow-hidden overflow-y-scroll  z-30 ml-4 mt-4 transition duration-300 absolute bg-white text-black p-2 rounded-b'
             >
                 <input
-                    className='text-lg border-2 border-gray-400 rounded px-2 py-1 w-full focus:outline-none'
-                    onChange={null}
+                    className='text-lg border-2 border-gray-400 rounded px-2 py-1 mb-4 w-full focus:outline-none'
+                    onChange={handleOnChange}
                     placeholder="Cerca una citta'..."
                 />
-                {cities.map(handleOptionsRender)}
+                {cities.filtered.map(handleOptionsRender)}
             </div>
 
         </div>

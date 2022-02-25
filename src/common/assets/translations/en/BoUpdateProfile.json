@@ -1,0 +1,17 @@
+{
+	"Info": {
+        "Name": "Name",
+        "Surname": "Surname",
+        "Username": "Username"
+    },
+	"Contacts": {
+        "PersonalEmail": "Personal email"
+
+    }, 
+    "Save": "Save",
+    "Modal":{
+        "Text": "Do you want to save the changes?",
+        "Cancel": "Cancel",
+        "Ok": "Ok"
+    }
+}

@@ -2,7 +2,9 @@ import "./UsersList.css"
 import 'antd/dist/antd.css' //Css Antdesign
 
 import { Component } from "react";
-
+//import translation
+import { withTranslation } from "react-i18next";
+import { t } from "i18next";
 // Import Routing
 import { getUsersPaged } from "../../../services/backoffice/usersApi";
 
@@ -12,23 +14,24 @@ import { connect } from "react-redux";
 // Import from AntDesign
 import { Table, Input, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
+
 const { Search } = Input;
 
 class UsersList extends Component {
     constructor(props) {
         super(props)
-
+        const { t } = this.props;
         let columns = [
             {
-                title: 'Username',
+                title: t("BoUsers.Users.Username"),
                 dataIndex: 'username',
             },
             {
-                title: 'Email',
+                title: t("BoUsers.Users.Email"),
                 dataIndex: 'email',
             },
             {
-                title: 'Tipo',
+                title: t("BoUsers.Users.Type"),
                 dataIndex: 'commercialId',
                 render: (text) => {
                     let color = ""
@@ -50,7 +53,7 @@ class UsersList extends Component {
                 title: '',
                 dataIndex: 'actions',
                 render: (text, record) =>
-                    <Link to={"/admin/user/" + record.key + "/details"}>Scheda utente</Link>
+                    <Link to={"/admin/user/" + record.key + "/details"}>{t("BoUsers.Users.FactsCard")}</Link>
                 ,
             }
         ]
@@ -93,8 +96,8 @@ class UsersList extends Component {
         this.setState({
             isLoading: true
         })
-        if(this.state.searchQuery === "") {
-        this.fetchUsersPaged(pagination.current-1, pagination.pageSize)
+        if (this.state.searchQuery === "") {
+            this.fetchUsersPaged(pagination.current - 1, pagination.pageSize)
         }
         else {
             //Search API
@@ -102,12 +105,13 @@ class UsersList extends Component {
     }
 
     render() {
+        const { t } = this.props;
         return (
             <div className="users-list-background">
                 <div className="users-list-container">
                     <div className="users-list-header">
                         <Search
-                            placeholder="Search by username"
+                            placeholder={t("BoUsers.Users.Searchbar")}
                             enterButton
                             allowClear
                             onSearch={this.searchByName}
@@ -121,7 +125,7 @@ class UsersList extends Component {
                             tableLayout="fixed"
                             scroll={{ scrollToFirstRowOnChange: true }}
                             pagination={{
-                                defaultPageSize: 10, 
+                                defaultPageSize: 10,
                                 total: this.state.totalElements,
                                 hideOnSinglePage: true,
                             }}
@@ -138,4 +142,4 @@ const mapStateToProps = state => ({
     admin: state.adminDuck.admin
 })
 
-export default connect(mapStateToProps)(UsersList)
+export default withTranslation()(connect(mapStateToProps)(UsersList))

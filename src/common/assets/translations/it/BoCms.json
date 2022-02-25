@@ -1,0 +1,12 @@
+{
+    "Cms": {
+        "Profile": "Profilo",
+        "Dashboard": "Statistiche",
+        "Ads": "Annunci",
+        "Verifications": "Autenticazioni",
+        "Users": "Utenti",
+        "Business": "Aziende",
+        "Checkers": "Collaboratori",
+        "Logout": "Esci"
+    }
+}

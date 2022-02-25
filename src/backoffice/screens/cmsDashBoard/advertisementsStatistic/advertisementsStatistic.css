@@ -1,0 +1,5 @@
+.advertisementsStatistic-container{
+    padding: 15px;
+    height: calc(100vh - 194px);
+    overflow-y: auto;
+}
