@@ -2,8 +2,8 @@ import React from 'react'
 import PhotosCarousel from '../PhotosCarousel/PhotosCarousel'
 
 // components
-import Card from '../UI/Card/Card'
-import AdvAuthor from './AdvAuthor'
+import Card from "../UI/Card/Card";
+import AdvAuthor from "./AdvAuthor";
 
 import getBuildingType from '../../../common/utils/getBuildingType'
 
@@ -65,4 +65,4 @@ AdvCard.defaultProps = {
     authorAvatarUrl: "https://bit.ly/3GYboVJ"
 }
 
-export default AdvCard
+export default AdvCard;

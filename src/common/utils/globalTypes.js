@@ -2,16 +2,16 @@
 
 const ADV_TYPES = [
     {
-        label:'Affitto',
-        value:'RENT'
+        label: 'Affitto',
+        value: 'RENT'
     },
     {
-        label:'Vendita',
-        value:'SALE'
+        label: 'Vendita',
+        value: 'SALE'
     },
     {
-        label:'Affitto Breve',
-        value:'SHORT_RENT'
+        label: 'Affitto Breve',
+        value: 'SHORT_RENT'
     }
 ]
 
