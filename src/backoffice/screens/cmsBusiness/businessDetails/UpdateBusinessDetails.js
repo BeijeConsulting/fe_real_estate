@@ -8,26 +8,24 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { getBusinessById, updateBusinessInfo } from "../../../../services/backoffice/businessApi";
+import { useTranslation } from "react-i18next";
 
 const UpdateBusinessDetails = (props) => {
     let businessData = {}
     let updatedData = {}
     let navigate = useNavigate()
     let params = useParams()
+    let { t } = useTranslation()
     const [form] = Form.useForm();
 
     const [state, setState] = useState({ businessData: null, updatedData: {} })
 
     const getBusinessData = async () => {
         businessData = await getBusinessById(params.id, props.admin.token)
-        console.log('data admin', businessData)
         updatedData = {
             businessName: businessData.businessName,
-
         }
-
         setState({ updatedData: updatedData, businessData: businessData })
-
     }
 
     const handleName = (e) => {
@@ -55,21 +53,20 @@ const UpdateBusinessDetails = (props) => {
         setState({ ...state, updatedData: updatedData })
     }
 
-    const handleManagerPhone = (e) =>{
+    const handleManagerPhone = (e) => {
         let phone = e.target.value
         updatedData = { ...state.updatedData, phone: phone }
         setState({ ...state, updatedData: updatedData })
     }
 
     const handleClick = async () => {
-        let data = await updateBusinessInfo(state.updatedData, props.admin.token)
+        await updateBusinessInfo(state.updatedData, props.admin.token)
         navigate("/admin/profile")
     }
 
     useEffect(() => {
         getBusinessData()
         form.resetFields()
-        console.log('admin data', state.businessData)
 
     }, [])
 
@@ -88,31 +85,31 @@ const UpdateBusinessDetails = (props) => {
                     initialValues={state.businessData}
                 >
                     <div className="update-profile-info">
-                        <Form.Item name="businessName" label="Nome azienda">
-                            <Input onChange={handleName} placeholder="Inserisci nome" />
+                        <Form.Item name="businessName" label={t("BoBusiness.UpdateBusiness.BusinessName")}>
+                            <Input onChange={handleName} placeholder={t("BoBusiness.UpdateBusiness.BusinessName")} />
                         </Form.Item>
-                        <Form.Item name="vatNumber" label="P.Iva">
-                            <Input onChange={handleVatNumber} placeholder="Inserisci p.iva" />
+                        <Form.Item name="vatNumber" label={t("BoBusiness.UpdateBusiness.Vat")}>
+                            <Input onChange={handleVatNumber} placeholder={t("BoBusiness.UpdateBusiness.Vat")} />
                         </Form.Item>
-                        <Form.Item name="address" label="Indirizzo">
+                        <Form.Item name="address" label={t("BoBusiness.UpdateBusiness.Address")}>
                             <Input placeholder="Inserisci indirizzo" />
                         </Form.Item>
                     </div>
                     <div className="update-profile-contacts">
-                        <Form.Item name="refName" label="Nome Manager">
+                        <Form.Item name="refName" label={t("BoBusiness.UpdateBusiness.Manager.Name")}>
                             <Input onChange={handleManagerName} type="email" placeholder="inserisci nome" />
                         </Form.Item>
-                        <Form.Item name="refSurname" label="Cognome Manager">
+                        <Form.Item name="refSurname" label={t("BoBusiness.UpdateBusiness.Manager.Surname")}>
                             <Input onChange={handleManagerSurname} type="email" placeholder="inserisci cognome" />
                         </Form.Item>
-                        <Form.Item name="phone" label="Numero telefono Manager">
+                        <Form.Item name="phone" label={t("BoBusiness.UpdateBusiness.Manager.Phone")}>
                             <Input onChange={handleManagerPhone} type="email" placeholder="inserisci numero di telefono" />
                         </Form.Item>
 
                     </div>
                     <div className="update-profile-button">
                         <Form.Item>
-                            <Button type="primary" onClick={handleClick}>Salva</Button>
+                            <Button type="primary" onClick={handleClick}>{t("BoBusiness.UpdateBusiness.SaveButton")}</Button>
                         </Form.Item>
                     </div>
                 </Form>

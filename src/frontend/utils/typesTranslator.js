@@ -11,6 +11,6 @@ const building = ( buildingType ) => {
     return result.pluralLabel
 }
 
-export default {
+export default  {
     adv, building
 }

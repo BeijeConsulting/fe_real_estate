@@ -11,11 +11,13 @@ import TagComp from "../../componets/funcComponets/tagComp/TagComp";
 import { useNavigate, useParams, useLocation, Outlet } from "react-router-dom"
 
 import "./cmsUser.css"
+import { useTranslation } from "react-i18next";
 
 const CmsUser = (props) => {
 
     const location = useLocation()
     const navigate = useNavigate();
+    const {t} = useTranslation()
     const params = useParams()
     const [state, setState] = useState({
     })
@@ -35,11 +37,11 @@ const CmsUser = (props) => {
                 <TagComp
                     key={Math.random()}
                     clickTag={navigateToPath(`/admin/user/${params.id}/details`)}
-                    label={"Details"} refClass={location.pathname.includes("details") ? "selected" : "unselected"} />
+                    label={t("BoUsers.CmsUser.Details")} refClass={location.pathname.includes("details") ? "selected" : "unselected"} />
                 <TagComp
                     key={Math.random()}
                     clickTag={navigateToPath(`/admin/user/${params.id}/advertisements`)}
-                    label={"Advertisements"} refClass={location.pathname.includes("advertisements") ? "selected" : "unselected"} />
+                    label={t("BoUsers.CmsUser.Ads")} refClass={location.pathname.includes("advertisements") ? "selected" : "unselected"} />
             </nav>
             <div>
                 <Outlet />

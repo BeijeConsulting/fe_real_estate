@@ -11,9 +11,11 @@ import utilsMethods from "../../../../common/utils/utilsMethods";
 // Import from AntDesign
 import { Table, Input, Tag, Space, Button } from "antd";
 import { getRefusedAdvertaisement } from '../../../../services/backoffice/advertisementApi';
+import { useTranslation } from 'react-i18next';
 
 const UserAdv = (props) => {
 
+    const {t} = useTranslation()
     let [state, setState] = useState({
         advertisements: [],
         isLoading: true,
@@ -22,19 +24,19 @@ const UserAdv = (props) => {
 
     let columns = [
         {
-            title: 'Bulding Type',
+            title: t("BoUsers.CmsUser.Adv.BuildingType"),
             dataIndex: 'buildingType',
         },
         {
-            title: 'advType',
+            title: t("BoUsers.CmsUser.Adv.AdvType"),
             dataIndex: 'advType',
         },
         {
-            title: 'City',
+            title: t("BoUsers.CmsUser.Adv.City"),
             dataIndex: 'city',
         },
         {
-            title: 'Published Date Time',
+            title: t("BoUsers.CmsUser.Adv.Published"),
             dataIndex: 'publishedDateTime',
             render: (text) => {
                 if (text === null) {

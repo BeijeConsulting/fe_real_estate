@@ -96,28 +96,28 @@ const UpdateProfile = (props) => {
                     </Upload>
 
                     <div className="update-profile-info">
-                        <Form.Item name="name" label="Nome">
+                        <Form.Item name="name" label={t("BoUpdateProfile.Info.Name")}>
                             <Input onChange={handleName} placeholder="inserisci nome" />
                         </Form.Item>
-                        <Form.Item name="surname" label="Cognome">
+                        <Form.Item name="surname" label={t("BoUpdateProfile.Info.Surname")}>
                             <Input onChange={handleSurname} placeholder="inserisci cognome" />
                         </Form.Item>
-                        <Form.Item name="username" label="Username">
+                        <Form.Item name="username" label={t("BoUpdateProfile.Info.Username")}>
                             <Input placeholder="admin" />
                         </Form.Item>
                     </div>
                     <div className="update-profile-contacts">
-                        <Form.Item name="email" label="Email">
+                        <Form.Item name="email" label={t("BoUpdateProfile.Contacts.PersonalEmail")}>
                             <Input onChange={handleEmail} type="email" placeholder="inserisci la tua email" />
                         </Form.Item>
                     </div>
                     <div className="update-profile-button">
                         <Form.Item>
-                            <Button type="primary" onClick={handleClick}>Salva</Button>
+                            <Button type="primary" onClick={handleClick}>{t("BoUpdateProfile.Save")}</Button>
                         </Form.Item>
                     </div>
                     <Modal visible={state.isModalOpened} onOk={saveChanges} onCancel={handleClick} getContainer={false}>
-                        <p>Vuoi salvare questi cambiamenti?</p>
+                        <p>{t("BoUpdateProfile.Modal.Text")}</p>
                     </Modal>
                 </Form>
             </div >

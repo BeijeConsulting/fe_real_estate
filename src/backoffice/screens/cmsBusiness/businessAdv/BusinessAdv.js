@@ -15,6 +15,7 @@ import { useParams, Link } from "react-router-dom";
 
 // ant design
 import { Table, Input, Tag, Space } from "antd";
+import { useTranslation } from 'react-i18next';
 const { Search } = Input;
 
 
@@ -26,6 +27,7 @@ const BusinessAdv = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [totalElements, setTotalElements] = useState(0);
 
+    const { t } = useTranslation()
     //router
     const param = useParams();
     console.log('Param', param);
@@ -42,7 +44,6 @@ const BusinessAdv = (props) => {
             }
             return item;
         })
-        console.log('LISTDATA', listData);
         setAdvBusiness(listData);
         setIsLoading(false)
     }
@@ -60,19 +61,19 @@ const BusinessAdv = (props) => {
     // func List
     let columnsAdmin = [
         {
-            title: 'Bulding Type',
+            title: t("BoBusiness.Adv.BuildingType"),
             dataIndex: 'buildingType',
         },
         {
-            title: 'advType',
+            title: t("BoBusiness.Adv.AdvType"),
             dataIndex: 'advType',
         },
         {
-            title: 'City',
+            title: t("BoBusiness.Adv.City"),
             dataIndex: 'city',
         },
         {
-            title: 'Published Date Time',
+            title:t("BoBusiness.Adv.Published"),
             dataIndex: 'publishedDateTime',
             render: (text) => {
                 if (text === null) {

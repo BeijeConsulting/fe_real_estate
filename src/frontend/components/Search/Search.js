@@ -34,7 +34,7 @@ const Search = () => {
 			city: query.location,
 			buildingType: query.buildingType.value.toUpperCase()
 		}).then(res => {
-			setResults(res.data)
+			setResults(res.data.totRecords)
 		})
 	}, [query])
 	
@@ -79,10 +79,10 @@ const Search = () => {
 			</div>
 
 			<Button
-				disabled={results.length <= 0 ? true : false}
+				disabled={results <= 0 ? true : false}
 				type="primary"
 				size={26}
-				label={ results.length >= 1 ? `VEDI ${results.length} CASE` : `NON HO TROVATO CASE`}
+				label={ results >= 1 ? `VEDI ${results} CASE` : `NON HO TROVATO CASE`}
 				marginTop={25}
 				onClick={handleSubmit}
 			/>
