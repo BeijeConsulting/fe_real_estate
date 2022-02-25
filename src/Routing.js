@@ -45,6 +45,7 @@ import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/Busine
 import Checker from "./backoffice/screens/Checkers/Checker";
 import CheckersList from "./backoffice/screens/Checkers/CheckersList";
 import AddChecker from "./backoffice/screens/Checkers/AddChecker";
+import AdvListBo from "./backoffice/screens/AdvListBo/AdvListBo";
 import CmsUser from "./backoffice/screens/CmsUser/CmsUser";
 import UserDetails from "./backoffice/screens/CmsUser/UserDetails/UserDetails";
 import UpdateUserDetails from "./backoffice/screens/CmsUser/UserDetails/UpdateUserDetails";
@@ -179,7 +180,7 @@ const Routing = () => (
 					/>
 					<Route path="advertisements" element={<UserAdv />} />
 				</Route>
-				<Route path="advertisements" element={<RoutingBO.User />} />
+				<Route path="advertisements" element={<AdvListBo />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route path="advertisement/:id" element={<DetailsAd />} />
 				<Route path="dashBoard" element={<CmsDashBoard />} >

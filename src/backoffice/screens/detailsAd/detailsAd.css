@@ -21,6 +21,10 @@
     margin-top: 1em;
     text-align: center;
   }
+
+  .state-adv {
+    text-align: center;
+  }
   
   .link {
     color: #008dff !important;

@@ -1,7 +1,7 @@
 import { javaAcademyServiceInstance } from "../javaAcademyService";
 
 const tokenDefault =
-	"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIkFETUlOIiwiVVNFUiIsIkNIRUNLRVIiXSwiaWF0IjoxNjQ1NjMyMDI5LCJleHAiOjE2NDU2MzU2Mjl9.aRNY-zBzbyp-0hsDm-5Fld4d6v49H-WVRbZ7r_p60ro";
+	"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVzIjpbIkFETUlOIiwiVVNFUiIsIkNIRUNLRVIiXSwiaWF0IjoxNjQ1Nzg0OTY4LCJleHAiOjE2NDU3ODg1Njh9.xIKvGI_NM6a_gZNhIiU33B4MpSSYRfqgXuXqAp98r2I";
 
 export const getUserByUsername = async (username, token = tokenDefault) => {
 	let user = "";
@@ -9,7 +9,7 @@ export const getUserByUsername = async (username, token = tokenDefault) => {
 		Authorization: "Bearer " + token,
 	};
 	await javaAcademyServiceInstance
-		.get("/finduser/" + username, { headers })
+		.get("/user/find/" + username, { headers })
 		.then((response) => {
 			user = response.data;
 		})
