@@ -92,14 +92,20 @@ class Login extends Component {
 			};
 		}
 
-		authApi.signIn(
-			{
-				username: this.state.data.username,
-				password: this.state.data.password,
-			},
-			rememberMeObj,
-			this.props.dispatch
-		);
+		authApi
+			.signIn(
+				{
+					username: this.state.data.username,
+					password: this.state.data.password,
+				},
+				this.props.dispatch
+			)
+			.then(() =>
+				localStorage.setItem(
+					storage.LOCAL_STORAGE_KEYS.REMEMBER_ME,
+					JSON.stringify(rememberMeObj)
+				)
+			);
 	};
 
 	render() {

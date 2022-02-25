@@ -1,5 +1,4 @@
 import axios from "axios";
-import storage from "../common/utils/storage";
 
 export const javaAcademyServiceInstance = axios.create({
 	baseURL: "http://domus-test.eba-733cj72h.eu-south-1.elasticbeanstalk.com",
@@ -19,7 +18,21 @@ const signIn = ({ username, password }) =>
 		}
 	);
 
-const getDetailBuilding = (id) => javaAcademyServiceInstance.get(`/advertisement/${id}`);
+const updateAuthToken = (refreshToken) =>
+	javaAcademyServiceInstance.post(
+		"/updateAuthToken",
+		{
+			refreshToken,
+		},
+		{
+			headers: {
+				"Content-type": "application/json",
+			},
+		}
+	);
+
+const getDetailBuilding = (id) =>
+	javaAcademyServiceInstance.get(`/advertisement/${id}`);
 
 const getAds = () => javaAcademyServiceInstance.get(`/ads`);
 
@@ -27,6 +40,7 @@ const javaAcademyService = {
 	getAds,
 	signIn,
 	getDetailBuilding,
+	updateAuthToken,
 };
 
 export default javaAcademyService;

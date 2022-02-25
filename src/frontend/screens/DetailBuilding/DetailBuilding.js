@@ -13,7 +13,8 @@ import {
 	faMapLocationDot,
 	faBath, faDoorOpen,
 	faMaximize, faStairs,
-	faHouse
+	faHouse, faCalendarDays,
+	faCubes, faElevator, faBellConcierge, faPersonSwimming, faBoxOpen
 } from "@fortawesome/free-solid-svg-icons";
 
 //API
@@ -51,10 +52,9 @@ class DetailBuilding extends Component {
 		};
 	}
 
-	componentDidMount() {
+	getApiDetailBuilding = () => {
 		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
 			const adv = res.data;
-			console.log(adv);
 			let details = {};
 			if (!!adv) {
 				details = {
@@ -95,6 +95,10 @@ class DetailBuilding extends Component {
 
 			this.setState({ adv: details });
 		});
+	}
+
+	componentDidMount() {
+		this.getApiDetailBuilding();
 	}
 
 	openCanvas = (e) => {
@@ -142,7 +146,7 @@ class DetailBuilding extends Component {
 								thumbnails={true}
 								thumbnailWidth="100px"
 								style={{
-									width: "80%",
+									width: "75%",
 									margin: "15px 25px",
 								}}
 							/>
@@ -160,7 +164,6 @@ class DetailBuilding extends Component {
 									<FontAwesomeIcon
 										className={" h-6 text-gray-500"}
 										icon={faHeart}
-										onClick={this.changeColor}
 									/>
 
 								</div>
@@ -178,7 +181,7 @@ class DetailBuilding extends Component {
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faMaximize} />
-										<h1 className="text-lg font-medium">{this.state.adv.areaMsq}m<sup>2</sup> </h1>
+										<h1 className="text-lg font-medium">{this.state.adv.areaMsq} m<sup>2</sup> </h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
@@ -204,10 +207,23 @@ class DetailBuilding extends Component {
 											icon={faStairs} />
 										<h1 className="text-lg font-medium">{this.state.adv.floor}° piano</h1>
 									</div>
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faCalendarDays} />
+										<h1 className="text-lg font-medium">Pubblicato il {new Date(this.state.adv.date).toLocaleDateString()}</h1>
+									</div>
 									<div className="price">
 										{this.state.adv.price}€
 									</div>
-									<button onClick={this.openCanvas}>Open 3D View</button>
+									<div className="flex mt-2">
+										<FontAwesomeIcon
+											className={"text-2xl text-gray-800 mt-1 mr-2"}
+											icon={faCubes}
+										/>
+										<button className="text-xl font-medium" onClick={this.openCanvas}>Open 3D View</button>
+
+									</div>
 								</div>
 							</div>
 						</div>
@@ -234,65 +250,78 @@ class DetailBuilding extends Component {
 										Informazioni nel dettaglio
 									</h1>
 									<div className="flex flex-row">
-										<BuildingInfobox
-											title={"Ascensore:"}
-											adv={this.state.adv.elevator}
-										/>
-										<BuildingInfobox
-											title={"Reception:"}
-											adv={this.state.adv.reception}
-										/>
-										<BuildingInfobox
-											title={"Piscina:"}
-											adv={this.state.adv.pool}
-										/>
-										<BuildingInfobox
-											title={"Terrazza"}
-											adv={this.state.adv.terrace}
-										/>
-										<BuildingInfobox
-											title={"Soffitta"}
-											adv={this.state.adv.attic}
-										/>
-										<BuildingInfobox
-											title={"Balcone"}
-											adv={this.state.adv.balcony}
-										/>
-									</div>
-									<div className="flex flex-row">
+										<div className="flex flex-col">
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-2"
+													icon={faElevator}
+												/>
+												<BuildingInfobox
+													title={"Ascensore:"}
+													adv={this.state.adv.elevator}
+												/>
+											</div>
+											<div className="flex flex-row">
 
-										<BuildingInfobox
-											title={"Cantina"}
-											adv={this.state.adv.basement}
-										/>
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-2"
+													icon={faBellConcierge}
+												/>
+												<BuildingInfobox
+													title={"Reception:"}
+													adv={this.state.adv.reception}
+												/>
+											</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-2"
+													icon={faPersonSwimming}
+												/>
+												<BuildingInfobox
+													title={"Piscina:"}
+													adv={this.state.adv.pool}
+												/>
+											</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-2"
+													icon={faBoxOpen}
+												/>
+												<BuildingInfobox
+													title={"Soffitta"}
+													adv={this.state.adv.attic}
+												/>
+											</div>
+										</div>
+										<div className="flex flex-col">
+											<BuildingInfobox
+												title={"Terrazza"}
+												adv={this.state.adv.terrace}
+											/>
 
-										<BuildingInfobox
-											title={"Aria condizionata"}
-											adv={this.state.adv.cooling}
-										/>
+											<BuildingInfobox
+												title={"Balcone"}
+												adv={this.state.adv.balcony}
+											/>
 
-										<BuildingInfobox
-											title={"Classe energetica"}
-											adv={this.state.adv.energyRating}
-										/>
-										<BuildingInfobox
-											title={"Arredato"}
-											adv={this.state.adv.furniture}
-										/>
-										<BuildingInfobox
-											title={"Posto auto"}
-											adv={this.state.adv.parkingSpots}
-										/>
-									</div>
-									<div className="flex flex-row">
-										<BuildingInfobox
-											title={"Portineria"}
-											adv={this.state.adv.reception}
-										/>
-										<BuildingInfobox
-											title={"Giardino"}
-											adv={this.state.adv.yard}
-										/>
+
+											<BuildingInfobox
+												title={"Cantina"}
+												adv={this.state.adv.basement}
+											/>
+											<BuildingInfobox
+												title={"Portineria"}
+												adv={this.state.adv.reception}
+											/>
+										</div>
+										<div className="flex flex-col">
+											<div className="text-base font-medium">Aria condizionata: {this.state.adv.cooling}</div>
+											<div className="text-base font-medium">Classe energetica: {this.state.adv.energyRating}</div>
+											<div className="text-base font-medium">Arredato: {this.state.adv.furniture}</div>
+											<div className="text-base font-medium">Posto auto: {this.state.adv.parkingSpots}</div>
+											<div className="text-base font-medium">Giardino: {this.state.adv.yard}</div>
+										</div>
+
 									</div>
 								</Card>
 							</div>
