@@ -20,7 +20,6 @@ const NewAdv = () => {
     {
       address: "",
       advType: "",
-      advType: "",
       areaMsq: "",
       attic: false,
       balcony: false,
@@ -73,21 +72,22 @@ const NewAdv = () => {
     setState(newState)
   }
 
-  /*FIX
-  const increment = (key) = (e) => {
+
+  const increment = (key) => (e) => {
     e.preventDefault()
     const newState = { ...state }
-    newState[key] = newState[key + 1]
+    newState[key] = newState[key] + 1
     setState(newState)
   }
-  const decrement = (key) = (e) => {
+  const decrement = (key) => (e) => {
     e.preventDefault()
     const newState = { ...state }
-    if (key > 1) {
-      newState[key] = newState[key + 1]
+
+    if (newState[key] > 0) {
+      newState[key] = newState[key] - 1
       setState(newState)
     }
-  }*/
+  }
 
   const handleStepChange = current => {
     setCurrent(current)
@@ -176,69 +176,75 @@ const NewAdv = () => {
             }
             {current === 1 &&
               <div className='flex flex-col mx-auto'>
+                 {/* <div className="grid grid-cols-3"> */}
 
-                <div className='flex flex-wrap gap-2'>
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Balcone</label>
-                    <Checkbox onChange={switchCheck("balcony")} />
-                  </div>
 
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Ascensore</label>
-                    <Checkbox onChange={switchCheck("elevator")} />
-                  </div>
+                  <div className='flex flex-wrap gap-2'>
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Balcone</label>
+                      <Checkbox onChange={switchCheck("balcony")} />
+                    </div>
 
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Piscina</label>
-                    <Checkbox onChange={switchCheck("pool")} />
-                  </div>
-                </div>
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Ascensore</label>
+                      <Checkbox onChange={switchCheck("elevator")} />
+                    </div>
 
-                <div className='flex flex-wrap gap-2'>
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Soffitta</label>
-                    <Checkbox onChange={switchCheck("attic")} />
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Piscina</label>
+                      <Checkbox onChange={switchCheck("pool")} />
+                    </div>
                   </div>
 
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Cantina</label>
-                    <Checkbox onChange={switchCheck("basement")} />
+                  <div className='flex flex-wrap gap-2'>
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Soffitta</label>
+                      <Checkbox onChange={switchCheck("attic")} />
+                    </div>
+
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Cantina</label>
+                      <Checkbox onChange={switchCheck("basement")} />
+                    </div>
+
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Terrazzo</label>
+                      <Checkbox onChange={switchCheck("terrace")} />
+                    </div>
+                  </div>
+                  <div className='flex flex-wrap gap-2'>
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Portineria</label>
+                      <Checkbox onChange={switchCheck("reception")} />
+                    </div>
+
+                    <div className='mb-5'>
+                      <label className='uppercase font-primary color-secondary mr-3'>Posto auto</label>
+                      <Checkbox onChange={switchCheck("parkingSpots")} />
+                    </div>
                   </div>
 
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Terrazzo</label>
-                    <Checkbox onChange={switchCheck("terrace")} />
-                  </div>
-                </div>
-                <div className='flex flex-wrap gap-2'>
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Portineria</label>
-                    <Checkbox onChange={switchCheck("reception")} />
-                  </div>
 
-                  <div className='mb-5'>
-                    <label className='uppercase font-primary color-secondary mr-3'>Posto auto</label>
-                    <Checkbox onChange={switchCheck("parkingSpots")} />
-                  </div>
-                </div>
+                {/* </div> */}
+
 
 
                 <div className='flex flex-wrap mx-auto'>
                   <div className='mb-5'>
                     <label className='uppercase font-primary color-secondary mr-3'>N. Bagni</label>
                     <div className='flex mr-2'>
-                      <CircleButton label='-' onClickCallback={null/*decrement("bathrooms")*/} />
+                      <CircleButton label='-' onClickCallback={decrement("bathrooms")} />
                       <span className='text-lg font-semibold my-2 mx-3'>{state.bathrooms}</span>
-                      <CircleButton label='+' onClickCallback={null/*increment("bathrooms")*/} />
+                      <CircleButton label='+' onClickCallback={increment("bathrooms")} />
                     </div>
                   </div>
 
                   <div className='mb-5'>
                     <label className='uppercase font-primary color-secondary mr-3'>N. Camere</label>
                     <div className='flex mr-2'>
-                      <CircleButton label='-' onClickCallback={null/*decrement("rooms")*/} />
+                      <CircleButton label='-' onClickCallback={decrement("rooms")} />
                       <span className='text-lg font-semibold my-2 mx-3'>{state.rooms}</span>
-                      <CircleButton label='+' onClickCallback={null/*increment("rooms")*/} />
+                      <CircleButton label='+' onClickCallback={increment("rooms")} />
                     </div>
                   </div>
                 </div>
@@ -248,18 +254,18 @@ const NewAdv = () => {
                   <div className='mb-5'>
                     <label className='uppercase font-primary color-secondary mr-1'>N. Piano</label>
                     <div className='flex mr-2'>
-                      <CircleButton label='-' onClickCallback={null/*decrement("floor")*/} />
+                      <CircleButton label='-' onClickCallback={decrement("floor")} />
                       <span className='text-lg font-semibold my-2 mx-3'>{state.floor}</span>
-                      <CircleButton label='+' onClickCallback={null/*increment("floor")*/} />
+                      <CircleButton label='+' onClickCallback={increment("floor")} />
                     </div>
                   </div>
 
                   <div className='mb-5'>
                     <label className='uppercase font-primary color-secondary mr-1'>N. Piani Totali</label>
                     <div className='flex mr-2'>
-                      <CircleButton label='-' onClickCallback={null/*decrement("floors")*/} />
+                      <CircleButton label='-' onClickCallback={decrement("floors")} />
                       <span className='text-lg font-semibold my-2 mx-3'>{state.floors}</span>
-                      <CircleButton label='+' onClickCallback={null/*increment("floors")*/} />
+                      <CircleButton label='+' onClickCallback={increment("floors")} />
                     </div>
                   </div>
                 </div>
