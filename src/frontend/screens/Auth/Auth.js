@@ -5,6 +5,7 @@ import logo from "../../../common/assets/logo/logo.png";
 import storage from "../../../common/utils/storage";
 import { Navigate, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
+import authApi from "../../../services/frontend/authApi";
 
 class Auth extends Component {
 	constructor(props) {
@@ -18,10 +19,12 @@ class Auth extends Component {
 
 	componentDidMount = () => {
 		if (!this.props.username) {
-			const token = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN);
+			const refreshToken = localStorage.getItem(
+				storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN
+			);
 
-			if (!!token) {
-				// make call to validate token
+			if (!!refreshToken) {
+				authApi.updateAuthToken({ refreshToken }, this.props.dispatch);
 			}
 		}
 	};
