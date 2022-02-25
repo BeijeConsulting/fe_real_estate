@@ -24,6 +24,7 @@ const Button = (props) => {
 			className={
 				btnStyle +
 				props.className +
+				(props.disabled && ' opacity-70') +
 				" scale-in-hover cursor-pointer rounded-full flex justify-center items-center"
 			}
 			onClick={handleClick}

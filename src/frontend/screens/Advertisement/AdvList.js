@@ -8,14 +8,16 @@ import Filters from "../../components/Filters/Filters";
 import { Select } from "antd";
 
 //UTILS
-import sortList from "../../../common/utils/sortList";
+import sortList from '../../../common/utils/sortList'
+import noHouseFound from '../../assets/illustrations/noHouseFound.svg'
 
 // API
 import { findAds } from "../../../services/frontend/advertisementApi";
 
 // HOOKS
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import useURLQuery from "../../hooks/useQuery";
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import useURLQuery from '../../hooks/useQuery'
+import typesTranslator from '../../utils/typesTranslator'
 
 const { Option } = Select;
 
@@ -60,73 +62,72 @@ const AdvList = () => {
 
 	const handleSorting = (e) => setSortType(e);
 
-	switch (advType) {
-		case "rent":
-			type = "Affitto";
-			break;
-		case "sale":
-			type = "Vendita";
-			break;
-		case "short_rent":
-			type = "Affito Breve";
-			break;
-	}
 
-	const handleAdvRender = (adv, key) => {
-		return (
-			<AdvCard
-				key={"advard-" + key + adv.id}
-				id={adv.id}
-				city={adv.city}
-				squareMeters={adv.areaMsq}
-				description={adv?.longDescription}
-				roomNumber={adv.rooms}
-				price={adv.price}
-				onClick={handleNavigate(`/${lang}/adv/${adv.id}`)}
-				authorName={adv.seller.username}
-			/>
-		);
-	};
+    const handleAdvRender = (adv, key) => {
+        return (
+            <AdvCard
+                key={'advard-' + key + adv.id}
+                id={adv.id}
+                city={adv.city}
+                address={adv.address}
+                squareMeters={adv.areaMsq}
+                description={adv?.longDescription}
+                roomNumber={adv.rooms}
+                price={adv.price}
+                onClick={handleNavigate(`/${lang}/adv/${adv.id}`)}
+                onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv.seller.username}`)}
+                authorName={adv.seller.username}
+            />
+        )
+    }
 
 	return (
 		<div className="min-h-screen bg-gray">
 			<Navbar />
 
-			<div className="max-w-6xl mx-auto mt-10 flex">
-				<Button
-					iconPosition="left"
-					label="Torna alla Home"
-					type="secondary"
-					onClick={handleNavigate("/")}
-				/>
-			</div>
+            <div className='max-w-6xl mx-auto mt-10 flex'>
+                <Button
+                    iconPosition="left"
+                    label="Torna alla Home"
+                    type="secondary"
+                    onClick={handleNavigate('/')}
+                />
+            </div>
 
-			<div className="max-w-5xl lg:max-w-6xl p-2 mx-auto">
-				<p className="text-3xl font-bold">
-					Ho trovato {advList.length} {buildingType} in {type} a {cityCapital}{" "}
-				</p>
+            <div className='max-w-5xl lg:max-w-6xl p-2 mx-auto'>
+                <p className='text-3xl font-bold'>Ho trovato {advList.length} {typesTranslator.building(buildingType)} in {typesTranslator.adv(advType)} a {cityCapital} </p>
 
-				<Select
-					onChange={handleSorting}
-					className="w-40 mt-6"
-					placeholder="Ordina per.."
-				>
-					<Option value="price-asc">Dal meno caro</Option>
-					<Option value="price-desc">Dal piu' caro</Option>
-				</Select>
+                <Select onChange={handleSorting} className='w-40 mt-6' placeholder="Ordina per..">
+                    <Option value="price-asc">Dal meno caro</Option>
+                    <Option value="price-desc">Dal piu' caro</Option>
+                </Select>
 
-				<div className="flex mt-10 space-x-4">
-					<div style={{ flex: 2 }}>
-						{/* CARD LIST HERE */}
-						{advList.map(handleAdvRender)}
-					</div>
-					<div className="flex-1 md:block hidden">
-						<Filters />
-					</div>
-				</div>
-			</div>
-		</div>
-	);
-};
+                <div className='flex mt-10 space-x-4'>
+                    <div style={{ flex: 2 }}>
+                        {/* CARD LIST HERE */}
+                        {advList.map(handleAdvRender)}
 
-export default AdvList;
+                        {advList.length <= 0 &&
+                            <div className='font-primary text-center'>
+                                <img className='mx-auto max-h-80 mb-6' src={noHouseFound} />
+                                <p className='text-3xl font-bold'>Non ho trovato {typesTranslator.building(buildingType)} per te</p>
+                                <p className=''>Ma tranquillo, è sicuramente in costruzione!</p>
+                            </div>
+                        }
+
+                    </div>
+                    <div className='flex-1 md:block hidden'>
+                        <Filters />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    )
+
+
+
+
+}
+
+export default AdvList
