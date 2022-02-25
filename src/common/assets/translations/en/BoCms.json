@@ -1,0 +1,12 @@
+{
+    "Cms": {
+        "Profile": "Profile",
+        "Dashboard": "Dashboard",
+        "Ads": "Advertisements",
+        "Verifications": "Verifications",
+        "Users": "Users",
+        "Business": "Business",
+        "Checkers": "Checkers",
+        "Logout": "Logout"
+    }
+}

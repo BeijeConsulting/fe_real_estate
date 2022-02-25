@@ -1,13 +1,16 @@
 import { useTranslation } from "react-i18next";
-
 import { Select } from 'antd';
+import { setLang } from "../../../../redux/ducks/translationDuck";
+import { connect } from "react-redux";
 
-const Language = () => {
+const Language = (props) => {
     const { i18n } = useTranslation();
     const { Option } = Select;
 
     const changeLanguage = (e) => {
         i18n.changeLanguage(e);
+
+        props.dispatch(setLang(e))
     };
 
     return (
@@ -24,4 +27,4 @@ const Language = () => {
 
 }
 
-export default Language
+export default connect()(Language)

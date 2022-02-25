@@ -6,7 +6,7 @@ export const createChecker = async (id, content, token) => {
     };
 
     let createChecker = ''
-    await javaAcademyServiceInstance.post("/user/makeChecker/" + id, content, { headers }).then((response) => {
+    await javaAcademyServiceInstance.post("/admin/user/makeChecker/" + id, content, { headers }).then((response) => {
         createChecker = response.data
 
 
@@ -21,7 +21,7 @@ export const getChecherList = async (token) => {
     const headers = {
         'Authorization': 'Bearer ' + token,
     };
-    await javaAcademyServiceInstance.get("/checkerList", { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/admin/checkersList", { headers }).then((response) => {
         fetchedUsers = response.data.map((user) => {
             return ({
                 key: user.id,
@@ -43,7 +43,7 @@ export const changeCheckerPermit = async (id, content, token) => {
     const headers = {
         'Authorization': 'Bearer ' + token,
     };
-    await javaAcademyServiceInstance.put("/checker/removePermit/" + id, content, { headers }).then((response) => {
+    await javaAcademyServiceInstance.put("/admin/checker/removePermit/" + id, content, { headers }).then((response) => {
         updateCheckerPermit = response
         console.log('updateCheckerPermit', updateCheckerPermit)
 
