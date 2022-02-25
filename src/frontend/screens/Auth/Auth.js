@@ -56,7 +56,7 @@ class Auth extends Component {
 				</div>
 				{/* Routing */}
 				{(this.props.username !== undefined || this.state.redirectHome) && (
-					<Navigate to={"/"} />
+					<Navigate to={"/"} replace={true} />
 				)}
 			</div>
 		);

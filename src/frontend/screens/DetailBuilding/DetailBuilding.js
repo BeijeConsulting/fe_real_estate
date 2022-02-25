@@ -13,7 +13,7 @@ import {
 	faMapLocationDot,
 	faBath, faDoorOpen,
 	faMaximize, faStairs,
-	faHouse
+	faHouse, faCalendarDays
 } from "@fortawesome/free-solid-svg-icons";
 
 //API
@@ -51,10 +51,9 @@ class DetailBuilding extends Component {
 		};
 	}
 
-	componentDidMount() {
+	getApiDetailBuilding = () => {
 		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
 			const adv = res.data;
-			console.log(adv);
 			let details = {};
 			if (!!adv) {
 				details = {
@@ -95,6 +94,10 @@ class DetailBuilding extends Component {
 
 			this.setState({ adv: details });
 		});
+	}
+
+	componentDidMount() {
+		this.getApiDetailBuilding();
 	}
 
 	openCanvas = (e) => {
@@ -142,7 +145,7 @@ class DetailBuilding extends Component {
 								thumbnails={true}
 								thumbnailWidth="100px"
 								style={{
-									width: "80%",
+									width: "75%",
 									margin: "15px 25px",
 								}}
 							/>
@@ -160,7 +163,6 @@ class DetailBuilding extends Component {
 									<FontAwesomeIcon
 										className={" h-6 text-gray-500"}
 										icon={faHeart}
-										onClick={this.changeColor}
 									/>
 
 								</div>
@@ -178,7 +180,7 @@ class DetailBuilding extends Component {
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faMaximize} />
-										<h1 className="text-lg font-medium">{this.state.adv.areaMsq}m<sup>2</sup> </h1>
+										<h1 className="text-lg font-medium">{this.state.adv.areaMsq} m<sup>2</sup> </h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
@@ -203,6 +205,12 @@ class DetailBuilding extends Component {
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faStairs} />
 										<h1 className="text-lg font-medium">{this.state.adv.floor}° piano</h1>
+									</div>
+									<div className="flex">
+										<FontAwesomeIcon
+											className={"text-xl text-gray-800 mt-0.5 mr-2"}
+											icon={faCalendarDays} />
+										<h1 className="text-lg font-medium">Pubblicato il {new Date(this.state.adv.date).toLocaleDateString()}</h1>
 									</div>
 									<div className="price">
 										{this.state.adv.price}€

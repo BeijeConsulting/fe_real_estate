@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 
 // files
 import banner from "../../assets/images/immagine-letto-2.png";
-import avatar from "../../assets/images/avatar.jpg";
+import avatar from "../../assets/images/avatar.png";
 
 // components
 import NavBar from "../../components/Navbar/Navbar";
@@ -32,7 +32,7 @@ const PublicProfile = () => {
 			const fecthedUser = await getUserByUsername(params.username).catch(
 				() => null
 			);
-
+			console.log(fecthedUser);
 			let newState = {};
 
 			if (!fecthedUser) {
@@ -41,8 +41,10 @@ const PublicProfile = () => {
 
 			newState.statusLoadingUser = STATUS_TYPE.SUCCESS;
 			newState.user = fecthedUser;
-
-			setState((previousState) => ({ ...previousState, ...newState }));
+			setState((previousState) => ({
+				...previousState,
+				...newState,
+			}));
 		};
 
 		loadUser();
@@ -50,9 +52,13 @@ const PublicProfile = () => {
 
 	useEffect(() => {
 		if (!!state.user?.id) {
-			findAds({ userId: state.user.id }).then((res) => console.log(res.data));
+			findAds({ userId: state.user.id }).then((res) =>
+				setState((previousState) => ({
+					...previousState,
+					ads: res.data.resList,
+				}))
+			);
 		}
-		// console.log(state.user);
 	}, [state.user]);
 
 	const handleAdvRender = useCallback(
@@ -97,21 +103,28 @@ const PublicProfile = () => {
 							<img alt="banner" className={`h-full w-full`} src={banner} />
 						</div>
 						<div className="absolute bottom-0 flex h-fit items-end justify-between left-0 w-full z-10">
-							{/* Username */}
-							<p className="bg-white/[0.6] font-bold text-xl p-2 md:text-3xl">
-								{state.user?.username ?? "Unknown"}
-							</p>
 							{/* Image profile user */}
 							<img
-								className="bg-white/[0.6] h-16 w-16 md:h-36 md:w-36"
+								className="bg-white/[0.6] h-24 w-24 rounded-full md:h-36 md:w-36"
 								src={avatar}
 								alt="profile-img"
 							/>
+							{/* Username */}
+							<p className="bg-white/[0.6] font-bold text-2xl p-2 md:text-3xl">
+								{state.user?.username ?? "Unknown"}
+							</p>
 						</div>
 					</header>
 					{/*  */}
 					<div className="flex flex-col p-2">
 						<div className="flex flex-col pt-2">
+							<h1 className="font-bold text-xl">Dati profilo</h1>
+							<p>
+								<b>Registrato dal:</b>{" "}
+								{!!state.user?.createDatetime
+									? new Date(state.user.createDatetime).toLocaleDateString()
+									: state.user?.createDatetime}
+							</p>
 							<p>
 								<b>Email:</b> {state.user?.email ?? "nessuna"}
 							</p>
@@ -121,7 +134,7 @@ const PublicProfile = () => {
 							</p>
 						</div>
 						<div className="flex flex-col pt-3">
-							<h1 className="font-bold">Annunci pubblicati</h1>
+							<h1 className="font-bold text-xl">Annunci pubblicati</h1>
 							{!!state.ads?.length && state.ads.length > 0 ? (
 								state.ads.map(handleAdvRender)
 							) : (
