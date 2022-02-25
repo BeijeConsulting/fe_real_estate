@@ -1,30 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
 
 // COMPONENTS
 import Button from "../../components/UI/Button/Button";
 import Navbar from "../../components/Navbar/Navbar";
 import AdvCard from "../../components/AdvCard/AdvCard";
 import Filters from "../../components/Filters/Filters";
+import { Select } from "antd";
+
+//UTILS
+import sortList from "../../../common/utils/sortList";
 
 // API
 import { findAds } from "../../../services/frontend/advertisementApi";
 
+// HOOKS
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useURLQuery from "../../hooks/useQuery";
-import { Select } from "antd";
 
 const { Option } = Select;
 
 const AdvList = () => {
+	// hooks
 	let { city, advType, buildingType, lang } = useParams();
 	let query = useURLQuery();
 	let location = useLocation();
-
-	const [advList, setAdvList] = useState([]);
 	let navigate = useNavigate();
 
+	const [advList, setAdvList] = useState([]);
+	const [sortType, setSortType] = useState();
+
 	let type = "";
-	const cityCapital = city.charAt(0).toUpperCase() + city.slice(1);
+	let cityCapital = city.charAt(0).toUpperCase() + city.slice(1);
 
 	useEffect(() => {
 		findAds({
@@ -38,13 +44,21 @@ const AdvList = () => {
 			pool: query.get("pool"),
 			terrace: query.get("terrace"),
 		}).then((res) => {
-			setAdvList(res.data);
+			let list = [...res.data];
+
+			if (sortType) {
+				setAdvList(sortList(sortType, list));
+			} else {
+				setAdvList(res.data);
+			}
 		});
-	}, [location.search, location.pathname]);
+	}, [location.search, location.pathname, sortType]);
 
 	const handleNavigate = (dest) => () => {
 		navigate(dest);
 	};
+
+	const handleSorting = (e) => setSortType(e);
 
 	switch (advType) {
 		case "rent":
@@ -92,9 +106,13 @@ const AdvList = () => {
 					Ho trovato {advList.length} {buildingType} in {type} a {cityCapital}{" "}
 				</p>
 
-				<Select className="w-40" placeholder="Ordina per..">
-					<Option>Dal meno caro</Option>
-					<Option>Dal piu' caro</Option>
+				<Select
+					onChange={handleSorting}
+					className="w-40 mt-6"
+					placeholder="Ordina per.."
+				>
+					<Option value="price-asc">Dal meno caro</Option>
+					<Option value="price-desc">Dal piu' caro</Option>
 				</Select>
 
 				<div className="flex mt-10 space-x-4">

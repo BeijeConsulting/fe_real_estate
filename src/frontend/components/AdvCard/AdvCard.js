@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import PhotosCarousel from "../PhotosCarousel/PhotosCarousel";
 
@@ -43,9 +42,12 @@ const AdvCard = (props) => {
 					{!!props.roomNumber ? props.roomNumber : 0} locali •{" "}
 					{props.squareMeters} mq
 				</p>
-				<p className="bottom-4 right-6 absolute text-4xl font-primary font-bold">
-					{props.price.toLocaleString()} <span className="text-lg">€</span>
-				</p>
+
+				<div className="flex-1 flex justify-end items-end">
+					<p className="text-4xl font-primary font-bold">
+						{props.price.toLocaleString()} <span className="text-lg">€</span>
+					</p>
+				</div>
 			</div>
 		</Card>
 	);
@@ -61,7 +63,7 @@ AdvCard.defaultProps = {
 	squareMeters: 10,
 	price: 1000,
 	photos: [
-		"https://www.cinematographe.it/wp-content/uploads/2021/01/shrek.jpg",
+		"https://pwm.im-cdn.it/image/1091856063/cover-m-c.jpg",
 		"https://www.lascimmiapensa.com/wp-content/uploads/2021/11/Shrek.jpg",
 	],
 	authorName: "Jessica Beije",
