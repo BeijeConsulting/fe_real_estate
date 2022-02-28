@@ -2,6 +2,7 @@ import AboutUs from "./AboutUs.json";
 import Home from "./Home.json";
 import AdvList from "./AdvList.json";
 import FAQ from "./FAQ.json";
+import Footer from "./Footer.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
 import SignUp from "./SignUp.json";
@@ -23,6 +24,7 @@ import Search from "./Search.json";
 
 const en = {
 	AboutUs,
+	Footer,
 	Home,
 	Search,
 	Carousel,
