@@ -62,9 +62,8 @@ const CheckersList = (props) => {
             render: (text, record) => {
                 return (
                     record.key === props.admin.id ? '' :
-
                         <>
-                            <Popover title={t("BoCheckers.PopoverTitle")} trigger="hover">
+                            <Popover content={t("BoCheckers.PopoverTitle")} trigger="hover">
                                 <Button type="primary" onClick={openCloseModal} danger>
                                     <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
                                 </Button>
