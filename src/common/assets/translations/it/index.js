@@ -8,18 +8,23 @@ import SignUpBusiness from "./SignUpBusiness.json";
 import WhatWeOffer from "./WhatWeOffer.json";
 import BoAds from "./BoAds.json";
 import BoBusiness from "./BoBusiness.json";
-import BoCheckers from "./BoCheckers.json"; 
+import BoCheckers from "./BoCheckers.json";
 import BoCms from "./BoCms.json";
 import BoDashboard from "./BoDashboard.json";
 import BoProfile from "./BoProfile.json";
 import BoUpdateProfile from "./BoUpdateProfile.json";
 import BoUsers from "./BoUsers.json";
-import BoVerification from "./BoVerification.json"
-
+import BoVerification from "./BoVerification.json";
+import Carousel from "./Carousel.json";
+import Illustrations from "./Illustrations.json";
+import Search from "./Search.json";
 
 const it = {
 	AboutUs,
 	Home,
+	Carousel,
+	Search,
+	Illustrations,
 	Login,
 	Map,
 	SignUp,
@@ -34,7 +39,7 @@ const it = {
 	BoProfile,
 	BoUpdateProfile,
 	BoUsers,
-	BoVerification
+	BoVerification,
 };
 
 export default it;

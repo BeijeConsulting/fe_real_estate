@@ -9,39 +9,48 @@ import LocationSelect from "./LocationSelect";
 import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
 import { ROUTES } from "../../../utils/properties";
 
+//routing
 import { useNavigate } from "react-router-dom";
+
+// api
 import { findAds } from "../../../services/frontend/advertisementApi";
 
+// lang
+import { useTranslation } from "react-i18next";
 
 const Search = () => {
+	const { t } = useTranslation();
 	let navigate = useNavigate();
 
-	const [results, setResults] = useState([])
+	const [results, setResults] = useState([]);
 	const [query, setQuery] = useState({
 		buildingType: { label: "Casa", value: "HOUSE" },
 		advType: { label: "Vendita", value: "SALE" },
 		location: "Scegli dove...",
 	});
 
-	
-
-	let imgUrl = "https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg";
-
+	let imgUrl =
+		"https://www.lago.it/wp-content/uploads/2017/10/Lago-Appartamento-Store-Arnhem-1.jpg";
 
 	useEffect(() => {
 		findAds({
 			advType: query.advType.value.toUpperCase(),
 			city: query.location,
-			buildingType: query.buildingType.value.toUpperCase()
-		}).then(res => {
-			setResults(res.data.totRecords)
-		})
-	}, [query])
-	
+			buildingType: query.buildingType.value.toUpperCase(),
+		}).then((res) => {
+			setResults(res.data.totRecords);
+		});
+	}, [query]);
 
-	const setBuildingType = (value) => { setQuery({ ...query, buildingType: value }); }
-	const setAdvType = (value) => { setQuery({ ...query, advType: value }); }
-	const setLocation = (value) => { setQuery({ ...query, location: value }); }
+	const setBuildingType = (value) => {
+		setQuery({ ...query, buildingType: value });
+	};
+	const setAdvType = (value) => {
+		setQuery({ ...query, advType: value });
+	};
+	const setLocation = (value) => {
+		setQuery({ ...query, location: value });
+	};
 
 	const handleSubmit = () => {
 		let newUrl = ROUTES.FE.BASE.ADS_LIST.getPath(
@@ -71,18 +80,14 @@ const Search = () => {
 					options={ADV_TYPES}
 				/>
 				<p>a</p>
-				<LocationSelect
-					ico=""
-					value={query.location}
-					callback={setLocation}
-				/>
+				<LocationSelect ico="" value={query.location} callback={setLocation} />
 			</div>
 
 			<Button
 				disabled={results <= 0 ? true : false}
 				type="primary"
 				size={26}
-				label={ results >= 1 ? `VEDI ${results} CASE` : `NON HO TROVATO CASE`}
+				label={results >= 1 ? `VEDI ${results} CASE` : `NON HO TROVATO CASE`}
 				marginTop={25}
 				onClick={handleSubmit}
 			/>
