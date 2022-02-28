@@ -20,3 +20,25 @@ export const getUserByUsername = async (username) => {
 		.catch(() => {});
 	return user;
 };
+
+export const signUp = async (data) => {
+	let err = null;
+	let res = null;
+
+	const body = { ...data, status: "ACTIVE" };
+
+	await javaAcademyServiceInstance
+		.post("/user/register", body)
+		.then((response) => {
+			res = response;
+		})
+		.catch((error) => {
+			err = error;
+		});
+
+	if (!!err) {
+		throw err;
+	}
+
+	return res;
+};
