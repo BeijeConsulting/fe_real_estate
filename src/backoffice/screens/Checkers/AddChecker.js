@@ -1,11 +1,11 @@
-import { Button, Form, Input, Modal, Typography } from "antd";
-import { useState } from "react";
+import { Button, Form, Input, Modal, Typography, Alert } from "antd";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux"
 import "./addChecker.css"
 
 import { createChecker } from "../../../services/backoffice/checkerApi";
-import { createUser, getUserByUsername } from "../../../services/backoffice/usersApi";
+import { createUser, getUserByUsername, getUsers } from "../../../services/backoffice/usersApi";
 import { useTranslation } from "react-i18next";
 
 const AddChecker = (props) => {
@@ -13,8 +13,7 @@ const AddChecker = (props) => {
     const [form] = Form.useForm();
     let navigate = useNavigate()
     const { t } = useTranslation()
-    let status = ''
-
+    let user = {}
     let checker = {
         name: '',
         surname: '',
@@ -26,6 +25,7 @@ const AddChecker = (props) => {
     const [state, setState] = useState({
         checker: {},
         isModalOpened: false,
+        checkStatus: '',
     })
 
     const handleName = (e) => {
@@ -63,16 +63,35 @@ const AddChecker = (props) => {
     }
 
     const saveUser = async () => {
-        status = await createUser(state.checker)
+        user = await createUser(state.checker)
+        console.log('status', user)
+    }
+
+    const checkData = async () => {
+        await saveUser()
+
+        if (user.createUser.status === 200) {
+            setState({
+                ...state,
+                checkStatus: 'ok',
+                isModalOpened: true
+            })
+
+        } else if (user.err === 400) {
+            setState({
+                ...state,
+                checkStatus: 'ko'
+            })
+        }
+        console.log('check status', state.checkStatus)
     }
 
     const saveChecker = async () => {
-        await saveUser()
-        if (status.status === 200) {
-            let user = await getUserByUsername(state.checker.username, props.admin.token)
-            await createChecker(user.id, {}, props.admin.token)
-        }
+        let user = await getUserByUsername(state.checker.username, props.admin.token)
+        let check = await createChecker(user.id, {}, props.admin.token)
+        console.log('check', check)
         navigate('/admin/collaborators')
+
     }
 
 
@@ -92,24 +111,57 @@ const AddChecker = (props) => {
                     <Form.Item className="form-item" name="surname" label={t("BoCheckers.Checker.Surname")}>
                         <Input onChange={handleSurname} placeholder="inserisci Cognome" />
                     </Form.Item>
-                    <Form.Item className="form-item" name="username" label="Username">
+                    <Form.Item
+                        className="form-item"
+                        name="username"
+                        label="Username"
+                        rules={[
+                            {
+                                required: true,
+                                message: t("BoCheckers.ErrorUsername"),
+                            },
+                        ]}>
                         <Input onChange={handleUsername} placeholder="inserisci Username" />
                     </Form.Item>
                 </div>
                 <div>
-                    <Form.Item className="form-item" name="email" label={t("BoCheckers.Checker.Email")}>
-                        <Input onChange={handleEmail} placeholder="inserisci Email" />
+                    <Form.Item
+                        className="form-item"
+                        name="email"
+                        label={t("BoCheckers.Checker.Email")}
+                        rules={[
+                            {
+                                required: true,
+                                message: t("BoCheckers.ErrorEmail"),
+                            },
+                        ]}>
+                        <Input onChange={handleEmail} type="email" placeholder="inserisci Email" />
                     </Form.Item>
-                    <Form.Item className="form-item" name="password" label="Password">
-                        <Input onChange={handlePassword} placeholder="inserisci Password" />
+                    <Form.Item className="form-item" name="password" label="Password" rules={[
+                        {
+                            required: true,
+                            message: t("BoCheckers.ErrorPass"),
+                        },
+                    ]}>
+                        <Input onChange={handlePassword} type="password" placeholder="inserisci Password" />
                     </Form.Item>
                 </div>
             </Form>
 
-            <Button className="button-save-checker" type="primary" onClick={openCloseModal}>{t("BoCheckers.Checker.Button")}</Button>
-            <Modal visible={state.isModalOpened} onOk={saveChecker} onCancel={openCloseModal} getContainer={false}>
-                <p>{t("BoCheckers.Modal.Text")}</p>
-            </Modal>
+            <Button className="button-save-checker" type="primary" onClick={checkData}>{t("BoCheckers.Checker.Button")}</Button>
+            {
+                (
+                    state.checkStatus === 'ko' &&
+                    <Alert type="error" message={"BoCheckers.AlertErrorMessage"} banner />
+                )
+                ||
+                (
+                    state.checkStatus === 'ok' &&
+                    <Modal visible={state.isModalOpened} onOk={saveChecker} onCancel={openCloseModal} getContainer={false}>
+                        <p>{t("BoCheckers.Modal.Text")}</p>
+                    </Modal>
+                )
+            }
         </div>
     )
 }

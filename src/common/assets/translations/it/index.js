@@ -1,6 +1,7 @@
 import AboutUs from "./AboutUs.json";
 import AdvList from "./AdvList.json";
 import Home from "./Home.json";
+import Navbar from "./Navbar.json";
 import FAQ from "./FAQ.json";
 import Footer from "./Footer.json";
 import Login from "./Login.json";
@@ -27,6 +28,7 @@ const it = {
 	AboutUs,
 	Home,
 	Footer,
+	Navbar,
 	Carousel,
 	Search,
 	Illustrations,

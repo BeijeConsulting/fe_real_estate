@@ -9,6 +9,12 @@
         "Button": "Salva"
     },
     "Modal": {
-        "Text": "Vuoi salvare questo collaboratore?"
-    }
+        "Text": "Vuoi salvare questo collaboratore?",
+        "TextRemovePermit": "Vuoi rimuovere i permessi di questo collaboratore?"
+    },
+    "ErrorUsername": "Inserisci un username",
+    "ErrorEmail": "Inserisci una email",
+    "PassError": "Please enter a password",
+    "AlertErrorMessage": "Username o email già esistenti",
+    "PopoverTitle": "Rimuovi permessi"
 }

@@ -3,21 +3,21 @@
 		"title": "DOMUS - Services",
 		"description": "Try our tools to sell and buy properties"
 	},
-	"title": "Our services",
+	"title": "What we offer",
 	"services": {
 		"newAd": {
 			"preCardText": "Are you a private individual or a real estate agency?",
-			"title": "insert now a new ad!",
-			"button": "Insert",
+			"title": "post a new ad",
+			"button": "Post",
 			"infoTitle": "Do you need any help?",
-			"infoText": "Call at 0289623520! Monday - Friday 09.00 - 21.00 . Or write an email to: domus@casa.it"
+			"infoText": "Call 0289623520! Monday - Friday 09.00 - 21.00 or write an email to: domus@casa.it"
 		},
 		"assessProperty": {
-			"preCardText": "Do you wont to sell but don't know the right price for your property?",
-			"title": "assess now your property'!",
+			"preCardText": "Do you want to sell but you don't know the right price for your property?",
+			"title": "assess your property!",
 			"button": "Assess",
-			"infoTitle": "lot of news'!",
-			"infoText": "Now you can assess your property directly from our site. Or by calling our operators at: 0289623520."
+			"infoTitle": "lots of news",
+			"infoText": "Now you can assess your property directly from our site. Or by calling our operators: 0289623520."
 		}
 	}
 }
