@@ -1,0 +1,37 @@
+{
+	"search": "Cerco",
+	"for": "in",
+	"in": "a",
+	"advType": {
+		"sale": "Vendita",
+		"rent": "Affitto",
+		"short_rent": "Affitto breve"
+	},
+	"buildingTypePlural": {
+		"house": "Case",
+		"new_construction": "Nuove costruzioni",
+		"retail_space": "Spazi commerciali",
+		"terrain": "Terreni",
+		"garage": "Garage",
+		"room": "Stanze",
+		"bed": "Letti",
+		"basementAttic": "Soffitte",
+		"boatSpot": "Posti per Barche"
+	},
+	"buildingTypeSingular": {
+		"house": "Casa",
+		"new_construction": "Nuova costruzione",
+		"retail_space": "Spazio commerciale",
+		"terrain": "Terreno",
+		"garage": "Garage",
+		"room": "Stanza",
+		"bed": "Letto",
+		"basement_attic": "Soffitta",
+		"boat_spot": "Posto per Barca"
+	},
+	"button": {
+		"see": "Vedi",
+		"notFound": "Non ho trovato"
+	},
+	"locationDefault": "Scegli dove..."
+}

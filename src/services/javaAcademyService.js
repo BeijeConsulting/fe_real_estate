@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const javaAcademyServiceInstance = axios.create({
-	baseURL: "http://domus-test.eba-733cj72h.eu-south-1.elasticbeanstalk.com",
+	baseURL: "https://domus-api.beije.it",
 });
 
 const signIn = ({ username, password }) =>

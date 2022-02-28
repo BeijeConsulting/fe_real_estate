@@ -1,0 +1,38 @@
+{
+    "found": "I've found",
+    "in": "on",
+    "a":"in",
+    "advType": {
+        "sale": "Sale",
+        "rent": "Rent",
+        "shortRent":"Short rent"
+    },
+    "SortBy": "Sort By...",
+    "Cheapest": "Cheapest",
+    "MostExpensive":"Most Expensive",
+    "buildingTypePlural": {
+        "house": "Houses",
+        "NewConstruction":"New Construction",
+        "RetailSpace":"Retail Spaces",
+        "Terrain":"Terreni",
+        "Garage":"Garages",
+        "Room":"Rooms",
+        "Bed":"Beds",
+        "BasementAttic":"Attics",
+        "BoatSpot":"Boat Spots"
+    },
+    "buildingTypeSingular": {
+        "house": "House",
+        "NewConstruction":"New Construction",
+        "RetailSpace":"Retail Space",
+        "Terrain":"Terrain",
+        "Garage":"Garage",
+        "Room":"Room",
+        "Bed":"Bed",
+        "BasementAttic":"Attic",
+        "BoatSpot":"Boat Spot"
+    },
+    "NotFound":"I haven't found any",
+    "ForYou":"for you",
+    "UnderConstruction":"No worries, they're definitely under construction!"
+}
