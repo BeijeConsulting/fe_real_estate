@@ -13,7 +13,7 @@ const getUserAds = (userId) =>
   client.get(`/user/ads/${userId}`).then((res) => res.data);
 
 //Add new advertisement in database
-const addNewAdv = async (token, adv) => {
+const addNewAdv = async (adv, token) => {
 	let headers = {
 		'Authorization': `Bearer ${token}`,
 	  }
