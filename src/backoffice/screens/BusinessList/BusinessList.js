@@ -6,13 +6,13 @@ import { Component } from "react";
 // Import API
 import { getBusinesses, searchBusinessByName } from "../../../services/backoffice/businessApi";
 // Import transaltions
-import { withTranslation } from "react-i18next";
+import { withTranslation, useTranslation } from "react-i18next";
 import { t } from "i18next";
 // Import Connect   
 import { connect } from "react-redux";
 
 // Import from AntDesign
-import { Table, Input, Tag, Space } from "antd";
+import { Table, Input } from "antd";
 import { Link } from "react-router-dom";
 const { Search } = Input;
 
@@ -20,54 +20,78 @@ const { Search } = Input;
 class BusinessList extends Component {
     constructor(props) {
         super(props)
-        
+
         this.state = {
             businesses: [],
-            columns: this.columns,
             isLoading: true,
             totalElements: 0,
-            translation: this.props.lang
+            columns: [
+                {
+                    id: 1 + '-' + props.lang,
+                    title: t("BoBusiness.Business.BusinessName"),
+                    dataIndex: 'username',
+                },
+                {
+                    id: 1 + '-' + props.lang,
+                    title: t("BoBusiness.Business.Phone"),
+                    dataIndex: 'phoneNumber',
+                },
+                {
+                    id: 1 + '-' + props.lang,
+                    title: t("BoBusiness.Business.Ref"),
+                    dataIndex: 'manager',
+                },
+                {
+                    id: 1 + '-' + props.lang,
+                    title: '',
+                    dataIndex: 'actions',
+                    render: (text, record) =>
+                        <Link to={"/admin/business/" + record.key + "/details"}>{t("BoBusiness.Business.FactsCard")}</Link>
+                    ,
+                }
+            ]
         }
     }
-    columns = [
-        {
-            title: t("BoBusiness.Business.BusinessName"),
-            dataIndex: 'username',
-        },
-        {
-            title: t("BoBusiness.Business.Phone"),
-            dataIndex: 'phoneNumber',
-        },
-        {
-            title: t("BoBusiness.Business.Ref"),
-            dataIndex: 'manager',
-        },
-        {
-            title: '',
-            dataIndex: 'actions',
-            render: (text, record) =>
-                <Link to={"/admin/business/" + record.key + "/details"}>{t("BoBusiness.Business.FactsCard")}</Link>
-            ,
-        }
-    ]
+
 
     componentDidMount() {
         this.fetchBusinesses()
         console.log('lang', this.props.lang)
-        
+
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if(prevProps.lang !== this.props.lang){
-            console.log('Prev props', prevProps)
-            console.log('prev state', prevState)
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.lang !== this.props.lang) {
             this.setState({
-                columns: this.columns,
-                translation: this.props.lang
+                columns: [
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: t("BoBusiness.Business.BusinessName"),
+                        dataIndex: 'username',
+                    },
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: t("BoBusiness.Business.Phone"),
+                        dataIndex: 'phoneNumber',
+                    },
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: t("BoBusiness.Business.Ref"),
+                        dataIndex: 'manager',
+                    },
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: '',
+                        dataIndex: 'actions',
+                        render: (text, record) =>
+                            <Link to={"/admin/business/" + record.key + "/details"}>{t("BoBusiness.Business.FactsCard")}</Link>
+                        ,
+                    }
+                ]
             })
         }
     }
-    
+
 
     searchByName = (value) => {
         this.setState({
@@ -94,8 +118,7 @@ class BusinessList extends Component {
         this.setState({
             businesses: payload.fetchedBusinesses,
             isLoading: false,
-            totalElements: payload.totalElements,
-            translation: this.props.lang
+            totalElements: payload.totalElements
         })
     }
 
@@ -114,31 +137,16 @@ class BusinessList extends Component {
                             className="icon-correction"
                             size="large" />
                     </div>
-                    {
-                        this.props.lang === 'en' && 
-                        <div className="businesses-list-table">
+                    <div className="businesses-list-table">
                         <Table dataSource={this.state.businesses}
                             columns={this.state.columns}
                             loading={this.state.isLoading}
                             tableLayout="fixed"
                             scroll={{ scrollToFirstRowOnChange: true }}
                             pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true }}
+                            key={this.props.lang}
                         />
                     </div>
-                    }
-                    {
-                        this.props.lang === 'it' && 
-                        <div className="businesses-list-table">
-                        <Table dataSource={this.state.businesses}
-                            columns={this.state.columns}
-                            loading={this.state.isLoading}
-                            tableLayout="fixed"
-                            scroll={{ scrollToFirstRowOnChange: true }}
-                            pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true }}
-                        />
-                    </div>
-                    }
-                    
                 </div>
             </div>
         )

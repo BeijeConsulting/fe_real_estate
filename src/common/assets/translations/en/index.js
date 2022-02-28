@@ -8,11 +8,11 @@ import SignUpBusiness from "./SignUpBusiness.json";
 import WhatWeOffer from "./WhatWeOffer.json";
 import BoAds from "./BoAds.json";
 import BoBusiness from "./BoBusiness.json";
-import BoChecker from "./BoCheckers.json"; 
+import BoCheckers from "./BoCheckers.json"; 
 import BoCms from "./BoCms.json";
 import BoDashboard from "./BoDashboard.json";
 import BoProfile from "./BoProfile.json";
-import BoProfileUpdate from "./BoUpdateProfile.json";
+import BoUpdateProfile from "./BoUpdateProfile.json";
 import BoUsers from "./BoUsers.json";
 import BoVerification from "./BoVerification.json"
 
@@ -27,11 +27,11 @@ const en = {
 	WhatWeOffer,
 	BoAds,
 	BoBusiness,
-	BoChecker,
+	BoCheckers,
 	BoCms,
 	BoDashboard,
 	BoProfile,
-	BoProfileUpdate,
+	BoUpdateProfile,
 	BoUsers,
 	BoVerification
 };

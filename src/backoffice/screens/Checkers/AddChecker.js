@@ -6,12 +6,14 @@ import "./addChecker.css"
 
 import { createChecker } from "../../../services/backoffice/checkerApi";
 import { createUser, getUserByUsername } from "../../../services/backoffice/usersApi";
+import { useTranslation } from "react-i18next";
 
 const AddChecker = (props) => {
     const { Text } = Typography;
     const [form] = Form.useForm();
     let navigate = useNavigate()
-    let status =''
+    const { t } = useTranslation()
+    let status = ''
 
     let checker = {
         name: '',
@@ -41,13 +43,13 @@ const AddChecker = (props) => {
     const handleEmail = (e) => {
         let email = e.target.value
         checker = { ...state.checker, email: email }
-        setState({  ...state, checker: checker })
+        setState({ ...state, checker: checker })
     }
 
     const handlePassword = (e) => {
         let password = e.target.value
         checker = { ...state.checker, password: password }
-        setState({  ...state, checker: checker })
+        setState({ ...state, checker: checker })
     }
 
     const handleUsername = (e) => {
@@ -66,7 +68,7 @@ const AddChecker = (props) => {
 
     const saveChecker = async () => {
         await saveUser()
-        if(status.status === 200){
+        if (status.status === 200) {
             let user = await getUserByUsername(state.checker.username, props.admin.token)
             await createChecker(user.id, {}, props.admin.token)
         }
@@ -77,33 +79,36 @@ const AddChecker = (props) => {
 
     return (
         <div className="add-checker-container">
-        <Text strong>AGGIUNGI UN COLLABORATORE</Text>
+            <Text strong>{t("BoCheckers.Checker.Add")}</Text>
             <Form
                 className="add-checker-form"
                 layout={"horizontal"}
                 form={form}
             >
-                <Form.Item name="name" label="Nome">
-                    <Input onChange={handleName} placeholder="inserisci nome" />
-                </Form.Item>
-                <Form.Item name="surname" label="Cognome">
-                    <Input onChange={handleSurname} placeholder="inserisci Cognome" />
-                </Form.Item>
-                <Form.Item name="email" label="Email">
-                    <Input onChange={handleEmail} placeholder="inserisci Email" />
-                </Form.Item>
-                <Form.Item name="password" label="Password">
-                    <Input onChange={handlePassword} placeholder="inserisci Password" />
-                </Form.Item>
-                <Form.Item name="username" label="Username">
-                    <Input onChange={handleUsername} placeholder="inserisci Username" />
-                </Form.Item>
-
+                <div >
+                    <Form.Item className="form-item" name="name" label={t("BoCheckers.Checker.Name")}>
+                        <Input onChange={handleName} placeholder="inserisci nome" />
+                    </Form.Item>
+                    <Form.Item className="form-item" name="surname" label={t("BoCheckers.Checker.Surname")}>
+                        <Input onChange={handleSurname} placeholder="inserisci Cognome" />
+                    </Form.Item>
+                    <Form.Item className="form-item" name="username" label="Username">
+                        <Input onChange={handleUsername} placeholder="inserisci Username" />
+                    </Form.Item>
+                </div>
+                <div>
+                    <Form.Item className="form-item" name="email" label={t("BoCheckers.Checker.Email")}>
+                        <Input onChange={handleEmail} placeholder="inserisci Email" />
+                    </Form.Item>
+                    <Form.Item className="form-item" name="password" label="Password">
+                        <Input onChange={handlePassword} placeholder="inserisci Password" />
+                    </Form.Item>
+                </div>
             </Form>
 
-            <Button className="button-save-checker" type="primary" onClick={openCloseModal}>Salva Collaboratore</Button>
+            <Button className="button-save-checker" type="primary" onClick={openCloseModal}>{t("BoCheckers.Checker.Button")}</Button>
             <Modal visible={state.isModalOpened} onOk={saveChecker} onCancel={openCloseModal} getContainer={false}>
-                <p>Vuoi salvare questo collaboratore?</p>
+                <p>{t("BoCheckers.Modal.Text")}</p>
             </Modal>
         </div>
     )

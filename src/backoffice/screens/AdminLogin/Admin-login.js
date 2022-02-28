@@ -1,5 +1,10 @@
 import "./admin-login.css"
 import { PureComponent } from "react"
+
+/* ant Design */
+import { Checkbox } from 'antd';
+/* utils */
+import storage from "../../../common/utils/storage"
 /* react redux */
 import { connect } from "react-redux"
 /* react router */
@@ -10,6 +15,7 @@ import Input from "../../../frontend/components/UI/Input/Input"
 import Button from "../../../frontend/components/UI/Button/Button"
 /* API */
 import authAdminApi from "../../../services/backoffice/authAdminApi"
+
 class AdminLogin extends PureComponent {
 
     constructor(props) {
@@ -17,16 +23,20 @@ class AdminLogin extends PureComponent {
 
         this.state = {
             user: {},
-            flagRedirect: false
+            flagRedirect: false,
+            flagRememberMe: false
         }
     }
+
     componentDidMount() {
         if (this.props.admin.username) {
             this.redirect();
         }
+        this.DoYouRememberMe()
     }
     componentDidUpdate() {
     }
+
     /* User funcs */
     setUsername = (e) => {
         let value = e.target.value
@@ -35,6 +45,12 @@ class AdminLogin extends PureComponent {
                 ...this.state.user,
                 username: value
             }
+        })
+    }
+    setRememberMe = (e) => {
+        let value = e.target.checked;
+        this.setState({
+            flagRememberMe: value
         })
     }
     setPassword = (e) => {
@@ -47,11 +63,20 @@ class AdminLogin extends PureComponent {
         })
     }
     /* AUTH funcs */
-    login = async () => {
-        await authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
+    DoYouRememberMe = async () => {
+        await authAdminApi.updateAuthToken(this.props.dispatch)
         this.redirect()
     }
-
+    login = async () => {
+        let refreshToken = await authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
+        if (this.state.flagRememberMe === true) {
+            localStorage.setItem(
+                storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN,
+                refreshToken
+            );
+        }
+        this.redirect()
+    }
     redirect = () => {
         this.setState({
             flagRedirect: true
@@ -83,9 +108,10 @@ class AdminLogin extends PureComponent {
                         </div>
                         <section className="mt-4 flex">
                             <div className="basis-2/4  flex">
-                                <Input type={"checkbox"} />
-                                <span className="ml-1">ricordami</span>
-
+                                <Checkbox
+                                    style={{ color: "white" }}
+                                    onChange={this.setRememberMe}
+                                >Remember me</Checkbox>
                             </div>
                             <div className="basis-2/4 flex justify-end">
                                 <Button
@@ -101,7 +127,7 @@ class AdminLogin extends PureComponent {
                 </div>
                 {
                     this.state.flagRedirect &&
-                    <Navigate to="/admin" />
+                    <Navigate to="/admin/dashBoard/users" />
                 }
             </main>
         )

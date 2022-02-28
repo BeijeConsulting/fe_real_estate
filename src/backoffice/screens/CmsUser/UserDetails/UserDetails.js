@@ -8,12 +8,13 @@ import { deleteUser } from "../../../../services/backoffice/usersApi";
 import { getUserById } from "../../../../services/backoffice/usersApi";
 
 import { Button, List, Modal } from "antd";
+import { useTranslation } from "react-i18next";
 
 const UserDetails = (props) => {
 
     let params = useParams()
     let navigate = useNavigate()
-
+    let { t } = useTranslation()
     const [state, setState] = useState({
         data: [],
         isLoading: true,
@@ -34,7 +35,7 @@ const UserDetails = (props) => {
         let isModalOpened = state.isModalOpened
         setState({
             ...state,
-            isModalOpened : !isModalOpened
+            isModalOpened: !isModalOpened
         })
     }
 
@@ -54,7 +55,7 @@ const UserDetails = (props) => {
                 <List
                     className="info-list"
                     size="small"
-                    header={<h4 className="info-user-title">Info</h4>}
+                    header={<h4 className="info-user-title">{t("BoUsers.CmsUser.Details")}</h4>}
                     itemLayout="vertical"
                     loading={state.isLoading}
                     dataSource={state.data}
@@ -63,21 +64,17 @@ const UserDetails = (props) => {
                             className="info-user-items"
                         >
                             <List.Item.Meta
-                                title={'Nome'}
+                                title={t("BoUsers.CmsUser.Info.Name")}
                                 description={item.name}
                             />
                             <List.Item.Meta
-                                title={'Cognome'}
+                                title={t("BoUsers.CmsUser.Info.Surname")}
                                 description={item.surname}
                             />
                             <List.Item.Meta
-                                title={'Username'}
+                                title={t("BoUsers.CmsUser.Info.Username")}
                                 description={item.username}
                             />
-                            {/*<List.Item.Meta
-                            title={'Luogo di nascita'}
-                            description={item.birthPlace}
-                        />*/}
                         </List.Item>
                     )}
                 />
@@ -86,14 +83,14 @@ const UserDetails = (props) => {
             <div className='contacts-user-box'>
                 <List
                     className="contacts-list"
-                    header={<h3 className='contacts-title'>Contatti</h3>}
+                    header={<h3 className='contacts-title'>{t("BoUsers.CmsUser.Info.Contacts")}</h3>}
                     itemLayout="vertical"
                     dataSource={state.data}
                     loading={state.isLoading}
                     renderItem={item => (
                         <List.Item>
                             <List.Item.Meta
-                                title={'Email personale'}
+                                title={t("BoUsers.CmsUser.Info.Email")}
                                 description={item.email}
                             />
                             {/*<List.Item.Meta
@@ -108,7 +105,7 @@ const UserDetails = (props) => {
                     )}
                 />
             </div>
-{/*             <Button
+            {/*             <Button
                 className='button-user'
                 type="primary"
                 onClick={handleClick}
@@ -119,7 +116,7 @@ const UserDetails = (props) => {
                 onClick={handleModal}
             > Elimina </Button>
             <Modal visible={state.isModalOpened} onOk={handleDelete} onCancel={handleModal} getContainer={false}>
-                        <p>Attenzione, stai per eliminare questo utente. Procedere?</p>
+                <p>Attenzione, stai per eliminare questo utente. Procedere?</p>
             </Modal>
         </div >
     )
