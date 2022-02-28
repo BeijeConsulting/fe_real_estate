@@ -37,7 +37,7 @@ export const getUsersPaged = async (token, pageId, total) => {
         })
         payload = {
             fetchedUsers,
-            totalElements: response.data.resList.length
+            totalElements: response.data.totRecords
         }
     }).catch(
         //Error handler
@@ -109,11 +109,10 @@ export const getUserByUsername = async (username, token) => {
         'Authorization': `Bearer ${token}`,
     }
     let userByUsername = ''
-    await javaAcademyServiceInstance.get("user/find/" + username, { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/user/find/" + username, { headers }).then((response) => {
         userByUsername = response.data
 
-    }).catch(
-        //Error handler
+    }).catch( response => userByUsername = null
     )
     return userByUsername
 }
@@ -125,7 +124,7 @@ export const deleteUser = async (token, id) => {
     }
     console.log("token", token)
     console.log("id", id)
-    const result = await javaAcademyServiceInstance.put('/user/disable/' + id, {}, { headers }).then((response) =>
+    const result = await javaAcademyServiceInstance.put('/admin/disableUser/' + id, {}, { headers } ).then( (response) => 
         deleteCheck = response
     )
     return deleteCheck

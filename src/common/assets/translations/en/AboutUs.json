@@ -2,5 +2,19 @@
 	"helmet": {
 		"title": "DOMUS - About Us",
 		"description": "Find out our origins."
-	}
+	},
+	"agencyData": {
+		"paragraphs": {
+			"1": "Domus.it is a website of DomusGroup, a single shareholder",
+			"2": "Registered office: Corso Mantova 3, 20122, Milan",
+			"3": "Share capital: €40.000 i.v.",
+			"4": "P.I.: 05388421963",
+			"5": "REA: MI-1817573"
+		},
+		"title": "AGENCY INFO"
+	},
+	"bannerText": "OUR STORY",
+	"paragraph": "We strongly believe in a global vision of real estate market. At Domus.it we highly evaluate the person: in our agency everyone has a great intrinsic value and we aim to have employees of different cultures and social backgrounds.",
+	"paragraphTitle": "OUR MORAL VALUES",
+	"title": "ABOUT US"
 }

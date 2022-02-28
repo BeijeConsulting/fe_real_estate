@@ -1,4 +1,5 @@
 .container-auth-admin{
+    position: relative;
     height: 100vh;
     background-image: url("../../assets/images/geometric-material-yellow-blue-4k-18-2932x2932.jpg");
     background-repeat: no-repeat;
@@ -27,4 +28,24 @@
 }
 .box-inputs input{
     color: black;
+}
+.container-feedback{
+    position: absolute;
+    top: 15px;
+    right: 0px;
+}   
+.container-feedback .box-success{
+    animation: feedBackBox .3s linear 0s;
+}
+.container-feedback .box-error{
+    animation: feedBackBox .3s linear 0s;
+}
+@keyframes feedBackBox {
+    0%{
+        margin-right: -350px;
+    }
+    100%{
+        margin-right: 20px;
+    }
+    
 }

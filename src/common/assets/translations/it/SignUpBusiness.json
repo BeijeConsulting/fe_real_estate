@@ -3,6 +3,8 @@
 		"title": "DOMUS - Registrazione Business",
 		"description": "Crea un account Business e inizia a comprare o vendere immobili."
 	},
+	"signUp":"Registrati",
+	"signUpBusiness":"Registrati come Azienda",
 	"VATNumber": "Partita iva",
 	"businessName": "Nome azienda",
 	"address": "Indirizzo",

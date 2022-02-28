@@ -63,9 +63,7 @@ export const getRefusedAdvertaisement = async (token) => {
     .then((response) => {
       return response.data;
     })
-    .catch
-    //Error handler
-    ();
+    .catch(() => { return "errore" });
   return result;
 };
 
@@ -138,3 +136,17 @@ export const disableAdv = async (token, id) => {
     });
   return disableAdv;
 };
+
+export const getAdvertisementsById =  async (token, id) => {
+  let advertisementsById = null
+  let headers = {
+    Authorization: `Bearer ${token}`,
+  };
+  await javaAcademyServiceInstance.get("/user/ads/id/" + id, {headers}).then( response => {
+    advertisementsById = response.data
+  }
+  ).catch(
+
+  )
+  return advertisementsById
+}

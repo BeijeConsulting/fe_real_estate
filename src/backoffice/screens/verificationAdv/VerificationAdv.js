@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 /* redux */
 import { connect } from "react-redux";
 // Import from AntDesign
-import { Table, Input, Tag, Space, Button } from "antd";
+import { Table, Input, Tag, Space, Button, Alert } from "antd";
 /* API */
 import { getPendingAdvertaisement, getRefusedAdvertaisement } from "../../../services/backoffice/advertisementApi";
 /* utils */
@@ -135,6 +135,7 @@ const VerificationAdv = (props) => {
             }
             return item;
         })
+
         setState({
             ...state,
             advertisementsAdmin: resultAPIAdmin,
@@ -171,10 +172,13 @@ const VerificationAdv = (props) => {
                     key={Math.random()}
                     clickTag={goToChecker}
                     label={"Pending"} refClass={state.goToCheckerFlag === true ? "selected" : "unselected"} />
-                <TagComp
-                    key={Math.random()}
-                    clickTag={goToAdmin}
-                    label={"Refused"} refClass={state.goToAdminFlag === true ? "selected" : "unselected"} />
+                {
+                    props.admin.permission?.includes("ADMIN") &&
+                    <TagComp
+                        key={Math.random()}
+                        clickTag={goToAdmin}
+                        label={"Refused"} refClass={state.goToAdminFlag === true ? "selected" : "unselected"} />
+                }
             </div>
             <div className="container-VerificationAdv">
                 < div className="container-table-VerificationAdv" >
@@ -199,8 +203,8 @@ const VerificationAdv = (props) => {
                         />
                     }
                 </div>
-
             </div >
+
         </>
     )
 }
