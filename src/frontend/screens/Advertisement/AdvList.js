@@ -10,7 +10,7 @@ import { Select } from "antd";
 //UTILS
 import sortList from '../../../common/utils/sortList'
 import noHouseFound from '../../assets/illustrations/noHouseFound.svg'
-
+import { useTranslation } from "react-i18next";
 // API
 import { findAds } from "../../../services/frontend/advertisementApi";
 
@@ -27,6 +27,7 @@ const AdvList = () => {
 	let query = useURLQuery();
 	let location = useLocation();
 	let navigate = useNavigate();
+    let {t} = useTranslation();
 
 	const [advList, setAdvList] = useState([]);
 	const [sortType, setSortType] = useState();
@@ -95,11 +96,12 @@ const AdvList = () => {
             </div>
 
             <div className='max-w-5xl lg:max-w-6xl p-2 mx-auto'>
-                <p className='text-3xl font-bold'>Ho trovato {advList.length} {typesTranslator.building(buildingType)} in {typesTranslator.adv(advType)} a {cityCapital} </p>
+                <p className='text-3xl font-bold'>
+                    {t("AdvList.found")} {advList.length} {advList.length > 1 ? t(`AdvList.buildingTypePlural.${buildingType}`) : t(`AdvList.buildingTypeSingular.${buildingType}`)} {t("AdvList.in")} {t(`AdvList.advType.${advType}`)} {t("AdvList.a")} {cityCapital} </p>
 
-                <Select onChange={handleSorting} className='w-40 mt-6' placeholder="Ordina per..">
-                    <Option value="price-asc">Dal meno caro</Option>
-                    <Option value="price-desc">Dal piu' caro</Option>
+                <Select onChange={handleSorting} className='w-40 mt-6' placeholder={t("AdvList.SortBy")}>
+                    <Option value="price-asc">{t("AdvList.Cheapest")}</Option>
+                    <Option value="price-desc">{t("AdvList.MostExpensive")}</Option>
                 </Select>
 
                 <div className='flex mt-10 space-x-4'>
@@ -110,8 +112,8 @@ const AdvList = () => {
                         {advList.length <= 0 &&
                             <div className='font-primary text-center'>
                                 <img className='mx-auto max-h-80 mb-6' src={noHouseFound} />
-                                <p className='text-3xl font-bold'>Non ho trovato {typesTranslator.building(buildingType)} per te</p>
-                                <p className=''>Ma tranquillo, è sicuramente in costruzione!</p>
+                                <p className='text-3xl font-bold'>{t("AdvList.NotFound")} {t(`AdvList.buildingTypePlural.${buildingType}`)} {t("AdvList.ForYou")}</p>
+                                <p className=''>{t("AdvList.UnderConstruction")}</p>
                             </div>
                         }
 

@@ -143,10 +143,10 @@ class SignUpBusiness extends Component {
 				</Helmet>
 				<form className="flex flex-col justify-evenly items-center">
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
-						Registrati
+					{t("SignUpBusiness.signUp")}
 					</h1>
 					<p className="font-primary font-light text-sm mt-2 text-center">
-						Registrati come Business
+					{t("SignUpBusiness.signUpBusiness")}
 					</p>
 					<Input
 						placeholder={t("SignUpBusiness.VATNumber")}
