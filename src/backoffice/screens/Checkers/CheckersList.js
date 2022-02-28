@@ -10,13 +10,25 @@ import { connect } from "react-redux";
 
 // Import from AntDesign
 import { UserDeleteOutlined } from '@ant-design/icons'
-import { Table, Button } from "antd";
+import { Table, Button, Popover } from "antd";
 import 'antd/dist/antd.css'
+import Modal from "antd/lib/modal/Modal";
+import { useTranslation } from "react-i18next";
 
 
 const CheckersList = (props) => {
 
     let navigate = useNavigate()
+    let { t } = useTranslation()
+
+    const [state, setState] = useState(
+        {
+            users: [],
+            isLoading: true,
+            refresh: false,
+            isModal: false
+        }
+    )
 
     let columns = [
         {
@@ -50,28 +62,40 @@ const CheckersList = (props) => {
             render: (text, record) => {
                 return (
                     record.key === props.admin.id ? '' :
-                        <Button type="primary" onClick={handleChangePermit(record.key)} danger>
-                            <UserDeleteOutlined style={{fontSize: '20px', margin: 0}} />
-                            </Button>
+
+                        <>
+                            <Popover title={t("BoCheckers.PopoverTitle")} trigger="hover">
+                                <Button type="primary" onClick={openCloseModal} danger>
+                                    <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
+                                </Button>
+                            </Popover>
+                            {
+                                state.isModal &&
+                                <Modal visible={state.isModal} onOk={handleChangePermit(record.key)} onCancel={openCloseModal} getContainer={false}>
+                                    <p>{t("BoCheckers.Modal.Text")}</p>
+                                </Modal>
+                            }
+                        </>
+
                 )
             }
 
         }
 
     ]
-    const [state, setState] = useState(
-        {
-            users: [],
-            isLoading: true,
-            refresh: false
-        }
-    )
+
 
     const handleChangePermit = (id) => () => {
         removePermit(id)
         setState({
             ...state,
-            refresh: !state.refresh
+            refresh: !state.refresh,
+        })
+    }
+    const openCloseModal = () => {
+        setState({
+            ...state,
+            isModal: !state.isModal
         })
     }
 
