@@ -22,11 +22,11 @@ const Search = () => {
 	const { t } = useTranslation();
 	let navigate = useNavigate();
 
-	const [results, setResults] = useState([]);
+	const [results, setResults] = useState(0);
 	const [query, setQuery] = useState({
 		buildingType: { label: "Casa", value: "HOUSE" },
 		advType: { label: "Vendita", value: "SALE" },
-		location: "Scegli dove...",
+		location: t("Search.locationDefault"),
 	});
 
 	let imgUrl =
@@ -62,24 +62,63 @@ const Search = () => {
 		navigate(newUrl.toLowerCase());
 	};
 
+	const mapBuildingTypes = () => {
+		return BUILDING_TYPES.map((type) => ({
+			...type,
+			label: t(`Search.buildingTypeSingular.${type.value.toLowerCase()}`),
+		}));
+	};
+
+	const mapAdvTypes = () => {
+		return ADV_TYPES.map((type) => ({
+			...type,
+			label: t(`Search.advType.${type.value.toLowerCase()}`),
+		}));
+	};
+
+	const buttonMessage = () => {
+		let mess = "";
+		if (results < 1) {
+			mess += `${t(`Search.button.notFound`)} ${t(
+				`Search.buildingTypePlural.${query.buildingType.value.toLowerCase()}`
+			).toLowerCase()}`;
+		} else {
+			mess += `${t(`Search.button.see`)} ${results} `;
+
+			if (results > 1) {
+				mess += t(
+					`Search.buildingTypePlural.${query.buildingType.value.toLowerCase()}`
+				).toLowerCase();
+			} else {
+				mess += t(
+					`Search.buildingTypeSingular.${query.buildingType.value.toLowerCase()}`
+				).toLowerCase();
+			}
+		}
+
+		return mess;
+	};
+
 	return (
 		<div className="select-none flex-1 flex flex-col justify-center items-center">
 			<div className="flex flex-col md:flex-row text-white z-30 text-5xl space-x-2">
-				<p>Cerco</p>
+				<p>{t(`Search.search`)}</p>
 				<SearchSelect
 					ico=""
-					value={query.buildingType.label}
+					value={t(
+						`Search.buildingTypeSingular.${query.buildingType.value.toLowerCase()}`
+					)}
 					callback={setBuildingType}
-					options={BUILDING_TYPES}
+					options={mapBuildingTypes()}
 				/>
-				<p>in</p>
+				<p>{t(`Search.for`)}</p>
 				<SearchSelect
 					ico=""
-					value={query.advType.label}
+					value={t(`Search.advType.${query.advType.value.toLowerCase()}`)}
 					callback={setAdvType}
-					options={ADV_TYPES}
+					options={mapAdvTypes()}
 				/>
-				<p>a</p>
+				<p>{t(`Search.in`)}</p>
 				<LocationSelect ico="" value={query.location} callback={setLocation} />
 			</div>
 
@@ -87,7 +126,7 @@ const Search = () => {
 				disabled={results <= 0 ? true : false}
 				type="primary"
 				size={26}
-				label={results >= 1 ? `VEDI ${results} CASE` : `NON HO TROVATO CASE`}
+				label={buttonMessage()}
 				marginTop={25}
 				onClick={handleSubmit}
 			/>

@@ -9,6 +9,12 @@
         "Button": "Save"
     },
     "Modal": {
-        "Text": "Do you want to save this checker?"
-    }
+        "Text": "Do you want to save this checker?",
+        "TextRemovePermit": "Do you want to remove this checker?"
+    },
+    "ErrorUsername": "Please enter a username",
+    "ErrorEmail": "Please enter an email",
+    "ErrorPass": "Please enter a password",
+    "AlertErrorMessage": "Username or email already exists",
+    "PopoverTitle":"Remove permits"
 }

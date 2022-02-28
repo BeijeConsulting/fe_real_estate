@@ -3,7 +3,7 @@ import { javaAcademyServiceInstance } from "../javaAcademyService"
 export const getUsers = async (token) => {
     let payload = []
     const headers = { "Authorization": "Bearer " + token }
-    await javaAcademyServiceInstance.get("/admin/users", { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/admin/usersList", { headers }).then((response) => {
         let fetchedUsers = response.data.map((user) => {
             return ({
                 username: user.username,
@@ -16,8 +16,8 @@ export const getUsers = async (token) => {
             fetchedUsers,
             totalElements: response.data.length
         }
-    }).catch(
-        //Error handler
+    }).catch((error) =>
+        console.log('error', error)
     )
     return payload
 }
@@ -93,15 +93,15 @@ export const getNameUserFromSellerId = async (token, idSeller) => {
 
 export const createUser = async (content) => {
     let createUser = ''
-
-    await javaAcademyServiceInstance.post("/user", content).then((response) => {
+    let err = ''
+    await javaAcademyServiceInstance.post("/user/register", content).then((response) => {
         createUser = response
 
-
-    }).catch(
+    }).catch((error) =>
+        err = 400
 
     )
-    return createUser
+    return { createUser, err }
 }
 
 export const getUserByUsername = async (username, token) => {

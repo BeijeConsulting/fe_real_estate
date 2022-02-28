@@ -11,8 +11,9 @@ export const BuildingInfobox = (props) => {
                 <FontAwesomeIcon className={"text-2xl text-red-700 ml-2"} icon={faXmark} />
             }
             {
-                !!props.adv &&
-                <FontAwesomeIcon className={"text-2xl text-green-700 ml-2"} icon={faCheck} />
+                props.adv === true ?
+                    <FontAwesomeIcon className={"text-2xl text-green-700 ml-2"} icon={faCheck} />
+                    : <h1 className='ml-1.5 text-base font-medium font-primary'>{props.adv}</h1>
             }
         </div>
     )
