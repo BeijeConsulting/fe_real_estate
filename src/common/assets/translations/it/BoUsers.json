@@ -1,0 +1,28 @@
+{
+    "Users": {
+        "Searchbar": "Ricerca per username",
+        "Username": "Username",
+        "Email": "Email",
+        "Type": "Tipo",
+        "FactsCard": "Scheda utente"
+    },
+    "CmsUser": {
+        "Details": "Dettaglio",
+        "Info": {
+            "Info": "Info",
+            "Name": "Nome",
+            "Surname": "Cognome",
+            "Username": "Username",
+            "Contacts": "Contatti",
+            "Email": "Email personale",
+            "Delete": "Elimina"
+        },
+        "Ads": "Annunci",
+        "Adv": {
+            "BuildingType": "Tipo edificio",
+            "AdvType": "Tipo annuncio",
+            "City": "Città",
+            "Published": "Data pubblicazione"
+        }
+    }
+}

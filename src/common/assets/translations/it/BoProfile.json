@@ -1,0 +1,14 @@
+{
+	"Info": {
+        "Info": "Info",
+        "Name": "Nome",
+        "Surname": "Cognome",
+        "Username": "Username"
+    },
+	"Contacts": {
+        "Contacts": "Contatti",
+        "PersonalEmail": "Email personale"
+
+    }, 
+    "EditProfile": "Modifica email"
+}

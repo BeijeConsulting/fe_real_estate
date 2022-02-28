@@ -1,0 +1,10 @@
+{
+    "Verification": {
+        "Pending": "Sospesi",
+        "Refused": "Rifiutati",
+        "BuildingType": "Tipo edificio",
+        "AdvType": "Tipo annuncio",
+        "City": "Città",
+        "PublishedDate": "Data pubblicazione"
+    }
+}

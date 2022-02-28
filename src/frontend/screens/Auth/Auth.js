@@ -5,6 +5,7 @@ import logo from "../../../common/assets/logo/logo.png";
 import storage from "../../../common/utils/storage";
 import { Navigate, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
+import authApi from "../../../services/frontend/authApi";
 
 class Auth extends Component {
 	constructor(props) {
@@ -12,41 +13,39 @@ class Auth extends Component {
 
 		this.state = {
 			logged: false,
+			redirectHome: false,
 		};
 	}
 
 	componentDidMount = () => {
 		if (!this.props.username) {
-			const token = localStorage.getItem(
-				storage.LOCAL_STORAGE_KEYS.USER_TOKEN
+			const refreshToken = localStorage.getItem(
+				storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN
 			);
 
-			if (!!token) {
-				// make call to validate token
+			if (!!refreshToken) {
+				authApi.updateAuthToken({ refreshToken }, this.props.dispatch);
 			}
 		}
 	};
+
+	setRedirectHome = () => this.setState({ redirectHome: true });
 
 	render() {
 		return (
 			<div className="bg-secondary h-screen ">
 				<header className="flex items-center justify-center gap-2 py-5">
-					<div className="flex items-center justify-center gap-2 py-5">
-						<img
-							src={logo}
-							alt="logo"
-							className="h-10 "
-						/>
+					<div
+						className="flex items-center justify-center gap-2 py-5 cursor-pointer"
+						onClick={this.setRedirectHome}
+					>
+						<img src={logo} alt="logo" className="h-10 " />
 						<h1 className="color-primary uppercase font-extrabold text-4xl">
 							domus
 						</h1>
 					</div>
 					<p className="color-primary text-5xl">|</p>
-					<Languages
-						fgClass="color-primary"
-						valueSize={10}
-						icoSize={10}
-					/>
+					<Languages fgClass="color-primary" valueSize={10} icoSize={10} />
 				</header>
 
 				<div className="flex items-center justify-center">
@@ -56,8 +55,8 @@ class Auth extends Component {
 					</Card>
 				</div>
 				{/* Routing */}
-				{this.props.username !== undefined && (
-					<Navigate to={"/"} />
+				{(this.props.username !== undefined || this.state.redirectHome) && (
+					<Navigate to={"/"} replace={true} />
 				)}
 			</div>
 		);

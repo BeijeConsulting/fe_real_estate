@@ -1,20 +1,36 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import storage from "../../../common/utils/storage";
-import Input from "../../components/UI/Input/Input";
-import Checkbox from "../../components/UI/Checkbox/Checkbox";
-import Button from "../../components/UI/Button/Button";
 
+// style
 import {
 	faUser,
 	faLock,
 	faCircleArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
-import loginProfile from "../../assets/images/login-profile.png";
-import { withTranslation } from "react-i18next";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import loginProfile from "../../assets/images/login-profile.png";
+
+// redux
+import { connect } from "react-redux";
+
+// routing
+import { Link } from "react-router-dom";
+
+// utils
+import storage from "../../../common/utils/storage";
+
+// components
+import Input from "../../components/UI/Input/Input";
+import Checkbox from "../../components/UI/Checkbox/Checkbox";
+import Button from "../../components/UI/Button/Button";
+
+// api
 import authApi from "../../../services/frontend/authApi";
+
+// translation
+import { withTranslation } from "react-i18next";
+
+// seo
+import { Helmet } from "react-helmet";
 
 class Login extends Component {
 	constructor(props) {
@@ -76,23 +92,34 @@ class Login extends Component {
 			};
 		}
 
-		authApi.signIn(
-			{
-				username: this.state.data.username,
-				password: this.state.data.password,
-			},
-			rememberMeObj,
-			this.props.dispatch
-		);
+		authApi
+			.signIn(
+				{
+					username: this.state.data.username,
+					password: this.state.data.password,
+				},
+				this.props.dispatch
+			)
+			.then(() =>
+				localStorage.setItem(
+					storage.LOCAL_STORAGE_KEYS.REMEMBER_ME,
+					JSON.stringify(rememberMeObj)
+				)
+			);
 	};
 
 	render() {
 		const { t } = this.props;
 
 		return (
-			<>
-				<div className="hidden md:flex ">
-					<img src={loginProfile} alt="login-profile" />
+			<div className="flex flex-row py-10">
+				{/* SEO */}
+				<Helmet>
+					<meta name="description" content={t("Login.helmet.description")} />
+					<title>{t("Login.helmet.title")}</title>
+				</Helmet>
+				<div className="hidden md:flex items-center">
+					<img className="max-h-72" src={loginProfile} alt="login-profile" />
 				</div>
 				<form className="flex flex-col items-center py-5">
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
@@ -136,11 +163,11 @@ class Login extends Component {
 					<p className="font-primary mt-4">
 						{t("Login.goToRegistration.label")}
 					</p>
-					<Link to={"/auth/signup"} className="font-primary mt-4">
+					<Link to={"/:lang/auth/signup/private"} className="font-primary mt-4">
 						{t("Login.goToRegistration.link")}
 					</Link>
 				</form>
-			</>
+			</div>
 		);
 	}
 }

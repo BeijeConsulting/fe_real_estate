@@ -5,53 +5,93 @@ import { Component } from "react";
 
 // Import API
 import { getBusinesses, searchBusinessByName } from "../../../services/backoffice/businessApi";
-
+// Import transaltions
+import { withTranslation, useTranslation } from "react-i18next";
+import { t } from "i18next";
 // Import Connect   
 import { connect } from "react-redux";
 
 // Import from AntDesign
-import { Table, Input, Tag, Space } from "antd";
+import { Table, Input } from "antd";
 import { Link } from "react-router-dom";
 const { Search } = Input;
 
 
-class UsersList extends Component {
+class BusinessList extends Component {
     constructor(props) {
         super(props)
 
-        let columns = [
-            {
-                title: 'Name',
-                dataIndex: 'username',
-            },
-            {
-                title: 'Phone Number',
-                dataIndex: 'phoneNumber',
-            },
-            {
-                title: 'Reference',
-                dataIndex: 'manager',
-            },
-            {
-                title: '',
-                dataIndex: 'actions',
-                render: (text, record) =>
-                    <Link to={"/admin/business/" + record.key + "/details"}>Scheda business</Link>
-                ,
-            }
-        ]
-
         this.state = {
             businesses: [],
-            columns: columns,
             isLoading: true,
-            totalElements: 0
+            totalElements: 0,
+            columns: [
+                {
+                    id: 1 + '-' + props.lang,
+                    title: t("BoBusiness.Business.BusinessName"),
+                    dataIndex: 'username',
+                },
+                {
+                    id: 1 + '-' + props.lang,
+                    title: t("BoBusiness.Business.Phone"),
+                    dataIndex: 'phoneNumber',
+                },
+                {
+                    id: 1 + '-' + props.lang,
+                    title: t("BoBusiness.Business.Ref"),
+                    dataIndex: 'manager',
+                },
+                {
+                    id: 1 + '-' + props.lang,
+                    title: '',
+                    dataIndex: 'actions',
+                    render: (text, record) =>
+                        <Link to={"/admin/business/" + record.key + "/details"}>{t("BoBusiness.Business.FactsCard")}</Link>
+                    ,
+                }
+            ]
         }
     }
 
+
     componentDidMount() {
         this.fetchBusinesses()
+        console.log('lang', this.props.lang)
+
     }
+
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.lang !== this.props.lang) {
+            this.setState({
+                columns: [
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: t("BoBusiness.Business.BusinessName"),
+                        dataIndex: 'username',
+                    },
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: t("BoBusiness.Business.Phone"),
+                        dataIndex: 'phoneNumber',
+                    },
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: t("BoBusiness.Business.Ref"),
+                        dataIndex: 'manager',
+                    },
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: '',
+                        dataIndex: 'actions',
+                        render: (text, record) =>
+                            <Link to={"/admin/business/" + record.key + "/details"}>{t("BoBusiness.Business.FactsCard")}</Link>
+                        ,
+                    }
+                ]
+            })
+        }
+    }
+
 
     searchByName = (value) => {
         this.setState({
@@ -83,12 +123,14 @@ class UsersList extends Component {
     }
 
     render() {
+        console.log('translation', this.state.translation)
+        const { t } = this.props
         return (
             <div className="businesses-list-background">
                 <div className="businesses-list-container">
                     <div className="businesses-list-header">
                         <Search
-                            placeholder="Search by Business name"
+                            placeholder={t("BoBusiness.Business.Searchbar")}
                             enterButton
                             allowClear
                             onSearch={this.searchByName}
@@ -102,6 +144,7 @@ class UsersList extends Component {
                             tableLayout="fixed"
                             scroll={{ scrollToFirstRowOnChange: true }}
                             pagination={{ showSizeChanger: false, total: this.state.totalElements, hideOnSinglePage: true }}
+                            key={this.props.lang}
                         />
                     </div>
                 </div>
@@ -111,7 +154,8 @@ class UsersList extends Component {
 }
 
 const mapStateToProps = state => ({
-    admin: state.adminDuck.admin
+    admin: state.adminDuck.admin,
+    lang: state.translationDuck.payload
 })
 
-export default connect(mapStateToProps)(UsersList)
+export default withTranslation()(connect(mapStateToProps)(BusinessList))

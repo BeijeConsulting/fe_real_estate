@@ -1,4 +1,4 @@
-import { Button, Form, Input, DatePicker, Upload } from "antd";
+import { Button, Form, Input, Modal, Upload } from "antd";
 import { UploadOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./updateProfile.css";
@@ -7,22 +7,22 @@ import { getUserById, updateUserInfo } from "../../../services/backoffice/usersA
 import { connect } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
-import { get } from "lodash";
+import { useTranslation } from "react-i18next";
 
 const UpdateProfile = (props) => {
     let dataAdmin = {}
     let updatedData = {}
     let navigate = useNavigate()
+    const { t } = useTranslation()
     const [form] = Form.useForm();
     const antProps = {
         action: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.interlinecenter.com%2F%3Fattachment_id%3D337&psig=AOvVaw1M-WHiEIbmWU6iI0nqA9iI&ust=1645182122041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPibgZLLhvYCFQAAAAAdAAAAABAD'
     }
 
-    const [state, setState] = useState({ dataAdmin: null, updatedData: {} })
+    const [state, setState] = useState({ dataAdmin: null, updatedData: {}, isModalOpened: false })
 
     const getAdminData = async () => {
         dataAdmin = await getUserById(props.admin.id, props.admin.token)
-        console.log('data admin', dataAdmin)
         updatedData = {
             email: dataAdmin.email,
             avatarUrl: dataAdmin.avatarUrl,
@@ -55,6 +55,11 @@ const UpdateProfile = (props) => {
 
 
     const handleClick = async () => {
+        let isModalOpened = state.isModalOpened
+        setState({ ...state, isModalOpened: !isModalOpened })
+    }
+
+    const saveChanges = async () => {
         let data = await updateUserInfo(state.updatedData, props.admin.token)
         navigate("/admin/profile")
     }
@@ -62,8 +67,6 @@ const UpdateProfile = (props) => {
     useEffect(() => {
         getAdminData()
         form.resetFields()
-        console.log('admin data', state.dataAdmin)
-
     }, [])
 
 
@@ -93,37 +96,29 @@ const UpdateProfile = (props) => {
                     </Upload>
 
                     <div className="update-profile-info">
-                        <Form.Item name="name" label="Nome">
+                        <Form.Item name="name" label={t("BoUpdateProfile.Info.Name")}>
                             <Input onChange={handleName} placeholder="inserisci nome" />
                         </Form.Item>
-                        <Form.Item name="surname" label="Cognome">
+                        <Form.Item name="surname" label={t("BoUpdateProfile.Info.Surname")}>
                             <Input onChange={handleSurname} placeholder="inserisci cognome" />
                         </Form.Item>
-                        <Form.Item name="username" label="Username">
+                        <Form.Item name="username" label={t("BoUpdateProfile.Info.Username")}>
                             <Input placeholder="admin" />
                         </Form.Item>
-                        {/*<Form.Item name="birthPlace" label="Luogo di nascita">
-                        <Input onChange={handleBirthPlace} placeholder="inserisci luogo di nascita" />
-                    </Form.Item>*/}
                     </div>
                     <div className="update-profile-contacts">
-                        <Form.Item name="email" label="Email">
+                        <Form.Item name="email" label={t("BoUpdateProfile.Contacts.PersonalEmail")}>
                             <Input onChange={handleEmail} type="email" placeholder="inserisci la tua email" />
                         </Form.Item>
-                        {/* <Form.Item name="phoneNumber" label="Numero di telefono">
-                        <Input onChange={handlePhoneNumber} placeholder="inserisci numero di telefono " />
-                    </Form.Item>
-                    <Form.Item name="businessEmail" label="Email aziendale">
-                        <Input onChange={handleBusinessEmail} type="email" placeholder="inserisci email aziendale" />
-                    </Form.Item> */
-                        }
-
                     </div>
                     <div className="update-profile-button">
                         <Form.Item>
-                            <Button type="primary" onClick={handleClick}>Salva</Button>
+                            <Button type="primary" onClick={handleClick}>{t("BoUpdateProfile.Save")}</Button>
                         </Form.Item>
                     </div>
+                    <Modal visible={state.isModalOpened} onOk={saveChanges} onCancel={handleClick} getContainer={false}>
+                        <p>{t("BoUpdateProfile.Modal.Text")}</p>
+                    </Modal>
                 </Form>
             </div >
         }

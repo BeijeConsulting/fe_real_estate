@@ -1,0 +1,10 @@
+{
+    "Verification": {
+        "Pending": "Pending",
+        "Refused": "Refused",
+        "BuildingType": "Building type",
+        "AdvType": "Adv type",
+        "City": "City",
+        "PublishedDate": "Published date"
+    }
+}

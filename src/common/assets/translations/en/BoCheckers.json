@@ -1,0 +1,14 @@
+{
+    "Checker": {
+        "Add": "Add a checker",
+        "Username": "Username",
+        "Name": "Name",
+        "Surname": "Surname",
+        "Email": "Email",
+        "FactsCard": "Checker card",
+        "Button": "Save"
+    },
+    "Modal": {
+        "Text": "Do you want to save this checker?"
+    }
+}

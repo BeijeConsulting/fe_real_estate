@@ -3,23 +3,25 @@ import "./detailsAd.css";
 // redux
 import { connect } from "react-redux";
 //router
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 // service
-import { getAdv } from "../../../services/backoffice/advertisementApi";
+import { disableAdv, getAdv, postAdvState } from "../../../services/backoffice/advertisementApi";
 // Ant design imports
 import { Typography, Carousel, Collapse, Button, Row, Col, List } from "antd";
 import Item from "antd/lib/list/Item";
-const { Link, Title } = Typography;
+import { getNameUserFromSellerId } from "../../../services/backoffice/usersApi";
+const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const DetailsAd = (props) => {
     // hooks
     const [adv, setAdv] = useState([]);
+    const [seller, setSeller] = useState("");
+    const [checker, setChecker] = useState("");
     // global var
     const title = (` ${adv[0]?.advType} ${adv[0]?.buildingType} ${adv[0]?.city}`).toUpperCase();
     const description = adv[0]?.longDescription
-    const creator = "Antonio";
-    const revisor = "Antonio";
+
 
     //router
     const param = useParams();
@@ -48,16 +50,37 @@ const DetailsAd = (props) => {
     const createAdv = async () => {
         let resultApi = await getAdv(props.admin.token, param.id)
         let formatData = [formatDataFromApi(resultApi[0])]
+        // let nameSeller = await getNameUserFromSellerId(props.admin.token, formatData[0].seller.id)
+
+        let seller = {
+            username: formatData[0].seller?.username,
+            idSeller: formatData[0].seller?.id,
+        }
+
+        let checker = {
+            username: formatData[0].checker?.username,
+            idChecker: formatData[0].checker?.id,
+        }
         setAdv(formatData);
+        setSeller(seller)
+        setChecker(checker)
     }
-    // func Ant Design
-    //carousel
-    function onChange(a, b, c) {
-        console.log(a, b, c);
+
+
+    //buttons funs
+    const approveAdv = async () => {
+        let data = await postAdvState(props.admin.token, param.id, "approve")
+    }
+    const refuseAdv = async () => {
+        let data = await postAdvState(props.admin.token, param.id, "refuse")
+    }
+    const deleteAdv = async () => {
+        let data = await disableAdv(props.admin.token, param.id)
     }
     // useEffect
     useEffect(() => {
         createAdv();
+
     }, []);
     return (
 
@@ -65,27 +88,44 @@ const DetailsAd = (props) => {
             {
                 adv.length !== 0 &&
 
-                <div lassName="container-all" >
+                <div className="container-all" >
                     <div className="container-advdetails">
                         {/* title */}
                         <Title className="title" level={2}>
                             {title}
                         </Title>
-
-                        {/* <div className="container-head"> */}
-                        {/* link name creator */}
-                        {/* <span> Creato da:&nbsp;
-                            <Link href="https://ant.design" target="_blank">
-                                {creator}
-                            </Link>
-                        </span> */}
-                        {/* link revisor?? */}
-                        {/* <span> Revisionato da:&nbsp;
-                            <Link href="https://ant.design" target="_blank">
-                                {revisor}
-                            </Link>
-                        </span>
-                    </div> */}
+                        {
+                            adv[0].status === "Approved" &&
+                            < Title className="state-adv" level={5} type="success" >
+                                {adv[0].status}
+                            </Title>
+                        }
+                        {
+                            adv[0].status === "Refused" &&
+                            <Title className="state-adv" level={5} type="warning">
+                                {adv[0].status}
+                            </Title>
+                        }
+                        {
+                            adv[0].status === "Deleted" &&
+                            <Title className="state-adv" level={5} type="danger">
+                                {adv[0].status}
+                            </Title>
+                        }
+                        <div className="container-head">
+                            {/* link name creator */}
+                            <span> Creato da:&nbsp;
+                                <Link to={`/admin/user/${seller.idSeller}/details`}>
+                                    {seller.username}
+                                </Link>
+                            </span>
+                            {/* link revisor?? */}
+                            <span> Revisionato da:&nbsp;
+                                <Link to={`/admin/user/${checker.idChecker}/details`}>
+                                    {checker.username}
+                                </Link>
+                            </span>
+                        </div>
 
                         {/* carousell */}
                         {/* <div className="container-carousel">
@@ -116,7 +156,7 @@ const DetailsAd = (props) => {
                             }
                             {
                                 description !== "-" &&
-                                <p>
+                                <p style={{ textAlign: "center" }}>
                                     {description}
                                 </p>
                             }
@@ -164,7 +204,7 @@ const DetailsAd = (props) => {
                                                     <List.Item key={key} className="info-profile-items">
                                                         <List.Item.Meta
                                                             title={"CAP"}
-                                                            description={item.zipcode}
+                                                            description={item.zipCode}
                                                         />
                                                         <List.Item.Meta
                                                             title={"Tipo Annuncio"}
@@ -370,7 +410,9 @@ const DetailsAd = (props) => {
 
                         {/* bottons */}
                         <div className="container-button">
-                            <Button type="danger">Elimina</Button>
+                            <Button type="primary" onClick={approveAdv}>Approva</Button>
+                            <Button type="danger" onClick={deleteAdv}>Elimina</Button>
+                            <Button type="danger" onClick={refuseAdv}>Rifiuta</Button>
                         </div>
                     </div>
                 </div>

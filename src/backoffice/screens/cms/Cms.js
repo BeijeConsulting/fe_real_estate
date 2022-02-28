@@ -15,13 +15,16 @@ import { Button, Layout, Menu } from 'antd';
 // FONT AWESOME
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBriefcase, faRectangleList, faUsers, faChartLine, faStamp } from "@fortawesome/free-solid-svg-icons"
+// TRANSLATIONS
+import Language from '../../componets/funcComponets/languages/Language';
+import { useTranslation } from 'react-i18next';
 
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const Cms = (props) => {
     let navigate = useNavigate();
-
+    const { t } = useTranslation()
     const setTitleNavigate = (title) => () => {
         props.dispatch(setHeaderTitle(title))
         navigate(
@@ -45,40 +48,37 @@ const Cms = (props) => {
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['2']}>
                         <Menu.Item key="1" icon={<UserOutlined />} onClick={setTitleNavigate("profile")}>
-                            Profilo
+                            {t("BoCms.Cms.Profile")}
                         </Menu.Item>
                         <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("dashboard")}>
-                            DashBoard
+                            {t("BoCms.Cms.Dashboard")}
                         </Menu.Item>
                         <Menu.Item key="3" icon={<FontAwesomeIcon icon={faRectangleList} />} onClick={setTitleNavigate("advertisements")}>
-                            Annunci
+                            {t("BoCms.Cms.Ads")}
                         </Menu.Item>
                         <Menu.Item key="4" icon={<FontAwesomeIcon icon={faUsers} />} onClick={setTitleNavigate("users")}>
-                            Users
+                            {t("BoCms.Cms.Users")}
                         </Menu.Item>
                         <Menu.Item key="5" icon={<HomeOutlined />} onClick={setTitleNavigate("businesses")}>
-                            Business
+                            {t("BoCms.Cms.Business")}
                         </Menu.Item>
                         <Menu.Item key="6" icon={<FontAwesomeIcon icon={faBriefcase} />} onClick={setTitleNavigate("collaborators")}>
-                            Collaboratori
+                            {t("BoCms.Cms.Checkers")}
                         </Menu.Item>
                         <Menu.Item key="7" icon={<FontAwesomeIcon icon={faStamp} />} onClick={setTitleNavigate("verification-adv")}>
-                            Autenticazioni
+                            {t("BoCms.Cms.Verifications")}
                         </Menu.Item>
                     </Menu>
 
                     <div className='logout'>
-                        <Button type="link" danger >Logout</Button>
+                        <Button type="link" danger >{t("BoCms.Cms.Logout")}</Button>
                     </div>
                 </Sider>
                 <Layout>
                     <Header className={"site-layout-sub-header-backgroun header-style"} style={{ padding: 0, backgroundColor: 'var(--gray)' }} >
                         <div>  <h2 className='nav-title'>{props.title}</h2> </div>
-                        <div>
-                            <ul className='languages'>
-                                <li className="button_lang languages">It</li>
-                                <li className="button_lang languages">En</li>
-                            </ul>
+                        <div className='languages'>
+                            <Language />
                         </div>
                     </Header>
                     <Content style={{ margin: '24px 16px 0' }}>

@@ -1,0 +1,51 @@
+{
+    "Business": {
+        "Searchbar": "Ricerca nome azienda",
+        "BusinessName": "Nome Aziendale",
+        "Phone": "Telefono",
+        "Ref": "Referenza",
+        "FactsCard": "Scheda business"
+    },
+    "BusinessCms": {
+        "Details": "Dettaglio",
+        "Ads": "Annunci",
+        "Users": "Utenti"
+    },
+    "Detail": {
+        "Info": "Info azienda",
+        "Name": "Nome azienda",
+        "Vat": "Partita Iva",
+        "Address": "Indirizzo"
+    },
+    "Manager": {
+        "Info": "Info Manager",
+        "Name": "Nome",
+        "Surname": "Cognome",
+        "Phone": "Telefono"
+    },
+    "Button": "Modifica dati",
+    "UpdateBusiness": {
+        "BusinessName":"Nome azienda",
+        "Vat": "Partita Iva",
+        "Address": "Indirizzo",
+        "Manager": {
+            "Info": "Info Manager",
+            "Name": "Nome",
+            "Surname": "Cognome",
+            "Phone": "Telefono"
+        },
+        "SaveButton": "Salva"
+    },
+    "Adv":{
+        "Search": "Cerca nome annuncio",
+        "BuildingType":"Tipo edificio",
+        "AdvType": "Tipo annuncio",
+        "City": "Città",
+        "Published": "Data pubblicazione"
+    },
+    "Users": {
+        "Username": "Username",
+        "Email": "Email",
+        "Type": "Tipo"
+    }
+}

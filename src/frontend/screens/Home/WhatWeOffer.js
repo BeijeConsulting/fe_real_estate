@@ -1,99 +1,81 @@
-import "./WhatWeOffer.css";
 import React from "react";
+
+// style
+import "./WhatWeOffer.css";
+
+// components
 import NavBar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import ServiceCard from "../../components/whatWeOffer/ServiceCard";
-import { withTranslation } from "react-i18next";
+
+// translations
+import { useTranslation } from "react-i18next";
+
+// seo
+import { Helmet } from "react-helmet";
 
 const CLASSES = {
 	CARD: "flex flex-col items-start mt-4 mb-2 my-8",
-	PRE_CARD_TEXT: "ml-2 mb-6 uppercase font-semibold",
+	PRE_CARD_TEXT: "ml-2 mb-6 uppercase font-semibold max-w-xs md:max-w-none ",
 	CARD_INFO:
 		"flex flex-col items-start justify-evenly text-sm text-white font-bold",
 };
 
-const WhatWeOffer = ({ t }) => {
+const WhatWeOffer = () => {
+	const { t } = useTranslation();
+
 	return (
-		<div className="h-screen flex flex-col justify-between items-center">
+		<div className="w-screen h-screen fixed overflow-auto flex flex-col justify-between items-center">
+			{/* SEO */}
+			<Helmet>
+				<meta
+					name="description"
+					content={t("WhatWeOffer.helmet.description")}
+				/>
+				<title>{t("WhatWeOffer.helmet.title")}</title>
+			</Helmet>
+			{/* WhatWeOffer */}
 			<header className="w-screen mb-4">
 				<NavBar />
 			</header>
 			<div className="flex flex-col items-center mt-4">
-				<p
-					className={
-						"font-bold text-black text-xl  uppercase "
-					}
-				>
-					{t("WhatWeOffer.searchForProperty.text")}
+				<p className={"font-bold text-black text-xl  uppercase "}>
+					{t("WhatWeOffer.title")}
 				</p>
-				<input
-					placeholder="Searchbar"
-					type="text"
-					style={{
-						border: "1px solid black",
-						padding: 3,
-					}}
-				/>
 			</div>
 			<div className={CLASSES.CARD}>
 				<p className={CLASSES.PRE_CARD_TEXT}>
 					{t("WhatWeOffer.services.newAd.preCardText")}
 				</p>
 				<ServiceCard
-					buttonText={t(
-						"WhatWeOffer.services.newAd.button"
-					)}
-					classNameRedirectSection={
-						"what-we-offer__insert-ad"
-					}
+					buttonText={t("WhatWeOffer.services.newAd.button")}
+					classNameRedirectSection={"what-we-offer__insert-ad"}
 					title={t("WhatWeOffer.services.newAd.title")}
 				>
 					<div className={CLASSES.CARD_INFO}>
 						<p className={"text-xl uppercase"}>
-							{t(
-								"WhatWeOffer.services.newAd.infoTitle"
-							)}
+							{t("WhatWeOffer.services.newAd.infoTitle")}
 						</p>
-						<p className="">
-							{t(
-								"WhatWeOffer.services.newAd.infoText"
-							)}
-						</p>
+						<p className="">{t("WhatWeOffer.services.newAd.infoText")}</p>
 					</div>
 				</ServiceCard>
 			</div>
 			<div className={CLASSES.CARD}>
 				<p className={CLASSES.PRE_CARD_TEXT}>
-					{t(
-						"WhatWeOffer.services.assessProperty.preCardText"
-					)}
+					{t("WhatWeOffer.services.assessProperty.preCardText")}
 				</p>
 				<ServiceCard
-					buttonText={t(
-						"WhatWeOffer.services.assessProperty.button"
-					)}
-					classNameRedirectSection={
-						"what-we-offer__assess-property"
-					}
-					reverseRow={true}
-					title={t(
-						"WhatWeOffer.services.assessProperty.title"
-					)}
+					buttonText={t("WhatWeOffer.services.assessProperty.button")}
+					classNameRedirectSection={"what-we-offer__assess-property"}
+					reverse={true}
+					title={t("WhatWeOffer.services.assessProperty.title")}
 				>
 					<div className={`${CLASSES.CARD_INFO}`}>
-						<p
-							className={
-								"text-xl uppercase text-center w-full"
-							}
-						>
-							{t(
-								"WhatWeOffer.services.assessProperty.infoTitle"
-							)}
+						<p className={"text-xl uppercase text-center w-full"}>
+							{t("WhatWeOffer.services.assessProperty.infoTitle")}
 						</p>
 						<p className="ml-4">
-							{t(
-								"WhatWeOffer.services.assessProperty.infoText"
-							)}
+							{t("WhatWeOffer.services.assessProperty.infoText")}
 						</p>
 					</div>
 				</ServiceCard>
@@ -105,4 +87,4 @@ const WhatWeOffer = ({ t }) => {
 	);
 };
 
-export default withTranslation()(WhatWeOffer);
+export default WhatWeOffer;

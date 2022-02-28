@@ -1,11 +1,21 @@
 import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
 
+// routing
 import { Navigate, Link } from "react-router-dom";
+
+// utils
 import formValidation from "../../../utils/formValidation";
 
-import Input from '../../../components/UI/Input/Input'
-import Button from '../../../components/UI/Button/Button'
+// components
+import Input from "../../../components/UI/Input/Input";
+import Button from "../../../components/UI/Button/Button";
+
+// translations
+import { withTranslation } from "react-i18next";
+
+// seo
+import { Helmet } from "react-helmet";
+
 class SignUpBusiness extends Component {
 	constructor(props) {
 		super(props);
@@ -17,14 +27,8 @@ class SignUpBusiness extends Component {
 			vatNumber: [formValidation.nonEmptyText],
 			businessName: [formValidation.nonEmptyText],
 			address: [formValidation.nonEmptyText],
-			email: [
-				formValidation.nonEmptyText,
-				formValidation.invalidEmail,
-			],
-			password: [
-				formValidation.nonEmptyText,
-				formValidation.invalidPassword,
-			],
+			email: [formValidation.nonEmptyText, formValidation.invalidEmail],
+			password: [formValidation.nonEmptyText, formValidation.invalidPassword],
 		};
 
 		this.state = {
@@ -101,18 +105,18 @@ class SignUpBusiness extends Component {
 
 	translateErrorMessage = (str) => {
 		switch (str) {
-			case 'empty':
-				return this.props.t('SignUp.emptyField')
-			case 'invalid':
-				return this.props.t('SignUp.invalidField')
+			case "empty":
+				return this.props.t("SignUp.emptyField");
+			case "invalid":
+				return this.props.t("SignUp.invalidField");
 			default:
-				return ''
+				return "";
 		}
-	}
+	};
 
 	resetError = (str) => () => {
-		this.setState({ errors: { ...this.state.errors, [str]: '' } })
-	}
+		this.setState({ errors: { ...this.state.errors, [str]: "" } });
+	};
 
 	// Submit
 
@@ -128,64 +132,84 @@ class SignUpBusiness extends Component {
 		const { t } = this.props;
 
 		return (
-			<form className="flex flex-col justify-evenly items-center">
-				<Input
-					placeholder={t("SignUpBusiness.VATNumber")}
-					type="text"
-					onChange={this.onChangeVatNumber}
-					onCloseError={this.resetError('vatNumber')}
-					errorMessage={this.translateErrorMessage(this.state.errors.vatNumber)}
-				/>
+			<>
+				{/* SEO */}
+				<Helmet>
+					<meta
+						name="description"
+						content={t("SignUpBusiness.helmet.description")}
+					/>
+					<title>{t("SignUpBusiness.helmet.title")}</title>
+				</Helmet>
+				<form className="flex flex-col justify-evenly items-center">
+					<h1 className="capitalise font-primary font-extrabold text-4xl">
+						Registrati
+					</h1>
+					<p className="font-primary font-light text-sm mt-2 text-center">
+						Registrati come Business
+					</p>
+					<Input
+						placeholder={t("SignUpBusiness.VATNumber")}
+						type="text"
+						onChange={this.onChangeVatNumber}
+						onCloseError={this.resetError("vatNumber")}
+						errorMessage={this.translateErrorMessage(
+							this.state.errors.vatNumber
+						)}
+					/>
 
-				<Input
-					placeholder={t("SignUpBusiness.businessName")}
-					type="text"
-					onChange={this.onChangeBusinessName}
-					onCloseError={this.resetError('businessName')}
-					errorMessage={this.translateErrorMessage(this.state.errors.businessName)}
-				/>
+					<Input
+						placeholder={t("SignUpBusiness.businessName")}
+						type="text"
+						onChange={this.onChangeBusinessName}
+						onCloseError={this.resetError("businessName")}
+						errorMessage={this.translateErrorMessage(
+							this.state.errors.businessName
+						)}
+					/>
 
-				<Input
-					placeholder={t("SignUpBusiness.address")}
-					type="text"
-					onChange={this.onChangeAddress}
-					onCloseError={this.resetError('address')}
-					errorMessage={this.translateErrorMessage(this.state.errors.address)}
+					<Input
+						placeholder={t("SignUpBusiness.address")}
+						type="text"
+						onChange={this.onChangeAddress}
+						onCloseError={this.resetError("address")}
+						errorMessage={this.translateErrorMessage(this.state.errors.address)}
+					/>
 
-				/>
+					<Input
+						placeholder="email"
+						type="email"
+						onChange={this.onChangeEmail}
+						onCloseError={this.resetError("email")}
+						errorMessage={this.translateErrorMessage(this.state.errors.email)}
+					/>
+					<Input
+						placeholder="password"
+						type="password"
+						onChange={this.onChangePassword}
+						onCloseError={this.resetError("password")}
+						errorMessage={this.translateErrorMessage(
+							this.state.errors.password
+						)}
+					/>
 
-				<Input
-					placeholder="email"
-					type="email"
-					onChange={this.onChangeEmail}
-					onCloseError={this.resetError('email')}
-					errorMessage={this.translateErrorMessage(this.state.errors.email)}
-				/>
-				<Input
-					placeholder="password"
-					type="password"
-					onChange={this.onChangePassword}
-					onCloseError={this.resetError('password')}
-					errorMessage={this.translateErrorMessage(this.state.errors.password)}
-				/>
+					<Button
+						marginTop={"15px"}
+						className="mb-5"
+						type="secondary"
+						onClick={this.onClickSignUp}
+						label={t("SignUpBusiness.signUpButton")}
+					/>
 
-				<Button
-					marginTop={'15px'}
-					className="mb-5"
-					type='secondary'
-					onClick={this.onClickSignUp}
-					label={t("SignUpBusiness.signUpButton")}
-				/>
-
-
-				<p className="font-primary mt-5">{t("SignUpBusiness.goToLogin.label")}</p>
-				<Link className="font-primary mt-2" to={"/auth/login"}>
-					{t("SignUpBusiness.goToLogin.link")}
-				</Link>
-				{this.state.redirectToLogin && (
-					<Navigate to={"/auth/login"} />
-				)}
-			</form>
+					<p className="font-primary mt-5">
+						{t("SignUpBusiness.goToLogin.label")}
+					</p>
+					<Link className="font-primary mt-2" to={"/auth/login"}>
+						{t("SignUpBusiness.goToLogin.link")}
+					</Link>
+					{this.state.redirectToLogin && <Navigate to={"/auth/login"} />}
+				</form>
+			</>
 		);
 	}
 }

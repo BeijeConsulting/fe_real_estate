@@ -1,21 +1,23 @@
-import { javaAcademyServiceInstance as client }  from "../javaAcademyService";
+import { javaAcademyServiceInstance as client } from "../javaAcademyService";
 
+const findAds = async (filters) => {
+	return await client.post("/search/1/10", filters);
+};
 
-const findAds = async ( filters ) => {
+// Returns all the cities avaible from the database
+const getCities = async () => {
+	return await client.get("advertisement/listCities");
+};
 
-    let obj ={
-        advType: "SALE",
-        city: "Firenze",
-        buildingType: "HOUSE"
-    }
+const getUserAds = (userId) =>
+	client.get(`/user/ads/${userId}`).then((res) => res.data);
 
-    await client.get('/find', obj )
-    .then(res => {
-        console.log(res)
-    })
+//Add new advertisement in database
+const addNewAdv = async (adv, token) => {
+	let headers = {
+		Authorization: `Bearer ${token}`,
+	};
+	return await client.post("/advertisement", adv, { headers });
+};
 
-}
-
-export {
-    findAds
-}
+export { findAds, getCities, getUserAds, addNewAdv };

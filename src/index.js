@@ -1,13 +1,15 @@
 import "./index.css";
 import "./i18n";
 import { BrowserRouter } from "react-router-dom";
-import React, { Profiler } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import Routing from "./Routing";
 import reportWebVitals from "./reportWebVitals";
+import Helmet from "./common/components/funcComponents/Helmet";
 
 ReactDOM.render(
 	<React.StrictMode>
+		<Helmet />
 		<BrowserRouter>
 			<Routing />
 		</BrowserRouter>

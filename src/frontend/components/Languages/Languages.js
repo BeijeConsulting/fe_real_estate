@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useTranslation } from "react-i18next";
 
@@ -8,26 +8,22 @@ import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import SearchSelect from "../Search/SearchSelect";
 
 const Languages = (props) => {
-
 	const { i18n } = useTranslation();
 
 	let langs = [
-		{ label: 'IT', value:'it'},
-		{ label: 'EN', value: 'en'}
-	]
+		{ label: "IT", value: "it" },
+		{ label: "EN", value: "en" },
+	];
 
-	const changeLanguage = ( e ) => {
+	const changeLanguage = (e) => {
 		i18n.changeLanguage(e.value);
 	};
 
-
-
-
 	return (
 		<div>
-			<SearchSelect 
+			<SearchSelect
 				fgClass={props.fgClass}
-				value={<FontAwesomeIcon className='text-2xl' icon={faGlobe} />}
+				value={<FontAwesomeIcon className="text-2xl" icon={faGlobe} />}
 				callback={changeLanguage}
 				options={langs}
 			/>
