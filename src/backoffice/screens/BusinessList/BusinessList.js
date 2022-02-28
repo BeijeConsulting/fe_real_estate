@@ -4,7 +4,7 @@ import 'antd/dist/antd.css' //Css Antdesign
 import { Component } from "react";
 
 // Import API
-import { getBusinesses, searchBusinessByName } from "../../../services/backoffice/businessApi";
+import { getBusinesses, searchBusinessByName, deleteBusiness } from "../../../services/backoffice/businessApi";
 // Import transaltions
 import { withTranslation, useTranslation } from "react-i18next";
 import { t } from "i18next";
@@ -12,7 +12,8 @@ import { t } from "i18next";
 import { connect } from "react-redux";
 
 // Import from AntDesign
-import { Table, Input } from "antd";
+import { Table, Input, Popover, Button, Modal } from "antd";
+import { UserDeleteOutlined } from '@ant-design/icons'
 import { Link } from "react-router-dom";
 const { Search } = Input;
 
@@ -22,32 +23,56 @@ class BusinessList extends Component {
         super(props)
 
         this.state = {
+            isModal: false,
+            refresh: false,
             businesses: [],
             isLoading: true,
             totalElements: 0,
             columns: [
                 {
-                    id: 1 + '-' + props.lang,
+                    id: 1 + '-' + this.props.lang,
                     title: t("BoBusiness.Business.BusinessName"),
                     dataIndex: 'username',
                 },
                 {
-                    id: 1 + '-' + props.lang,
+                    id: 1 + '-' + this.props.lang,
                     title: t("BoBusiness.Business.Phone"),
                     dataIndex: 'phoneNumber',
                 },
                 {
-                    id: 1 + '-' + props.lang,
+                    id: 1 + '-' + this.props.lang,
                     title: t("BoBusiness.Business.Ref"),
                     dataIndex: 'manager',
                 },
                 {
-                    id: 1 + '-' + props.lang,
+                    id: 1 + '-' + this.props.lang,
                     title: '',
                     dataIndex: 'actions',
                     render: (text, record) =>
                         <Link to={"/admin/business/" + record.key + "/details"}>{t("BoBusiness.Business.FactsCard")}</Link>
                     ,
+                },
+                {
+                    id: 1 + '-' + this.props.lang,
+                    title: '',
+                    dataIndex: 'actions',
+                    render: (text, record) => {
+                        return (
+                            <>
+                                <Popover content={t("BoBusiness.Business.HoverRemove")} trigger="hover">
+                                    <Button type="primary" onClick={this.openCloseModal} danger>
+                                        <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
+                                    </Button>
+                                </Popover>
+                                {
+                                    this.state.isModal &&
+                                    <Modal visible={this.state.isModal} onOk={this.handleRemove(record.key)} onCancel={this.openCloseModal} getContainer={false}>
+                                        <p>{t("BoBusiness.Business.ModalText")}</p>
+                                    </Modal>
+                                }
+                            </>
+                        )
+                    }
                 }
             ]
         }
@@ -86,12 +111,51 @@ class BusinessList extends Component {
                         render: (text, record) =>
                             <Link to={"/admin/business/" + record.key + "/details"}>{t("BoBusiness.Business.FactsCard")}</Link>
                         ,
+                    },
+                    {
+                        id: 1 + '-' + this.props.lang,
+                        title: '',
+                        dataIndex: 'actions',
+                        render: (text, record) => {
+                            return (
+                                <>
+                                    <Popover content={t("BoBusiness.Business.HoverRemove")} trigger="hover">
+                                        <Button type="primary" onClick={this.openCloseModal} danger>
+                                            <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
+                                        </Button>
+                                    </Popover>
+                                    {
+                                        this.state.isModal &&
+                                        <Modal visible={this.state.isModal} onOk={this.handleRemove(record.key)} onCancel={this.openCloseModal} getContainer={false}>
+                                            <p>{t("BoBusiness.Business.ModalText")}</p>
+                                        </Modal>
+                                    }
+                                </>
+                            )
+                        }
+
+
+                        ,
                     }
                 ]
             })
         }
     }
 
+    handleRemove = (id) => () => {
+        this.removeBusiness(id)
+    }
+
+    openCloseModal = () => {
+        this.setState({
+            isModal: !this.state.isModal,
+            refresh: !this.state.refresh
+        })
+    }
+
+    removeBusiness = async (id) => {
+        await deleteBusiness(id, this.props.admin.token)
+    }
 
     searchByName = (value) => {
         this.setState({
@@ -123,7 +187,6 @@ class BusinessList extends Component {
     }
 
     render() {
-        console.log('translation', this.state.translation)
         const { t } = this.props
         return (
             <div className="businesses-list-background">
