@@ -2,7 +2,7 @@ import "./admin-login.css"
 import { PureComponent } from "react"
 
 /* ant Design */
-import { Checkbox } from 'antd';
+import { Checkbox, Alert } from 'antd';
 /* utils */
 import storage from "../../../common/utils/storage"
 /* react redux */
@@ -24,7 +24,8 @@ class AdminLogin extends PureComponent {
         this.state = {
             user: {},
             flagRedirect: false,
-            flagRememberMe: false
+            flagRememberMe: false,
+            feedBackSuccess: null
         }
     }
 
@@ -68,24 +69,38 @@ class AdminLogin extends PureComponent {
         this.redirect()
     }
     login = async () => {
-        let refreshToken = await authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
+        let response = await authAdminApi.signInAdmin(this.state.user, this.props.dispatch)
+        let feedBackSuccess = null
+        if (response.status === 200) {
+            feedBackSuccess = true
+        } else if (response = "errore") {
+            feedBackSuccess = false
+        }
+        this.setState({
+            feedBackSuccess: feedBackSuccess
+        })
         if (this.state.flagRememberMe === true) {
             localStorage.setItem(
                 storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN,
-                refreshToken
+                response.data.refreshToken
             );
         }
-        this.redirect()
+        if (feedBackSuccess) {
+            this.redirect()
+        }
     }
     redirect = () => {
-        this.setState({
-            flagRedirect: true
-        })
+        setTimeout(() => {
+            this.setState({
+                flagRedirect: true
+            })
+        }, [1000])
     }
 
     render() {
         return (
             <main className="container-auth-admin font-primary">
+
                 <div className="box-auth-admin">
                     <section className="box-Logo">
                         <LogoComp
@@ -124,6 +139,20 @@ class AdminLogin extends PureComponent {
                     <footer>
                         <div><Link to={"/"}>Torna a Home</Link></div>
                     </footer>
+                    <div className="container-feedback">
+                        {
+                            this.state.feedBackSuccess &&
+                            <div className="box-success">
+                                <Alert message="Success" type="success" showIcon />
+                            </div>
+                        }
+                        {
+                            this.state.feedBackSuccess === false &&
+                            <div className="box-error">
+                                <Alert message="Check username or password" type="error" showIcon />
+                            </div>
+                        }
+                    </div>
                 </div>
                 {
                     this.state.flagRedirect &&

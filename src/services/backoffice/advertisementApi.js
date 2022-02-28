@@ -63,9 +63,7 @@ export const getRefusedAdvertaisement = async (token) => {
     .then((response) => {
       return response.data;
     })
-    .catch
-    //Error handler
-    ();
+    .catch(() => { return "errore" });
   return result;
 };
 
