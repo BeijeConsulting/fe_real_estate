@@ -4,7 +4,9 @@
         "BusinessName": "Nome Aziendale",
         "Phone": "Telefono",
         "Ref": "Referenza",
-        "FactsCard": "Scheda business"
+        "FactsCard": "Scheda business",
+        "HoverRemove": "Rimuovi azienda",
+        "ModalText": "Vuoi rimuovere questa azienda?"
     },
     "BusinessCms": {
         "Details": "Dettaglio",
