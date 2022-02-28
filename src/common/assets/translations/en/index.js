@@ -21,6 +21,7 @@ import BoVerification from "./BoVerification.json";
 import Carousel from "./Carousel.json";
 import Illustrations from "./Illustrations.json";
 import Search from "./Search.json";
+import DetailBuilding from "./DetailBuilding.json";
 
 const en = {
 	AboutUs,
@@ -46,6 +47,7 @@ const en = {
 	BoUpdateProfile,
 	BoUsers,
 	BoVerification,
+	DetailBuilding,
 };
 
 export default en;
