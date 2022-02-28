@@ -15,8 +15,7 @@ import {
 	faMaximize, faStairs,
 	faHouse, faCalendarDays,
 	faCubes, faElevator, faBellConcierge,
-	faPersonSwimming, faBoxOpen,
-	faXmark, faSun, faWineBottle,
+	faPersonSwimming, faBoxOpen, faSun, faWineBottle,
 	faSnowflake, faLightbulb,
 	faCar, faTree, faChair, faStar
 } from "@fortawesome/free-solid-svg-icons";
@@ -57,7 +56,7 @@ class DetailBuilding extends Component {
 		};
 	}
 
-	getApiDetailBuilding = () => {
+	componentDidMount() {
 		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
 			const adv = res.data;
 			console.log(res)
@@ -78,6 +77,7 @@ class DetailBuilding extends Component {
 					cooling: adv.cooling,
 					date: adv.publishedDateTime,
 					deedState: adv.deedState,
+					description: adv.longDescription,
 					elevator: adv.elevator,
 					energyRating: adv.energyRating,
 					floor: adv.floor,
@@ -104,10 +104,6 @@ class DetailBuilding extends Component {
 
 			this.setState({ adv: details });
 		});
-	}
-
-	componentDidMount() {
-		this.getApiDetailBuilding();
 	}
 
 	handleNavigate = () => {
@@ -159,7 +155,7 @@ class DetailBuilding extends Component {
 								thumbnails={true}
 								thumbnailWidth="100px"
 								style={{
-									width: "75%",
+									width: "85%",
 									margin: "15px 25px",
 								}}
 							/>
@@ -252,18 +248,16 @@ class DetailBuilding extends Component {
 								}
 							</div>
 
-							<div className="flex flex-col my-5 md:my-10 md:flex md:flex-row">
-								<Card className="flex flex-col mb-6 md:w-1/3 p-4 md:mr-6">
+							<div className="flex flex-col my-5 md:h-60 md:my-10 md:flex md:flex-row">
+								<Card className="flex flex-col md:h-full mb-6 md:w-1/3 p-4 md:mr-6">
 									<h1 className="text-2xl font-bold text-center">Descrizione</h1>
-									<p>
-										Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry's
-										standard dummy text ever since the 1500s, when an unknown
-										printer took a galley of type and scrambled it to make a type
-										specimen book.
-									</p>
+									{
+										!this.state.adv.description ?
+											<p className="text-center">Il venditore non ha inserito alcuna descrizione</p>
+											: this.state.adv.description
+									}
 								</Card>
-								<Card className="flex flex-col md:w-4/6 p-4">
+								<Card className="flex flex-col md:h-full md:w-4/6 p-4">
 									<h1 className="text-2xl text-center font-bold">
 										Informazioni nel dettaglio
 									</h1>
