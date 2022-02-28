@@ -1,0 +1,38 @@
+{
+    "found": "Ho trovato",
+    "in": "in",
+    "a":"in",
+    "advType": {
+        "sale": "Vendita",
+        "rent": "Affitto",
+        "shortRent":"Affitto breve"
+    },
+    "SortBy": "Ordina Per...",
+    "Cheapest": "Dal meno caro",
+    "MostExpensive":"Dal più caro",
+    "buildingTypePlural": {
+        "house": "Case",
+        "NewConstruction":"Nuove costruzioni",
+        "RetailSpace":"Spazi commerciali",
+        "Terrain":"Terreni",
+        "Garage":"Garage",
+        "Room":"Stanze",
+        "Bed":"Letti",
+        "BasementAttic":"Soffitte",
+        "BoatSpot":"Posti per Barche"
+    },
+    "buildingTypeSingular": {
+        "house": "Casa",
+        "NewConstruction":"Nuova costruzione",
+        "RetailSpace":"Spazio commerciale",
+        "Terrain":"Terreno",
+        "Garage":"Garage",
+        "Room":"Stanza",
+        "Bed":"Letto",
+        "BasementAttic":"Soffitta",
+        "BoatSpot":"Posto per Barca"
+    },
+    "NotFound":"Non ho trovato",
+    "ForYou":"per te",
+    "UnderConstruction":"Ma non preoccuparti, sono sicuramente in costruzione!"
+}

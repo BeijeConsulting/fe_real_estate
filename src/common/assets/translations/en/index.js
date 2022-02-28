@@ -1,5 +1,7 @@
 import AboutUs from "./AboutUs.json";
 import Home from "./Home.json";
+import AdvList from "./AdvList.json";
+import FAQ from "./FAQ.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
 import SignUp from "./SignUp.json";
@@ -25,6 +27,8 @@ const en = {
 	Search,
 	Carousel,
 	Illustrations,
+	AdvList,
+	FAQ,
 	Login,
 	Map,
 	SignUp,
