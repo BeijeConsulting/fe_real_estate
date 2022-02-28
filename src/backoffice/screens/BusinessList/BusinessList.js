@@ -6,7 +6,7 @@ import { Component } from "react";
 // Import API
 import { getBusinesses, searchBusinessByName, deleteBusiness } from "../../../services/backoffice/businessApi";
 // Import transaltions
-import { withTranslation, useTranslation } from "react-i18next";
+import { withTranslation } from "react-i18next";
 import { t } from "i18next";
 // Import Connect   
 import { connect } from "react-redux";
