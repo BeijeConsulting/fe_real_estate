@@ -1,0 +1,10 @@
+{
+    "rooms": "camere",
+    "bathrooms": "bagni",
+    "floor": "piano",
+    "posted": "Pubblicato il",
+    "open3D": "Apri 3D view",
+    "description": "Descrizione",
+    "descriptionNotPosted": "Il venditore non ha inserito alcuna descrizione",
+    "detailInfo": "Informazioni nel dettaglio"
+}

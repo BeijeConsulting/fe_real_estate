@@ -2,6 +2,10 @@ import "./detailBuilding.css";
 import React, { Component } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { Carousel } from "react-carousel-minimal";
+import { withTranslation } from "react-i18next";
+
+
+import getBuildingType from '../../../common/utils/getBuildingType'
 
 //Images
 import Avatar from "../../assets/images/avatar.png";
@@ -52,9 +56,11 @@ class DetailBuilding extends Component {
 				},
 			],
 			canvasView: false,
-			navigateToSellerProfile: false
+			navigateToSellerProfile: false,
+			title: ""
 		};
 	}
+
 
 	componentDidMount() {
 		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
@@ -102,7 +108,13 @@ class DetailBuilding extends Component {
 				};
 			}
 
-			this.setState({ adv: details });
+			this.setState(
+				{
+					adv: details,
+					title: getBuildingType(adv.rooms) + " in " + adv.address
+				}
+
+			);
 		});
 	}
 
@@ -120,19 +132,15 @@ class DetailBuilding extends Component {
 	};
 
 	render() {
+		const { t } = this.props;
 		return (
 			<>
 				<Navbar fixed />
-				{this.state.canvasView && this.state.adv.virtualTour && (
-					<div>
-						<Property3DView onClickClose={this.closeCanvas} />
-					</div>
-				)}
 				<div className="flex flex-col font-primary bg-slate-200">
 					<div className="mx-auto xl:max-w-5xl xl:mx-auto">
 						<div className="flex flex-row mt-20 bg-white p-1 md:p-3">
 							<h1 className="text-xl ml-2 my-2 md:text-2xl font-bold bg-white rounded">
-								BILOCALE IN PERIFERIA A NAPOLI
+								{this.state.title}
 							</h1>
 							<div className="mt-2 bg-primary border-2 border-blue-900 ml-2">
 								<h1 className="text-xl font-bold color-secondary">
@@ -196,13 +204,13 @@ class DetailBuilding extends Component {
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faDoorOpen} />
-										<h1 className="text-lg font-medium">{this.state.adv.rooms} camere</h1>
+										<h1 className="text-lg font-medium">{this.state.adv.rooms} {t("DetailBuilding.rooms")}</h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faBath} />
-										<h1 className="text-lg font-medium">{this.state.adv.bathrooms} bagni</h1>
+										<h1 className="text-lg font-medium">{this.state.adv.bathrooms} {t("DetailBuilding.bathrooms")}</h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
@@ -214,23 +222,28 @@ class DetailBuilding extends Component {
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faStairs} />
-										<h1 className="text-lg font-medium">{this.state.adv.floor}° piano</h1>
+										<h1 className="text-lg font-medium">{this.state.adv.floor}° {t("DetailBuilding.floor")}</h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faCalendarDays} />
-										<h1 className="text-lg font-medium">Pubblicato il {new Date(this.state.adv.date).toLocaleDateString()}</h1>
+										<h1 className="text-lg font-medium">{t("DetailBuilding.posted")} {new Date(this.state.adv.date).toLocaleDateString()}</h1>
 									</div>
 									<div className="price">
 										{this.state.adv.price}€
 									</div>
 									<div className="flex mt-1">
+										{this.state.canvasView && this.state.adv.virtualTour && (
+											<div>
+												<Property3DView onClickClose={this.closeCanvas} />
+											</div>
+										)}
 										<FontAwesomeIcon
 											className={"text-2xl text-gray-800 mt-1 mr-2"}
 											icon={faCubes}
 										/>
-										<button className="text-xl font-medium" onClick={this.openCanvas}>Open 3D View</button>
+										<button className="text-xl font-medium" onClick={this.openCanvas}>{t("DetailBuilding.open3D")}</button>
 
 									</div>
 								</div>
@@ -250,16 +263,16 @@ class DetailBuilding extends Component {
 
 							<div className="flex flex-col my-5 md:h-60 md:my-10 md:flex md:flex-row">
 								<Card className="flex flex-col md:h-full mb-6 md:w-1/3 p-4 md:mr-6">
-									<h1 className="text-2xl font-bold text-center">Descrizione</h1>
+									<h1 className="text-2xl font-bold text-center">{t("DetailBuilding.description")}</h1>
 									{
 										!this.state.adv.description ?
-											<p className="text-center">Il venditore non ha inserito alcuna descrizione</p>
-											: this.state.adv.description
+											<p className="text-center">{t("DetailBuilding.descriptionNotPosted")}</p>
+											: <p className="text-center">{this.state.adv.description}</p>
 									}
 								</Card>
 								<Card className="flex flex-col md:h-full md:w-4/6 p-4">
 									<h1 className="text-2xl text-center font-bold">
-										Informazioni nel dettaglio
+										{t("DetailBuilding.detailInfo")}
 									</h1>
 									<div className="flex flex-col md:flex-row justify-evenly mt-2">
 
@@ -410,4 +423,4 @@ const Wrap = (props) => {
 	return <DetailBuilding {...props} params={params} />;
 };
 
-export default Wrap;
+export default withTranslation()(Wrap);
