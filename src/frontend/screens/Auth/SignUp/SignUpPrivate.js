@@ -152,10 +152,10 @@ class SignUpPrivate extends Component {
 				</Helmet>
 				<form className="flex flex-col justify-evenly items-center">
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
-						Registrati
+					{t("SignUpPrivate.signUp")}
 					</h1>
 					<p className="font-primary font-light text-sm mt-2 text-center">
-						Registrati come Privato
+					{t("SignUpPrivate.signUpPrivate")}
 					</p>
 					<Input
 						placeholder={t("SignUpPrivate.cf")}

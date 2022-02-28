@@ -10,10 +10,11 @@ import { Link, useParams} from "react-router-dom";
 import utilsMethods from "../../../../common/utils/utilsMethods";
 // Import from AntDesign
 import { Table, Input, Tag, Space, Button } from "antd";
-import { getRefusedAdvertaisement } from '../../../../services/backoffice/advertisementApi';
+import { getAdvertisementsById } from '../../../../services/backoffice/advertisementApi';
 import { useTranslation } from 'react-i18next';
 
 const UserAdv = (props) => {
+    const params = useParams()
 
     const {t} = useTranslation()
     let [state, setState] = useState({
@@ -57,8 +58,7 @@ const UserAdv = (props) => {
         }
     ]
     const sincAdvAdmin = async () => {
-        // getUserAdvertisements missing
-        let resultAPIAdmin = await getRefusedAdvertaisement(props.admin.token)
+        let resultAPIAdmin = await getAdvertisementsById(props.admin.token, params.id)
         /* ant design wanted a key inside an object to work */
         resultAPIAdmin = resultAPIAdmin.map(item => {
             item = {

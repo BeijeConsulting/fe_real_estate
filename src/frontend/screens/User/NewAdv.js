@@ -7,12 +7,15 @@ import CircleButton from '../../components/UI/CircleButton/CircleButton'
 
 //Utils
 import { ADV_TYPES, BUILDING_TYPES } from '../../../common/utils/globalTypes'
+import storage from '../../../common/utils/storage'
 
+//POST
+import { addNewAdv } from '../../../services/frontend/advertisementApi'
 //Css
 import './NewAdv.css'
 import Textarea from '../../components/UI/Textarea/Textarea';
 
-const NewAdv = () => {
+const NewAdv = (props) => {
 
   const [current, setCurrent] = useState(0)
 
@@ -52,18 +55,24 @@ const NewAdv = () => {
   const { Step } = Steps;
   const { Option } = Select;
 
+  const postAd = async () => {
+    let token = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN)
+    const adv = await addNewAdv(state, token).then(res => {
+      console.log(res);
+    })
+
+  }
+
   const switchCheck = (key) => () => {
     const newState = { ...state }
     newState[key] = !newState[key]
     setState(newState)
-    console.log(newState)
   }
 
   const handlerInput = (key) => (e) => {
     const newState = { ...state }
     newState[key] = e.target.value
     setState(newState)
-    console.log(newState)
   }
 
   const handleSelectPropertyChange = (key) => (e) => {
@@ -176,53 +185,53 @@ const NewAdv = () => {
             }
             {current === 1 &&
               <div className='flex flex-col mx-auto'>
-                 {/* <div className="grid grid-cols-3"> */}
+                {/* <div className="grid grid-cols-3"> */}
 
 
-                  <div className='flex flex-wrap gap-2'>
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Balcone</label>
-                      <Checkbox onChange={switchCheck("balcony")} />
-                    </div>
-
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Ascensore</label>
-                      <Checkbox onChange={switchCheck("elevator")} />
-                    </div>
-
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Piscina</label>
-                      <Checkbox onChange={switchCheck("pool")} />
-                    </div>
+                <div className='flex flex-wrap gap-2'>
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Balcone</label>
+                    <Checkbox onChange={switchCheck("balcony")} />
                   </div>
 
-                  <div className='flex flex-wrap gap-2'>
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Soffitta</label>
-                      <Checkbox onChange={switchCheck("attic")} />
-                    </div>
-
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Cantina</label>
-                      <Checkbox onChange={switchCheck("basement")} />
-                    </div>
-
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Terrazzo</label>
-                      <Checkbox onChange={switchCheck("terrace")} />
-                    </div>
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Ascensore</label>
+                    <Checkbox onChange={switchCheck("elevator")} />
                   </div>
-                  <div className='flex flex-wrap gap-2'>
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Portineria</label>
-                      <Checkbox onChange={switchCheck("reception")} />
-                    </div>
 
-                    <div className='mb-5'>
-                      <label className='uppercase font-primary color-secondary mr-3'>Posto auto</label>
-                      <Checkbox onChange={switchCheck("parkingSpots")} />
-                    </div>
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Piscina</label>
+                    <Checkbox onChange={switchCheck("pool")} />
                   </div>
+                </div>
+
+                <div className='flex flex-wrap gap-2'>
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Soffitta</label>
+                    <Checkbox onChange={switchCheck("attic")} />
+                  </div>
+
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Cantina</label>
+                    <Checkbox onChange={switchCheck("basement")} />
+                  </div>
+
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Terrazzo</label>
+                    <Checkbox onChange={switchCheck("terrace")} />
+                  </div>
+                </div>
+                <div className='flex flex-wrap gap-2'>
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Portineria</label>
+                    <Checkbox onChange={switchCheck("reception")} />
+                  </div>
+
+                  <div className='mb-5'>
+                    <label className='uppercase font-primary color-secondary mr-3'>Posto auto</label>
+                    <Checkbox onChange={switchCheck("parkingSpots")} />
+                  </div>
+                </div>
 
 
                 {/* </div> */}
@@ -371,7 +380,7 @@ const NewAdv = () => {
 
                 <div className='flex gap-2 justify-center'>
                   <Button iconPosition="left" className={"md:w-36"} label='Indietro' onClick={goBack} />
-                  <Button label='Pubblica' />
+                  <Button label='Pubblica' onClick={postAd} />
                 </div>
               </div>
             }
