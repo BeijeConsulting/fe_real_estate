@@ -3,6 +3,8 @@
 		"title": "DOMUS - Registrazione Privato",
 		"description": "Crea un account da privato e inizia a comprare o vendere immobili."
 	},
+	"signUp":"Registrati",
+	"signUpPrivate":"Registrati come Privato",
 	"cf": "Codice fiscale",
 	"name": "Nome",
 	"surname": "Cognome",

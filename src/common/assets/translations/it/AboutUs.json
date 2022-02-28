@@ -2,5 +2,19 @@
 	"helmet": {
 		"title": "DOMUS - Chi Siamo",
 		"description": "Scopri le nostre origini."
-	}
+	},
+	"agencyData": {
+		"paragraphs": {
+			"1": "Domus.it è un sito web di DomusGroup, a socio unico",
+			"2": "Sede legale: Corso Mantova 3, 20122, Milano",
+			"3": "Capitale sociale: €40.000 i.v.",
+			"4": "P.I.: 05388421963",
+			"5": "REA: MI-1817573"
+		},
+		"title": "DATI SOCIETARI"
+	},
+	"bannerText": "LA NOSTRA STORIA",
+	"paragraph": "Crediamo fortemente in una visione globale del mercato immobiliare. Noi di Domus.it mettiamo al centro la persona: nella nostra azienda tutti hanno un grande valore intrinseco e ci teniamo ad avere un team di persone provenienti da diverse culture e background sociali.",
+	"paragraphTitle": "I VALORI IN CUI CREDIAMO",
+	"title": "CHI SIAMO"
 }
