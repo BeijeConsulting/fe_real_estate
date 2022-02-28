@@ -5,8 +5,13 @@ import { setAdmin } from "../../redux/ducks/adminDuck"
 
 /* method to login  */
 const signInAdmin = async ({ username, password }, dispatch) => {
-    let refreshToken = await javaAcademyService.signIn({ username, password })
-        .then(({ data: { id, permission, token, username, refreshToken } }) => {
+    let response = await javaAcademyService.signIn({ username, password })
+        .then((response) => {
+            let id = response.data.id
+            let permission = response.data.permission
+            let username = response.data.username
+            let token = response.data.token
+            let refreshToken = response.data.refreshToken
             localStorage.setItem(
                 storage.LOCAL_STORAGE_KEYS.ADMIN_TOKEN,
                 token
@@ -20,9 +25,12 @@ const signInAdmin = async ({ username, password }, dispatch) => {
                     refreshToken,
                 })
             );
-            return refreshToken
+
+            return response
+        }).catch(() => {
+            return "errore"
         });
-    return refreshToken
+    return response
 }
 
 /* method to recuperate Admin with refreshToken */

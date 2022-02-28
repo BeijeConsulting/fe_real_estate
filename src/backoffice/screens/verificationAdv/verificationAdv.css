@@ -13,3 +13,24 @@
 .container-table-VerificationAdv{
     padding: 5px 10px;
 }
+
+.container-feedback-VerificationAdv{
+    position: absolute;
+    top: 15px;
+    right: 0px;
+}   
+.container-feedback-VerificationAdv .box-success{
+    animation: feedBackBox .3s linear 0s;
+}
+.container-feedback-VerificationAdv .box-error{
+    animation: feedBackBox .3s linear 0s;
+}
+@keyframes feedBackBox {
+    0%{
+        margin-right: -350px;
+    }
+    100%{
+        margin-right: 20px;
+    }
+    
+}
