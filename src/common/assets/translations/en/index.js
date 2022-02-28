@@ -21,11 +21,8 @@ import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import Search from "./Search.json";
-<<<<<<< HEAD
 import DetailBuilding from "./DetailBuilding.json";
-=======
 import WhatWeOffer from "./WhatWeOffer.json";
->>>>>>> b679b37f4dbb8923302f9d527d82ddaf576ca3ec
 
 const en = {
 	AboutUs,
