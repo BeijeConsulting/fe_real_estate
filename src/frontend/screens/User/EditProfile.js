@@ -2,67 +2,67 @@ import React, { Component } from 'react'
 import Card from '../../components/UI/Card/Card';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-const EditProfile = () => {
-    
-        return (
-            <div className='flex flex-col m-4 font-primary'>
-                <h1 className='text-2xl font-bold'>Modifica il tuo profilo</h1>
-                <Card className='flex justify-center items-center'>
-                    <div className='flex flex-col md:flex-row'>
-                        <div className='flex flex-col p-4'>
-                            <h1 className='text-lg font-semibold'>Dati anagrafici</h1>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans " > Nome: </h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-14"} />
-                            </div>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans ml-2">Cognome:</h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-24"} />
-                            </div>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans ml-2">Data di nascita:</h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-36"} />
-                            </div>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans">Numero di telefono:</h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-44"} />
-                            </div>
-                            <div className='mt-4'>
 
-                            </div>
-                        </div>
-                        <div className='flex flex-col p-4'>
-                            <h1 className="text-lg font-semibold">Dati utente</h1>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans">Username: </h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-24"} />
-                            </div>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans">Email:</h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-14"} />
-                            </div>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans">Password:</h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-24"} />
-                            </div>
-                            <div className='flex flex-row p-4'>
-                                <h1 className="text-xl font-sans">Value:</h1>
-                                <Input className={"rounded bg-secondary flex items-center text-white mt-8 px-2 py-2 border-b-2 border-amber-300 font-primary relative -ml-14"} />
-                            </div>
-                            <div className='text-center mt-8 w-44 p-4 md:-ml-24 h-24'>
-                                <Button
-                                    label='Salva'
-                                />
-                            </div>
-                        </div>
+import { connect } from 'react-redux'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
+const EditProfile = (props) => {
+
+    let labelClass = "font-bold text-2xl m-0 p-0"
+
+    return (
+        <div className='p-6 bg-gray-200 flex-1'>
+            <h1 className='text-3xl font-bold'>Profilo</h1>
+            <p>Modifica le tue informazioni personali.</p>
+
+            <Card className='max-w-2xl mx-auto flex flex-col p-16 mt-10'>
+
+                {/* First Name, Last Name */}
+                <div className='flex justify-between flex-1'>
+                    <div className='flex flex-col'>
+                        <p className={labelClass}>Nome</p>
+                        <Input
+                            value={props.userMe.name}
+                        />
                     </div>
 
+                    <div className='flex flex-col'>
+                        <p className={labelClass}>Cognome</p>
+                        <Input
+                            value={props.userMe.surname}
+                        />
+                    </div>
+                </div>
 
-                </Card>
-            </div>
-        )
-    
+                <div className='mt-6'>
+                    <p className={labelClass}>Email</p>
+                    <Input
+                        value={props.userMe.email}
+                        image={<FontAwesomeIcon icon={faEnvelope} />}
+                    />
+                </div>
+
+                <div className='flex max-w-lg mx-auto'>
+
+                    <Button
+                        className='max-w-lg'
+                        marginTop={40}
+                        iconPosition='right'
+                        label="Aggiorna Profilo"
+                    />
+                    
+                </div>
+                <p className='text-center italic mt-4'>Le modifiche vengono salvate solo dopo aver premuto il pulsante</p>
+
+            </Card>
+        </div>
+    )
+
 }
 
-export default EditProfile;
+const mapStateToProps = state => ({
+    userMe: state.userMeDuck.userMe
+})
+
+export default connect(mapStateToProps)(EditProfile);

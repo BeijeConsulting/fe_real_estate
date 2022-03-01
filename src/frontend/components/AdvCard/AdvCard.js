@@ -81,7 +81,7 @@ const AdvCard = (props) => {
                 <p className='mt-2 text-right text-xl font-bold font-primary'>{!!props.rooms ? props.rooms : 0} locali • {props.squareMeters} mq</p>
 
                 <div className='flex-1 flex justify-end items-end'>
-                    <p className='text-4xl font-primary font-bold'>{props.price.toLocaleString()} <span className='text-lg'>€</span></p>
+                    <p className='text-4xl font-primary font-bold'>{props.price?.toLocaleString()} <span className='text-lg'>€</span></p>
                 </div>
             </div>
         </Card>

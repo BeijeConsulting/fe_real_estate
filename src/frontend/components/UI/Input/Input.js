@@ -19,7 +19,7 @@ const Input = (props) => {
   }, [props.errorMessage])
 
   return (
-    <div className={props.className}>
+    <div className={props.className} style={{marginTop: props.marginTop}}>
       {error &&
         <div className='background-error color-error absolute top-0 left-0 right-0 bottom-0 flex items-center justify-between px-2'>
           <p>{props.errorMessage}</p>
@@ -41,9 +41,10 @@ const Input = (props) => {
 }
 
 Input.defaultProps = {
+  marginTop: 5,
   type: "text",
   image: '',
-  className: "rounded-t bg-secondary flex items-center text-white mt-4 px-2 py-2 border-b-2 border-amber-300 font-primary relative",
+  className: "rounded-t bg-secondary flex items-center text-white px-2 py-2 border-b-2 border-amber-300 font-primary relative",
   errorMessage: ''
 };
 
