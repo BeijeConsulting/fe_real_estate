@@ -33,7 +33,6 @@ const Cms = (props) => {
 
     /*componentDidMount*/
     useEffect(() => {
-        console.log(location.pathname)
         setTitleNavigate(location.pathname)
 
         if (!props.admin.username) {
