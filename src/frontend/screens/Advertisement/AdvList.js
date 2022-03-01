@@ -9,19 +9,26 @@ import { Select } from "antd";
 
 //UTILS
 import sortList from '../../../common/utils/sortList'
+import {LOCAL_STORAGE_KEYS} from '../../../common/utils/storage'
+import typesTranslator from '../../utils/typesTranslator'
+
+// imgs
 import noHouseFound from '../../assets/illustrations/noHouseFound.svg'
 import { useTranslation } from "react-i18next";
 // API
 import { findAds } from "../../../services/frontend/advertisementApi";
+import { getUserSavedAds } from "../../../services/frontend/usersApi";
 
 // HOOKS
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import useURLQuery from '../../hooks/useQuery'
-import typesTranslator from '../../utils/typesTranslator'
+
+//redux
+import { connect } from 'react-redux'
 
 const { Option } = Select;
 
-const AdvList = () => {
+const AdvList = (props) => {
 	// hooks
 	let { city, advType, buildingType, lang } = useParams();
 	let query = useURLQuery();
@@ -32,9 +39,9 @@ const AdvList = () => {
 	const [advList, setAdvList] = useState([]);
 	const [sortType, setSortType] = useState();
 
-	let type = "";
 	let cityCapital = city.charAt(0).toUpperCase() + city.slice(1);
 
+    // GET Adv List with Filters
 	useEffect(() => {
 		findAds({
 			advType: advType.toUpperCase(),
@@ -50,17 +57,25 @@ const AdvList = () => {
 			let list = [...res.data.resList];
 
 			if (sortType) {
-				setAdvList(sortList(sortType, list));
+				setAdvList( sortList(sortType, list) );
 			} else {
 				setAdvList(list);
 			}
 		});
 	}, [location.search, location.pathname, sortType]);
 
-	const handleNavigate = (dest) => () => {
-		navigate(dest);
-	};
+    // GET User saved Ads
+    useEffect(() => {
+        let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
 
+        if ( token ) {
+            getUserSavedAds( token, props.dispatch )
+        }
+
+    }, [])
+    
+
+	const handleNavigate = (dest) => () => navigate(dest);
 	const handleSorting = (e) => setSortType(e);
 
 
@@ -68,6 +83,7 @@ const AdvList = () => {
         return (
             <AdvCard
                 key={'advard-' + key + adv.id}
+                savedAds={props.savedAds}
                 id={adv.id}
                 city={adv.city}
                 address={adv.address}
@@ -132,4 +148,8 @@ const AdvList = () => {
 
 }
 
-export default AdvList
+const mapStateToProps = state => ({
+    savedAds: state.userMeDuck.savedAds
+})
+
+export default connect(mapStateToProps) (AdvList)

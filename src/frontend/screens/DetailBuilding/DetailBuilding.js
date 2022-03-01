@@ -163,11 +163,11 @@ class DetailBuilding extends Component {
 								thumbnails={true}
 								thumbnailWidth="100px"
 								style={{
-									width: "85%",
+									width: "100%",
 									margin: "15px 25px",
 								}}
 							/>
-							<div className={"flex flex-col md:h-60 md:w-1/4 p-2 md:mt-3 md:mx-auto"}>
+							<div className={"flex flex-col md:h-60 md:w-96 p-2 md:mt-3 md:mx-auto"}>
 								<div className="flex flex-row">
 									<div className="flex flex-row mx-2">
 										<FontAwesomeIcon
@@ -283,7 +283,7 @@ class DetailBuilding extends Component {
 													icon={faElevator}
 												/>
 												<BuildingInfobox
-													title={"Ascensore:"}
+													title={t("DetailBuilding.elevator")}
 													adv={this.state.adv.elevator}
 												/>
 											</div>
@@ -293,7 +293,7 @@ class DetailBuilding extends Component {
 													icon={faBellConcierge}
 												/>
 												<BuildingInfobox
-													title={"Reception:"}
+													title={t("DetailBuilding.reception")}
 													adv={this.state.adv.reception}
 												/>
 											</div>
@@ -303,7 +303,7 @@ class DetailBuilding extends Component {
 													icon={faPersonSwimming}
 												/>
 												<BuildingInfobox
-													title={"Piscina:"}
+													title={t("DetailBuilding.pool")}
 													adv={this.state.adv.pool}
 												/>
 											</div>
@@ -313,7 +313,7 @@ class DetailBuilding extends Component {
 													icon={faBoxOpen}
 												/>
 												<BuildingInfobox
-													title={"Soffitta"}
+													title={t("DetailBuilding.attic")}
 													adv={this.state.adv.attic}
 												/>
 											</div>
@@ -326,7 +326,7 @@ class DetailBuilding extends Component {
 													icon={faSun}
 												/>
 												<BuildingInfobox
-													title={"Terrazza:"}
+													title={t("DetailBuilding.terrace")}
 													adv={this.state.adv.terrace}
 												/>
 											</div>
@@ -336,7 +336,7 @@ class DetailBuilding extends Component {
 													icon={faStar}
 												/>
 												<BuildingInfobox
-													title={"Balcone:"}
+													title={t("DetailBuilding.balcony")}
 													adv={this.state.adv.balcony}
 												/>
 											</div>
@@ -347,7 +347,7 @@ class DetailBuilding extends Component {
 													icon={faWineBottle}
 												/>
 												<BuildingInfobox
-													title={"Cantina:"}
+													title={t("DetailBuilding.basement")}
 													adv={this.state.adv.basement}
 												/>
 											</div>
@@ -357,7 +357,7 @@ class DetailBuilding extends Component {
 													icon={faSnowflake}
 												/>
 												<BuildingInfobox
-													title={"Aria condizionata:"}
+													title={t("DetailBuilding.cooling")}
 													adv={this.state.adv.cooling} />
 											</div>
 										</div>
@@ -369,7 +369,7 @@ class DetailBuilding extends Component {
 													icon={faLightbulb}
 												/>
 												<BuildingInfobox
-													title={"Classe energetica:"}
+													title={t("DetailBuilding.energyRating")}
 													adv={this.state.adv.energyRating}
 												/>
 											</div>
@@ -379,7 +379,7 @@ class DetailBuilding extends Component {
 													icon={faCar}
 												/>
 												<BuildingInfobox
-													title={"Posto auto:"}
+													title={t("DetailBuilding.parkingSpots")}
 													adv={this.state.adv.parkingSpots}
 												/>
 											</div>
@@ -389,7 +389,7 @@ class DetailBuilding extends Component {
 													icon={faTree}
 												/>
 												<BuildingInfobox
-													title={"Giardino:"}
+													title={t("DetailBuilding.yard")}
 													adv={this.state.adv.yard}
 												/>
 											</div>
@@ -399,7 +399,7 @@ class DetailBuilding extends Component {
 													icon={faChair}
 												/>
 												<BuildingInfobox
-													title={"Arredatamento:"}
+													title={t("DetailBuilding.forniture")}
 													adv={this.state.adv.forniture}
 												/>
 											</div>
