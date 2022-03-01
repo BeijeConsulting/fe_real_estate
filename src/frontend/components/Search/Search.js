@@ -26,7 +26,7 @@ const Search = () => {
 	const [query, setQuery] = useState({
 		buildingType: { label: "Casa", value: "HOUSE" },
 		advType: { label: "Vendita", value: "SALE" },
-		location: t("Search.locationDefault"),
+		location: "",
 	});
 
 	let imgUrl =
@@ -119,7 +119,13 @@ const Search = () => {
 					options={mapAdvTypes()}
 				/>
 				<p>{t(`Search.in`)}</p>
-				<LocationSelect ico="" value={query.location} callback={setLocation} />
+				<LocationSelect
+					ico=""
+					value={
+						query.location !== "" ? query.location : t("Search.locationDefault")
+					}
+					callback={setLocation}
+				/>
 			</div>
 
 			<Button

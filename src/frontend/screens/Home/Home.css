@@ -16,20 +16,6 @@ html::-webkit-scrollbar {
   display: none;
 }
 
-.bluesection-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: #202740;
-  height: 200px;
-  width: 100vw;
-  margin-top: -20%;
-  color: white;
-  font-family: "Inter", sans-serif;
-  font-size: 20px;
-  font-weight: bold;
-}
-
 @media screen and (max-width: 680px) {
   .illustrations-container {
     display: flex;
@@ -38,37 +24,4 @@ html::-webkit-scrollbar {
     flex-direction: column;
     margin-top: 4%;
   }
-
-  .bluesection-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    background-color: #202740;
-    height: 300px;
-    width: 100vw;
-    margin-top: -70%;
-    color: white;
-    font-family: "Inter", sans-serif;
-    font-size: 20px;
-    font-weight: bold;
-  }
 }
-
-@media screen and (max-width: 450px) {
-  
-  .bluesection-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: #202740;
-    height: 200px;
-    width: 100vw;
-    margin-top: -90%;
-    color: white;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    font-weight: bold;
-  }
-}
-

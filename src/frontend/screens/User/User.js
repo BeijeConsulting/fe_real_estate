@@ -5,17 +5,12 @@ import { Outlet } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import UserNavbar from "../../components/UserNavbar/UserNavbar";
 import MobileUserNavbar from "../../components/UserNavbar/MobileUserNavbar/MobileUserNavbar";
-
-// redux 
-import { connect } from "react-redux";
-
-// utils
-import { ROUTES } from "../../../utils/properties";
+import RefreshTokenOrRedirect from "../../components/RefreshTokenOrRedirect/RefreshTokenOrRedirect";
 
 const User = () => {
-
 	return (
-		<div className='h-screen flex flex-col'>
+		<div className="h-screen flex flex-col">
+			<RefreshTokenOrRedirect />
 			<Navbar />
 			<MobileUserNavbar />
 			<div className="flex flex-1">
@@ -26,7 +21,6 @@ const User = () => {
 			</div>
 		</div>
 	);
-}
-
+};
 
 export default User;

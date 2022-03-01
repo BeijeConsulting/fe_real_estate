@@ -1,20 +1,8 @@
-import React, { useRef } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import React from "react";
+import { Canvas } from "@react-three/fiber";
+import Spheres from "./Spheres";
 
 const ScreenLoader = () => {
-	const refFirst = useRef(null);
-	const refSecond = useRef(null);
-
-	useFrame(({ clock }) => {
-		if (!!refFirst.current) {
-			refFirst.current.position.set(
-				Math.cos(clock.getElapsedTime()),
-				Math.sin(clock.getElapsedTime()),
-				-Math.abs(Math.tan(clock.getElapsedTime()))
-			);
-		}
-	});
-
 	return (
 		<div
 			style={{
@@ -38,22 +26,7 @@ const ScreenLoader = () => {
 			>
 				<ambientLight intensity={1} />
 				<pointLight intensity={1} position={[10, 10, 10]} />
-				<mesh ref={refFirst}>
-					<sphereGeometry args={[1]} />
-					<meshPhongMaterial
-						color={"yellow"}
-						opacity={0.6}
-						transparent={true}
-					/>
-				</mesh>
-				<mesh ref={refSecond}>
-					<sphereGeometry args={[1]} />
-					<meshPhongMaterial
-						color={"yellow"}
-						opacity={0.6}
-						transparent={true}
-					/>
-				</mesh>
+				<Spheres />
 			</Canvas>
 		</div>
 	);
