@@ -11,8 +11,11 @@ import userMeDuck from '../../../redux/ducks/userMeDuck'
 // API
 import { userMe } from '../../../services/frontend/usersApi'
 
-const Dashboard = (props) => {
+//TRANSLATION
+import {useTranslation} from "react-i18next"
 
+const Dashboard = (props) => {
+    const {t} = useTranslation()
     useEffect(() => {
 
         userMe(
@@ -25,7 +28,7 @@ const Dashboard = (props) => {
 
     const handleSavedRender = ( adv, key) => {
         return(
-            <AdvCard 
+            <AdvCard
                 savedAds={props.savedAds}
                 id={adv.id}
                 city={adv.city}
@@ -38,9 +41,9 @@ const Dashboard = (props) => {
 
     return (
         <div className='p-6 bg-gray-200 flex-1'>
-            <h1 className='text-3xl font-bold'>Ciao {props.userMe?.username} 👋 </h1>
+            <h1 className='text-3xl font-bold'>{t("Dashboard.Hello")} {props.userMe?.username} 👋 </h1>
             <p className='mt-40'>.</p>
-            <p className='text-3xl font-semibold'>Ultimi Annunci Salvati <span className='text-xl'>(Vedi tutto)</span></p>
+            <p className='text-3xl font-semibold'>{t("Dashboard.LatestSavedAds")} <span className='text-xl'>({t("Dashboard.SeeAll")})</span></p>
             <div className='max-w-3xl mt-4'>
                 { props.savedAds.map(handleSavedRender)}
             </div>
@@ -55,4 +58,4 @@ const mapStateToProps = state => ({
     savedAds: state.userMeDuck.savedAds
 })
 
-export default connect(mapStateToProps)(Dashboard); 
+export default connect(mapStateToProps)(Dashboard);
