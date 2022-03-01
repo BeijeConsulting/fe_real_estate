@@ -32,7 +32,7 @@ export const getAdv = async (token, id) => {
     Authorization: `Bearer ${token}`,
   };
   const result = await javaAcademyServiceInstance
-    .get(`/advertisement/${id}`, { headers })
+    .get(`/admin/advertisement/${id}`, { headers })
     .then((response) => {
       newAdv = [response.data];
     });
