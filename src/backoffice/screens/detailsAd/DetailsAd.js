@@ -135,16 +135,16 @@ const DetailsAd = (props) => {
             {/* carousell */}
             <div className="container-carousel">
               <Carousel className="carousel" afterChange={onChange}>
-                <div className="photo">
+                <div className="adv-photo">
                   <h3 className="adv-photos">1</h3>
                 </div>
-                <div className="photo">
+                <div className="adv-photo">
                   <h3 className="adv-photos">2</h3>
                 </div>
-                <div className="photo">
+                <div className="adv-photo">
                   <h3 className="adv-photos">3</h3>
                 </div>
-                <div className="photo">
+                <div className="adv-photo">
                   <h3 className="adv-photos">4</h3>
                 </div>
               </Carousel>
