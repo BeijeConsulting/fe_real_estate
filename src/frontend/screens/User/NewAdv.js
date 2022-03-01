@@ -6,7 +6,15 @@ import Button from "../../components/UI/Button/Button";
 import CircleButton from "../../components/UI/CircleButton/CircleButton";
 
 //Utils
-import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
+import {
+	ADV_TYPES,
+	BUILDING_TYPES,
+	CONDITION,
+	COOLING,
+	DEED_STATES,
+	FURNITURE,
+	YARD,
+} from "../../../common/utils/globalTypes";
 import storage from "../../../common/utils/storage";
 
 //POST
@@ -20,33 +28,35 @@ const NewAdv = (props) => {
 
 	const [state, setState] = useState({
 		address: "",
-		advType: "",
+		advType: ADV_TYPES[0],
 		areaMsq: "",
 		attic: false,
 		balcony: false,
 		basement: false,
 		bathrooms: 0,
-		buildingType: "",
+		buildingType: BUILDING_TYPES[0],
 		buildingYear: "",
 		city: "",
-		condition: "",
-		cooling: "",
+		condition: CONDITION.NEW,
+		cooling: COOLING.NO,
 		description: "",
+		deedState: DEED_STATES.FREE,
 		elevator: false,
 		energyRating: "",
 		floor: 0,
 		floors: 0,
-		furniture: "",
+		furniture: FURNITURE.NO,
 		guidedTour: false,
 		heating: "",
 		houseNumber: "",
-		parkingSpots: false,
+		parkingSpots: 0,
 		pool: false,
 		price: "",
 		reception: false,
 		rooms: 0,
 		terrace: false,
-		yard: "",
+		virtualTour: false,
+		yard: YARD.NO,
 		zipCode: "",
 	});
 
@@ -59,9 +69,26 @@ const NewAdv = (props) => {
 			...state,
 			areaMsq: parseInt(state.areaMsq),
 			buildingYear: parseInt(state.buildingYear),
+			houseNumber: parseInt(state.houseNumber),
+			price: parseInt(state.price),
 		};
 		console.log(body);
-		const adv = await addNewAdv(body, token)
+		const adv = await addNewAdv(
+			// {
+			// 	advType: body.advType,
+			// 	city: body.city,
+			// 	zipCode: body.zipCode,
+			// 	address: body.address,
+			// 	houseNumber: body.houseNumber,
+			// 	areaMsq: body.areaMsq,
+			// 	buildingType: body.buildingType,
+			// 	deedState: body.deedState,
+			// 	guidedTour: body.guidedTour,
+			// 	virtualTour: body.virtualTour,
+			// },
+			body,
+			token
+		)
 			.then((res) => {
 				console.log(res);
 			})
@@ -170,7 +197,7 @@ const NewAdv = (props) => {
 									</label>
 									<Select
 										className="w-full"
-										defaultValue="Specifica una tipologia..."
+										defaultValue="NO"
 										onChange={handleSelectPropertyChange("advType")}
 										value={state.advType}
 									>
@@ -337,20 +364,26 @@ const NewAdv = (props) => {
 											checked={state.reception}
 										/>
 									</div>
+								</div>
 
-									<div className="mb-5">
-										<label className="uppercase font-primary color-secondary mr-3">
-											Posto auto
-										</label>
-										<Checkbox
-											onChange={switchCheck("parkingSpots")}
-											checked={state.parkingSpots}
+								<div className="mb-5">
+									<label className="uppercase font-primary color-secondary mr-3">
+										Posti auto
+									</label>
+									<div className="flex mr-2">
+										<CircleButton
+											label="-"
+											onClickCallback={decrement("parkingSpots")}
+										/>
+										<span className="text-lg font-semibold my-2 mx-3">
+											{state.parkingSpots}
+										</span>
+										<CircleButton
+											label="+"
+											onClickCallback={increment("parkingSpots")}
 										/>
 									</div>
 								</div>
-
-								{/* </div> */}
-
 								<div className="flex flex-wrap mx-auto">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
@@ -449,7 +482,7 @@ const NewAdv = (props) => {
 										Condizioni immobile
 									</label>
 									<Select
-										defaultValue="In che condizioni è l'immobile?"
+										defaultValue="NEW"
 										style={{ width: "100%" }}
 										onChange={handleSelectPropertyChange("condition")}
 										value={state.condition}
@@ -483,6 +516,23 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
+										Deed state
+									</label>
+									<Select
+										defaultValue="FREE"
+										style={{ width: "100%" }}
+										onChange={handleSelectPropertyChange("deedState")}
+										value={state.deedState}
+									>
+										<Option value="BARE_PROPERTY">Bare property</Option>
+										<Option value="FREE">Free</Option>
+										<Option value="OCCUPATED">Occupated</Option>
+										<Option value="RENTED">Rented</Option>
+									</Select>
+								</div>
+
+								<div className="mb-5">
+									<label className="block uppercase font-primary color-secondary">
 										È arredato?
 									</label>
 									<Select
@@ -491,9 +541,9 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("furniture")}
 										value={state.furniture}
 									>
-										<Option value="furnished">FURNISHED</Option>
-										<Option value="no">NO</Option>
-										<Option value="partial">PARTIAL</Option>
+										<Option value="FURNISHED">FURNISHED</Option>
+										<Option value="NO">NO</Option>
+										<Option value="PARTIAL">PARTIAL</Option>
 									</Select>
 								</div>
 
@@ -507,9 +557,9 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("heating")}
 										value={state.heating}
 									>
-										<Option value="central">Central</Option>
-										<Option value="indipendent">indipendent</Option>
-										<Option value="no">No</Option>
+										<Option value="CENTRAL">Central</Option>
+										<Option value="INDIPENDENT">indipendent</Option>
+										<Option value="NO">No</Option>
 									</Select>
 								</div>
 
@@ -518,7 +568,7 @@ const NewAdv = (props) => {
 										Aria condizionata
 									</label>
 									<Select
-										defaultValue="Cooling"
+										defaultValue="NO"
 										style={{ width: "100%" }}
 										onChange={handleSelectPropertyChange("cooling")}
 										value={state.cooling}
@@ -534,7 +584,7 @@ const NewAdv = (props) => {
 											Giardino
 										</label>
 										<Select
-											defaultValue="Giardino"
+											defaultValue="NO"
 											style={{ width: "100%" }}
 											onChange={handleSelectPropertyChange("yard")}
 											value={state.yard}
@@ -596,6 +646,17 @@ const NewAdv = (props) => {
 										checked={state.guidedTour}
 									/>
 								</div>
+
+								<div className="mb-5">
+									<label className="uppercase font-primary color-secondary mr-1">
+										Vuoi fare una visita virtuale?
+									</label>
+									<Checkbox
+										onChange={switchCheck("virtualTour")}
+										checked={state.virtualTour}
+									/>
+								</div>
+
 								<div className="mb-5">
 									<input type="file" id="myFile" name="filename"></input>
 								</div>
