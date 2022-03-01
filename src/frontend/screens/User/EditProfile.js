@@ -10,7 +10,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { updateUser } from '../../../services/frontend/usersApi';
 
+
+
 const EditProfile = (props) => {
+
+    const { t } = useTranslation()
 
     let labelClass = "font-bold text-2xl m-0 p-0"
     
