@@ -36,8 +36,8 @@ const AdvListBo = (props) => {
   const [isLoading, setIsLoading] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
   const [allPlaces, setPlaces] = useState([{}]);
-  const [allBuilding, setBuilding] = useState([ {label: "Tutti", value: null}, ...BUILDING_TYPES])
-  const [allAdv, setAdv] = useState([ {label: "Tutti", value: null}, ...ADV_TYPES])
+  const [allBuilding, setBuilding] = useState([{ label: "Tutti", value: null }, ...BUILDING_TYPES])
+  const [allAdv, setAdv] = useState([{ label: "Tutti", value: null }, ...ADV_TYPES])
   const [search, setSearch] = useState({
     search: {
       buildingType: null,
@@ -51,11 +51,6 @@ const AdvListBo = (props) => {
     elementForPage: 10,
   })
 
-  const [state, setState] = useState({
-    selectAdv: t("BoAds.Ads.AdvType"),
-    selectBuilding: t("BoAds.Ads.Building"),
-    selectCity: t("BoAds.Ads.From")
-  })
 
   // func List
   let columnsAdv = [
@@ -97,7 +92,7 @@ const AdvListBo = (props) => {
 
   // pagination func
   const pageHandler = async (pagination) => {
-    if(search.buildingType === undefined && search.advType === undefined && search.city === undefined) {
+    if (search.buildingType === undefined && search.advType === undefined && search.city === undefined) {
       getListAdv(pagination.current, pagination.pageSize)
     } else {
       searchAdv(pagination.current, pagination.pageSize)
@@ -179,7 +174,7 @@ const AdvListBo = (props) => {
         value: element,
       };
     });
-    payload.unshift({label: "Tutti", value: null})
+    payload.unshift({ label: "Tutti", value: null })
     setPlaces(payload);
   };
 
@@ -187,8 +182,7 @@ const AdvListBo = (props) => {
   useEffect(() => {
     getListAdv();
     getPlaces();
-    console.log('lang', props.lang)
-  }, [state.selectAdv, state.selectBuilding, state.selectCity]);
+  }, []);
 
   return (
     <>
@@ -196,19 +190,19 @@ const AdvListBo = (props) => {
         <div className="users-list-container">
           <div className="users-list-header">
             <Select
-              defaultValue={state.selectAdv}
+              placeholder={t("BoAds.Ads.AdvType")}
               style={{ width: 120 }}
               options={allAdv}
               onChange={onChangeForSearch("advType")}
             ></Select>
             <Select
-              defaultValue={state.selectBuilding}
+              placeholder={t("BoAds.Ads.Building")}
               style={{ width: 120 }}
               options={allBuilding}
               onChange={onChangeForSearch("buildingType")}
             ></Select>
             <Select
-              defaultValue={state.selectCity}
+              placeholder={t("BoAds.Ads.From")}
               style={{ width: 120 }}
               options={allPlaces}
               onChange={onChangeForSearch("city")}
@@ -249,6 +243,5 @@ AdvListBo.propTypes = {};
 //redux
 const mapStateToProps = (state) => ({
   admin: state.adminDuck.admin,
-  lang: state.translationDuck
 });
 export default connect(mapStateToProps)(AdvListBo);
