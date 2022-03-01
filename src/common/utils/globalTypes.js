@@ -53,6 +53,16 @@ const DEED_STATES = {
 	RENTED: "RENTED",
 };
 
+const ENERGY_RATING = {
+	A_PLUS: "A_PLUS",
+	B: "B",
+	C: "C",
+	D: "D",
+	E: "E",
+	F: "F",
+	G: "G",
+};
+
 const FURNITURE = {
 	FURNISHED: "FURNISHED",
 	NO: "NO",
@@ -77,6 +87,7 @@ export {
 	CONDITION,
 	COOLING,
 	DEED_STATES,
+	ENERGY_RATING,
 	FURNITURE,
 	HEATING,
 	SEARCH_TYPES,

@@ -12,7 +12,9 @@ import {
 	CONDITION,
 	COOLING,
 	DEED_STATES,
+	ENERGY_RATING,
 	FURNITURE,
+	HEATING,
 	YARD,
 } from "../../../common/utils/globalTypes";
 import storage from "../../../common/utils/storage";
@@ -31,13 +33,13 @@ const NewAdv = (props) => {
 
 	const [state, setState] = useState({
 		address: "",
-		advType: ADV_TYPES[0],
+		advType: ADV_TYPES[0].value,
 		areaMsq: "",
 		attic: false,
 		balcony: false,
 		basement: false,
 		bathrooms: 0,
-		buildingType: BUILDING_TYPES[0],
+		buildingType: BUILDING_TYPES[0].value,
 		buildingYear: "",
 		city: "",
 		condition: CONDITION.NEW,
@@ -45,12 +47,12 @@ const NewAdv = (props) => {
 		description: "",
 		deedState: DEED_STATES.FREE,
 		elevator: false,
-		energyRating: "",
+		energyRating: ENERGY_RATING.A,
 		floor: 0,
 		floors: 0,
 		furniture: FURNITURE.NO,
 		guidedTour: false,
-		heating: "",
+		heating: HEATING.NO,
 		houseNumber: "",
 		parkingSpots: 0,
 		pool: false,
@@ -77,23 +79,55 @@ const NewAdv = (props) => {
 			houseNumber: parseInt(state.houseNumber),
 			price: parseInt(state.price),
 		};
+
+		const filterKey = (keys) => {
+			let buffer = {};
+
+			for (const key in body) {
+				if (Object.hasOwnProperty.call(body, key)) {
+					if (keys.findIndex((v) => v === key) > -1) {
+						buffer[key] = body[key];
+					}
+				}
+			}
+
+			return buffer;
+		};
+		const decon = filterKey([
+			"address",
+			"advType",
+			"areaMsq",
+			"buildingType",
+			"city",
+			"deedState",
+			"guidedTour",
+			"houseNumber",
+			"virtualTour",
+			"zipCode",
+			"attic",
+			"balcony",
+			"basement",
+			"bathrooms",
+			"buildingYear",
+			"city",
+			"condition",
+			"cooling",
+			"description",
+			"elevator",
+			"energyRating",
+			"floor",
+			"floors",
+			"furniture",
+			"heating",
+			"parkingSpots",
+			"pool",
+			"price",
+			"reception",
+			"rooms",
+			"terrace",
+		]);
 		console.log(body);
-		const adv = await addNewAdv(
-			// {
-			// 	advType: body.advType,
-			// 	city: body.city,
-			// 	zipCode: body.zipCode,
-			// 	address: body.address,
-			// 	houseNumber: body.houseNumber,
-			// 	areaMsq: body.areaMsq,
-			// 	buildingType: body.buildingType,
-			// 	deedState: body.deedState,
-			// 	guidedTour: body.guidedTour,
-			// 	virtualTour: body.virtualTour,
-			// },
-			body,
-			token
-		)
+		const adv = await addNewAdv(body, token)
 			.then((res) => {
 				console.log(res);
 			})
@@ -137,9 +171,27 @@ const NewAdv = (props) => {
 	const optionType = (type, key) => {
 		return (
 			<Option key={"new-adv " + key} value={type.value}>
-				{type.label}
+				{t(`NewAdv.options.${type.value}`)}
 			</Option>
 		);
+	};
+
+	const mapOptionFromObject = (obj, uniqueKeyNamePrefix) => {
+		let buffer = [];
+
+		for (const key in obj) {
+			if (Object.hasOwnProperty.call(obj, key)) {
+				const value = obj[key];
+
+				buffer.push(
+					<Option key={uniqueKeyNamePrefix + " " + key} value={value}>
+						{t(`NewAdv.options.${value}`)}
+					</Option>
+				);
+			}
+		}
+
+		return buffer;
 	};
 
 	const handleStepChange = (current) => {
@@ -188,7 +240,7 @@ const NewAdv = (props) => {
 									</label>
 									<Select
 										className="w-full"
-										defaultValue="Specifica una tipologia..."
+										defaultValue={BUILDING_TYPES[0].value}
 										onChange={handleSelectPropertyChange("buildingType")}
 										value={state.buildingType}
 									>
@@ -280,16 +332,16 @@ const NewAdv = (props) => {
 										className="uppercase font-primary color-secondary"
 										style={{ display: "block" }}
 									>
-										Anno immobile
+										{t("NewAdv.BuildingYear")}
 									</label>
 									<Input
 										type={"number"}
-										placeholder="Esempio: 2010"
+										placeholder={t("NewAdv.BuildingYearPlaceholder")}
 										onChange={handlerInput("buildingYear")}
 										value={state.buildingYear}
 									/>
 								</div>
-								<Button label="Avanti" onClick={goNext} />
+								<Button label={t("NewAdv.Next")} onClick={goNext} />
 							</div>
 						)}
 						{current === 1 && (
@@ -473,7 +525,7 @@ const NewAdv = (props) => {
 									<Button
 										iconPosition="left"
 										className="w-36"
-										label="Indietro"
+										label={t("NewAdv.Back")}
 										onClick={goBack}
 									/>
 									<Button
@@ -496,9 +548,7 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("condition")}
 										value={state.condition}
 									>
-										<Option value="NEW">New</Option>
-										<Option value="GOOD">Good</Option>
-										<Option value="RENOVATE">Renovate</Option>
+										{mapOptionFromObject(CONDITION, "newadv-cond")}
 									</Select>
 								</div>
 
@@ -507,36 +557,26 @@ const NewAdv = (props) => {
 										{t("NewAdv.EnergyRating")}
 									</label>
 									<Select
-										defaultValue="Energy rating"
+										defaultValue={ENERGY_RATING.B}
 										style={{ width: "100%" }}
 										onChange={handleSelectPropertyChange("energyRating")}
 										value={state.energyRating}
 									>
-										<Option value="A_Plus">A+</Option>
-										<Option value="A">A</Option>
-										<Option value="B">B</Option>
-										<Option value="C">C</Option>
-										<Option value="D">D</Option>
-										<Option value="E">E</Option>
-										<Option value="F">F</Option>
-										<Option value="G">G</Option>
+										{mapOptionFromObject(ENERGY_RATING, "newadv-energy")}
 									</Select>
 								</div>
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Deed state
+										{t("NewAdv.DeedState")}
 									</label>
 									<Select
-										defaultValue="FREE"
+										defaultValue={DEED_STATES.FREE}
 										style={{ width: "100%" }}
 										onChange={handleSelectPropertyChange("deedState")}
 										value={state.deedState}
 									>
-										<Option value="BARE_PROPERTY">Bare property</Option>
-										<Option value="FREE">Free</Option>
-										<Option value="OCCUPATED">Occupated</Option>
-										<Option value="RENTED">Rented</Option>
+										{mapOptionFromObject(DEED_STATES, "newadv-deedstate")}
 									</Select>
 								</div>
 
@@ -550,9 +590,7 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("furniture")}
 										value={state.furniture}
 									>
-										<Option value="FURNISHED">FURNISHED</Option>
-										<Option value="NO">NO</Option>
-										<Option value="PARTIAL">PARTIAL</Option>
+										{mapOptionFromObject(FURNITURE, "newadv-furniture")}
 									</Select>
 								</div>
 
@@ -566,9 +604,7 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("heating")}
 										value={state.heating}
 									>
-										<Option value="CENTRAL">Central</Option>
-										<Option value="INDIPENDENT">indipendent</Option>
-										<Option value="NO">No</Option>
+										{mapOptionFromObject(HEATING, "newadv-heating")}
 									</Select>
 								</div>
 
@@ -582,10 +618,7 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("cooling")}
 										value={state.cooling}
 									>
-										<Option value="CENTRAL">Central</Option>
-										<Option value="DISPOSITION">Disposition</Option>
-										<Option value="INDIPENDENT">indipendent</Option>
-										<Option value="NO">No</Option>
+										{mapOptionFromObject(COOLING, "newadv-cooling")}
 									</Select>
 
 									<div className="mt-5 mb-5">
@@ -593,14 +626,11 @@ const NewAdv = (props) => {
 											{t("NewAdv.Garden")}
 										</label>
 										<Select
-											defaultValue="NO"
 											style={{ width: "100%" }}
 											onChange={handleSelectPropertyChange("yard")}
 											value={state.yard}
 										>
-											<Option value="SHARED">Shared</Option>
-											<Option value="PRIVATE">Private</Option>
-											<Option value="NO">No</Option>
+											{mapOptionFromObject(YARD, "newadv-deedstate")}
 										</Select>
 									</div>
 
@@ -608,7 +638,7 @@ const NewAdv = (props) => {
 										<Button
 											iconPosition="left"
 											className={"w-36"}
-											label="Indietro"
+											label={t("NewAdv.Back")}
 											onClick={goBack}
 										/>
 										<Button
@@ -628,7 +658,7 @@ const NewAdv = (props) => {
 									</label>
 									<Input
 										type={"number"}
-										placeholder="Prezzo"
+										placeholder={t("NewAdv.Price")}
 										onChange={handlerInput("price")}
 										value={state.price}
 									/>
@@ -658,7 +688,7 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="uppercase font-primary color-secondary mr-1">
-										Vuoi fare una visita virtuale?
+										{t("NewAdv.VirtualTour")}
 									</label>
 									<Checkbox
 										onChange={switchCheck("virtualTour")}
@@ -674,7 +704,7 @@ const NewAdv = (props) => {
 									<Button
 										iconPosition="left"
 										className={"md:w-36"}
-										label="Indietro"
+										label={t("NewAdv.Back")}
 										onClick={goBack}
 									/>
 									<Button label={t("NewAdv.Post")} onClick={postAd} />
