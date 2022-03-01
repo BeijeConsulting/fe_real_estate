@@ -9,10 +9,13 @@ import { createUser, getUserByUsername, getUsers } from "../../../services/backo
 import { useTranslation } from "react-i18next";
 
 const AddChecker = (props) => {
+
     const { Text } = Typography;
     const [form] = Form.useForm();
+
     let navigate = useNavigate()
     const { t } = useTranslation()
+
     let user = {}
     let checker = {
         name: '',
