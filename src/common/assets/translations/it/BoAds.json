@@ -1,5 +1,16 @@
 {
     "Ads": {
-        
+        "AdvType": "Tipo annunci",
+        "Building": "Edificio",
+        "From": "Da",
+        "Search": "Cerca"
+    },
+    "Columns": {
+        "BuildingType": "Tipo edificio",
+        "AdvType": "Tipo annuncio",
+        "City": "Città",
+        "Published": "Data pubblicazione",
+        "AdvCard": "Scheda annuncio"
     }
 }
+

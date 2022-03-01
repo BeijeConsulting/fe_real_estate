@@ -1,5 +1,15 @@
 {
     "Ads": {
-        
+        "AdvType": "Adv type",
+        "Building": "Building",
+        "From": "From",
+        "Search": "Search"
+    },
+    "Columns": {
+        "BuildingType": "Building type",
+        "AdvType": "Advertisements type",
+        "City": "City",
+        "Published": "Published date",
+        "AdvCard": "Advertisement card"
     }
 }

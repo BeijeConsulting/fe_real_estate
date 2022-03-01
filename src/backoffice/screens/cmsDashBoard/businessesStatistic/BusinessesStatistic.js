@@ -8,8 +8,11 @@ import CustomThemeChart from "../../../componets/funcComponets/ColumnPlotWithSli
 import BasicTreemapPlot from "../../../componets/funcComponets/basicTreemapPlot/BasicTreemapPlot";
 import LiquidPlotChart from "../../../componets/funcComponets/liquidPlotChart/LiquidPlotChart";
 
+import { useTranslation } from "react-i18next";
+
 const BusinessesStatistic = () => {
 
+    const { t } = useTranslation()
     const { Panel } = Collapse
 
     return (
@@ -17,18 +20,18 @@ const BusinessesStatistic = () => {
             <Row >
                 <Col span={24}>
                     <Collapse>
-                        <Panel header="Complessita' Businesses" key="_1">
+                        <Panel header={t("BoDashboard.Businesses.Chart1")} key="_1">
                             <BasicTreemapPlot />
                         </Panel>
                     </Collapse>
                 </Col>
                 <Col span={12}>
-                    <Card title="Attivita' Businesses">
+                    <Card title={t("BoDashboard.Businesses.Chart2")}>
                         <CustomThemeChart />
                     </Card>
                 </Col>
                 <Col span={12}>
-                    <Card title="Popolarita' dei businesses">
+                    <Card title={t("BoDashboard.Businesses.Chart3")}>
                         <LiquidPlotChart />
                     </Card>
                 </Col>

@@ -1,5 +1,21 @@
 {
-    "Dashboard": {
-        
+    "CmsDashboard": {
+        "Users": "Users",
+        "Ads": "Advertisements",
+        "Businesses": "Businesses"
+    },
+    "Users": {
+        "Chart1": "Users flow",
+        "Chart2": "Total users: ",
+        "Chart3": "Users region"
+    },
+    "Ads": {
+        "Chart1":"Advertisements position",
+        "Chart2": "Advertisements release"
+    },
+    "Businesses": {
+        "Chart1": "Businesses complexity",
+        "Chart2": "Businesses activity",
+        "Chart3": "Businesses popularity"
     }
 }
