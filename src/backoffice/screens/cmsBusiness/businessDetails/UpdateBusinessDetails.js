@@ -60,11 +60,12 @@ const UpdateBusinessDetails = (props) => {
     }
 
     const updateData = async () => {
-        let business = await updateBusinessInfo(params.id, state.updatedData, props.admin.token)
+        await updateBusinessInfo(params.id, state.updatedData, props.admin.token)
     }
 
     const handleClick = () => {
         updateData()
+        navigate("/admin/business/details")
     }
 
     useEffect(() => {
@@ -80,37 +81,37 @@ const UpdateBusinessDetails = (props) => {
 
         <>{state.businessData !== null &&
 
-            <div className="update-profile-container" >
+            <div className="update-business-container" >
                 <Form
                     className="update-profile-form"
                     layout={"horizontal"}
                     form={form}
                     initialValues={state.businessData}
                 >
-                    <div className="update-profile-info">
-                        <Form.Item name="businessName" label={t("BoBusiness.UpdateBusiness.BusinessName")}>
+                    <div className="update-business-info">
+                        <Form.Item className="form-item" name="businessName" label={t("BoBusiness.UpdateBusiness.BusinessName")}>
                             <Input onChange={handleName} placeholder={t("BoBusiness.UpdateBusiness.BusinessName")} />
                         </Form.Item>
-                        <Form.Item name="vatNumber" label={t("BoBusiness.UpdateBusiness.Vat")}>
+                        <Form.Item className="form-item" name="vatNumber" label={t("BoBusiness.UpdateBusiness.Vat")}>
                             <Input onChange={handleVatNumber} placeholder={t("BoBusiness.UpdateBusiness.Vat")} />
                         </Form.Item>
-                        <Form.Item name="address" label={t("BoBusiness.UpdateBusiness.Address")}>
+                        <Form.Item className="form-item" name="address" label={t("BoBusiness.UpdateBusiness.Address")}>
                             <Input placeholder="Inserisci indirizzo" />
                         </Form.Item>
                     </div>
-                    <div className="update-profile-contacts">
-                        <Form.Item name="refName" label={t("BoBusiness.UpdateBusiness.Manager.Name")}>
+                    <div className="update-business-contacts">
+                        <Form.Item className="form-item" name="refName" label={t("BoBusiness.UpdateBusiness.Manager.Name")}>
                             <Input onChange={handleManagerName} type="email" placeholder="inserisci nome" />
                         </Form.Item>
-                        <Form.Item name="refSurname" label={t("BoBusiness.UpdateBusiness.Manager.Surname")}>
+                        <Form.Item className="form-item" name="refSurname" label={t("BoBusiness.UpdateBusiness.Manager.Surname")}>
                             <Input onChange={handleManagerSurname} type="email" placeholder="inserisci cognome" />
                         </Form.Item>
-                        <Form.Item name="phone" label={t("BoBusiness.UpdateBusiness.Manager.Phone")}>
+                        <Form.Item className="form-item" name="phone" label={t("BoBusiness.UpdateBusiness.Manager.Phone")}>
                             <Input onChange={handleManagerPhone} type="email" placeholder="inserisci numero di telefono" />
                         </Form.Item>
 
                     </div>
-                    <div className="update-profile-button">
+                    <div className="update-business-button">
                         <Form.Item>
                             <Button type="primary" onClick={handleClick}>{t("BoBusiness.UpdateBusiness.SaveButton")}</Button>
                         </Form.Item>

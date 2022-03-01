@@ -1,0 +1,60 @@
+.update-business-container{    
+    height: calc(100vh - 160px);
+}
+
+.update-business-form{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+   
+}
+
+.update-business-info{
+    margin-top: 4em;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    justify-self: center;
+    align-self: center;
+}
+
+.update-business-contacts{
+    margin-top: 4em;
+    grid-row-start: 1;
+    grid-row-end: 4;
+    grid-column-start: 3;
+    grid-column-end: 5;
+    justify-self: center;
+}   
+
+.update-business-button{
+    
+    grid-row-start: 4;
+    grid-column-start: 1;
+    grid-column-end: 5;
+    justify-self: center;
+    align-self: center;
+}
+
+@media (max-width: 650px){
+
+    .update-business-container{
+        overflow-y: scroll;
+    }
+    .update-business-form{
+        display: flex;
+        flex-direction: column;
+    }
+    .update-business-info{
+        margin: 0;
+        padding: 0;
+    }
+    .update-business-contacts{
+        margin: 0;
+        padding: 0;
+    }
+    .update-business-button{
+        margin: 1em auto;
+    }
+}
