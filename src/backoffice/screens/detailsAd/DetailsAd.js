@@ -8,8 +8,6 @@ import { useParams, Link } from "react-router-dom";
 import { disableAdv, getAdv, postAdvState } from "../../../services/backoffice/advertisementApi";
 // Ant design imports
 import { Typography, Carousel, Collapse, Button, Row, Col, List } from "antd";
-import Item from "antd/lib/list/Item";
-import { getNameUserFromSellerId } from "../../../services/backoffice/usersApi";
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
