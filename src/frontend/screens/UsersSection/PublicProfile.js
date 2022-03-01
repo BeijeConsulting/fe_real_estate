@@ -7,7 +7,7 @@ import avatar from "../../assets/images/avatar.png";
 // components
 import NavBar from "../../components/Navbar/Navbar";
 import AdvCard from "../../components/AdvCard/AdvCard";
-import { getUserByUsername } from "../../../services/frontend/users";
+import { getUserByUsername } from "../../../services/frontend/usersApi";
 import { findAds } from "../../../services/frontend/advertisementApi";
 import { useNavigate, useParams } from "react-router-dom";
 

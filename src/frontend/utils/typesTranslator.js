@@ -14,3 +14,4 @@ const building = ( buildingType ) => {
 export default  {
     adv, building
 }
+
