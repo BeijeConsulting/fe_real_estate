@@ -61,7 +61,7 @@ const Cms = (props) => {
                         <Menu.Item key="1" icon={<UserOutlined />} onClick={setTitleNavigate("profile")}>
                             {t("BoCms.Cms.Profile")}
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("dashboard")}>
+                        <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("dashboard/users")}>
                             {t("BoCms.Cms.Dashboard")}
                         </Menu.Item>
                         <Menu.Item key="3" icon={<FontAwesomeIcon icon={faRectangleList} />} onClick={setTitleNavigate("advertisements")}>
