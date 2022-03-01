@@ -8,7 +8,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import Search from "../../components/Search/Search";
 import Footer from "../../components/Footer/Footer";
 import Illustrations from "../../components/Illustrations/Illustrations";
-import Carousel2 from "../../components/Carousel/Carousel2";
+import Carousel from "../../components/Carousel/Carousel";
 
 // translations
 import { Helmet } from "react-helmet";
@@ -33,7 +33,7 @@ const Home = () => {
 				</div>
 				<Illustrations className="illustrations-container" />
 
-				<Carousel2 />
+				<Carousel />
 
 				<div className="h-screen"></div>
 

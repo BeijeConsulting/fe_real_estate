@@ -1,5 +1,5 @@
 import React from "react";
-import "./carousel2.css";
+import "./carousel.css";
 
 //Components
 import CardCarousel from "../UI/CardCarousel/CardCarousel";
@@ -13,7 +13,7 @@ import Apartment4 from "../../../assets/images/Apartment4.jpg";
 // routing
 import { useTranslation } from "react-i18next";
 
-const Carousel2 = () => {
+const Carousel = () => {
 	const { t } = useTranslation();
 
 	return (
@@ -54,4 +54,4 @@ const Carousel2 = () => {
 	);
 };
 
-export default Carousel2;
+export default Carousel;
