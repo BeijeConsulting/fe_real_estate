@@ -17,7 +17,7 @@ const addNewAdv = async (adv, token) => {
 	let headers = {
 		Authorization: `Bearer ${token}`,
 	};
-	return await client.post("/advertisement", adv, { headers });
+	return await client.post("advertisement", adv, { headers });
 };
 
 export { findAds, getCities, getUserAds, addNewAdv };

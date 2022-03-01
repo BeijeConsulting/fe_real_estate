@@ -23,9 +23,6 @@ import { ROUTES } from "../../../utils/properties";
 const Navbar = (props) => {
 	const { i18n,t} = useTranslation();
 
-	// const routes = (t) => {
-	// 	return
-	// }
 	let routes = [
 		{
 			label: `${t("Navbar.Home")}`,

@@ -1,0 +1,10 @@
+{
+    "rooms": "rooms",
+    "bathrooms": "bathrooms",
+    "floor": "floor",
+    "posted": "Posted on",
+    "open3D": "Open 3D view",
+    "description": "Description",
+    "descriptionNotPosted": "The seller hasn’t posted a description",
+    "detailInfo": "Detail information"
+}
