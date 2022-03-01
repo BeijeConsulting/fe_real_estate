@@ -1,30 +1,9 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-
-// FRONTEND SCREENS
-import AboutUs from "./frontend/screens/Home/AboutUs";
-import AssessBuilding from "./frontend/screens/Home/AssessBuilding";
-import Auth from "./frontend/screens/Auth/Auth";
-import ForgotPsw from "./frontend/screens/Auth/ForgotPsw";
-import Home from "./frontend/screens/Home/Home";
-import Login from "./frontend/screens/Auth/Login";
-import SignUpPrivate from "./frontend/screens/Auth/SignUp/SignUpPrivate";
-import WhatWeOffer from "./frontend/screens/Home/WhatWeOffer";
-import SignUpBusiness from "./frontend/screens/Auth/SignUp/SignUpBusiness";
-import User from "./frontend/screens/User/User";
-import EditProfile from "./frontend/screens/User/EditProfile";
-import PostAdvs from "./frontend/screens/User/PostAdvs";
-import SaveAdvs from "./frontend/screens/User/SaveAdvs";
-import SignUp from "./frontend/screens/Auth/SignUp/SignUp";
-import Dashboard from "./frontend/screens/User/Dashboard";
-import NewAdv from "./frontend/screens/User/NewAdv";
-import DetailBuilding from "./frontend/screens/DetailBuilding/DetailBuilding";
-import FAQ from "./frontend/screens/FAQ/FAQ";
-import Map from "./frontend/screens/Map/Map";
 
 // BACKOFFICE SCREENS
 // here
-import BusinessesStatistic from "./backoffice/screens/cmsDashBoard/businessesStatistic/BusinessesStatistic"
+import BusinessesStatistic from "./backoffice/screens/cmsDashBoard/businessesStatistic/BusinessesStatistic";
 import AdvertisementsStatistic from "./backoffice/screens/cmsDashBoard/advertisementsStatistic/AdvertisementsStatistic";
 import UserStatistic from "./backoffice/screens/cmsDashBoard/userStatistic/UserStatistic";
 import CmsDashBoard from "./backoffice/screens/cmsDashBoard/CmsDashBoard";
@@ -61,7 +40,44 @@ import AdvList from "./frontend/screens/Advertisement/AdvList";
 import { ROUTES } from "./utils/properties";
 import SyncRoutingLanguage from "./common/screens/SyncRoutingLanguage";
 import PublicProfile from "./frontend/screens/UsersSection/PublicProfile";
+import ScreenLoader from "./frontend/components/ScreenLoader/ScreenLoader";
 
+// FRONTEND SCREENS
+const Home = React.lazy(() => import("./frontend/screens/Home/Home"));
+const WhatWeOffer = React.lazy(() =>
+	import("./frontend/screens/Home/WhatWeOffer")
+);
+const AboutUs = React.lazy(() => import("./frontend/screens/Home/AboutUs"));
+const AssessBuilding = React.lazy(() =>
+	import("./frontend/screens/Home/AssessBuilding")
+);
+const Auth = React.lazy(() => import("./frontend/screens/Auth/Auth"));
+const Login = React.lazy(() => import("./frontend/screens/Auth/Login"));
+const SignUp = React.lazy(() =>
+	import("./frontend/screens/Auth/SignUp/SignUp")
+);
+const SignUpPrivate = React.lazy(() =>
+	import("./frontend/screens/Auth/SignUp/SignUpPrivate")
+);
+const SignUpBusiness = React.lazy(() =>
+	import("./frontend/screens/Auth/SignUp/SignUpBusiness")
+);
+const ForgotPsw = React.lazy(() => import("./frontend/screens/Auth/ForgotPsw"));
+const User = React.lazy(() => import("./frontend/screens/User/User"));
+const EditProfile = React.lazy(() =>
+	import("./frontend/screens/User/EditProfile")
+);
+const PostAdvs = React.lazy(() => import("./frontend/screens/User/PostAdvs"));
+const SaveAdvs = React.lazy(() => import("./frontend/screens/User/SaveAdvs"));
+const Dashboard = React.lazy(() => import("./frontend/screens/User/Dashboard"));
+const NewAdv = React.lazy(() => import("./frontend/screens/User/NewAdv"));
+const DetailBuilding = React.lazy(() =>
+	import("./frontend/screens/DetailBuilding/DetailBuilding")
+);
+const FAQ = React.lazy(() => import("./frontend/screens/FAQ/FAQ"));
+const Map = React.lazy(() => import("./frontend/screens/Map/Map"));
+
+// Component
 const Routing = () => (
 	<Provider store={applicationStore}>
 		<Routes>
@@ -73,45 +89,107 @@ const Routing = () => (
 			/>
 			<Route path={ROUTES.FE.BASE.SELF} element={<SyncRoutingLanguage />}>
 				{/* Home */}
-				<Route path={ROUTES.FE.BASE.HOME} element={<Home />} />
+				<Route
+					path={ROUTES.FE.BASE.HOME}
+					element={
+						// <ScreenLoader />
+						<Suspense fallback={<p>...</p>}>
+							<Home />
+						</Suspense>
+					}
+				/>
 
 				{/* About us */}
-				<Route path={ROUTES.FE.BASE.ABOUT_US} element={<AboutUs />} />
+				<Route
+					path={ROUTES.FE.BASE.ABOUT_US}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<AboutUs />
+						</Suspense>
+					}
+				/>
 
 				{/* What we offer */}
-				<Route path={ROUTES.FE.BASE.WHAT_WE_OFFER} element={<WhatWeOffer />} />
+				<Route
+					path={ROUTES.FE.BASE.WHAT_WE_OFFER}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<WhatWeOffer />
+						</Suspense>
+					}
+				/>
 
 				{/* Assess buildings */}
 				<Route
 					path={ROUTES.FE.BASE.ASSESS_BUILDING}
-					element={<AssessBuilding />}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<AssessBuilding />
+						</Suspense>
+					}
 				/>
 
 				{/* Frequently asked questions */}
-				<Route path={ROUTES.FE.BASE.FAQ} element={<FAQ />} />
+				<Route
+					path={ROUTES.FE.BASE.FAQ}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<FAQ />
+						</Suspense>
+					}
+				/>
 
 				{/* Advertisements' list */}
-				<Route path={ROUTES.FE.BASE.ADS_LIST.SELF} element={<AdvList />} />
+				<Route
+					path={ROUTES.FE.BASE.ADS_LIST.SELF}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<AdvList />
+						</Suspense>
+					}
+				/>
 
 				{/* Property's details */}
 				<Route
 					path={ROUTES.FE.BASE.DETAILS_AD.SELF}
-					element={<DetailBuilding />}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<DetailBuilding />
+						</Suspense>
+					}
 				/>
 
 				{/* Map */}
-				<Route path={ROUTES.FE.BASE.MAP} element={<Map />} />
+				<Route
+					path={ROUTES.FE.BASE.MAP}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<Map />
+						</Suspense>
+					}
+				/>
 
 				{/* Users section ( public, no auth ) */}
 				<Route path={ROUTES.FE.BASE.USERS_SECTION.SELF}>
 					<Route
 						path={ROUTES.FE.BASE.USERS_SECTION.PUBLIC_PROFILE.SELF}
-						element={<PublicProfile />}
+						element={
+							<Suspense fallback={<p>...</p>}>
+								<PublicProfile />
+							</Suspense>
+						}
 					/>
 				</Route>
 
 				{/* Auth - Sign In - Sign Up */}
-				<Route path={ROUTES.FE.BASE.AUTH.SELF} element={<Auth />}>
+				<Route
+					path={ROUTES.FE.BASE.AUTH.SELF}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<Auth />
+						</Suspense>
+					}
+				>
 					{/* Redirect */}
 					<Route
 						path=""
@@ -145,7 +223,14 @@ const Routing = () => (
 				</Route>
 
 				{/* User section ( private, auth needed ) */}
-				<Route path={ROUTES.FE.BASE.USER.SELF} element={<User />}>
+				<Route
+					path={ROUTES.FE.BASE.USER.SELF}
+					element={
+						<Suspense fallback={<p>...</p>}>
+							<User />
+						</Suspense>
+					}
+				>
 					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
 					<Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
 					<Route
@@ -183,7 +268,7 @@ const Routing = () => (
 				<Route path="advertisements" element={<AdvListBo />} />
 				<Route path="verification-adv" element={<VerificationAdv />} />
 				<Route path="advertisement/:id" element={<DetailsAd />} />
-				<Route path="dashBoard" element={<CmsDashBoard />} >
+				<Route path="dashBoard" element={<CmsDashBoard />}>
 					<Route path="users" element={<UserStatistic />} />
 					<Route path="advertisements" element={<AdvertisementsStatistic />} />
 					<Route path="businesses" element={<BusinessesStatistic />} />

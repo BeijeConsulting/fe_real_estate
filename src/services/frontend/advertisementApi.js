@@ -21,3 +21,5 @@ const addNewAdv = async (adv, token) => {
 };
 
 export { findAds, getCities, getUserAds, addNewAdv };
+
+

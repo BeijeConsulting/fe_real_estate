@@ -6,11 +6,19 @@ import Button from "../../components/UI/Button/Button";
 import CircleButton from "../../components/UI/CircleButton/CircleButton";
 
 //Utils
-import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
+import {
+	ADV_TYPES,
+	BUILDING_TYPES,
+	CONDITION,
+	COOLING,
+	DEED_STATES,
+	FURNITURE,
+	YARD,
+} from "../../../common/utils/globalTypes";
 import storage from "../../../common/utils/storage";
 
 //Translation
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 
 //POST
 import { addNewAdv } from "../../../services/frontend/advertisementApi";
@@ -23,40 +31,42 @@ const NewAdv = (props) => {
 
 	const [state, setState] = useState({
 		address: "",
-		advType: "",
+		advType: ADV_TYPES[0],
 		areaMsq: "",
 		attic: false,
 		balcony: false,
 		basement: false,
 		bathrooms: 0,
-		buildingType: "",
+		buildingType: BUILDING_TYPES[0],
 		buildingYear: "",
 		city: "",
-		condition: "",
-		cooling: "",
+		condition: CONDITION.NEW,
+		cooling: COOLING.NO,
 		description: "",
+		deedState: DEED_STATES.FREE,
 		elevator: false,
 		energyRating: "",
 		floor: 0,
 		floors: 0,
-		furniture: "",
+		furniture: FURNITURE.NO,
 		guidedTour: false,
 		heating: "",
 		houseNumber: "",
-		parkingSpots: false,
+		parkingSpots: 0,
 		pool: false,
 		price: "",
 		reception: false,
 		rooms: 0,
 		terrace: false,
-		yard: "",
+		virtualTour: false,
+		yard: YARD.NO,
 		zipCode: "",
 	});
 
 	const { Step } = Steps;
 	const { Option } = Select;
 
-  const { t }= useTranslation();
+	const { t } = useTranslation();
 
 	const postAd = async () => {
 		let token = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN);
@@ -64,9 +74,26 @@ const NewAdv = (props) => {
 			...state,
 			areaMsq: parseInt(state.areaMsq),
 			buildingYear: parseInt(state.buildingYear),
+			houseNumber: parseInt(state.houseNumber),
+			price: parseInt(state.price),
 		};
 		console.log(body);
-		const adv = await addNewAdv(body, token)
+		const adv = await addNewAdv(
+			// {
+			// 	advType: body.advType,
+			// 	city: body.city,
+			// 	zipCode: body.zipCode,
+			// 	address: body.address,
+			// 	houseNumber: body.houseNumber,
+			// 	areaMsq: body.areaMsq,
+			// 	buildingType: body.buildingType,
+			// 	deedState: body.deedState,
+			// 	guidedTour: body.guidedTour,
+			// 	virtualTour: body.virtualTour,
+			// },
+			body,
+			token
+		)
 			.then((res) => {
 				console.log(res);
 			})
@@ -131,7 +158,7 @@ const NewAdv = (props) => {
 		<>
 			<div className="my-4">
 				<h1 className="uppercase font-primary font-light text-center text-4xl">
-				{t("NewAdv.Title")}
+					{t("NewAdv.Title")}
 				</h1>
 			</div>
 
@@ -171,11 +198,11 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-									{t("NewAdv.AdvType")}
+										{t("NewAdv.AdvType")}
 									</label>
 									<Select
 										className="w-full"
-										defaultValue={t("NewAdv.AdvTypeDefaultValue")}
+										defaultValue="NO"
 										onChange={handleSelectPropertyChange("advType")}
 										value={state.advType}
 									>
@@ -186,7 +213,7 @@ const NewAdv = (props) => {
 								<div className="flex gap-3">
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-										{t("NewAdv.City")}
+											{t("NewAdv.City")}
 										</label>
 										<Input
 											placeholder={t("NewAdv.CityPlaceholder")}
@@ -197,7 +224,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-										{t("NewAdv.ZIP")}
+											{t("NewAdv.ZIP")}
 										</label>
 										<Input
 											type={"number"}
@@ -211,7 +238,7 @@ const NewAdv = (props) => {
 								<div className="flex gap-3 ">
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-										{t("NewAdv.Address")}
+											{t("NewAdv.Address")}
 										</label>
 										<Input
 											placeholder={t("NewAdv.AddressPlaceholder")}
@@ -222,7 +249,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-										{t("NewAdv.HouseNumber")}
+											{t("NewAdv.HouseNumber")}
 										</label>
 										<Input
 											type={"number"}
@@ -272,7 +299,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap gap-2">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Balcony")}
+											{t("NewAdv.Balcony")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("balcony")}
@@ -282,7 +309,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Elevator")}
+											{t("NewAdv.Elevator")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("elevator")}
@@ -292,7 +319,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Pool")}
+											{t("NewAdv.Pool")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("pool")}
@@ -304,7 +331,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap gap-2">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Attic")}
+											{t("NewAdv.Attic")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("attic")}
@@ -314,7 +341,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Basement")}
+											{t("NewAdv.Basement")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("basement")}
@@ -324,7 +351,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Terrace")}
+											{t("NewAdv.Terrace")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("terrace")}
@@ -335,31 +362,37 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap gap-2">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Reception")}
+											{t("NewAdv.Reception")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("reception")}
 											checked={state.reception}
 										/>
 									</div>
+								</div>
 
-									<div className="mb-5">
-										<label className="uppercase font-primary color-secondary mr-3">
+								<div className="mb-5">
+									<label className="uppercase font-primary color-secondary mr-3">
 										{t("NewAdv.ParkingSpot")}
-										</label>
-										<Checkbox
-											onChange={switchCheck("parkingSpots")}
-											checked={state.parkingSpots}
+									</label>
+									<div className="flex mr-2">
+										<CircleButton
+											label="-"
+											onClickCallback={decrement("parkingSpots")}
+										/>
+										<span className="text-lg font-semibold my-2 mx-3">
+											{state.parkingSpots}
+										</span>
+										<CircleButton
+											label="+"
+											onClickCallback={increment("parkingSpots")}
 										/>
 									</div>
 								</div>
-
-								{/* </div> */}
-
 								<div className="flex flex-wrap mx-auto">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Bathrooms")}
+											{t("NewAdv.Bathrooms")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -378,7 +411,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Rooms")}
+											{t("NewAdv.Rooms")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -399,7 +432,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap mx-auto">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-1">
-										{t("NewAdv.Floor")}
+											{t("NewAdv.Floor")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -418,7 +451,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-1">
-										{t("NewAdv.TotalFloors")}
+											{t("NewAdv.TotalFloors")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -443,7 +476,11 @@ const NewAdv = (props) => {
 										label="Indietro"
 										onClick={goBack}
 									/>
-									<Button className={"w-36"} label={t("NewAdv.Next")} onClick={goNext} />
+									<Button
+										className={"w-36"}
+										label={t("NewAdv.Next")}
+										onClick={goNext}
+									/>
 								</div>
 							</div>
 						)}
@@ -451,10 +488,10 @@ const NewAdv = (props) => {
 							<div>
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-									{t("NewAdv.PropertyCondition")}
+										{t("NewAdv.PropertyCondition")}
 									</label>
 									<Select
-										defaultValue="In che condizioni è l'immobile?"
+										defaultValue="NEW"
 										style={{ width: "100%" }}
 										onChange={handleSelectPropertyChange("condition")}
 										value={state.condition}
@@ -467,7 +504,7 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-									{t("NewAdv.EnergyRating")}
+										{t("NewAdv.EnergyRating")}
 									</label>
 									<Select
 										defaultValue="Energy rating"
@@ -488,7 +525,24 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-									{t("NewAdv.Furniture")}
+										Deed state
+									</label>
+									<Select
+										defaultValue="FREE"
+										style={{ width: "100%" }}
+										onChange={handleSelectPropertyChange("deedState")}
+										value={state.deedState}
+									>
+										<Option value="BARE_PROPERTY">Bare property</Option>
+										<Option value="FREE">Free</Option>
+										<Option value="OCCUPATED">Occupated</Option>
+										<Option value="RENTED">Rented</Option>
+									</Select>
+								</div>
+
+								<div className="mb-5">
+									<label className="block uppercase font-primary color-secondary">
+										{t("NewAdv.Furniture")}
 									</label>
 									<Select
 										defaultValue="----"
@@ -496,15 +550,15 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("furniture")}
 										value={state.furniture}
 									>
-										<Option value="furnished">FURNISHED</Option>
-										<Option value="no">NO</Option>
-										<Option value="partial">PARTIAL</Option>
+										<Option value="FURNISHED">FURNISHED</Option>
+										<Option value="NO">NO</Option>
+										<Option value="PARTIAL">PARTIAL</Option>
 									</Select>
 								</div>
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-									{t("NewAdv.Heating")}
+										{t("NewAdv.Heating")}
 									</label>
 									<Select
 										defaultValue="Riscaldamento"
@@ -512,18 +566,18 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("heating")}
 										value={state.heating}
 									>
-										<Option value="central">Central</Option>
-										<Option value="indipendent">indipendent</Option>
-										<Option value="no">No</Option>
+										<Option value="CENTRAL">Central</Option>
+										<Option value="INDIPENDENT">indipendent</Option>
+										<Option value="NO">No</Option>
 									</Select>
 								</div>
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-									{t("NewAdv.AirCon")}
+										{t("NewAdv.AirCon")}
 									</label>
 									<Select
-										defaultValue="Cooling"
+										defaultValue="NO"
 										style={{ width: "100%" }}
 										onChange={handleSelectPropertyChange("cooling")}
 										value={state.cooling}
@@ -536,10 +590,10 @@ const NewAdv = (props) => {
 
 									<div className="mt-5 mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.Garden")}
+											{t("NewAdv.Garden")}
 										</label>
 										<Select
-											defaultValue="Giardino"
+											defaultValue="NO"
 											style={{ width: "100%" }}
 											onChange={handleSelectPropertyChange("yard")}
 											value={state.yard}
@@ -570,7 +624,7 @@ const NewAdv = (props) => {
 							<div>
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-									{t("NewAdv.Price")}
+										{t("NewAdv.Price")}
 									</label>
 									<Input
 										type={"number"}
@@ -581,7 +635,7 @@ const NewAdv = (props) => {
 								</div>
 								<div className="flex flex-col mb-5">
 									<label className="uppercase font-primary color-secondary mr-1">
-									{t("NewAdv.Description")}
+										{t("NewAdv.Description")}
 									</label>
 									<Textarea
 										className={"border-2 border-slate-300"}
@@ -594,13 +648,24 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="uppercase font-primary color-secondary mr-1">
-									{t("NewAdv.GuidedTour")}
+										{t("NewAdv.GuidedTour")}
 									</label>
 									<Checkbox
 										onChange={switchCheck("guidedTour")}
 										checked={state.guidedTour}
 									/>
 								</div>
+
+								<div className="mb-5">
+									<label className="uppercase font-primary color-secondary mr-1">
+										Vuoi fare una visita virtuale?
+									</label>
+									<Checkbox
+										onChange={switchCheck("virtualTour")}
+										checked={state.virtualTour}
+									/>
+								</div>
+
 								<div className="mb-5">
 									<input type="file" id="myFile" name="filename"></input>
 								</div>
