@@ -6,6 +6,7 @@ import FAQ from "./FAQ.json";
 import Footer from "./Footer.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
+import NewAdv from "./NewAdv.json";
 import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
@@ -28,6 +29,7 @@ import ContactSeller from "./ContactSeller.json";
 const it = {
 	AboutUs,
 	Home,
+	NewAdv,
 	Footer,
 	Navbar,
 	Carousel,

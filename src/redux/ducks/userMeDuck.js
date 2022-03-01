@@ -1,8 +1,11 @@
 import storage from "../../common/utils/storage";
 
+const SET_SAVED_ADS ='generic/user/SET_SAVED_ADS'
+const SET_USER_ME = 'generic/user/SET_USER_ME'
 const SET_USER_DATA = "generic/user/SET_USER_DATA";
 const LOGOUT = "generic/user/LOGOUT";
 
+// return only id, username
 const setUser = ({ user, token, refreshToken }, rememberMeObj) => ({
 	type: SET_USER_DATA,
 	payload: {
@@ -13,6 +16,17 @@ const setUser = ({ user, token, refreshToken }, rememberMeObj) => ({
 	},
 });
 
+// return all user info
+const setUserMe = ( userObj ) => ({
+	type: SET_USER_ME,
+	payload: userObj
+})
+
+const setSavedAds = ( saved ) => ({
+	type: SET_SAVED_ADS,
+	payload: saved
+})
+
 const logout = () => ({
 	type: LOGOUT,
 	payload: {},
@@ -20,6 +34,8 @@ const logout = () => ({
 
 const INIT_STATE = {
 	user: {},
+	userMe: {},
+	savedAds: []
 };
 
 const userMeDuck = (state = INIT_STATE, action) => {
@@ -42,11 +58,16 @@ const userMeDuck = (state = INIT_STATE, action) => {
 
 			return { ...state, user: {} };
 
+		case SET_USER_ME:
+			return { ...state, userMe: action.payload}
+			
+		case SET_SAVED_ADS:
+			return {...state, savedAds: action.payload }
 		default:
 			return state;
 	}
 };
 
-export { setUser, logout };
+export { setSavedAds, setUser, setUserMe, logout };
 
 export default userMeDuck;

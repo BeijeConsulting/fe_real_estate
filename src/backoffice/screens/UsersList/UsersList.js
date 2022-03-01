@@ -131,7 +131,10 @@ class UsersList extends Component {
 
         fetchUsersByName = async (value = this.state.searchQuery) => {
             let payload = [await getUserByUsername(value, this.props.admin.token)]
-            console.log("payload", payload)
+            payload = payload.map( element => {
+                return({...element, key: element.id})
+            })
+            console.log(payload)
             if(payload[0]) {
                 this.setState({
                     users: payload,

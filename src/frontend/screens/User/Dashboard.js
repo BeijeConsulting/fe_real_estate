@@ -1,54 +1,58 @@
-import React, { Component } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import React, { useEffect } from 'react'
+import AdvCard from '../../components/AdvCard/AdvCard'
 
-import { Link } from "react-router-dom";
-import AdvCard from "../../components/AdvCard/AdvCard";
+// UTILS
+import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage'
 
-class Dashboard extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {};
-	}
+// REDUX
+import { connect } from 'react-redux'
+import userMeDuck from '../../../redux/ducks/userMeDuck'
 
-	render() {
-		return (
-			<>
-				<h1 className="text-3xl font-bold m-4 md:text-4xl">
-					Benvenuto @utente
-				</h1>
-				<div className="flex flex-col m-2 p-2">
-					<div className="flex flex-row space-x-2">
-						<h1 className="text-2xl font-bold">Riepilogo utente</h1>
-						<Link to={"edit-profile"}>
-							<FontAwesomeIcon
-								className={"mt-1.5 h-5 text-slate-900"}
-								icon={faPenToSquare}
-							/>
-						</Link>
-					</div>
-					<div className="flex flex-col m-2 text-lg ">
-						<span className="font-semibold">Nome: </span>
-						<span className="font-semibold">Cognome: </span>
-						<span className="font-semibold">Email: </span>
-						<span className="font-semibold">Password: </span>
-					</div>
-				</div>
-				<div className="flex flex-col m-2 p-2">
-					<h1 className="text-3xl font-bold">Annunci salvati:</h1>
-					<div className="max-w-lg max-h-xs">
-						<AdvCard />
-					</div>
-				</div>
-				<div className="flex flex-col m-2 p-2">
-					<h1 className="text-3xl font-bold">I tuoi annunci:</h1>
-					<div className="max-w-lg max-h-xs">
-						<AdvCard />
-					</div>
-				</div>
-			</>
-		);
-	}
+// API
+import { userMe } from '../../../services/frontend/usersApi'
+
+const Dashboard = (props) => {
+
+    useEffect(() => {
+
+        userMe(
+            localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN),
+            props.dispatch
+        )
+
+    }, [])
+
+
+    const handleSavedRender = ( adv, key) => {
+        return(
+            <AdvCard 
+                savedAds={props.savedAds}
+                id={adv.id}
+                city={adv.city}
+                rooms={adv.rooms}
+                address={adv.address}
+                description={adv.longDescription}
+            />
+        )
+    }
+
+    return (
+        <div className='p-6 bg-gray-200 flex-1'>
+            <h1 className='text-3xl font-bold'>Ciao {props.userMe?.username} 👋 </h1>
+            <p className='mt-40'>.</p>
+            <p className='text-3xl font-semibold'>Ultimi Annunci Salvati <span className='text-xl'>(Vedi tutto)</span></p>
+            <div className='max-w-3xl mt-4'>
+                { props.savedAds.map(handleSavedRender)}
+            </div>
+
+        </div>
+    )
 }
 
-export default Dashboard;
+
+const mapStateToProps = state => ({
+    userMe: state.userMeDuck.userMe,
+    savedAds: state.userMeDuck.savedAds
+})
+
+export default connect(mapStateToProps)(Dashboard); 
