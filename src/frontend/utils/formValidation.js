@@ -15,13 +15,13 @@ const nonEmptyText = (text) =>
  * @returns { 'invalid' | '' }
  */
 const invalidEmail = (text) =>
-	regex.email.test(text) ? ERROR_TYPES.INVALID : "";
+	regex.email.test(text) ? "" : ERROR_TYPES.INVALID;
 
 /**
  * @returns { 'invalid' | '' }
  */
 const invalidPassword = (text) =>
-	regex.password.test(text) ? ERROR_TYPES.INVALID : "";
+	regex.password.test(text) ? "" : ERROR_TYPES.INVALID;
 
 /**
  *

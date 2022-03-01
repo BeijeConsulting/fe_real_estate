@@ -1,5 +1,10 @@
 {
 	"helmet": {
 		"description": "Estate agency to find the best solutions for your life"
+	},
+	"publishAd": {
+		"button": "POST AD",
+		"subtext": "Post your advertisements, let people find you!",
+		"text": "POST ADS FOR FREE"
 	}
 }

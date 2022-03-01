@@ -89,10 +89,25 @@ export const updateBusinessInfo = async (id, content, token) => {
     let updateUser = ''
     await javaAcademyServiceInstance.put("/business/" + id, { content }, { headers }).then((response) => {
         updateUser = response.data
-        console.log('updateUSer', updateUser)
 
     }).catch(
 
     )
     return updateUser
+}
+
+
+export const deleteBusiness = async (id, token) => {
+    const headers = {
+        'Authorization': 'Bearer ' + token,
+    };
+
+    let removeBusiness = ''
+    await javaAcademyServiceInstance.delete("/business/" + id, { headers }).then((response) => {
+        removeBusiness = response
+        console.log("Remove business", removeBusiness)
+    }).catch(
+
+    )
+    return removeBusiness
 }

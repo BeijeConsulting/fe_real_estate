@@ -21,23 +21,23 @@ import { logout } from "../../../redux/ducks/userMeDuck";
 import { ROUTES } from "../../../utils/properties";
 
 const Navbar = (props) => {
-	const { i18n } = useTranslation();
+	const { i18n,t} = useTranslation();
 
 	let routes = [
 		{
-			label: "HOME",
+			label: `${t("Navbar.Home")}`,
 			route: `/${i18n.language}/${ROUTES.FE.BASE.HOME}`,
 		},
 		{
-			label: "MAPPA",
+			label: `${t("Navbar.Map")}`,
 			route: `/${i18n.language}/${ROUTES.FE.BASE.MAP}`,
 		},
 		{
-			label: "SERVIZI",
+			label: `${t("Navbar.WhatWeOffer")}`,
 			route: `/${i18n.language}/${ROUTES.FE.BASE.WHAT_WE_OFFER}`,
 		},
 		{
-			label: "CHI SIAMO",
+			label: `${t("Navbar.AboutUs")}`,
 			route: `/${i18n.language}/${ROUTES.FE.BASE.ABOUT_US}`,
 		},
 	];
@@ -81,7 +81,8 @@ const Navbar = (props) => {
 						!props.userMeDuck.user?.id,
 						handleNavigate,
 						handleLogoutClick,
-						i18n.language
+						i18n.language,
+						t
 					)}
 				</div>
 
@@ -117,7 +118,8 @@ const handleAuth = (
 	userNotLoggedIn,
 	handleNavigate,
 	handleLogoutClick,
-	lang
+	lang,
+	t
 ) => {
 	if (userNotLoggedIn) {
 		return (
@@ -126,7 +128,7 @@ const handleAuth = (
 					onClick={handleNavigate(`/${lang}/${ROUTES.FE.BASE.AUTH.SELF}`)}
 					className="text-xl nav-btn nav-fill font-primary"
 				>
-					ACCEDI
+					{t("Navbar.SignIn")}
 				</p>
 				<p
 					onClick={handleNavigate(
@@ -134,7 +136,7 @@ const handleAuth = (
 					)}
 					className="text-xl nav-btn nav-outline font-primary"
 				>
-					REGISTRATI
+					{t("Navbar.SignUp")}
 				</p>
 			</>
 		);
@@ -145,7 +147,7 @@ const handleAuth = (
 					onClick={handleNavigate(`/${lang}/${ROUTES.FE.BASE.USER.SELF}`)}
 					className="text-xl nav-btn nav-fill font-primary"
 				>
-					AREA PRIVATA
+					{t("Navbar.PrivateArea")}
 				</p>
 				<p onClick={handleLogoutClick} className="cursor-pointer">
 					<FontAwesomeIcon icon={faArrowRightFromBracket} /> LOG OUT

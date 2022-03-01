@@ -6,14 +6,16 @@ export const createChecker = async (id, content, token) => {
     };
 
     let createChecker = ''
+    let err = ''
     await javaAcademyServiceInstance.post("/admin/user/makeChecker/" + id, content, { headers }).then((response) => {
         createChecker = response.data
 
 
-    }).catch(
+    }).catch((error) =>
+        err = 400
 
     )
-    return createChecker
+    return { createChecker, err }
 }
 
 export const getChecherList = async (token) => {

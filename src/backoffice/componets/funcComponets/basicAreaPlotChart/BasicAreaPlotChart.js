@@ -4,8 +4,6 @@ import { Area } from '@ant-design/plots';
 
 const BasicAreaPlotChart = () => {
 
-
-
     /* Chart  configuration*/
     const [data, setData] = useState([]);
     useEffect(() => {

@@ -4,7 +4,9 @@
         "BusinessName": "Business name",
         "Phone": "Phone number",
         "Ref": "Reference",
-        "FactsCard": "Business card"
+        "FactsCard": "Business card",
+        "HoverRemove": "Remove Business",
+        "ModalText": "Do you want to remove this business?"
     },
     "BusinessCms":{
         "Details": "Details",

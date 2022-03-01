@@ -3,6 +3,8 @@
 		"title": "DOMUS - Sign Up Private",
 		"description": "Create an account as private and begin to buy or sell properties."
 	},
+	"signUp":"Sign Up",
+	"signUpPrivate":"Sign Up for personal purposes",
 	"cf": "Fiscal code",
 	"name": "Name",
 	"surname": "Surname",

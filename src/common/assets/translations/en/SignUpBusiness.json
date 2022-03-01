@@ -3,6 +3,8 @@
 		"title": "DOMUS - Sign Up Business",
 		"description": "Create a Business account and begin to buy or sell properties."
 	},
+	"signUp":"Sign Up",
+	"signUpBusiness":"Sign Up for business purposes",
 	"VATNumber": "VAT number",
 	"businessName": "Business name",
 	"address": "Address",
