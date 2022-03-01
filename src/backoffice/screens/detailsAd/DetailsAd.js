@@ -68,6 +68,7 @@ const DetailsAd = (props) => {
     setAdv(formatData);
     setSeller(seller);
     setChecker(checker);
+    console.log("STATO", adv[0].status);
   };
 
   // carousel func
@@ -123,13 +124,15 @@ const DetailsAd = (props) => {
                 </Link>
               </span>
               {/* link revisor?? */}
-              <span>
-                {" "}
-                Revisionato da:&nbsp;
-                <Link to={`/admin/user/${checker.idChecker}/details`}>
-                  {checker.username}
-                </Link>
-              </span>
+              {checker.username && (
+                <span>
+                  {" "}
+                  Revisionato da:&nbsp;
+                  <Link to={`/admin/user/${checker.idChecker}/details`}>
+                    {checker.username}
+                  </Link>
+                </span>
+              )}
             </div>
 
             {/* carousell */}
@@ -447,15 +450,22 @@ const DetailsAd = (props) => {
 
             {/* bottons */}
             <div className="container-button">
-              <Button type="primary" onClick={approveAdv}>
-                Approva
-              </Button>
-              <Button type="danger" onClick={deleteAdv}>
-                Elimina
-              </Button>
-              <Button type="danger" onClick={refuseAdv}>
-                Rifiuta
-              </Button>
+              {adv[0].status && adv[0].status !== "Approved" && (
+                <Button type="primary" onClick={approveAdv}>
+                  Approva
+                </Button>
+              )}
+              {props.admin.permission.includes("ADMIN") && (
+                <Button type="danger" onClick={deleteAdv}>
+                  Elimina
+                </Button>
+              )}
+              {props.admin.permission.includes("CHECKER") &&
+                props.admin.permission.includes("ADMIN") === false && (
+                  <Button type="danger" onClick={refuseAdv}>
+                    Rifiuta
+                  </Button>
+                )}
             </div>
           </div>
         </div>

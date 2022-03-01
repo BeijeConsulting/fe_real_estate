@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { getUserMeAdvs } from '../../../services/frontend/usersApi'
 
-const SaveAdvs = () => {
+const PostedAdvs = () => {
     
     useEffect(() => {
       getUserMeAdvs().then(res => console.log(res))
@@ -11,10 +11,10 @@ const SaveAdvs = () => {
     
     return (
         <div className='p-6 bg-gray-200 flex-1'>
-            <h1 className='text-3xl font-bold'>Annunci Salvati</h1>
-            <p>Qui sotto trovi i tuoi annunci preferiti.</p>
+            <h1 className='text-3xl font-bold'>Annunci Online</h1>
+            <p>Qui sotto trovi gli annunci pubblicati da te.</p>
         </div>
     )
 }
 
-export default SaveAdvs
+export default PostedAdvs
