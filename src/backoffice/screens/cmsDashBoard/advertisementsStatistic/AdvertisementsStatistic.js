@@ -8,8 +8,12 @@ import { Row, Col, Skeleton, Collapse } from 'antd';
 /* statistics*/
 import MapAdvertisementsChart from "../../../componets/funcComponets/MapAdvertisementsChart/MapAdvertisementsChart";
 import BasicAreaPlotChart from "../../../componets/funcComponets/basicAreaPlotChart/BasicAreaPlotChart";
+import { useTranslation } from "react-i18next";
 
 const AdvertisementsStatistic = () => {
+
+    const { t } = useTranslation()
+
     const { Panel } = Collapse;
 
     return (
@@ -17,10 +21,10 @@ const AdvertisementsStatistic = () => {
             <Row>
                 <Col span={24}>
                     <Collapse defaultActiveKey={['1']}>
-                        <Panel header="Posizione Annunci" key="1">
+                        <Panel header={t("BoDashboard.Ads.Chart1")} key="1">
                             <MapAdvertisementsChart />
                         </Panel>
-                        <Panel header="Pubblicazione annunci" key="2">
+                        <Panel header={t("BoDashboard.Ads.Chart2")} key="2">
                             <BasicAreaPlotChart></BasicAreaPlotChart>
                         </Panel>
                     </Collapse>

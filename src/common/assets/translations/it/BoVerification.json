@@ -5,6 +5,7 @@
         "BuildingType": "Tipo edificio",
         "AdvType": "Tipo annuncio",
         "City": "Città",
-        "PublishedDate": "Data pubblicazione"
+        "PublishedDate": "Data pubblicazione",
+        "Card": "Scheda annuncio"
     }
 }

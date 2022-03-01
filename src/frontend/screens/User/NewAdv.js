@@ -80,55 +80,10 @@ const NewAdv = (props) => {
 			price: parseInt(state.price),
 		};
 
-		const filterKey = (keys) => {
-			let buffer = {};
 
-			for (const key in body) {
-				if (Object.hasOwnProperty.call(body, key)) {
-					if (keys.findIndex((v) => v === key) > -1) {
-						buffer[key] = body[key];
-					}
-				}
-			}
-
-			return buffer;
-		};
-		const decon = filterKey([
-			"address",
-			"advType",
-			"areaMsq",
-			"buildingType",
-			"city",
-			"deedState",
-			"guidedTour",
-			"houseNumber",
-			"virtualTour",
-			"zipCode",
-			"attic",
-			"balcony",
-			"basement",
-			"bathrooms",
-			"buildingYear",
-			"city",
-			"condition",
-			"cooling",
-			"description",
-			"elevator",
-			"energyRating",
-			"floor",
-			"floors",
-			"furniture",
-			"heating",
-			"parkingSpots",
-			"pool",
-			"price",
-			"reception",
-			"rooms",
-			"terrace",
-		]);
-		console.log(body);
 		const adv = await addNewAdv(body, token)
 			.then((res) => {
+				//add tostify and redirect
 				console.log(res);
 			})
 			.catch((err) => console.log(err));

@@ -1,5 +1,83 @@
 {
     "Ads": {
-        
+        "AdvType": "Tipo annunci",
+        "Building": "Edificio",
+        "From": "Da",
+        "Search": "Cerca"
+    },
+    "Columns": {
+        "BuildingType": "Tipo edificio",
+        "AdvType": "Tipo annuncio",
+        "City": "Città",
+        "Published": "Data pubblicazione",
+        "AdvCard": "Scheda annuncio"
+    },
+    "Detail": {
+        "Approved": "Approvato",
+        "Refused": "Rifiutato",
+        "Deleted": "Rimosso",
+        "CreatedBy": "Creato da: ",
+        "RevisedBy": "Revisionato da: ",
+        "Description": "Descrizione",
+        "NoDescription": "Nessuna descrizione",
+        "LocationInfo": "INFORMAZIONI LOCAZIONE",
+        "HouseInfo": "INFORMAZIONI ABITAZIONE",
+        "AdvInfo": "INFORMAZIONI ANNUNCIO",
+        "advType": {
+            "sale": "Vendita",
+            "rent": "Affitto",
+            "shortRent": "Affitto breve"
+        },
+        "buildingType": {
+            "house": "Casa",
+            "NewConstruction": "Nuova costruzione",
+            "RetailSpace":"Spazi commerciali",
+            "Terrain":"Terreni",
+            "Garage":"Garage",
+            "Room":"Stanze",
+            "Bed":"Letti",
+            "BasementAttic":"Soffitte",
+            "BoatSpot":"Posti per Barche"
+        },
+        "address": "Indirizzo",
+        "houseNumber": "Numero civico",
+        "zipCode": "CAP",
+        "deedState": "Stato dell'atto",
+        "planimetry": "Planimetria",
+        "idConstructor": "Costruttore id",
+        "tour": "Tour guidato",
+        "Vtour": "Tour virtuale",
+        "price": "Prezzo",
+        "year": "Anno di costruzione",
+        "area": "Area",
+        "condition": "Condition",
+        "rooms": "Camere",
+        "bathrooms": "Bagni",
+        "floor": "Piano",
+        "floors": "Totale piani",
+        "posted": "Postato il",
+        "disabled": "Disabilitato il",
+        "ended": "Finito il",
+        "expiration": "Scade il",
+        "created": "Creato il",
+        "elevator": "Ascensore",
+        "reception": "Portineria",
+        "pool": "Piscina",
+        "attic": "Soffitta",
+        "terrace": "Terrazza",
+        "balcony": "Balcone",
+        "basement": "Cantina",
+        "cooling": "Aria condizionata",
+        "heating": "Riscaldamento",
+        "energyRating": "Classe energetica",
+        "parkingSpots": "Posto auto",
+        "yard": "Giardino",
+        "furniture": "Arredamento",
+        "buttonApprove": "Approva",
+        "buttonDelete": "Rimuovi",
+        "buttonRefuse": "Rifiuta",
+        "status": "Stato"
+
     }
 }
+
