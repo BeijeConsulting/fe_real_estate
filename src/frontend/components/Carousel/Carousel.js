@@ -15,10 +15,10 @@ const Carousel = () => {
 
 	return (
 		<div className="flex flex-col">
-			<h1 className="text-3xl font-bold mt-8 ml-20 font-primary color-secondary">
+			<h1 className="text-3xl font-bold mt-8 mx-auto md:ml-20 font-primary color-secondary">
 				{t("Carousel.title")}
 			</h1>
-			<div className="flex flex-row ml-14">
+			<div className="flex flex-col mx-auto md:flex-row md:ml-14">
 				<CardCarousel
 					title="Casa Colonica Modena"
 					subtitle={t("Carousel.seeDetails")}

@@ -8,8 +8,8 @@ const Footer = () => {
 
   const { t } = useTranslation()
   return (
-    <div className='bg-gray  pt-7 font-primary relative'>
-      <div className='lg:max-w-6xl mx-auto flex flex-row'>
+    <div className='bg-gray pt-7 font-primary relative'>
+      <div className='lg:max-w-6xl mx-auto flex flex-row text-center'>
         <div className='flex-1'>
           <p className='font-semibold lg:text-3xl uppercase'>{t("Footer.Assistance")}</p>
           <Link to={'/FAQ'} className={'font-bold'}>

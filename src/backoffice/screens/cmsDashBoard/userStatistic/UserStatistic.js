@@ -16,7 +16,12 @@ import BasicColumnPlot from "../../../componets/funcComponets/BasicColumnPlotCha
 import BasicAreaPlotChart from "../../../componets/funcComponets/basicAreaPlotChart/BasicAreaPlotChart";
 import { result } from "lodash";
 
+import { useTranslation } from "react-i18next";
+
 const UserStatistic = (props) => {
+
+    const { t } = useTranslation()
+
     const [state, setState] = useState({
         customLabelChartState: undefined,
     });
@@ -49,17 +54,17 @@ const UserStatistic = (props) => {
         <div className='container-userStatistic '>
             <Row>
                 <Col span={24} >
-                    <Card loading={false} title="Affluenza utenti">
+                    <Card loading={false} title={t("BoDashboard.Users.Chart1")}>
                         <BasicAreaPlotChart />
                     </Card>
                 </Col>
                 <Col span={24} lg={12}>
-                    <Card loading={false} title={`Totale utenti: 5000`} >
+                    <Card loading={false} title={t("BoDashboard.Users.Chart2")} >
                         <CustomLabelChart data={state.customLabelChartState} />
                     </Card>
                 </Col>
                 <Col span={24} lg={12}>
-                    <Card loading={false} title="Regioni Utenti" >
+                    <Card loading={false} title={t("BoDashboard.Users.Chart3")}>
                         <div className="basic" style={{ overflow: "auto" }}>
                             <BasicColumnPlot />
                         </div>

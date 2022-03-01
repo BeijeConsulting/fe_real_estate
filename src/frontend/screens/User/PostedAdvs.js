@@ -10,8 +10,8 @@ const PostedAdvs = () => {
       getUserPostedAdvs().then(res => setAdvs(res))
 
     }, [])
-    
-    
+
+
     return (
         <div className='p-6 bg-gray-200 flex-1'>
             <h1 className='text-3xl font-bold'>Annunci Online</h1>

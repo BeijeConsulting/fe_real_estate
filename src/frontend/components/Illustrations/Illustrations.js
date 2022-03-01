@@ -28,7 +28,7 @@ const Illustrations = (props) => {
 
 	return (
 		<div className="max-w-6xl mt-16 mx-auto">
-			<h1 className="font-primary text-3xl font-semibold mt-5 mb-6 sm:ml-44 sm:text-4xl lg:ml-6">
+			<h1 className="font-primary text-3xl font-semibold text-center mt-5 mb-6 sm:ml-44 sm:text-4xl lg:ml-6">
 				{t("Illustrations.title")}
 			</h1>
 			<div className=" flex flex-col md:flex-row justify-between">
@@ -60,11 +60,11 @@ const Illustrations = (props) => {
 const Item = ({ img, label, onClick }) => {
 	const { t } = useTranslation();
 	return (
-		<div className="single-animation flex flex-col justify-center items-center">
-			<img className="max-h-56" src={img}></img>
-			<p className="illustration-text">{label} </p>
+		<div className="flex flex-col justify-center items-center mt-8 mb-12">
+			<img className="h-full mb-2" src={img}></img>
+			<p className="text-center font-primary text-xl">{label} </p>
 			<Button
-				marginTop={15}
+				marginTop={5}
 				label={t("Illustrations.Item.go")}
 				onClick={onClick}
 			/>

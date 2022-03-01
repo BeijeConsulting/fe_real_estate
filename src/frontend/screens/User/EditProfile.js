@@ -4,6 +4,8 @@ import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
 
 import { connect } from 'react-redux'
+//TRANSLATION
+import { useTranslation } from "react-i18next"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { updateUser } from '../../../services/frontend/usersApi';
@@ -28,15 +30,15 @@ const EditProfile = (props) => {
 
     return (
         <div className='p-6 bg-gray-200 flex-1'>
-            <h1 className='text-3xl font-bold'>Profilo</h1>
-            <p>Modifica le tue informazioni personali.</p>
+            <h1 className='text-3xl font-bold'>{t("Dashboard.Profile")}</h1>
+            <p>{t("Dashboard.EditProfile")}</p>
 
             <Card className='max-w-2xl mx-auto flex flex-col p-16 mt-10'>
 
                 {/* First Name, Last Name */}
                 <div className='flex flex-col md:flex-row justify-between flex-1'>
                     <div className='flex flex-col'>
-                        <p className={labelClass}>Nome</p>
+                        <p className={labelClass}>{t("Dashboard.Name")}</p>
                         <Input
                             value={state.name}
                             onChange={setName}
@@ -44,7 +46,7 @@ const EditProfile = (props) => {
                     </div>
 
                     <div className='flex flex-col'>
-                        <p className={labelClass}>Cognome</p>
+                        <p className={labelClass}>{t("Dashboard.LastName")}</p>
                         <Input
                             value={state.surname}
                             onChange={setSurname}
@@ -70,10 +72,13 @@ const EditProfile = (props) => {
                         iconPosition='right'
                         label="Aggiorna Profilo"
                         onClick={handleSubmit}
+                        label={t("Dashboard.EditProfileBtn")}
                     />
-                    
+
                 </div>
-                <p className='text-center italic mt-4'>Le modifiche vengono salvate solo dopo aver premuto il pulsante</p>
+                <p className='text-center italic mt-4'>
+                    {t("Dashboard.EditProfileBtnDescription")}
+                </p>
 
             </Card>
         </div>

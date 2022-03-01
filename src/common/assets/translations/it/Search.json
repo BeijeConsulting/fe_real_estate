@@ -33,5 +33,6 @@
 		"see": "Vedi",
 		"notFound": "Non ho trovato"
 	},
-	"locationDefault": "Scegli dove..."
+	"locationDefault": "Dove...",
+	"locationPlaceholder":"Scegli una città..."
 }
