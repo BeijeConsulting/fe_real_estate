@@ -32,28 +32,28 @@ const CheckersList = (props) => {
 
     let columns = [
         {
-            title: 'Username',
+            title: t("BoCheckers.Checker.Username"),
             dataIndex: 'username',
         },
         {
-            title: 'Name',
+            title: t("BoCheckers.Checker.Name"),
             dataIndex: 'name',
             responsive: ["sm"],
         },
         {
-            title: 'Surname',
+            title: t("BoCheckers.Checker.Surname"),
             dataIndex: 'surname',
             responsive: ["sm"],
         },
         {
-            title: 'Email',
+            title: t("BoCheckers.Checker.Email"),
             dataIndex: 'email',
         },
         {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link to={"/admin/user/" + record.key + "/details"}>Scheda utente</Link>
+                <Link to={"/admin/user/" + record.key + "/details"}>{t("BoCheckers.Checker.FactsCard")}</Link>
 
         },
         {
@@ -71,7 +71,7 @@ const CheckersList = (props) => {
                             {
                                 state.isModal &&
                                 <Modal visible={state.isModal} onOk={handleChangePermit(record.key)} onCancel={openCloseModal} getContainer={false}>
-                                    <p>{t("BoCheckers.Modal.Text")}</p>
+                                    <p>{t("BoCheckers.Modal.TextRemovePermit")}</p>
                                 </Modal>
                             }
                         </>
@@ -123,7 +123,7 @@ const CheckersList = (props) => {
         <>
             <div className="users-list-background">
                 <div className="users-list-container">
-                    <Button className="checkers-button" onClick={addChecker} type="primary">Aggiungi collaboratore</Button>
+                    <Button className="checkers-button" onClick={addChecker} type="primary">{t("BoCheckers.Checker.Add")}</Button>
                     <div className="users-list-table">
                         <Table
                             dataSource={state.users}

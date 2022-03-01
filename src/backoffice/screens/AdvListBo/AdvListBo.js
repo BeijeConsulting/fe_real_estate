@@ -23,18 +23,21 @@ import { useParams, Link } from "react-router-dom";
 // ant design
 import { Table, Input, Button, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import { useTranslation } from "react-i18next";
 const { Search } = Input;
 const { Option } = Select;
 
 const AdvListBo = (props) => {
   // hooks
+  const { t } = useTranslation()
+
   const [advList, setAdvList] = useState([]);
   const [isModalOpened, setModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
   const [allPlaces, setPlaces] = useState([{}]);
-  const [allBuilding, setBuilding] = useState([ {label: "Tutti", value: null}, ...BUILDING_TYPES])
-  const [allAdv, setAdv] = useState([ {label: "Tutti", value: null}, ...ADV_TYPES])
+  const [allBuilding, setBuilding] = useState([{ label: "Tutti", value: null }, ...BUILDING_TYPES])
+  const [allAdv, setAdv] = useState([{ label: "Tutti", value: null }, ...ADV_TYPES])
   const [search, setSearch] = useState({
     search: {
       buildingType: null,
@@ -48,22 +51,23 @@ const AdvListBo = (props) => {
     elementForPage: 10,
   })
 
+
   // func List
   let columnsAdv = [
     {
-      title: "Bulding Type",
+      title: t("BoAds.Columns.BuildingType"),
       dataIndex: "buildingType",
     },
     {
-      title: "advType",
+      title: t("BoAds.Columns.AdvType"),
       dataIndex: "advType",
     },
     {
-      title: "City",
+      title: t("BoAds.Columns.City"),
       dataIndex: "city",
     },
     {
-      title: "Published Date Time",
+      title: t("BoAds.Columns.Published"),
       dataIndex: "publishedDateTime",
       render: (text) => {
         if (text === null) {
@@ -80,7 +84,7 @@ const AdvListBo = (props) => {
       dataIndex: "actions",
       render: (text, record) => (
         <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>
-          Scheda advertisement
+          {t("BoAds.Columns.AdvCard")}
         </Link>
       ),
     },
@@ -88,7 +92,7 @@ const AdvListBo = (props) => {
 
   // pagination func
   const pageHandler = async (pagination) => {
-    if(search.buildingType === undefined && search.advType === undefined && search.city === undefined) {
+    if (search.buildingType === undefined && search.advType === undefined && search.city === undefined) {
       getListAdv(pagination.current, pagination.pageSize)
     } else {
       searchAdv(pagination.current, pagination.pageSize)
@@ -96,7 +100,7 @@ const AdvListBo = (props) => {
   };
 
   //axios
-  const getListAdv = async (page=paginationOptions.numPage, pageSize=paginationOptions.elementForPage) => {
+  const getListAdv = async (page = paginationOptions.numPage, pageSize = paginationOptions.elementForPage) => {
     let paginationList = await getAllAdsPaginations(
       props.admin.token,
       page,
@@ -116,17 +120,17 @@ const AdvListBo = (props) => {
     setIsLoading(false);
   };
 
-  const searchAdv = async (numPage = paginationOptions.numPage, elementForPage= paginationOptions.elementForPage) => {
+  const searchAdv = async (numPage = paginationOptions.numPage, elementForPage = paginationOptions.elementForPage) => {
     let params = {};
-    if(search.buildingType) {
+    if (search.buildingType) {
       params.buildingType = search.buildingType
-    } 
-    if(search.city) {
+    }
+    if (search.city) {
       params.city = search.city
-    } 
-    if(search.advType) {
-      params.advType= search.advType
-    } 
+    }
+    if (search.advType) {
+      params.advType = search.advType
+    }
     let searchResults = await searchAdvByParams(
       props.admin.token,
       numPage,
@@ -170,7 +174,7 @@ const AdvListBo = (props) => {
         value: element,
       };
     });
-    payload.unshift({label: "Tutti", value: null})
+    payload.unshift({ label: "Tutti", value: null })
     setPlaces(payload);
   };
 
@@ -186,19 +190,19 @@ const AdvListBo = (props) => {
         <div className="users-list-container">
           <div className="users-list-header">
             <Select
-              defaultValue="Adv Type"
+              placeholder={t("BoAds.Ads.AdvType")}
               style={{ width: 120 }}
               options={allAdv}
               onChange={onChangeForSearch("advType")}
             ></Select>
             <Select
-              defaultValue="Building"
+              placeholder={t("BoAds.Ads.Building")}
               style={{ width: 120 }}
               options={allBuilding}
               onChange={onChangeForSearch("buildingType")}
             ></Select>
             <Select
-              defaultValue="From"
+              placeholder={t("BoAds.Ads.From")}
               style={{ width: 120 }}
               options={allPlaces}
               onChange={onChangeForSearch("city")}
@@ -208,7 +212,7 @@ const AdvListBo = (props) => {
               icon={<SearchOutlined style={{ paddingBottom: 100 }} />}
               onClick={searchByAdvName}
             >
-              Search
+              {t("BoAds.Ads.Search")}
             </Button>
           </div>
           <div className="users-list-table">

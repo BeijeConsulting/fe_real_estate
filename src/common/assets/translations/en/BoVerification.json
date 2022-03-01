@@ -5,6 +5,7 @@
         "BuildingType": "Building type",
         "AdvType": "Adv type",
         "City": "City",
-        "PublishedDate": "Published date"
+        "PublishedDate": "Published date",
+        "Card": "Advertisement card"
     }
 }
