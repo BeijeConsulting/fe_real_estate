@@ -3,6 +3,8 @@ import { javaAcademyServiceInstance } from "../javaAcademyService";
 
 import { setUserMe, setSavedAds } from "../../redux/ducks/userMeDuck";
 
+
+
 export const getUserByUsername = async (username) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 
@@ -58,6 +60,15 @@ export const userSaveAdv = async ( advId, token ) => {
 	await javaAcademyServiceInstance
 	.post('user/saveadv/' + advId,  { headers })
 
+}
+
+export const getUserMeAdvs = async () => {
+	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
+	let headers = {	'Authorization': `Bearer ${token}` }
+
+	await javaAcademyServiceInstance
+	.get('/user/myAdvertisements', { headers})
+	.then( res => console.log(res.data))
 }
 
 
