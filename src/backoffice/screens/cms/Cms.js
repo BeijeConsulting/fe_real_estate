@@ -30,46 +30,48 @@ import { useTranslation } from "react-i18next";
 const { Header, Content, Footer, Sider } = Layout;
 
 const Cms = (props) => {
-  let location = useLocation();
-  let navigate = useNavigate();
-  const { t } = useTranslation();
+    let location = useLocation()
+    let navigate = useNavigate();
+    const { t } = useTranslation();
 
-  /*componentDidMount*/
-  useEffect(() => {
-    setTitleNavigate(location.pathname);
+    /*componentDidMount*/
+    useEffect(() => {
+        setTitleNavigate(location.pathname)
 
-    if (!props.admin.username) {
-      remenberMe();
+        if (!props.admin.username) {
+            remenberMe()
+        }
+    }, [])
+
+    // meth to navigate
+    const setTitleNavigate = (title) => {
+        let x = undefined
+        if (title.includes("/admin")) {
+            x = title.split("/")
+            props.dispatch(setHeaderTitle(x[2]))
+            navigate(`${title}`);
+        } else {
+            x = title.split("/")
+            props.dispatch(setHeaderTitle(x[0]))
+            navigate(`${title}`);
+        }
     }
+
+    //retrieve Admin data
+    const remenberMe = async () => {
+        await authAdminApi.updateAuthToken(props.dispatch).catch(() => {
+            navigate("/admin-auth")
+        })
+    }
+
+    //LogOut
+    const logOut = () => {
+        localStorage.setItem(storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN, " ")
+        props.dispatch(setAdmin({}))
+        navigate("/admin-auth")
+    }
+    console.log(props.admin.permission);
   }, []);
-
-  // meth to navigate
-  const setTitleNavigate = (title) => {
-    let x = undefined;
-    if (title.includes("/admin")) {
-      x = title.split("/");
-      props.dispatch(setHeaderTitle(x[2]));
-      navigate(`${title}`);
-    } else {
-      x = title.split("/");
-      props.dispatch(setHeaderTitle(x[0]));
-      navigate(`${title}`);
-    }
-  };
-
-  //retrieve Admin data
-  const remenberMe = async () => {
-    await authAdminApi.updateAuthToken(props.dispatch).catch(() => {
-      navigate("/admin-auth");
-    });
-  };
-
-  //LogOut
-  const logOut = () => {
-    localStorage.setItem(storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN, " ");
-    props.dispatch(setAdmin({}));
-    navigate("/admin-auth");
-  };
 
   const remenberMe = () => {
     let c = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN);
