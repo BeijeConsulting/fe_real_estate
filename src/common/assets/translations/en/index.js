@@ -23,6 +23,7 @@ import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import Search from "./Search.json";
 import DetailBuilding from "./DetailBuilding.json";
+import Dashboard from "./Dashboard.json"
 import WhatWeOffer from "./WhatWeOffer.json";
 import ContactSeller from "./ContactSeller.json";
 
@@ -30,6 +31,7 @@ const en = {
 	AboutUs,
 	Footer,
 	Navbar,
+	Dashboard,
 	NewAdv,
 	Home,
 	Search,
