@@ -80,7 +80,7 @@ const UserNavbar = (props) => {
 const UserFullname = ({ fullname,email }) => {
 	return (
 		<div className="flex flex-row mb-2 items-center space-x-2">
-			<img className="avatar" src={UserAvatar} alt="" />
+			<img className="avatar rounded-full h-20 w-20" src={UserAvatar} alt="" />
 			<div>
 				<h1 className="text-xl text-white"> {fullname} </h1>
 				<p className='text-md'>{email}</p>
