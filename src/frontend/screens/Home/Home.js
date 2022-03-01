@@ -36,12 +36,12 @@ const Home = () => {
 
 				<Carousel />
 
-				<div className="flex flex-col mt-6 p-2 bg-secondary">
-					<h1 className="text-4xl text-center color-primary p-2">{t("Home.publishAd.text")}</h1>
-					<h3 className="text-xl text-center color-primary">{t("Home.publishAd.subtext")}</h3>
+				<div className="flex flex-col w-full mt-6 p-2 bg-secondary">
+					<h1 className="text-3xl md:text-4xl text-center color-primary p-2">{t("Home.publishAd.text")}</h1>
+					<h3 className="text-xl md:text-xl text-center color-primary">{t("Home.publishAd.subtext")}</h3>
 					<div className="w-2/5 mb- mx-auto">
 						<Button
-							className="mx-auto"
+							size={16}
 							label={t("Home.publishAd.button")}
 						>
 						</Button>
