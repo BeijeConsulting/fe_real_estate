@@ -3,12 +3,14 @@ import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 import { getCities } from '../../../services/frontend/advertisementApi'
+import {useTranslation} from "react-i18next"
 
 const LocationSelect = (props) => {
 
     const [isOpened, setIsOpened] = useState(false)
     const [cities, setCities] = useState({ all: [], filtered: [] })
     const select = useRef()
+    const {t}=useTranslation()
 
     let selectStyle = isOpened
         ? { transform: 'translateY(0px)', opacity: 1, pointerEvent: 'auto' }
@@ -39,7 +41,7 @@ const LocationSelect = (props) => {
     const handleOnChange = (e) => {
         let input = e.target.value.toLowerCase()
 
-        setCities({...cities, 
+        setCities({...cities,
             filtered: cities.all.filter(city => city.toLowerCase().includes(input) )
         })
     }
@@ -83,7 +85,7 @@ const LocationSelect = (props) => {
                 <input
                     className='text-lg border-2 border-gray-400 rounded px-2 py-1 mb-4 w-full focus:outline-none'
                     onChange={handleOnChange}
-                    placeholder="Cerca una citta'..."
+                    placeholder={t("Search.locationPlaceholder")}
                 />
                 {cities.filtered.map(handleOptionsRender)}
             </div>
