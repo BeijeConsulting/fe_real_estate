@@ -1,25 +1,41 @@
 import AboutUs from "./AboutUs.json";
+import AdvList from "./AdvList.json";
 import Home from "./Home.json";
+import Navbar from "./Navbar.json";
+import FAQ from "./FAQ.json";
+import Footer from "./Footer.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
+import NewAdv from "./NewAdv.json";
 import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import WhatWeOffer from "./WhatWeOffer.json";
 import BoAds from "./BoAds.json";
 import BoBusiness from "./BoBusiness.json";
-import BoCheckers from "./BoCheckers.json"; 
+import BoCheckers from "./BoCheckers.json";
 import BoCms from "./BoCms.json";
 import BoDashboard from "./BoDashboard.json";
 import BoProfile from "./BoProfile.json";
 import BoUpdateProfile from "./BoUpdateProfile.json";
 import BoUsers from "./BoUsers.json";
-import BoVerification from "./BoVerification.json"
-
+import BoVerification from "./BoVerification.json";
+import Carousel from "./Carousel.json";
+import Illustrations from "./Illustrations.json";
+import Search from "./Search.json";
+import DetailBuilding from "./DetailBuilding.json";
 
 const it = {
 	AboutUs,
 	Home,
+	NewAdv,
+	Footer,
+	Navbar,
+	Carousel,
+	Search,
+	Illustrations,
+	AdvList,
+	FAQ,
 	Login,
 	Map,
 	SignUp,
@@ -34,7 +50,8 @@ const it = {
 	BoProfile,
 	BoUpdateProfile,
 	BoUsers,
-	BoVerification
+	BoVerification,
+	DetailBuilding,
 };
 
 export default it;

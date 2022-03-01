@@ -14,6 +14,7 @@ import { connect } from "react-redux";
 
 // routing
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../../utils/properties";
 
 // utils
 import storage from "../../../common/utils/storage";
@@ -163,7 +164,10 @@ class Login extends Component {
 					<p className="font-primary mt-4">
 						{t("Login.goToRegistration.label")}
 					</p>
-					<Link to={"/:lang/auth/signup/private"} className="font-primary mt-4">
+					<Link
+						to={`/${this.props.i18n.language}/${ROUTES.FE.BASE.AUTH.SELF}/${ROUTES.FE.BASE.AUTH.SIGNUP.SELF}`}
+						className="font-primary mt-4"
+					>
 						{t("Login.goToRegistration.link")}
 					</Link>
 				</form>

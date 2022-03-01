@@ -49,6 +49,7 @@ export const getUserSavedAds = async (token, dispatch ) => {
 	})
 }
 
+
 export const userSaveAdv = async ( advId, token ) => {
 	let headers = {
 		'Authorization': `Bearer ${token}`,
@@ -58,3 +59,26 @@ export const userSaveAdv = async ( advId, token ) => {
 	.post('user/saveadv/' + advId,  { headers })
 
 }
+
+
+export const signUp = async (data) => {
+	let err = null;
+	let res = null;
+
+	const body = { ...data, status: "ACTIVE" };
+
+	await javaAcademyServiceInstance
+		.post("/user/register", body)
+		.then((response) => {
+			res = response;
+		})
+		.catch((error) => {
+			err = error;
+		});
+
+	if (!!err) {
+		throw err;
+	}
+
+	return res;
+};

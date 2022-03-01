@@ -6,7 +6,7 @@ import { Component } from "react";
 import { withTranslation } from "react-i18next";
 import { t } from "i18next";
 // Import Routing
-import { getUsersPaged } from "../../../services/backoffice/usersApi";
+import { getUsersPaged, getUserByUsername } from "../../../services/backoffice/usersApi";
 
 // Import Connect   
 import { connect } from "react-redux";
@@ -123,9 +123,30 @@ class UsersList extends Component {
                 isLoading: true
             })
             if (value === "") {
-                this.fetchUsersPaged(0)
+                this.fetchUsersPaged(1,10)
             } else {
-                //Search API
+                this.fetchUsersByName(value)
+            }
+        }
+
+        fetchUsersByName = async (value = this.state.searchQuery) => {
+            let payload = [await getUserByUsername(value, this.props.admin.token)]
+            payload = payload.map( element => {
+                return({...element, key: element.id})
+            })
+            console.log(payload)
+            if(payload[0]) {
+                this.setState({
+                    users: payload,
+                    isLoading: false,
+                    totalElements: payload.lenght
+                })
+            } else {
+                this.setState({
+                    users: [],
+                    isLoading: false,
+                    totalElements: 0
+                })
             }
         }
 
@@ -134,7 +155,7 @@ class UsersList extends Component {
             this.setState({
                 users: payload.fetchedUsers,
                 isLoading: false,
-                totalElements: 100 //Missing total from API
+                totalElements: payload.totalElements
             })
         }
 
@@ -143,7 +164,7 @@ class UsersList extends Component {
                 isLoading: true
             })
             if (this.state.searchQuery === "") {
-                this.fetchUsersPaged(pagination.current - 1, pagination.pageSize)
+                this.fetchUsersPaged(pagination.current, pagination.pageSize)
             }
             else {
                 //Search API

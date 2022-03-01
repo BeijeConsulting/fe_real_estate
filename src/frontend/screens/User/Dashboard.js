@@ -1,8 +1,4 @@
 import React, { useEffect } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
-import BlueSection from '../../components/BlueSection/BlueSection'
-import { Link } from 'react-router-dom'
 import AdvCard from '../../components/AdvCard/AdvCard'
 
 // UTILS

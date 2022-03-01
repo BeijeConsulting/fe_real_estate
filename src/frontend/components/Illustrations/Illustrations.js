@@ -1,65 +1,75 @@
 // CSS
-import './illustrations.css';
+import "./illustrations.css";
 
 //React
-import React from 'react';
+import React from "react";
 
 // Illustrations
-import icon1 from '../../../assets/images/icon1Home.jpg'
-import icon2 from '../../../assets/images/icon2Home.jpg'
-import icon3 from '../../../assets/images/icon3Home.jpg'
+import icon1 from "../../../assets/images/icon1Home.jpg";
+import icon2 from "../../../assets/images/icon2Home.jpg";
+import icon3 from "../../../assets/images/icon3Home.jpg";
 
 // Routing
-import { useNavigate } from 'react-router-dom';
-import Button from '../UI/Button/Button';
+import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { ROUTES } from "../../../utils/properties";
+
+// Components
+import Button from "../UI/Button/Button";
 
 const Illustrations = (props) => {
+	const params = useParams();
+	const navigate = useNavigate();
+	const navigateTo = (dest) => () => {
+		navigate(dest);
+	};
 
-    const navigate = useNavigate();
+	const { t } = useTranslation();
 
-    const navigateTo = (dest) => () => {
-        navigate(dest)
-    }
+	return (
+		<div className="max-w-6xl mt-16 mx-auto">
+			<h1 className="font-primary text-3xl font-semibold mt-5 mb-6 sm:ml-44 sm:text-4xl lg:ml-6">
+				{t("Illustrations.title")}
+			</h1>
+			<div className=" flex flex-col md:flex-row justify-between">
+				<Item
+					img={icon1}
+					label={t("Illustrations.1")}
+					onClick={navigateTo(
+						`/${params.lang}/${ROUTES.FE.BASE.SELF}/${ROUTES.FE.BASE.WHAT_WE_OFFER}`
+					)}
+				/>
 
-
-
-
-    return (
-        <div className='max-w-6xl mt-16 mx-auto'>
-            <h1 className="font-primary text-3xl font-semibold mt-5 mb-6 sm:ml-44 sm:text-4xl lg:ml-6">DOMUS e' la soluzione adatta a te. </h1>
-            <div className=' flex flex-col md:flex-row justify-between'>
-
-                <Item
-                    img={icon1}
-                    label="Scopri i servizi che offriamo."
-                    onClick={navigateTo('/')}
-                />
-
-                <Item
-                    img={icon2}
-                    label="Esplora la Mappa."
-                    onClick={navigateTo('/map')}
-                />
-                <Item
-                    img={icon3}
-                    label="Scopri chi siamo e in cosa crediamo."
-                    onClick={navigateTo('/about-us')}
-                />
-            </div>
-        </div>
-    )
-}
-
+				<Item
+					img={icon2}
+					label={t("Illustrations.2")}
+					onClick={navigateTo(`/${params.lang}/${ROUTES.FE.BASE.MAP}`)}
+				/>
+				<Item
+					img={icon3}
+					label={t("Illustrations.3")}
+					onClick={navigateTo(
+						`/${params.lang}/${ROUTES.FE.BASE.SELF}/${ROUTES.FE.BASE.ABOUT_US}`
+					)}
+				/>
+			</div>
+		</div>
+	);
+};
 
 const Item = ({ img, label, onClick }) => {
-    return (
-        <div className='single-animation flex flex-col justify-center items-center'>
-            <img className='max-h-56' src={img}></img>
-            <p className='illustration-text'>{label} </p>
-            <Button marginTop={15} label="VAI" onClick={onClick} />
-        </div>
-    )
-}
+	const { t } = useTranslation();
+	return (
+		<div className="single-animation flex flex-col justify-center items-center">
+			<img className="max-h-56" src={img}></img>
+			<p className="illustration-text">{label} </p>
+			<Button
+				marginTop={15}
+				label={t("Illustrations.Item.go")}
+				onClick={onClick}
+			/>
+		</div>
+	);
+};
 
-
-export default Illustrations
+export default Illustrations;

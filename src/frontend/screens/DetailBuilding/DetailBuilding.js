@@ -1,10 +1,14 @@
 import "./detailBuilding.css";
 import React, { Component } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { Carousel } from "react-carousel-minimal";
+import { withTranslation } from "react-i18next";
+
+
+import getBuildingType from '../../../common/utils/getBuildingType'
 
 //Images
-import Avatar from "../../assets/images/jardin.jpeg";
+import Avatar from "../../assets/images/avatar.png";
 
 //Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,7 +18,10 @@ import {
 	faBath, faDoorOpen,
 	faMaximize, faStairs,
 	faHouse, faCalendarDays,
-	faCubes, faElevator, faBellConcierge, faPersonSwimming, faBoxOpen
+	faCubes, faElevator, faBellConcierge,
+	faPersonSwimming, faBoxOpen, faSun, faWineBottle,
+	faSnowflake, faLightbulb,
+	faCar, faTree, faChair, faStar
 } from "@fortawesome/free-solid-svg-icons";
 
 //API
@@ -48,13 +55,17 @@ class DetailBuilding extends Component {
 						"https://www.diotti.com/media/wysiwyg/easyrelooking/easyrelooking-render-02.jpg",
 				},
 			],
-			canvasView: false
+			canvasView: false,
+			navigateToSellerProfile: false,
+			title: ""
 		};
 	}
 
-	getApiDetailBuilding = () => {
+
+	componentDidMount() {
 		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
 			const adv = res.data;
+			console.log(res)
 			let details = {};
 			if (!!adv) {
 				details = {
@@ -72,6 +83,7 @@ class DetailBuilding extends Component {
 					cooling: adv.cooling,
 					date: adv.publishedDateTime,
 					deedState: adv.deedState,
+					description: adv.longDescription,
 					elevator: adv.elevator,
 					energyRating: adv.energyRating,
 					floor: adv.floor,
@@ -90,15 +102,24 @@ class DetailBuilding extends Component {
 					virtualTour: adv.virtualTour,
 					yard: adv.yard,
 					zipCode: adv.zipcode,
+
+					avatar: adv.seller.avatarUrl,
+					username: adv.seller.username
 				};
 			}
 
-			this.setState({ adv: details });
+			this.setState(
+				{
+					adv: details,
+					title: getBuildingType(adv.rooms) + " in " + adv.address
+				}
+
+			);
 		});
 	}
 
-	componentDidMount() {
-		this.getApiDetailBuilding();
+	handleNavigate = () => {
+		this.setState({ navigateToSellerProfile: true })
 	}
 
 	openCanvas = (e) => {
@@ -111,19 +132,15 @@ class DetailBuilding extends Component {
 	};
 
 	render() {
+		const { t } = this.props;
 		return (
 			<>
 				<Navbar fixed />
-				{this.state.canvasView && this.state.adv.virtualTour && (
-					<div>
-						<Property3DView onClickClose={this.closeCanvas} />
-					</div>
-				)}
 				<div className="flex flex-col font-primary bg-slate-200">
 					<div className="mx-auto xl:max-w-5xl xl:mx-auto">
 						<div className="flex flex-row mt-20 bg-white p-1 md:p-3">
 							<h1 className="text-xl ml-2 my-2 md:text-2xl font-bold bg-white rounded">
-								BILOCALE IN PERIFERIA A NAPOLI
+								{this.state.title}
 							</h1>
 							<div className="mt-2 bg-primary border-2 border-blue-900 ml-2">
 								<h1 className="text-xl font-bold color-secondary">
@@ -146,7 +163,7 @@ class DetailBuilding extends Component {
 								thumbnails={true}
 								thumbnailWidth="100px"
 								style={{
-									width: "75%",
+									width: "85%",
 									margin: "15px 25px",
 								}}
 							/>
@@ -187,13 +204,13 @@ class DetailBuilding extends Component {
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faDoorOpen} />
-										<h1 className="text-lg font-medium">{this.state.adv.rooms} camere</h1>
+										<h1 className="text-lg font-medium">{this.state.adv.rooms} {t("DetailBuilding.rooms")}</h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faBath} />
-										<h1 className="text-lg font-medium">{this.state.adv.bathrooms} bagni</h1>
+										<h1 className="text-lg font-medium">{this.state.adv.bathrooms} {t("DetailBuilding.bathrooms")}</h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
@@ -205,23 +222,28 @@ class DetailBuilding extends Component {
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faStairs} />
-										<h1 className="text-lg font-medium">{this.state.adv.floor}° piano</h1>
+										<h1 className="text-lg font-medium">{this.state.adv.floor}° {t("DetailBuilding.floor")}</h1>
 									</div>
 									<div className="flex">
 										<FontAwesomeIcon
 											className={"text-xl text-gray-800 mt-0.5 mr-2"}
 											icon={faCalendarDays} />
-										<h1 className="text-lg font-medium">Pubblicato il {new Date(this.state.adv.date).toLocaleDateString()}</h1>
+										<h1 className="text-lg font-medium">{t("DetailBuilding.posted")} {new Date(this.state.adv.date).toLocaleDateString()}</h1>
 									</div>
 									<div className="price">
 										{this.state.adv.price}€
 									</div>
-									<div className="flex mt-2">
+									<div className="flex mt-1">
+										{this.state.canvasView && this.state.adv.virtualTour && (
+											<div>
+												<Property3DView onClickClose={this.closeCanvas} />
+											</div>
+										)}
 										<FontAwesomeIcon
 											className={"text-2xl text-gray-800 mt-1 mr-2"}
 											icon={faCubes}
 										/>
-										<button className="text-xl font-medium" onClick={this.openCanvas}>Open 3D View</button>
+										<button className="text-xl font-medium" onClick={this.openCanvas}>{t("DetailBuilding.open3D")}</button>
 
 									</div>
 								</div>
@@ -230,30 +252,34 @@ class DetailBuilding extends Component {
 
 						<div className="flex flex-col">
 							<div className="flex flex-row m-2">
-								<img className={"avatar"} src={Avatar} alt=""></img>
-								<h3 className="text-lg font-semibold m-2">Jessica Beje</h3>
+								<img className={"avatar"} src={!!this.state.adv.avatar ? this.state.adv.avatar : Avatar}></img>
+								<h3 className="text-lg font-semibold mt-3 ml-2 cursor-pointer" onClick={this.handleNavigate}>{this.state.adv.username}</h3>
+								{
+									this.state.navigateToSellerProfile &&
+									<Navigate
+										to={(`/${this.props.params.lang}/users-section/public-profile/${this.state.adv.username}`)} />
+								}
 							</div>
 
-							<div className="flex flex-col my-10 md:flex md:flex-row">
-								<Card className="flex flex-col w-1/3 p-4 mr-6">
-									<h1 className="text-2xl font-bold text-center">Descrizione</h1>
-									<p>
-										Lorem Ipsum is simply dummy text of the printing and
-										typesetting industry. Lorem Ipsum has been the industry's
-										standard dummy text ever since the 1500s, when an unknown
-										printer took a galley of type and scrambled it to make a type
-										specimen book.
-									</p>
+							<div className="flex flex-col my-5 md:h-60 md:my-10 md:flex md:flex-row">
+								<Card className="flex flex-col md:h-full mb-6 md:w-1/3 p-4 md:mr-6">
+									<h1 className="text-2xl font-bold text-center">{t("DetailBuilding.description")}</h1>
+									{
+										!this.state.adv.description ?
+											<p className="text-center">{t("DetailBuilding.descriptionNotPosted")}</p>
+											: <p className="text-center">{this.state.adv.description}</p>
+									}
 								</Card>
-								<Card className="flex flex-col w-4/6 p-4">
+								<Card className="flex flex-col md:h-full md:w-4/6 p-4">
 									<h1 className="text-2xl text-center font-bold">
-										Informazioni nel dettaglio
+										{t("DetailBuilding.detailInfo")}
 									</h1>
-									<div className="flex flex-row">
+									<div className="flex flex-col md:flex-row justify-evenly mt-2">
+
 										<div className="flex flex-col">
 											<div className="flex flex-row">
 												<FontAwesomeIcon
-													className="text-lg text-gray-800 mr-2"
+													className="text-lg text-gray-800 mr-1 mt-2"
 													icon={faElevator}
 												/>
 												<BuildingInfobox
@@ -262,9 +288,8 @@ class DetailBuilding extends Component {
 												/>
 											</div>
 											<div className="flex flex-row">
-
 												<FontAwesomeIcon
-													className="text-lg text-gray-800 mr-2"
+													className="text-lg text-gray-800 mr-1 mt-2"
 													icon={faBellConcierge}
 												/>
 												<BuildingInfobox
@@ -274,7 +299,7 @@ class DetailBuilding extends Component {
 											</div>
 											<div className="flex flex-row">
 												<FontAwesomeIcon
-													className="text-lg text-gray-800 mr-2"
+													className="text-lg text-gray-800 mr-1 mt-2"
 													icon={faPersonSwimming}
 												/>
 												<BuildingInfobox
@@ -284,7 +309,7 @@ class DetailBuilding extends Component {
 											</div>
 											<div className="flex flex-row">
 												<FontAwesomeIcon
-													className="text-lg text-gray-800 mr-2"
+													className="text-lg text-gray-800 mr-1 mt-2"
 													icon={faBoxOpen}
 												/>
 												<BuildingInfobox
@@ -293,33 +318,91 @@ class DetailBuilding extends Component {
 												/>
 											</div>
 										</div>
+
 										<div className="flex flex-col">
-											<BuildingInfobox
-												title={"Terrazza"}
-												adv={this.state.adv.terrace}
-											/>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-1 mt-2"
+													icon={faSun}
+												/>
+												<BuildingInfobox
+													title={"Terrazza:"}
+													adv={this.state.adv.terrace}
+												/>
+											</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-1 mt-2"
+													icon={faStar}
+												/>
+												<BuildingInfobox
+													title={"Balcone:"}
+													adv={this.state.adv.balcony}
+												/>
+											</div>
 
-											<BuildingInfobox
-												title={"Balcone"}
-												adv={this.state.adv.balcony}
-											/>
-
-
-											<BuildingInfobox
-												title={"Cantina"}
-												adv={this.state.adv.basement}
-											/>
-											<BuildingInfobox
-												title={"Portineria"}
-												adv={this.state.adv.reception}
-											/>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-1 mt-2"
+													icon={faWineBottle}
+												/>
+												<BuildingInfobox
+													title={"Cantina:"}
+													adv={this.state.adv.basement}
+												/>
+											</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-1 mt-2"
+													icon={faSnowflake}
+												/>
+												<BuildingInfobox
+													title={"Aria condizionata:"}
+													adv={this.state.adv.cooling} />
+											</div>
 										</div>
+
 										<div className="flex flex-col">
-											<div className="text-base font-medium">Aria condizionata: {this.state.adv.cooling}</div>
-											<div className="text-base font-medium">Classe energetica: {this.state.adv.energyRating}</div>
-											<div className="text-base font-medium">Arredato: {this.state.adv.furniture}</div>
-											<div className="text-base font-medium">Posto auto: {this.state.adv.parkingSpots}</div>
-											<div className="text-base font-medium">Giardino: {this.state.adv.yard}</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-2 mt-2"
+													icon={faLightbulb}
+												/>
+												<BuildingInfobox
+													title={"Classe energetica:"}
+													adv={this.state.adv.energyRating}
+												/>
+											</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-1 mt-2"
+													icon={faCar}
+												/>
+												<BuildingInfobox
+													title={"Posto auto:"}
+													adv={this.state.adv.parkingSpots}
+												/>
+											</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-1 mt-2"
+													icon={faTree}
+												/>
+												<BuildingInfobox
+													title={"Giardino:"}
+													adv={this.state.adv.yard}
+												/>
+											</div>
+											<div className="flex flex-row">
+												<FontAwesomeIcon
+													className="text-lg text-gray-800 mr-1 mt-2"
+													icon={faChair}
+												/>
+												<BuildingInfobox
+													title={"Arredatamento:"}
+													adv={this.state.adv.forniture}
+												/>
+											</div>
 										</div>
 
 									</div>
@@ -328,7 +411,7 @@ class DetailBuilding extends Component {
 						</div>
 						<ContactSeller />
 					</div>
-				</div>
+				</div >
 				<Footer />
 			</>
 		);
@@ -340,4 +423,4 @@ const Wrap = (props) => {
 	return <DetailBuilding {...props} params={params} />;
 };
 
-export default Wrap;
+export default withTranslation()(Wrap);

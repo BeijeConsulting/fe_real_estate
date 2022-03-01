@@ -7,8 +7,12 @@ import avatar from "../../assets/images/avatar.png";
 // components
 import NavBar from "../../components/Navbar/Navbar";
 import AdvCard from "../../components/AdvCard/AdvCard";
+
+// api
 import { getUserByUsername } from "../../../services/frontend/usersApi";
 import { findAds } from "../../../services/frontend/advertisementApi";
+
+// routing
 import { useNavigate, useParams } from "react-router-dom";
 
 const STATUS_TYPE = {
@@ -105,7 +109,7 @@ const PublicProfile = () => {
 						<div className="absolute bottom-0 flex h-fit items-end justify-between left-0 w-full z-10">
 							{/* Image profile user */}
 							<img
-								className="bg-white/[0.6] h-24 w-24 rounded-full md:h-36 md:w-36"
+								className="bg-white/[0.6] h-24 w-24 rounded-full md:h-36 md:w-36 border-4 border-solid border-slate-900"
 								src={avatar}
 								alt="profile-img"
 							/>

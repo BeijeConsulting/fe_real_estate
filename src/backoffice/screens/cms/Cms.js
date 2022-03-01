@@ -4,6 +4,10 @@ import './cms.css';
 import 'antd/dist/antd.css';
 import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
 
+
+
+//utils
+import storage from "../../../common/utils/storage"
 // REDUX
 import { connect } from "react-redux"
 import { setHeaderTitle } from '../../../redux/ducks/cmsDuck';
@@ -24,19 +28,26 @@ const { Header, Content, Footer, Sider } = Layout;
 
 const Cms = (props) => {
     let navigate = useNavigate();
-    const { t } = useTranslation()
+    const { t } = useTranslation();
     const setTitleNavigate = (title) => () => {
         props.dispatch(setHeaderTitle(title))
-        navigate(
-            `${title}`);
+        navigate(`${title}`);
     }
 
+
+
+    /*componentDidMount*/
     useEffect(() => {
         props.dispatch(setHeaderTitle("dashboard"))
         if (!props.admin.username) {
             navigate("/admin-auth")
         }
     }, [])
+
+    const remenberMe = () => {
+        let c = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN)
+        console.log(c)
+    }
 
     return (
         <>
@@ -50,7 +61,7 @@ const Cms = (props) => {
                         <Menu.Item key="1" icon={<UserOutlined />} onClick={setTitleNavigate("profile")}>
                             {t("BoCms.Cms.Profile")}
                         </Menu.Item>
-                        <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("dashboard")}>
+                        <Menu.Item key="2" icon={<FontAwesomeIcon icon={faChartLine} />} onClick={setTitleNavigate("dashboard/users")}>
                             {t("BoCms.Cms.Dashboard")}
                         </Menu.Item>
                         <Menu.Item key="3" icon={<FontAwesomeIcon icon={faRectangleList} />} onClick={setTitleNavigate("advertisements")}>

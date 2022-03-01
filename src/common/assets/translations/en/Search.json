@@ -1,0 +1,37 @@
+{
+	"search": "Search",
+	"for": "for",
+	"in": "in",
+	"advType": {
+		"sale": "Sale",
+		"rent": "Rent",
+		"short_rent": "Short rent"
+	},
+	"buildingTypePlural": {
+		"house": "Houses",
+		"new_construction": "New constructions",
+		"retail_space": "Reailt spaces",
+		"terrain": "Terrains",
+		"garage": "Garages",
+		"room": "Rooms",
+		"bed": "Beds",
+		"basementAttic": "Basement attics",
+		"boatSpot": "Boat spots"
+	},
+	"buildingTypeSingular": {
+		"house": "House",
+		"new_construction": "New construction",
+		"retail_space": "Retail space",
+		"terrain": "Terrain",
+		"garage": "Garage",
+		"room": "Room",
+		"bed": "Bed",
+		"basement_attic": "Basement attic",
+		"boat_spot": "Boat spot"
+	},
+	"button": {
+		"see": "See",
+		"notFound": "I haven't found any"
+	},
+	"locationDefault": "Where..."
+}

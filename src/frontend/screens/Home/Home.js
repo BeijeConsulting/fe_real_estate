@@ -9,7 +9,6 @@ import Search from "../../components/Search/Search";
 import Footer from "../../components/Footer/Footer";
 import Illustrations from "../../components/Illustrations/Illustrations";
 import Carousel2 from "../../components/Carousel/Carousel2";
-import BlueSection from "../../components/BlueSection/BlueSection";
 
 // translations
 import { Helmet } from "react-helmet";
@@ -38,11 +37,13 @@ const Home = () => {
 
 				<div className="h-screen"></div>
 
-				<BlueSection
-					className="bluesection-container"
-					text="PUBBLICA ANNUNCI GRATUITAMENTE"
-					subtext="Inserisci i tuoi annunci, fatti trovare da chi cerca casa!"
-				/>
+				<div className="bluesection-container">
+					{t("Home.publishAd.text")} <br />
+					{t("Home.publishAd.subtext")}
+					<button className="text-base border-2 rounded-lg text-yellow-400 border-yellow-400 cursor: pointer; p-3 sm:mt-9 sm:text-2xl">
+						{t("Home.publishAd.button")}
+					</button>
+				</div>
 
 				<Footer />
 			</div>

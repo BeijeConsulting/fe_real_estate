@@ -3,7 +3,7 @@ import { javaAcademyServiceInstance } from "../javaAcademyService"
 export const getUsers = async (token) => {
     let payload = []
     const headers = { "Authorization": "Bearer " + token }
-    await javaAcademyServiceInstance.get("/admin/users", { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/admin/usersList", { headers }).then((response) => {
         let fetchedUsers = response.data.map((user) => {
             return ({
                 username: user.username,
@@ -16,8 +16,8 @@ export const getUsers = async (token) => {
             fetchedUsers,
             totalElements: response.data.length
         }
-    }).catch(
-        //Error handler
+    }).catch((error) =>
+        console.log('error', error)
     )
     return payload
 }
@@ -37,7 +37,7 @@ export const getUsersPaged = async (token, pageId, total) => {
         })
         payload = {
             fetchedUsers,
-            totalElements: response.data.resList.length
+            totalElements: response.data.totRecords
         }
     }).catch(
         //Error handler
@@ -93,15 +93,15 @@ export const getNameUserFromSellerId = async (token, idSeller) => {
 
 export const createUser = async (content) => {
     let createUser = ''
-
-    await javaAcademyServiceInstance.post("/user", content).then((response) => {
+    let err = ''
+    await javaAcademyServiceInstance.post("/user/register", content).then((response) => {
         createUser = response
 
-
-    }).catch(
+    }).catch((error) =>
+        err = 400
 
     )
-    return createUser
+    return { createUser, err }
 }
 
 export const getUserByUsername = async (username, token) => {
@@ -109,11 +109,10 @@ export const getUserByUsername = async (username, token) => {
         'Authorization': `Bearer ${token}`,
     }
     let userByUsername = ''
-    await javaAcademyServiceInstance.get("/finduser/" + username, { headers }).then((response) => {
+    await javaAcademyServiceInstance.get("/user/find/" + username, { headers }).then((response) => {
         userByUsername = response.data
 
-    }).catch(
-        //Error handler
+    }).catch( response => userByUsername = null
     )
     return userByUsername
 }
@@ -125,7 +124,7 @@ export const deleteUser = async (token, id) => {
     }
     console.log("token", token)
     console.log("id", id)
-    const result = await javaAcademyServiceInstance.put('/user/disable/' + id, {}, { headers } ).then( (response) => 
+    const result = await javaAcademyServiceInstance.put('/admin/disableUser/' + id, {}, { headers } ).then( (response) => 
         deleteCheck = response
     )
     return deleteCheck
