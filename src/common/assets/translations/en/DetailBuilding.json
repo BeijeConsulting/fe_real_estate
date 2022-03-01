@@ -6,5 +6,17 @@
     "open3D": "Open 3D view",
     "description": "Description",
     "descriptionNotPosted": "The seller hasn’t posted a description",
-    "detailInfo": "Detail information"
+    "detailInfo": "Detail information",
+    "elevator": "Elevator:",
+    "reception": "Reception:",
+    "pool": "Pool:",
+    "attic": "Attic:",
+    "terrace": "Terrace:",
+    "balcony": "Balcony:",
+    "basement": "Basement:",
+    "cooling": "Cooling:",
+    "energyRating": "Energy rating:",
+    "parkingSpots": "Parking spots:",
+    "yard": "Yard:",
+    "forniture": "Forniture:"
 }

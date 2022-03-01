@@ -23,6 +23,7 @@ import SignUpBusiness from "./SignUpBusiness.json";
 import Search from "./Search.json";
 import DetailBuilding from "./DetailBuilding.json";
 import WhatWeOffer from "./WhatWeOffer.json";
+import ContactSeller from "./ContactSeller.json";
 
 const en = {
 	AboutUs,
@@ -50,6 +51,7 @@ const en = {
 	BoUsers,
 	BoVerification,
 	DetailBuilding,
+	ContactSeller
 };
 
 export default en;

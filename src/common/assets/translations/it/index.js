@@ -23,6 +23,7 @@ import Carousel from "./Carousel.json";
 import Illustrations from "./Illustrations.json";
 import Search from "./Search.json";
 import DetailBuilding from "./DetailBuilding.json";
+import ContactSeller from "./ContactSeller.json";
 
 const it = {
 	AboutUs,
@@ -50,6 +51,7 @@ const it = {
 	BoUsers,
 	BoVerification,
 	DetailBuilding,
+	ContactSeller
 };
 
 export default it;
