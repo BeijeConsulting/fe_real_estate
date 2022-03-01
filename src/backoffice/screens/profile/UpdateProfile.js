@@ -96,18 +96,19 @@ const UpdateProfile = (props) => {
                     </Upload>
 
                     <div className="update-profile-info">
-                        <Form.Item name="name" label={t("BoUpdateProfile.Info.Name")}>
+                        <Form.Item className="form-item" name="name" label={t("BoUpdateProfile.Info.Name")}>
                             <Input onChange={handleName} placeholder="inserisci nome" />
                         </Form.Item>
-                        <Form.Item name="surname" label={t("BoUpdateProfile.Info.Surname")}>
+                        <Form.Item className="form-item" name="surname" label={t("BoUpdateProfile.Info.Surname")}>
                             <Input onChange={handleSurname} placeholder="inserisci cognome" />
                         </Form.Item>
-                        <Form.Item name="username" label={t("BoUpdateProfile.Info.Username")}>
-                            <Input placeholder="admin" />
-                        </Form.Item>
+
                     </div>
                     <div className="update-profile-contacts">
-                        <Form.Item name="email" label={t("BoUpdateProfile.Contacts.PersonalEmail")}>
+                        <Form.Item className="form-item" name="username" label={t("BoUpdateProfile.Info.Username")}>
+                            <Input placeholder="admin" />
+                        </Form.Item>
+                        <Form.Item className="form-item" name="email" label={t("BoUpdateProfile.Contacts.PersonalEmail")}>
                             <Input onChange={handleEmail} type="email" placeholder="inserisci la tua email" />
                         </Form.Item>
                     </div>

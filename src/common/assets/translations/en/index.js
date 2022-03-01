@@ -17,17 +17,20 @@ import Illustrations from "./Illustrations.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
 import Navbar from "./Navbar.json";
+import NewAdv from "./NewAdv.json";
 import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import Search from "./Search.json";
 import DetailBuilding from "./DetailBuilding.json";
 import WhatWeOffer from "./WhatWeOffer.json";
+import ContactSeller from "./ContactSeller.json";
 
 const en = {
 	AboutUs,
 	Footer,
 	Navbar,
+	NewAdv,
 	Home,
 	Search,
 	Carousel,
@@ -50,6 +53,7 @@ const en = {
 	BoUsers,
 	BoVerification,
 	DetailBuilding,
+	ContactSeller
 };
 
 export default en;

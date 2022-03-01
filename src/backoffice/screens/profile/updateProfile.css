@@ -1,5 +1,5 @@
 .update-profile-container{    
-    height: calc(100vh - 170px);
+    height: calc(100vh - 160px);
 }
 
 .update-profile-form{
@@ -53,7 +53,7 @@
 }
 
 .update-profile-button{
-    margin-top: 3em;
+    margin-bottom: 2em;
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 4;

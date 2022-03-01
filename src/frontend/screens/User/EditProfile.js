@@ -2,12 +2,12 @@ import React, { Component } from 'react'
 import Card from '../../components/UI/Card/Card';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
-class EditProfile extends Component {
-    render() {
+const EditProfile = () => {
+    
         return (
             <div className='flex flex-col m-4 font-primary'>
                 <h1 className='text-2xl font-bold'>Modifica il tuo profilo</h1>
-                <Card>
+                <Card className='flex justify-center items-center'>
                     <div className='flex flex-col md:flex-row'>
                         <div className='flex flex-col p-4'>
                             <h1 className='text-lg font-semibold'>Dati anagrafici</h1>
@@ -62,7 +62,7 @@ class EditProfile extends Component {
                 </Card>
             </div>
         )
-    }
+    
 }
 
 export default EditProfile;
