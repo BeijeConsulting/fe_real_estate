@@ -59,9 +59,12 @@ const UpdateBusinessDetails = (props) => {
         setState({ ...state, updatedData: updatedData })
     }
 
-    const handleClick = async () => {
-        await updateBusinessInfo(state.updatedData, props.admin.token)
-        navigate("/admin/profile")
+    const updateData = async () => {
+        let business = await updateBusinessInfo(params.id, state.updatedData, props.admin.token)
+    }
+
+    const handleClick = () => {
+        updateData()
     }
 
     useEffect(() => {
