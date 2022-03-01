@@ -41,7 +41,7 @@ const Home = () => {
 					<h3 className="text-xl md:text-xl text-center color-primary">{t("Home.publishAd.subtext")}</h3>
 					<div className="w-2/5 mb- mx-auto">
 						<Button
-							size={16}
+							size={18}
 							label={t("Home.publishAd.button")}
 						>
 						</Button>
