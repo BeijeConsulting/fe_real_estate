@@ -92,8 +92,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.HOME}
 					element={
-						// <ScreenLoader />
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<Home />
 						</Suspense>
 					}
@@ -103,7 +102,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.ABOUT_US}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<AboutUs />
 						</Suspense>
 					}
@@ -113,7 +112,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.WHAT_WE_OFFER}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<WhatWeOffer />
 						</Suspense>
 					}
@@ -123,7 +122,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.ASSESS_BUILDING}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<AssessBuilding />
 						</Suspense>
 					}
@@ -133,7 +132,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.FAQ}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<FAQ />
 						</Suspense>
 					}
@@ -143,7 +142,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.ADS_LIST.SELF}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<AdvList />
 						</Suspense>
 					}
@@ -153,7 +152,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.DETAILS_AD.SELF}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<DetailBuilding />
 						</Suspense>
 					}
@@ -163,7 +162,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.MAP}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<Map />
 						</Suspense>
 					}
@@ -174,7 +173,7 @@ const Routing = () => (
 					<Route
 						path={ROUTES.FE.BASE.USERS_SECTION.PUBLIC_PROFILE.SELF}
 						element={
-							<Suspense fallback={<p>...</p>}>
+							<Suspense fallback={<ScreenLoader />}>
 								<PublicProfile />
 							</Suspense>
 						}
@@ -185,7 +184,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.AUTH.SELF}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<Auth />
 						</Suspense>
 					}
@@ -226,7 +225,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.USER.SELF}
 					element={
-						<Suspense fallback={<p>...</p>}>
+						<Suspense fallback={<ScreenLoader />}>
 							<User />
 						</Suspense>
 					}

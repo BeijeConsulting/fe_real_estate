@@ -70,6 +70,7 @@ const DetailsAd = (props) => {
     setAdv(formatData);
     setSeller(seller);
     setChecker(checker);
+    console.log("STATO", adv[0].status);
   };
 
   // carousel func
