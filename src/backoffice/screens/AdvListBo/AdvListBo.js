@@ -21,7 +21,7 @@ import { connect } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
 // ant design
-import { Table, Input, Tag, Button, Select } from "antd";
+import { Table, Input, Button, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 const { Search } = Input;
 const { Option } = Select;
@@ -29,6 +29,7 @@ const { Option } = Select;
 const AdvListBo = (props) => {
   // hooks
   const [advList, setAdvList] = useState([]);
+  const [isModalOpened, setModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
   const [places, setPlaces] = useState([{}]);
@@ -36,110 +37,14 @@ const AdvListBo = (props) => {
     search: {
       buildingType: null,
       city: null,
-      //   status: "Approved",
       advType: null,
     },
   });
 
-  const paginationOptions = {
-    numPage: 0,
+  const [paginationOptions, setPagination] = useState({
+    numPage: 1,
     elementForPage: 10,
-  };
-
-  // pagination func
-  const pageHandler = async (pagination) => {
-    setIsLoading(true);
-    // if(this.state.searchQuery === "") {
-    paginationOptions.numPage = pagination.current;
-    let paginationList = await getAllAdsPaginations(
-      props.admin.token,
-      paginationOptions.numPage,
-      pagination.pageSize
-    );
-    let listData = paginationList.resList.map((item) => {
-      item = {
-        ...item,
-        key: item.id,
-      };
-      console.log("ITEM", item);
-      return item;
-    });
-    setAdvList(listData);
-    setTotalElements(
-      paginationList.totPages * paginationOptions.elementForPage
-    );
-    setIsLoading(false);
-    // }
-    // else {
-    //     //Search API
-    // }
-  };
-
-  //axios
-  const getListAdv = async () => {
-    let paginationList = await getAllAdsPaginations(
-      props.admin.token,
-      paginationOptions.numPage,
-      paginationOptions.elementForPage
-    );
-    let listData = paginationList.resList.map((item) => {
-      item = {
-        ...item,
-        key: item.id,
-      };
-      return item;
-    });
-    console.log("LISTDATA", paginationList);
-    setAdvList(listData);
-    setTotalElements(
-      paginationList.totPages * paginationOptions.elementForPage
-    );
-    setIsLoading(false);
-  };
-
-  const searchAdv = async () => {
-    let params = {
-      buildingType: search.buildingType,
-      city: search.city,
-      //   status: search.status,
-      advType: search.advType,
-    };
-    let nubPage = 1;
-    let searchResults = await searchAdvByParams(
-      props.admin.token,
-      nubPage,
-      //   paginationOptions.numPage,
-      paginationOptions.elementForPage,
-      params
-    );
-    let listSearch = searchResults.resList.map((item) => {
-      item = {
-        ...item,
-        key: item.id,
-      };
-      return item;
-    });
-    console.log("searchResults", listSearch);
-    setAdvList(listSearch);
-  };
-
-  // func search bar
-  const onChangeForSearch = (typeSearch) => (e) => {
-    let type = e;
-    console.log("SELECT", typeSearch, e);
-    setSearch({
-      ...search,
-      [typeSearch]: type,
-    });
-  };
-  const searchByAdvName = (value) => {
-    setIsLoading(true);
-    if (value === "") {
-      getListAdv();
-    } else {
-      searchAdv();
-    }
-  };
+  })
 
   // func List
   let columnsAdv = [
@@ -178,6 +83,82 @@ const AdvListBo = (props) => {
       ),
     },
   ];
+
+  // pagination func
+  const pageHandler = async (pagination) => {
+    if(true) {
+      getListAdv(pagination.current, pagination.pageSize)
+    } else {
+      searchAdv(pagination.current, pagination.pageSize)
+    }
+  };
+
+  //axios
+  const getListAdv = async (page=paginationOptions.numPage, pageSize=paginationOptions.elementForPage) => {
+    let paginationList = await getAllAdsPaginations(
+      props.admin.token,
+      page,
+      pageSize
+    );
+    let listData = paginationList.resList.map((item) => {
+      item = {
+        ...item,
+        key: item.id,
+      };
+      return item;
+    });
+    setAdvList(listData);
+    setTotalElements(
+      paginationList.totPages * paginationOptions.elementForPage
+    );
+    setIsLoading(false);
+  };
+
+  const searchAdv = async (numPage = paginationOptions.numPage, elementForPage= paginationOptions.elementForPage) => {
+    let params = {};
+    if(search.buildingType) {
+      params.buildingType = search.buildingType
+    } 
+    if(search.city) {
+      params.city = search.city
+    } 
+    if(search.advType) {
+      params.advType= search.advType
+    } 
+    let searchResults = await searchAdvByParams(
+      props.admin.token,
+      numPage,
+      elementForPage,
+      params
+    );
+    let listSearch = searchResults.resList.map((item) => {
+      item = {
+        ...item,
+        key: item.id,
+      };
+      return item;
+    });
+    setAdvList(listSearch);
+    setIsLoading(false)
+  };
+
+  // func search bar
+  const onChangeForSearch = (typeSearch) => (e) => {
+    let type = e;
+    setSearch({
+      ...search,
+      [typeSearch]: type,
+    });
+  };
+
+  const searchByAdvName = () => {
+    setIsLoading(true);
+    if (search.buildingType === undefined && search.advType === undefined && search.city === undefined) {
+      getListAdv();
+    } else {
+      searchAdv();
+    }
+  };
 
   const getPlaces = async () => {
     let payload = await getCities();
@@ -226,7 +207,6 @@ const AdvListBo = (props) => {
             >
               Search
             </Button>
-            <Button type="secondary">More filters</Button>
           </div>
           <div className="users-list-table">
             <Table

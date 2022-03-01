@@ -9,6 +9,9 @@ import CircleButton from "../../components/UI/CircleButton/CircleButton";
 import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
 import storage from "../../../common/utils/storage";
 
+//Translation
+import {useTranslation} from "react-i18next";
+
 //POST
 import { addNewAdv } from "../../../services/frontend/advertisementApi";
 //Css
@@ -52,6 +55,8 @@ const NewAdv = (props) => {
 
 	const { Step } = Steps;
 	const { Option } = Select;
+
+  const { t }= useTranslation();
 
 	const postAd = async () => {
 		let token = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN);
@@ -126,7 +131,7 @@ const NewAdv = (props) => {
 		<>
 			<div className="my-4">
 				<h1 className="uppercase font-primary font-light text-center text-4xl">
-					Crea un nuovo annuncio
+				{t("NewAdv.Title")}
 				</h1>
 			</div>
 
@@ -152,7 +157,7 @@ const NewAdv = (props) => {
 							<div>
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Tipo di immobile
+										{t("NewAdv.BuildingType")}
 									</label>
 									<Select
 										className="w-full"
@@ -166,11 +171,11 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Tipo di annuncio
+									{t("NewAdv.AdvType")}
 									</label>
 									<Select
 										className="w-full"
-										defaultValue="Specifica una tipologia..."
+										defaultValue={t("NewAdv.AdvTypeDefaultValue")}
 										onChange={handleSelectPropertyChange("advType")}
 										value={state.advType}
 									>
@@ -181,10 +186,10 @@ const NewAdv = (props) => {
 								<div className="flex gap-3">
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-											Città
+										{t("NewAdv.City")}
 										</label>
 										<Input
-											placeholder="Città"
+											placeholder={t("NewAdv.CityPlaceholder")}
 											onChange={handlerInput("city")}
 											value={state.city}
 										/>
@@ -192,11 +197,11 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-											CAP
+										{t("NewAdv.ZIP")}
 										</label>
 										<Input
 											type={"number"}
-											placeholder="CAP"
+											placeholder={t("NewAdv.ZIPPlaceholder")}
 											onChange={handlerInput("zipCode")}
 											value={state.zipCode}
 										/>
@@ -206,10 +211,10 @@ const NewAdv = (props) => {
 								<div className="flex gap-3 ">
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-											Indirizzo
+										{t("NewAdv.Address")}
 										</label>
 										<Input
-											placeholder="Esempio: Viale Genova"
+											placeholder={t("NewAdv.AddressPlaceholder")}
 											onChange={handlerInput("address")}
 											value={state.address}
 										/>
@@ -217,11 +222,11 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="block uppercase font-primary color-secondary">
-											Numero civico
+										{t("NewAdv.HouseNumber")}
 										</label>
 										<Input
 											type={"number"}
-											placeholder="Esempio: 11"
+											placeholder={t("NewAdv.HouseNumberPlaceholder")}
 											onChange={handlerInput("houseNumber")}
 											value={state.houseNumber}
 										/>
@@ -233,11 +238,11 @@ const NewAdv = (props) => {
 										className="uppercase font-primary color-secondary"
 										style={{ display: "block" }}
 									>
-										Dimensioni
+										{t("NewAdv.Footage")}
 									</label>
 									<Input
 										type={"number"}
-										placeholder="Esempio: 100 mq"
+										placeholder={t("NewAdv.FootagePlaceholder")}
 										onChange={handlerInput("areaMsq")}
 										value={state.areaMsq}
 									/>
@@ -267,7 +272,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap gap-2">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Balcone
+										{t("NewAdv.Balcony")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("balcony")}
@@ -277,7 +282,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Ascensore
+										{t("NewAdv.Elevator")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("elevator")}
@@ -287,7 +292,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Piscina
+										{t("NewAdv.Pool")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("pool")}
@@ -299,7 +304,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap gap-2">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Soffitta
+										{t("NewAdv.Attic")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("attic")}
@@ -309,7 +314,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Cantina
+										{t("NewAdv.Basement")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("basement")}
@@ -319,7 +324,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Terrazzo
+										{t("NewAdv.Terrace")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("terrace")}
@@ -330,7 +335,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap gap-2">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Portineria
+										{t("NewAdv.Reception")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("reception")}
@@ -340,7 +345,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Posto auto
+										{t("NewAdv.ParkingSpot")}
 										</label>
 										<Checkbox
 											onChange={switchCheck("parkingSpots")}
@@ -354,7 +359,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap mx-auto">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											N. Bagni
+										{t("NewAdv.Bathrooms")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -373,7 +378,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											N. Camere
+										{t("NewAdv.Rooms")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -394,7 +399,7 @@ const NewAdv = (props) => {
 								<div className="flex flex-wrap mx-auto">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-1">
-											N. Piano
+										{t("NewAdv.Floor")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -413,7 +418,7 @@ const NewAdv = (props) => {
 
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-1">
-											N. Piani Totali
+										{t("NewAdv.TotalFloors")}
 										</label>
 										<div className="flex mr-2">
 											<CircleButton
@@ -434,11 +439,11 @@ const NewAdv = (props) => {
 								<div className="flex gap-2 justify-center">
 									<Button
 										iconPosition="left"
-										className={"w-36"}
+										className="w-36"
 										label="Indietro"
 										onClick={goBack}
 									/>
-									<Button className={"w-36"} label="Avanti" onClick={goNext} />
+									<Button className={"w-36"} label={t("NewAdv.Next")} onClick={goNext} />
 								</div>
 							</div>
 						)}
@@ -446,7 +451,7 @@ const NewAdv = (props) => {
 							<div>
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Condizioni immobile
+									{t("NewAdv.PropertyCondition")}
 									</label>
 									<Select
 										defaultValue="In che condizioni è l'immobile?"
@@ -462,7 +467,7 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Classe energetica
+									{t("NewAdv.EnergyRating")}
 									</label>
 									<Select
 										defaultValue="Energy rating"
@@ -483,7 +488,7 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										È arredato?
+									{t("NewAdv.Furniture")}
 									</label>
 									<Select
 										defaultValue="----"
@@ -499,7 +504,7 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Riscaldamento
+									{t("NewAdv.Heating")}
 									</label>
 									<Select
 										defaultValue="Riscaldamento"
@@ -515,7 +520,7 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Aria condizionata
+									{t("NewAdv.AirCon")}
 									</label>
 									<Select
 										defaultValue="Cooling"
@@ -529,9 +534,9 @@ const NewAdv = (props) => {
 										<Option value="NO">No</Option>
 									</Select>
 
-									<div className="mb-5">
+									<div className="mt-5 mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
-											Giardino
+										{t("NewAdv.Garden")}
 										</label>
 										<Select
 											defaultValue="Giardino"
@@ -554,7 +559,7 @@ const NewAdv = (props) => {
 										/>
 										<Button
 											className={"w-36"}
-											label="Avanti"
+											label={t("NewAdv.Next")}
 											onClick={goNext}
 										/>
 									</div>
@@ -565,7 +570,7 @@ const NewAdv = (props) => {
 							<div>
 								<div className="mb-5">
 									<label className="block uppercase font-primary color-secondary">
-										Prezzo
+									{t("NewAdv.Price")}
 									</label>
 									<Input
 										type={"number"}
@@ -576,7 +581,7 @@ const NewAdv = (props) => {
 								</div>
 								<div className="flex flex-col mb-5">
 									<label className="uppercase font-primary color-secondary mr-1">
-										Descrizione
+									{t("NewAdv.Description")}
 									</label>
 									<Textarea
 										className={"border-2 border-slate-300"}
@@ -589,7 +594,7 @@ const NewAdv = (props) => {
 
 								<div className="mb-5">
 									<label className="uppercase font-primary color-secondary mr-1">
-										Vuoi fare una visita guidata?
+									{t("NewAdv.GuidedTour")}
 									</label>
 									<Checkbox
 										onChange={switchCheck("guidedTour")}
@@ -607,7 +612,7 @@ const NewAdv = (props) => {
 										label="Indietro"
 										onClick={goBack}
 									/>
-									<Button label="Pubblica" onClick={postAd} />
+									<Button label={t("NewAdv.Post")} onClick={postAd} />
 								</div>
 							</div>
 						)}

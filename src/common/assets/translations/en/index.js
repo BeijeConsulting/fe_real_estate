@@ -17,6 +17,7 @@ import Illustrations from "./Illustrations.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
 import Navbar from "./Navbar.json";
+import NewAdv from "./NewAdv.json";
 import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
@@ -28,6 +29,7 @@ const en = {
 	AboutUs,
 	Footer,
 	Navbar,
+	NewAdv,
 	Home,
 	Search,
 	Carousel,
