@@ -22,6 +22,7 @@ import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import Search from "./Search.json";
+import DetailBuilding from "./DetailBuilding.json";
 import WhatWeOffer from "./WhatWeOffer.json";
 
 const en = {
@@ -50,6 +51,7 @@ const en = {
 	BoUpdateProfile,
 	BoUsers,
 	BoVerification,
+	DetailBuilding,
 };
 
 export default en;

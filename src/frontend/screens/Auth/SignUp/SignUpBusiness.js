@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 // routing
 import { Navigate, Link } from "react-router-dom";
+import { ROUTES } from "../../../../utils/properties";
 
 // utils
 import formValidation from "../../../utils/formValidation";
@@ -15,6 +16,9 @@ import { withTranslation } from "react-i18next";
 
 // seo
 import { Helmet } from "react-helmet";
+
+// api
+import { signUp } from "../../../../services/frontend/usersApi";
 
 class SignUpBusiness extends Component {
 	constructor(props) {
@@ -124,7 +128,9 @@ class SignUpBusiness extends Component {
 		e.preventDefault();
 
 		if (this.areDataValid()) {
-			this.redirectToLogin();
+			signUp(this.state.data).then(() => {
+				this.redirectToLogin();
+			});
 		}
 	};
 
@@ -143,10 +149,10 @@ class SignUpBusiness extends Component {
 				</Helmet>
 				<form className="flex flex-col justify-evenly items-center">
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
-					{t("SignUpBusiness.signUp")}
+						{t("SignUpBusiness.signUp")}
 					</h1>
 					<p className="font-primary font-light text-sm mt-2 text-center">
-					{t("SignUpBusiness.signUpBusiness")}
+						{t("SignUpBusiness.signUpBusiness")}
 					</p>
 					<Input
 						placeholder={t("SignUpBusiness.VATNumber")}
@@ -204,10 +210,17 @@ class SignUpBusiness extends Component {
 					<p className="font-primary mt-5">
 						{t("SignUpBusiness.goToLogin.label")}
 					</p>
-					<Link className="font-primary mt-2" to={"/auth/login"}>
+					<Link
+						className="font-primary mt-2"
+						to={`/${this.props.i18n.language}/${ROUTES.FE.BASE.AUTH.SELF}/${ROUTES.FE.BASE.AUTH.LOGIN}`}
+					>
 						{t("SignUpBusiness.goToLogin.link")}
 					</Link>
-					{this.state.redirectToLogin && <Navigate to={"/auth/login"} />}
+					{this.state.redirectToLogin && (
+						<Navigate
+							to={`/${this.props.i18n.language}/${ROUTES.FE.BASE.AUTH.SELF}/${ROUTES.FE.BASE.AUTH.LOGIN}`}
+						/>
+					)}
 				</form>
 			</>
 		);

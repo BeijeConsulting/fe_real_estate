@@ -23,6 +23,7 @@ import BoVerification from "./BoVerification.json";
 import Carousel from "./Carousel.json";
 import Illustrations from "./Illustrations.json";
 import Search from "./Search.json";
+import DetailBuilding from "./DetailBuilding.json";
 
 const it = {
 	AboutUs,
@@ -50,6 +51,7 @@ const it = {
 	BoUpdateProfile,
 	BoUsers,
 	BoVerification,
+	DetailBuilding,
 };
 
 export default it;

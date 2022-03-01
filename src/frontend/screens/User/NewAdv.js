@@ -60,10 +60,17 @@ const NewAdv = (props) => {
 
 	const postAd = async () => {
 		let token = localStorage.getItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN);
-		console.log(state);
-		const adv = await addNewAdv(state, token).then((res) => {
-			console.log(res);
-		});
+		const body = {
+			...state,
+			areaMsq: parseInt(state.areaMsq),
+			buildingYear: parseInt(state.buildingYear),
+		};
+		console.log(body);
+		const adv = await addNewAdv(body, token)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => console.log(err));
 	};
 
 	const switchCheck = (key) => () => {
@@ -240,7 +247,22 @@ const NewAdv = (props) => {
 										value={state.areaMsq}
 									/>
 								</div>
-								<Button label={t("NewAdv.Next")} onClick={goNext} />
+
+								<div className="mb-5">
+									<label
+										className="uppercase font-primary color-secondary"
+										style={{ display: "block" }}
+									>
+										Anno immobile
+									</label>
+									<Input
+										type={"number"}
+										placeholder="Esempio: 2010"
+										onChange={handlerInput("buildingYear")}
+										value={state.buildingYear}
+									/>
+								</div>
+								<Button label="Avanti" onClick={goNext} />
 							</div>
 						)}
 						{current === 1 && (
@@ -437,9 +459,9 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("condition")}
 										value={state.condition}
 									>
-										<Option value="new">New</Option>
-										<Option value="good">Good</Option>
-										<Option value="renovate">Renovate</Option>
+										<Option value="NEW">New</Option>
+										<Option value="GOOD">Good</Option>
+										<Option value="RENOVATE">Renovate</Option>
 									</Select>
 								</div>
 
@@ -506,10 +528,10 @@ const NewAdv = (props) => {
 										onChange={handleSelectPropertyChange("cooling")}
 										value={state.cooling}
 									>
-										<Option value="central">Central</Option>
-										<Option value="disposition">Disposition</Option>
-										<Option value="indipendent">indipendent</Option>
-										<Option value="no">No</Option>
+										<Option value="CENTRAL">Central</Option>
+										<Option value="DISPOSITION">Disposition</Option>
+										<Option value="INDIPENDENT">indipendent</Option>
+										<Option value="NO">No</Option>
 									</Select>
 
 									<div className="mt-5 mb-5">
@@ -522,9 +544,9 @@ const NewAdv = (props) => {
 											onChange={handleSelectPropertyChange("yard")}
 											value={state.yard}
 										>
-											<Option value="shared">Shared</Option>
-											<Option value="private">Private</Option>
-											<Option value="no">No</Option>
+											<Option value="SHARED">Shared</Option>
+											<Option value="PRIVATE">Private</Option>
+											<Option value="NO">No</Option>
 										</Select>
 									</div>
 
