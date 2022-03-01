@@ -39,7 +39,9 @@ export const userMe = async (token, dispatch) => {
 		})
 }
 
-export const getUserSavedAds = async (token, dispatch ) => {
+export const getUserSavedAds = async ( dispatch ) => {
+	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
+	
 	let headers = {
 		'Authorization': `Bearer ${token}`,
 	}
@@ -62,13 +64,24 @@ export const userSaveAdv = async ( advId, token ) => {
 
 }
 
-export const getUserMeAdvs = async () => {
+export const updateUser = async ( newObj ) => {
+	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
+	let headers = { 'Authorization': `Bearer ${token}` }
+
+	await javaAcademyServiceInstance.put('/user/update', newObj, { headers } ) 
+}
+
+export const getUserPostedAdvs = async () => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 	let headers = {	'Authorization': `Bearer ${token}` }
 
+	let data;
+
 	await javaAcademyServiceInstance
 	.get('/user/myAdvertisements', { headers})
-	.then( res => console.log(res.data))
+	.then( res => data = res.data )
+
+	return data
 }
 
 

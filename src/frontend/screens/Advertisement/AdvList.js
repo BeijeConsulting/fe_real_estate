@@ -9,7 +9,7 @@ import { Select } from "antd";
 
 //UTILS
 import sortList from '../../../common/utils/sortList'
-import {LOCAL_STORAGE_KEYS} from '../../../common/utils/storage'
+import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage'
 import typesTranslator from '../../utils/typesTranslator'
 
 // imgs
@@ -25,58 +25,59 @@ import useURLQuery from '../../hooks/useQuery'
 
 //redux
 import { connect } from 'react-redux'
+import AdvCardSkeleton from "../../components/AdvCard/AdvCardSkeleton";
 
 const { Option } = Select;
 
 const AdvList = (props) => {
-	// hooks
-	let { city, advType, buildingType, lang } = useParams();
-	let query = useURLQuery();
-	let location = useLocation();
-	let navigate = useNavigate();
-    let {t} = useTranslation();
+    // hooks
+    let { city, advType, buildingType, lang } = useParams();
+    let query = useURLQuery();
+    let location = useLocation();
+    let navigate = useNavigate();
+    let { t } = useTranslation();
 
-	const [advList, setAdvList] = useState([]);
-	const [sortType, setSortType] = useState();
+    const [advList, setAdvList] = useState({ data: [], loading: true });
+    const [sortType, setSortType] = useState();
 
-	let cityCapital = city.charAt(0).toUpperCase() + city.slice(1);
+    let cityCapital = city.charAt(0).toUpperCase() + city.slice(1);
 
     // GET Adv List with Filters
-	useEffect(() => {
-		findAds({
-			advType: advType.toUpperCase(),
-			city: cityCapital,
-			buildingType: buildingType.toUpperCase(),
-			maxPrice: query.get("maxPrice"),
-			minPrice: query.get("minPrice"),
-			balcony: query.get("balcony"),
-			basement: query.get("basement"),
-			pool: query.get("pool"),
-			terrace: query.get("terrace"),
-		}).then((res) => {
-			let list = [...res.data.resList];
+    useEffect(() => {
+        findAds({
+            advType: advType.toUpperCase(),
+            city: cityCapital,
+            buildingType: buildingType.toUpperCase(),
+            maxPrice: query.get("maxPrice"),
+            minPrice: query.get("minPrice"),
+            balcony: query.get("balcony"),
+            basement: query.get("basement"),
+            pool: query.get("pool"),
+            terrace: query.get("terrace"),
+        }).then((res) => {
+            let list = [...res.data.resList];
 
-			if (sortType) {
-				setAdvList( sortList(sortType, list) );
-			} else {
-				setAdvList(list);
-			}
-		});
-	}, [location.search, location.pathname, sortType]);
+            if (sortType) {
+                setAdvList({ loading: false, data: sortList(sortType, list) });
+            } else {
+                setAdvList({ loading: false, data: list });
+            }
+        });
+    }, [location.search, location.pathname, sortType]);
 
     // GET User saved Ads
     useEffect(() => {
         let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
 
-        if ( token ) {
-            getUserSavedAds( token, props.dispatch )
+        if (token) {
+            getUserSavedAds(token, props.dispatch)
         }
 
     }, [])
-    
 
-	const handleNavigate = (dest) => () => navigate(dest);
-	const handleSorting = (e) => setSortType(e);
+
+    const handleNavigate = (dest) => () => navigate(dest);
+    const handleSorting = (e) => setSortType(e);
 
 
     const handleAdvRender = (adv, key) => {
@@ -98,9 +99,34 @@ const AdvList = (props) => {
         )
     }
 
-	return (
-		<div className="min-h-screen bg-gray">
-			<Navbar />
+
+    const render = () => {
+        if (advList.loading) {
+            return (
+                <>
+                    <AdvCardSkeleton />
+                    <AdvCardSkeleton />
+                    <AdvCardSkeleton />
+                </>
+            )
+
+        } else if (advList.data.length >= 1) {
+            return advList.data.map(handleAdvRender)
+
+        } else {
+            return (
+                <div className='font-primary text-center'>
+                    <img className='mx-auto max-h-80 mb-6' src={noHouseFound} />
+                    <p className='text-3xl font-bold'>{t("AdvList.NotFound")} {t(`AdvList.buildingTypePlural.${buildingType}`)} {t("AdvList.ForYou")}</p>
+                    <p className=''>{t("AdvList.UnderConstruction")}</p>
+                </div>
+            )
+        }
+    }
+
+    return (
+        <div className="min-h-screen bg-gray">
+            <Navbar />
 
             <div className='max-w-6xl mx-auto mt-10 flex'>
                 <Button
@@ -123,15 +149,8 @@ const AdvList = (props) => {
                 <div className='flex mt-10 space-x-4'>
                     <div style={{ flex: 2 }}>
                         {/* CARD LIST HERE */}
-                        {advList.map(handleAdvRender)}
 
-                        {advList.length <= 0 &&
-                            <div className='font-primary text-center'>
-                                <img className='mx-auto max-h-80 mb-6' src={noHouseFound} />
-                                <p className='text-3xl font-bold'>{t("AdvList.NotFound")} {t(`AdvList.buildingTypePlural.${buildingType}`)} {t("AdvList.ForYou")}</p>
-                                <p className=''>{t("AdvList.UnderConstruction")}</p>
-                            </div>
-                        }
+                        {render()}
 
                     </div>
                     <div className='flex-1 md:block hidden'>
@@ -142,14 +161,11 @@ const AdvList = (props) => {
             </div>
         </div>
     )
-
-
-
-
 }
+
 
 const mapStateToProps = state => ({
     savedAds: state.userMeDuck.savedAds
 })
 
-export default connect(mapStateToProps) (AdvList)
+export default connect(mapStateToProps)(AdvList)
