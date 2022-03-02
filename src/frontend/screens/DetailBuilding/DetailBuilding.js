@@ -92,7 +92,6 @@ class DetailBuilding extends Component {
 					guidedTour: adv.guidedTour,
 					heating: adv.heating,
 					houseNumber: adv.houseNumber,
-					description: adv.longDescription,
 					parkingSpots: adv.parkingSpots,
 					pool: adv.pool,
 					price: adv.price,

@@ -23,15 +23,15 @@ const Home = () => {
 	const { t } = useTranslation();
 	let navigate = useNavigate()
 
-	const [ toast ,setToast] = useState({ type:'', msg:''})
+	const [toast, setToast] = useState({ type: '', msg: '' })
 
 	const handleClick = () => {
 		let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
 
-		if ( token ) {
+		if (token) {
 			navigate(`user/new-adv`)
 		} else {
-			setToast({ type:'error', msg:'Per piacere esegui il Login'})
+			setToast({ type: 'error', msg: 'Per piacere esegui il Login' })
 		}
 	}
 
@@ -49,7 +49,7 @@ const Home = () => {
 
 				<div className=" h-screen flex flex-col">
 					<Search />
-					
+
 					<div onClick={handleClick} className='flex flex-1 justify-center absolute mx-auto bottom-10 left-0 right-0'>
 						<p className='btn-home rounded font-primary'>PUBBLICA ANNUNCIO</p>
 					</div>

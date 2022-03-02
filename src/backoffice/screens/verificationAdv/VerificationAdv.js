@@ -107,6 +107,7 @@ const VerificationAdv = (props) => {
     ]
     /* ComponentDidMount */
     useEffect(() => {
+
         goToChecker()
     }, [])
 

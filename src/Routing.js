@@ -58,9 +58,6 @@ const SignUp = React.lazy(() =>
 const SignUpPrivate = React.lazy(() =>
 	import("./frontend/screens/Auth/SignUp/SignUpPrivate")
 );
-const SignUpBusiness = React.lazy(() =>
-	import("./frontend/screens/Auth/SignUp/SignUpBusiness")
-);
 const ForgotPsw = React.lazy(() => import("./frontend/screens/Auth/ForgotPsw"));
 const User = React.lazy(() => import("./frontend/screens/User/User"));
 const EditProfile = React.lazy(() =>
@@ -213,10 +210,6 @@ const Routing = () => (
 						<Route
 							path={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
 							element={<SignUpPrivate />}
-						/>
-						<Route
-							path={ROUTES.FE.BASE.AUTH.SIGNUP.BUSINESS}
-							element={<SignUpBusiness />}
 						/>
 					</Route>
 					<Route
