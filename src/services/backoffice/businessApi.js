@@ -25,22 +25,24 @@ export const getBusinesses = async (token) => {
 export const searchBusinessByName = async (name, token) => {
     let payload = []
     const headers = { "Authorization": "Bearer " + token }
-    await javaAcademyServiceInstance.get("/business_name/" + name, { headers }).then((response) => {
-        let fetchedBusinesses = response.data.map((business) => {
-            return ({
-                username: business.businessName,
-                key: business.id,
-                phoneNumber: business.phone,
-                manager: business.refName + " " + business.refSurname,
+    await javaAcademyServiceInstance.get("/business/find/" + name, { headers })
+        .then((response) => {
+            response.data = [response.data]
+            let fetchedBusinesses = response.data.map((business) => {
+                return ({
+                    username: business.businessName,
+                    key: business.id,
+                    phoneNumber: business.phone,
+                    manager: business.refName + " " + business.refSurname,
+                })
             })
-        })
-        payload = {
-            fetchedBusinesses,
-            totalElements: response.data.length
-        }
-    }).catch(
-        //Error handler
-    )
+            payload = {
+                fetchedBusinesses,
+                totalElements: response.data.length
+            }
+        }).catch(
+            //Error handler
+        )
     return payload
 }
 

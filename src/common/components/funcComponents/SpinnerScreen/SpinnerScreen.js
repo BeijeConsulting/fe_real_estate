@@ -5,7 +5,7 @@ const SpinngerScreen = () => {
 	return (
 		<div
 			style={{
-				backgroundColor: "rgba(255, 253, 67,0.4)",
+				backgroundColor: 'rgba(227, 191, 0, 1)',
 				position: "fixed",
 				height: "100vh",
 				width: "100vw",

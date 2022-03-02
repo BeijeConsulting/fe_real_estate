@@ -4,6 +4,7 @@ import RenderAdvs from "../../components/AdvCard/RenderAdvs"
 
 // REDUX
 import { connect } from 'react-redux'
+import SpinngerScreen from "../../../common/components/funcComponents/SpinnerScreen/SpinnerScreen"
 
 const Dashboard = (props) => {
 
@@ -15,11 +16,10 @@ const Dashboard = (props) => {
 
             {/*  latest saved ads */}
             <p className='text-3xl font-semibold mt-10 mb-4'>Ultimi Annunci Salvati</p>
-            <RenderAdvs horizontal data={props.savedAds} />
+            <RenderAdvs horizontal data={props.savedAds?.slice(0,3)} />
             
             <p className='text-3xl font-semibold mt-10 mb-4'>Ultimi Annunci Pubblicati</p>
-            <RenderAdvs horizontal data={props.postedAds} />
-
+            <RenderAdvs horizontal data={props.postedAds?.slice(0,3)} />
 
         </div>
     )

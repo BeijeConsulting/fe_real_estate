@@ -26,7 +26,7 @@ export const getUserByUsername = async (username) => {
 };
 
 // get all user data
-export const userMe = async ( dispatch ) => {
+export const getUserMe = async ( dispatch ) => {
 	let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
 	let headers = {
 		'Authorization': `Bearer ${token}`,
@@ -61,7 +61,7 @@ export const userSaveAdv = async ( advId, token ) => {
 	}
 
 	return await javaAcademyServiceInstance
-	.post('user/saveadv/' + advId,  { headers })
+	.post('/user/saveadv/' + advId, {},  { headers })
 
 }
 

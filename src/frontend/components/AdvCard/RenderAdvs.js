@@ -1,6 +1,8 @@
 import React from 'react'
 import AdvCard from './AdvCard'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+
 
 //img
 import noAdv from '../../assets/illustrations/noAdvFound.svg'
@@ -10,9 +12,10 @@ import { connect } from 'react-redux'
 const RenderAdvs = (props) => {
 
     let { lang } = useParams()
+    let navigate = useNavigate()
 
-    const handleNavigate = () => {
-
+    const handleNavigate = (dest) => () => {
+        navigate(dest)
     }
 
 

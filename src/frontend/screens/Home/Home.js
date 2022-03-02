@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import Toast from "../../components/Toast/Toast";
 
 // Css
 import "./Home.css";
@@ -15,11 +16,28 @@ import Button from "../../components/UI/Button/Button";
 import { Helmet } from "react-helmet";
 import { useTranslation } from "react-i18next";
 
+import { useNavigate } from "react-router-dom";
+import { LOCAL_STORAGE_KEYS } from "../../../common/utils/storage";
+
 const Home = () => {
 	const { t } = useTranslation();
+	let navigate = useNavigate()
+
+	const [ toast ,setToast] = useState({ type:'', msg:''})
+
+	const handleClick = () => {
+		let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
+
+		if ( token ) {
+			navigate(`user/new-adv`)
+		} else {
+			setToast({ type:'error', msg:'Per piacere esegui il Login'})
+		}
+	}
 
 	return (
 		<div className="fixed-background">
+			<Toast type={toast.type} msg={toast.msg} />
 			{/* SEO */}
 			<Helmet>
 				<meta name="description" content={t("Home.helmet.description")} />
@@ -31,6 +49,10 @@ const Home = () => {
 
 				<div className=" h-screen flex flex-col">
 					<Search />
+					
+					<div onClick={handleClick} className='flex flex-1 justify-center absolute mx-auto bottom-10 left-0 right-0'>
+						<p className='btn-home rounded font-primary'>PUBBLICA ANNUNCIO</p>
+					</div>
 				</div>
 				<Illustrations className="illustrations-container" />
 

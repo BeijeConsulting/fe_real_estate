@@ -81,8 +81,6 @@ class BusinessList extends Component {
 
     componentDidMount() {
         this.fetchBusinesses()
-        console.log('lang', this.props.lang)
-
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -170,6 +168,7 @@ class BusinessList extends Component {
 
     fetchBusinessesByName = async (name) => {
         let payload = await searchBusinessByName(name, this.props.admin.token)
+        console.log(payload)
         this.setState({
             businesses: payload.fetchedBusinesses,
             isLoading: false,
