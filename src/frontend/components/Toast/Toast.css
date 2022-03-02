@@ -1,0 +1,32 @@
+.slide-down {
+    animation: slide-down 4s forwards
+}
+
+@keyframes slide-down {
+    0% { transform: translateY(-100px) }
+    10% { transform: translateY(0) }
+    90% { transform: translateY(0)}
+    100% {transform: translateY(-100px)} 
+}
+
+.default {
+    background-color: #fff;
+}
+
+.error {
+    background-color: rgb(223, 62, 62);
+    color: #fff;
+    font-weight: 500;
+}
+
+.success{
+    background-color: rgb(27, 209, 51);
+    color: #fff;
+    font-weight: 500;
+}
+
+.warning{
+    background-color: rgb(255, 180, 19);
+    color: #fff;
+    font-weight: 500;
+}

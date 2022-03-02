@@ -14,8 +14,11 @@ import { Table, Input, Tag, Space, Button, Alert } from "antd";
 import { getPendingAdvertaisement, getRefusedAdvertaisement } from "../../../services/backoffice/advertisementApi";
 /* utils */
 import utilsMethods from "../../../common/utils/utilsMethods";
+import { useTranslation } from "react-i18next";
 
 const VerificationAdv = (props) => {
+
+    const { t } = useTranslation()
 
     let [state, setState] = useState({
         /* table Chaker */
@@ -35,19 +38,19 @@ const VerificationAdv = (props) => {
     /* definizione colonne */
     let columnsChecker = [
         {
-            title: 'Bulding Type',
+            title: t("BoVerification.Verification.BuildingType"),
             dataIndex: 'buildingType',
         },
         {
-            title: 'advType',
+            title: t("BoVerification.Verification.AdvType"),
             dataIndex: 'advType',
         },
         {
-            title: 'City',
+            title: t("BoVerification.Verification.City"),
             dataIndex: 'city',
         },
         {
-            title: 'Published Date Time',
+            title: t("BoVerification.Verification.PublishedDate"),
             dataIndex: 'publishedDateTime',
             render: (text) => {
                 if (text === null) {
@@ -63,25 +66,26 @@ const VerificationAdv = (props) => {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
+                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>{t("BoVerification.Verification.Card")}</Link>
             ,
+
         }
     ]
     let columnsAdmin = [
         {
-            title: 'Bulding Type',
+            title: t("BoVerification.Verification.BuildingType"),
             dataIndex: 'buildingType',
         },
         {
-            title: 'advType',
+            title: t("BoVerification.Verification.AdvType"),
             dataIndex: 'advType',
         },
         {
-            title: 'City',
+            title: t("BoVerification.Verification.City"),
             dataIndex: 'city',
         },
         {
-            title: 'Published Date Time',
+            title: t("BoVerification.Verification.PublishedDate"),
             dataIndex: 'publishedDateTime',
             render: (text) => {
                 if (text === null) {
@@ -97,7 +101,7 @@ const VerificationAdv = (props) => {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
+                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>{t("BoVerification.Verification.Card")}</Link>
             ,
         }
     ]
@@ -171,13 +175,13 @@ const VerificationAdv = (props) => {
                 <TagComp
                     key={Math.random()}
                     clickTag={goToChecker}
-                    label={"Pending"} refClass={state.goToCheckerFlag === true ? "selected" : "unselected"} />
+                    label={t("BoVerification.Verification.Pending")} refClass={state.goToCheckerFlag === true ? "selected" : "unselected"} />
                 {
                     props.admin.permission?.includes("ADMIN") &&
                     <TagComp
                         key={Math.random()}
                         clickTag={goToAdmin}
-                        label={"Refused"} refClass={state.goToAdminFlag === true ? "selected" : "unselected"} />
+                        label={t("BoVerification.Verification.Refused")} refClass={state.goToAdminFlag === true ? "selected" : "unselected"} />
                 }
             </div>
             <div className="container-VerificationAdv">

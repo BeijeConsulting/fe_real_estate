@@ -40,7 +40,7 @@ import AdvList from "./frontend/screens/Advertisement/AdvList";
 import { ROUTES } from "./utils/properties";
 import SyncRoutingLanguage from "./common/screens/SyncRoutingLanguage";
 import PublicProfile from "./frontend/screens/UsersSection/PublicProfile";
-import ScreenLoader from "./frontend/components/ScreenLoader/ScreenLoader";
+import SpinngerScreen from "./common/components/funcComponents/SpinnerScreen/SpinnerScreen";
 
 // FRONTEND SCREENS
 const Home = React.lazy(() => import("./frontend/screens/Home/Home"));
@@ -67,7 +67,9 @@ const User = React.lazy(() => import("./frontend/screens/User/User"));
 const EditProfile = React.lazy(() =>
 	import("./frontend/screens/User/EditProfile")
 );
-const PostedAdvs = React.lazy(() => import("./frontend/screens/User/PostedAdvs"));
+const PostedAdvs = React.lazy(() =>
+	import("./frontend/screens/User/PostedAdvs")
+);
 const SaveAdvs = React.lazy(() => import("./frontend/screens/User/SaveAdvs"));
 const Dashboard = React.lazy(() => import("./frontend/screens/User/Dashboard"));
 const NewAdv = React.lazy(() => import("./frontend/screens/User/NewAdv"));
@@ -93,7 +95,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.HOME}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<Home />
 						</Suspense>
 					}
@@ -103,7 +105,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.ABOUT_US}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<AboutUs />
 						</Suspense>
 					}
@@ -113,7 +115,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.WHAT_WE_OFFER}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<WhatWeOffer />
 						</Suspense>
 					}
@@ -123,7 +125,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.ASSESS_BUILDING}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<AssessBuilding />
 						</Suspense>
 					}
@@ -133,7 +135,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.FAQ}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<FAQ />
 						</Suspense>
 					}
@@ -143,7 +145,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.ADS_LIST.SELF}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<AdvList />
 						</Suspense>
 					}
@@ -153,7 +155,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.DETAILS_AD.SELF}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<DetailBuilding />
 						</Suspense>
 					}
@@ -163,7 +165,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.MAP}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<Map />
 						</Suspense>
 					}
@@ -174,7 +176,7 @@ const Routing = () => (
 					<Route
 						path={ROUTES.FE.BASE.USERS_SECTION.PUBLIC_PROFILE.SELF}
 						element={
-							<Suspense fallback={<ScreenLoader />}>
+							<Suspense fallback={<SpinngerScreen />}>
 								<PublicProfile />
 							</Suspense>
 						}
@@ -185,7 +187,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.AUTH.SELF}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<Auth />
 						</Suspense>
 					}
@@ -226,7 +228,7 @@ const Routing = () => (
 				<Route
 					path={ROUTES.FE.BASE.USER.SELF}
 					element={
-						<Suspense fallback={<ScreenLoader />}>
+						<Suspense fallback={<SpinngerScreen />}>
 							<User />
 						</Suspense>
 					}
@@ -238,7 +240,10 @@ const Routing = () => (
 						path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
 						element={<EditProfile />}
 					/>
-					<Route path={ROUTES.FE.BASE.USER.POSTED_ADS} element={<PostedAdvs />} />
+					<Route
+						path={ROUTES.FE.BASE.USER.POSTED_ADS}
+						element={<PostedAdvs />}
+					/>
 					<Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
 				</Route>
 			</Route>
