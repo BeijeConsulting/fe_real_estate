@@ -65,6 +65,7 @@ const VerificationAdv = (props) => {
             render: (text, record) =>
                 <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
             ,
+
         }
     ]
     let columnsAdmin = [
