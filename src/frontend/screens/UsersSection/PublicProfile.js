@@ -15,6 +15,9 @@ import { findAds } from "../../../services/frontend/advertisementApi";
 // routing
 import { useNavigate, useParams } from "react-router-dom";
 
+//TRANSLATION
+import { useTranslation } from "react-i18next"
+
 const STATUS_TYPE = {
 	LOADING: "loading",
 	SUCCESS: "success",
@@ -29,6 +32,7 @@ const PublicProfile = () => {
 	});
 	const navigate = useNavigate();
 	const params = useParams();
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		const loadUser = async () => {
@@ -92,7 +96,7 @@ const PublicProfile = () => {
 			<NavBar fixed />
 			<div className="h-10"></div>
 			{state.statusLoadingUser === STATUS_TYPE.FAILED ? (
-				<h1>User not found</h1>
+				<h1>{t("Dashboard.UserNotFound")}</h1>
 			) : (
 				<div className="h-fit w-fit max-w-xl md:max-w-3xl">
 					{/* Header */}
@@ -115,34 +119,34 @@ const PublicProfile = () => {
 							/>
 							{/* Username */}
 							<p className="bg-white/[0.6] font-bold text-2xl p-2 md:text-3xl">
-								{state.user?.username ?? "Unknown"}
+								{state.user?.username ?? t("Dashboard.UsernameUnkown")}
 							</p>
 						</div>
 					</header>
 					{/*  */}
 					<div className="flex flex-col p-2">
 						<div className="flex flex-col pt-2">
-							<h1 className="font-bold text-xl">Dati profilo</h1>
+							<h1 className="font-bold text-xl">{t("Dashboard.UserData")}</h1>
 							<p>
-								<b>Registrato dal:</b>{" "}
+								<b>{t("Dashboard.UserData")}</b>{" "}
 								{!!state.user?.createDatetime
 									? new Date(state.user.createDatetime).toLocaleDateString()
 									: state.user?.createDatetime}
 							</p>
 							<p>
-								<b>Email:</b> {state.user?.email ?? "nessuna"}
+								<b>Email:</b> {state.user?.email ?? t("Dashboard.None")}
 							</p>
 							<p>
-								<b>Azienda:</b>{" "}
-								{state.user?.business?.businessName ?? "nessuna"}
+								<b>{t("Dashboard.Business")}:</b>{" "}
+								{state.user?.business?.businessName ?? t("Dashboard.None")}
 							</p>
 						</div>
 						<div className="flex flex-col pt-3">
-							<h1 className="font-bold text-xl">Annunci pubblicati</h1>
+							<h1 className="font-bold text-xl">{t("Dashboard.ProfilePostedAds")}</h1>
 							{!!state.ads?.length && state.ads.length > 0 ? (
 								state.ads.map(handleAdvRender)
 							) : (
-								<p>Impossibile caricare annunci</p>
+								<p>{t("Dashboard.CannotLoadAds")}</p>
 							)}
 						</div>
 					</div>

@@ -19,6 +19,7 @@ import BoDashboard from "./BoDashboard.json";
 import BoProfile from "./BoProfile.json";
 import BoUpdateProfile from "./BoUpdateProfile.json";
 import BoUsers from "./BoUsers.json";
+import Dashboard from "./Dashboard.json";
 import BoVerification from "./BoVerification.json";
 import Carousel from "./Carousel.json";
 import Illustrations from "./Illustrations.json";
@@ -28,6 +29,7 @@ import ContactSeller from "./ContactSeller.json";
 
 const it = {
 	AboutUs,
+	Dashboard,
 	Home,
 	NewAdv,
 	Footer,

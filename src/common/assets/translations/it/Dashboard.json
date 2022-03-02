@@ -1,0 +1,22 @@
+{
+    "Hello":"Ciao",
+    "LatestSavedAds":"Ultimi annunci salvati",
+    "SeeAll":"Vedi tutto",
+    "Profile":"Profilo",
+    "EditProfile":"Modifica le tue informazioni personali",
+    "Name":"Nome",
+    "LastName":"Cognome",
+    "EditProfileBtn":"Aggiorna il profilo",
+    "EditProfileBtnDescription":"Le modifiche vengono salvate solo dopo aver premuto il pulsante",
+    "OnlineAds":"Annunci online",
+    "PostedAds":"Qui sotto trovi tutti gli annunci pubblicati da te",
+    "SavedAds":"Annunci salvati",
+    "FavouriteAds":"Qui sotto trovi tutti i tuoi annunci preferiti",
+    "UserNotFound":"Utente non trovato",
+    "UsernameUnkown":"utente sconosciuto",
+    "UserData":"Dati Profilo",
+    "Business":"Azienda",
+    "None":"Nessuna",
+    "ProfilePostedAds":"Annunci pubblicati",
+    "CannotLoadAds":"Impossibile caricare annunci"
+}
