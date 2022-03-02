@@ -151,7 +151,15 @@ class AdminLogin extends PureComponent {
             )}
           </div>
         </div>
-        {this.state.flagRedirect && <Navigate to="/admin/dashBoard/users" />}
+        {this.props.admin?.permission?.includes("ADMIN") ? (
+          <>
+            {this.state.flagRedirect && (
+              <Navigate to="/admin/dashBoard/users" />
+            )}
+          </>
+        ) : (
+          <>{this.state.flagRedirect && <Navigate to="/admin/profile" />}</>
+        )}
       </main>
     );
   }

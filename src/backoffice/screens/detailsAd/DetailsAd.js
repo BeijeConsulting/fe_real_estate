@@ -12,12 +12,10 @@ import {
 } from "../../../services/backoffice/advertisementApi";
 // Ant design imports
 import { Typography, Carousel, Collapse, Button, Row, Col, List } from "antd";
-import { useTranslation } from "react-i18next";
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const DetailsAd = (props) => {
-  const { t } = useTranslation()
   // hooks
   const [adv, setAdv] = useState([]);
   const [seller, setSeller] = useState("");
@@ -120,34 +118,36 @@ const DetailsAd = (props) => {
               {/* link name creator */}
               <span>
                 {" "}
-                {t("BoAds.Detail.CreatedBy")}&nbsp;
+                Creato da:&nbsp;
                 <Link to={`/admin/user/${seller.idSeller}/details`}>
                   {seller.username}
                 </Link>
               </span>
               {/* link revisor?? */}
-              <span>
-                {" "}
-                {t("BoAds.Detail.RevisedBy")}&nbsp;
-                <Link to={`/admin/user/${checker.idChecker}/details`}>
-                  {checker.username}
-                </Link>
-              </span>
+              {checker.username && (
+                <span>
+                  {" "}
+                  Revisionato da:&nbsp;
+                  <Link to={`/admin/user/${checker.idChecker}/details`}>
+                    {checker.username}
+                  </Link>
+                </span>
+              )}
             </div>
 
             {/* carousell */}
             <div className="container-carousel">
               <Carousel className="carousel" afterChange={onChange}>
-                <div className="adv-photo">
+                <div className="photo-container">
                   <h3 className="adv-photos">1</h3>
                 </div>
-                <div className="adv-photo">
+                <div className="photo-container">
                   <h3 className="adv-photos">2</h3>
                 </div>
-                <div className="adv-photo">
+                <div className="photo-container">
                   <h3 className="adv-photos">3</h3>
                 </div>
-                <div className="adv-photo">
+                <div className="photo-container">
                   <h3 className="adv-photos">4</h3>
                 </div>
               </Carousel>
@@ -156,10 +156,10 @@ const DetailsAd = (props) => {
             {/* description */}
             <div className="description">
               <Title className="title" level={4}>
-                {t("BoAds.Detail.Description")}
+                Descrizione
               </Title>
               {description === "-" && (
-                <p style={{ textAlign: "center" }}>{t("BoAds.Detail.NoDescription")}</p>
+                <p style={{ textAlign: "center" }}>Nessuna Descrizione</p>
               )}
               {description !== "-" && (
                 <p style={{ textAlign: "center" }}>{description}</p>
@@ -171,7 +171,7 @@ const DetailsAd = (props) => {
               <Collapse className="collapse">
                 <Panel
                   className="title-collapse"
-                  header={t("BoAds.Detail.LocationInfo")}
+                  header="INFORMAZIONI LOCAZIONE"
                   key="1"
                 >
                   {/* section1 */}
@@ -185,19 +185,19 @@ const DetailsAd = (props) => {
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
-                              title={t("BoAds.Columns.BuildingType")}
+                              title={"Tipo Abitazione"}
                               description={item.buildingType}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.address")}
+                              title={"Indirizzo"}
                               description={item.address}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.houseNumber")}
+                              title={"Numero  Civico"}
                               description={item.houseNumber}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Columns.City")}
+                              title={"Città"}
                               description={item.city}
                             />
                           </List.Item>
@@ -214,19 +214,19 @@ const DetailsAd = (props) => {
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
-                              title={t("BoAds.Detail.zipCode")}
+                              title={"CAP"}
                               description={item.zipCode}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Ads.AdvType")}
+                              title={"Tipo Annuncio"}
                               description={item.advType}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.deedState")}
+                              title={"Stato dell'Atto"}
                               description={item.deedState}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.planimetry")}
+                              title={"Planimetria"}
                               description={item.planimetry}
                             />
                           </List.Item>
@@ -243,19 +243,19 @@ const DetailsAd = (props) => {
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
-                              title={t("BoAds.Detail.idConstructor")}
+                              title={"Costruttore Id"}
                               description={item.buildingId}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.tour")}
+                              title={"Tour Guidato"}
                               description={item.guidedTour}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.Vtour")}
+                              title={"Tour Virtuale"}
                               description={item.virtualTour}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.price")}
+                              title={"Prezzo"}
                               description={item.price + "€"}
                             />
                           </List.Item>
@@ -266,7 +266,7 @@ const DetailsAd = (props) => {
                 </Panel>
                 <Panel
                   className="title-collapse"
-                  header={t("BoAds.Detail.HouseInfo")}
+                  header="INFORMAZIONI ABITAZIONE"
                   key="2"
                 >
                   {/* section2 */}
@@ -280,27 +280,27 @@ const DetailsAd = (props) => {
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
-                              title={t("BoAds.Detail.year")}
+                              title={"Anno Costruzione"}
                               description={item.buildingYear}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.area")}
+                              title={"Area mq"}
                               description={item.areaMsq}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.rooms")}
+                              title={"Numero Stanze"}
                               description={item.rooms}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.floor")}
+                              title={"Piano"}
                               description={item.floor}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.floors")}
+                              title={"Livelli Immobile"}
                               description={item.floors}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.balcony")}
+                              title={"Balconi"}
                               description={item.balcony}
                             />
                           </List.Item>
@@ -317,27 +317,27 @@ const DetailsAd = (props) => {
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
-                              title={t("BoAds.Detail.bathrooms")}
+                              title={"Numero Bagni"}
                               description={item.bathrooms}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.energyRating")}
+                              title={"Classe Energetica"}
                               description={item.energyRating}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.condition")}
+                              title={"Condizione"}
                               description={item.condition}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.cooling")}
+                              title={"Raffreddamento"}
                               description={item.cooling}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.heating")}
+                              title={"Riscaldamento"}
                               description={item.heating}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.elevator")}
+                              title={"Ascensore"}
                               description={item.elevator}
                             />
                           </List.Item>
@@ -354,27 +354,27 @@ const DetailsAd = (props) => {
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
-                              title={t("BoAds.Detail.furniture")}
+                              title={"Arredamento"}
                               description={item.furniture}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.parkingSpots")}
+                              title={"Posto Auto"}
                               description={item.parkingSpots}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.pool")}
+                              title={"Piscina"}
                               description={item.pool}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.terrace")}
+                              title={"Terrazzo"}
                               description={item.terrace}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.reception")}
+                              title={"Reception"}
                               description={item.reception}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.yard")}
+                              title={"Giardino"}
                               description={item.yard}
                             />
                           </List.Item>
@@ -385,7 +385,7 @@ const DetailsAd = (props) => {
                 </Panel>
                 <Panel
                   className="title-collapse"
-                  header={t("BoAds.Detail.AdvInfo")}
+                  header="INFORMAZIONI ANNUNCIO"
                   key="3"
                 >
                   {/* section3 */}
@@ -403,15 +403,15 @@ const DetailsAd = (props) => {
                               description={item.id}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.created")}
+                              title={"Data Creazione"}
                               description={item.createDateTime}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.disabled")}
+                              title={"Data Disabilitazione"}
                               description={item.disabledDateTime}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.ended")}
+                              title={"Data Fine"}
                               description={item.endedDateTime}
                             />
                           </List.Item>
@@ -428,15 +428,15 @@ const DetailsAd = (props) => {
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
-                              title={t("BoAds.Detail.expiration")}
+                              title={"Data Scadenza"}
                               description={item.expirationDateTime}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.posted")}
+                              title={"Data Pubblicazione"}
                               description={item.publishedDateTime}
                             />
                             <List.Item.Meta
-                              title={t("BoAds.Detail.status")}
+                              title={"Stato Annuncio"}
                               description={item.status}
                             />
                           </List.Item>
@@ -450,15 +450,22 @@ const DetailsAd = (props) => {
 
             {/* bottons */}
             <div className="container-button">
-              <Button type="primary" onClick={approveAdv}>
-                {t("BoAds.Detail.buttonApprove")}
-              </Button>
-              <Button type="danger" onClick={deleteAdv}>
-                {t("BoAds.Detail.buttonDelete")}
-              </Button>
-              <Button type="danger" onClick={refuseAdv}>
-                {t("BoAds.Detail.buttonRefuse")}
-              </Button>
+              {adv[0].status && adv[0].status !== "Approved" && (
+                <Button type="primary" onClick={approveAdv}>
+                  Approva
+                </Button>
+              )}
+              {props.admin.permission.includes("ADMIN") && (
+                <Button type="danger" onClick={deleteAdv}>
+                  Elimina
+                </Button>
+              )}
+              {props.admin.permission.includes("CHECKER") &&
+                props.admin.permission.includes("ADMIN") === false && (
+                  <Button type="danger" onClick={refuseAdv}>
+                    Rifiuta
+                  </Button>
+                )}
             </div>
           </div>
         </div>

@@ -70,7 +70,7 @@ const AdvList = (props) => {
         let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
 
         if (token) {
-            getUserSavedAds(token, props.dispatch)
+            getUserSavedAds(props.dispatch)
         }
 
     }, [])
@@ -139,7 +139,7 @@ const AdvList = (props) => {
 
             <div className='max-w-5xl lg:max-w-6xl p-2 mx-auto'>
                 <p className='text-3xl font-bold'>
-                    {t("AdvList.found")} {advList.length} {advList.length > 1 ? t(`AdvList.buildingTypePlural.${buildingType}`) : t(`AdvList.buildingTypeSingular.${buildingType}`)} {t("AdvList.in")} {t(`AdvList.advType.${advType}`)} {t("AdvList.a")} {cityCapital} </p>
+                    {t("AdvList.found")} {advList.data.length} {advList.data.length > 1 ? t(`AdvList.buildingTypePlural.${buildingType}`) : t(`AdvList.buildingTypeSingular.${buildingType}`)} {t("AdvList.in")} {t(`AdvList.advType.${advType}`)} {t("AdvList.a")} {cityCapital} </p>
 
                 <Select onChange={handleSorting} className='w-40 mt-6' placeholder={t("AdvList.SortBy")}>
                     <Option value="price-asc">{t("AdvList.Cheapest")}</Option>

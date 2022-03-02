@@ -34,7 +34,7 @@ const Input = (props) => {
         onChange={props.onChange}
         value={props.value}
         placeholder={props.placeholder}
-        className='bg-transparent focus:outline-none mx-2 '
+        className='bg-transparent focus:outline-none mx-2 flex-1'
       />
     </div>
   )

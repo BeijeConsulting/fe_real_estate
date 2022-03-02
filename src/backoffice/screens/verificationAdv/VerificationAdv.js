@@ -68,6 +68,7 @@ const VerificationAdv = (props) => {
             render: (text, record) =>
                 <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>{t("BoVerification.Verification.Card")}</Link>
             ,
+
         }
     ]
     let columnsAdmin = [

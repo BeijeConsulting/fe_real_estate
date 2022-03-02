@@ -1,7 +1,7 @@
 import { LOCAL_STORAGE_KEYS } from "../../common/utils/storage";
 import { javaAcademyServiceInstance } from "../javaAcademyService";
 
-import { setUserMe, setSavedAds } from "../../redux/ducks/userMeDuck";
+import { setUserMe, setSavedAds, setPostedAds } from "../../redux/ducks/userMeDuck";
 
 
 
@@ -25,9 +25,9 @@ export const getUserByUsername = async (username) => {
 	return user;
 };
 
-
-export const userMe = async (token, dispatch) => {
-
+// get all user data
+export const userMe = async ( dispatch ) => {
+	let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
 	let headers = {
 		'Authorization': `Bearer ${token}`,
 	}
@@ -39,6 +39,7 @@ export const userMe = async (token, dispatch) => {
 		})
 }
 
+// get all user saved ads
 export const getUserSavedAds = async ( dispatch ) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 	
@@ -53,25 +54,27 @@ export const getUserSavedAds = async ( dispatch ) => {
 	})
 }
 
-
+// add adv to user favourite
 export const userSaveAdv = async ( advId, token ) => {
 	let headers = {
 		'Authorization': `Bearer ${token}`,
 	}
 
-	await javaAcademyServiceInstance
+	return await javaAcademyServiceInstance
 	.post('user/saveadv/' + advId,  { headers })
 
 }
 
+// update user info
 export const updateUser = async ( newObj ) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 	let headers = { 'Authorization': `Bearer ${token}` }
 
-	await javaAcademyServiceInstance.put('/user/update', newObj, { headers } ) 
+	return await javaAcademyServiceInstance.put('/user/update', newObj, { headers } ) 
 }
 
-export const getUserPostedAdvs = async () => {
+// get user published advs
+export const getUserPostedAdvs = async ( dispatch ) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 	let headers = {	'Authorization': `Bearer ${token}` }
 
@@ -80,6 +83,8 @@ export const getUserPostedAdvs = async () => {
 	await javaAcademyServiceInstance
 	.get('/user/myAdvertisements', { headers})
 	.then( res => data = res.data )
+
+	dispatch(setPostedAds( data ))
 
 	return data
 }
