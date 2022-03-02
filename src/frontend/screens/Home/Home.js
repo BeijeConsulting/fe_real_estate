@@ -23,21 +23,21 @@ const Home = () => {
 	const { t } = useTranslation();
 	let navigate = useNavigate()
 
-	const [ toast ,setToast] = useState({ type:'', msg:''})
+	const [toast, setToast] = useState({ type: '', msg: '' })
 
 	const handleClick = () => {
 		let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
 
-		if ( token ) {
+		if (token) {
 			navigate(`user/new-adv`)
 		} else {
-			setToast({ type:'error', msg:'Per piacere esegui il Login'})
+			setToast({ type: 'error', msg: 'Per piacere esegui il Login' })
 		}
 	}
 
 	return (
 		<div className="fixed-background">
-			<Toast type={toast.type} msg={toast.msg} />
+			<Toast type={toast.type} msg={toast.msg} clearValues={setToast} />
 			{/* SEO */}
 			<Helmet>
 				<meta name="description" content={t("Home.helmet.description")} />
@@ -49,7 +49,7 @@ const Home = () => {
 
 				<div className=" h-screen flex flex-col">
 					<Search />
-					
+
 					<div onClick={handleClick} className='flex flex-1 justify-center absolute mx-auto bottom-10 left-0 right-0'>
 						<p className='btn-home rounded font-primary'>PUBBLICA ANNUNCIO</p>
 					</div>
@@ -58,15 +58,14 @@ const Home = () => {
 
 				<Carousel />
 
-				<div className="flex flex-col w-full mt-6 p-2 bg-secondary">
+				<div className="flex font-primary flex-col w-full mt-6 p-2 py-6 bg-secondary">
 					<h1 className="text-3xl md:text-4xl text-center color-primary p-2">{t("Home.publishAd.text")}</h1>
 					<h3 className="text-xl md:text-xl text-center color-primary">{t("Home.publishAd.subtext")}</h3>
+					
 					<div className="w-2/5 mb- mx-auto">
-						<Button
-							size={18}
-							label={t("Home.publishAd.button")}
-						>
-						</Button>
+						<div onClick={handleClick} className='flex flex-1 justify-center  mx-auto bottom-10 left-0 right-0'>
+							<p className='btn-home rounded font-primary'>PUBBLICA ANNUNCIO</p>
+						</div>
 					</div>
 				</div>
 
