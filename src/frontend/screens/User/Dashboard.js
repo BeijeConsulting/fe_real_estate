@@ -1,3 +1,4 @@
+import "./Dashboard.css"
 import React, { useEffect } from 'react'
 import AdvCard from '../../components/AdvCard/AdvCard'
 
@@ -10,13 +11,13 @@ import userMeDuck from '../../../redux/ducks/userMeDuck'
 
 // API
 import { userMe } from '../../../services/frontend/usersApi'
-
-//TRANSLATION
-import {useTranslation} from "react-i18next"
+import AdvCardSkeleton from "../../components/AdvCard/AdvCardSkeleton"
 
 const Dashboard = (props) => {
-    const {t} = useTranslation()
+
     useEffect(() => {
+
+
 
         userMe(
             localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN),
@@ -26,26 +27,34 @@ const Dashboard = (props) => {
     }, [])
 
 
-    const handleSavedRender = ( adv, key) => {
-        return(
-            <AdvCard
-                savedAds={props.savedAds}
-                id={adv.id}
-                city={adv.city}
-                rooms={adv.rooms}
-                address={adv.address}
-                description={adv.longDescription}
-            />
+    const handleSavedRender = (adv, key) => {
+        return (
+            <div className='max-w-3xl mt-4 inline-block'>
+                <AdvCard
+                    className='mr-4'
+                    key={adv.id}
+                    savedAds={props.savedAds}
+                    id={adv.id}
+                    city={adv.city}
+                    rooms={adv.rooms}
+                    address={adv.address}
+                    description={adv.longDescription}
+                />
+            </div>
         )
     }
 
+
     return (
         <div className='p-6 bg-gray-200 flex-1'>
-            <h1 className='text-3xl font-bold'>{t("Dashboard.Hello")} {props.userMe?.username} 👋 </h1>
+            <p>@{props.userMe?.username}</p>
+            <h1 className='text-3xl font-bold'>Ciao {props.userMe?.name} 👋 </h1>
             <p className='mt-40'>.</p>
-            <p className='text-3xl font-semibold'>{t("Dashboard.LatestSavedAds")} <span className='text-xl'>({t("Dashboard.SeeAll")})</span></p>
-            <div className='max-w-3xl mt-4'>
-                { props.savedAds.map(handleSavedRender)}
+            <p className='text-3xl font-semibold'>Ultimi Annunci Salvati <span className='text-xl'>(Vedi tutto)</span></p>
+            <div className='scrolling-wrapper'>
+
+                {props.savedAds.map(handleSavedRender)}
+                
             </div>
 
         </div>
@@ -58,4 +67,4 @@ const mapStateToProps = state => ({
     savedAds: state.userMeDuck.savedAds
 })
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps)(Dashboard); 

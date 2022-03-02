@@ -1,11 +1,17 @@
 import React, { useState } from 'react'
+
+// components
 import Card from '../../components/UI/Card/Card';
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import Toast from '../../components/Toast/Toast';
 
 import { connect } from 'react-redux'
+
 //TRANSLATION
 import { useTranslation } from "react-i18next"
+
+// icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { updateUser } from '../../../services/frontend/usersApi';
@@ -24,16 +30,24 @@ const EditProfile = (props) => {
         email: props.userMe.email
     })
 
+    const [ toast,setToast ] = useState({ msg: '', type:'default'})
+
     const setName = (e) => setState({ ...state, name: e.target.value})
     const setSurname = (e) => setState({ ...state, surname: e.target.value})
     const setEmail = (e) => setState({ ...state, email: e.target.value})
 
     const handleSubmit = () => {
         updateUser( state )
+        .then(res => setToast({ msg:'Informazioni Aggiornate correttamente', type:'success'}))
+        .catch(e => setToast({ type:'error', msg:'Errore: Non ho aggiornato le info'}))
     }
 
     return (
         <div className='p-6 bg-gray-200 flex-1'>
+            <Toast 
+                type={toast.type}
+                msg={toast.msg}
+            />
             <h1 className='text-3xl font-bold'>{t("Dashboard.Profile")}</h1>
             <p>{t("Dashboard.EditProfile")}</p>
 
