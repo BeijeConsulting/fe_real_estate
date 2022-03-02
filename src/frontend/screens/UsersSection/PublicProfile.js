@@ -9,7 +9,7 @@ import NavBar from "../../components/Navbar/Navbar";
 import AdvCard from "../../components/AdvCard/AdvCard";
 
 // api
-import { getUserByUsername } from "../../../services/frontend/usersApi";
+import { getPublicAdsByUsername, getUserByUsername } from "../../../services/frontend/usersApi";
 import { findAds } from "../../../services/frontend/advertisementApi";
 
 // routing
@@ -60,10 +60,12 @@ const PublicProfile = () => {
 
 	useEffect(() => {
 		if (!!state.user?.id) {
-			findAds({ userId: state.user.id }).then((res) =>
+			getPublicAdsByUsername(state.user.username)
+			.then((res) =>
+		
 				setState((previousState) => ({
 					...previousState,
-					ads: res.data.resList,
+					ads: res.data,
 				}))
 			);
 		}
@@ -78,6 +80,7 @@ const PublicProfile = () => {
 				<AdvCard
 					key={"advard-" + key + adv.id}
 					id={adv.id}
+					address={adv.address}
 					city={adv.city}
 					squareMeters={adv.areaMsq}
 					description={adv?.longDescription}
@@ -92,7 +95,7 @@ const PublicProfile = () => {
 	);
 
 	return (
-		<div className="flex flex-col items-center bg-gray h-screen w-screen">
+		<div className="flex flex-col items-center bg-gray min-h-screen w-screen">
 			<NavBar fixed />
 			<div className="h-10"></div>
 			{state.statusLoadingUser === STATUS_TYPE.FAILED ? (

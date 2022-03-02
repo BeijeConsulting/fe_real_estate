@@ -13,7 +13,7 @@ import avatar from '../../assets/images/avatar.png'
 
 //utils
 import getBuildingType from '../../../common/utils/getBuildingType'
-import { getUserSavedAds, userSaveAdv } from '../../../services/frontend/usersApi';
+import { getUserSavedAds, removeUserAdv, userSaveAdv } from '../../../services/frontend/usersApi';
 import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage';
 // redux
 import { connect } from 'react-redux'
@@ -24,7 +24,7 @@ const AdvCard = (props) => {
 
     const [toast, setToast] = useState({ type: '', msg: '' })
 
-    const handleFavouriteClick = (e) => {
+    const addFavourite = (e) => {
         e.stopPropagation()
 
         let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
@@ -44,6 +44,17 @@ const AdvCard = (props) => {
     }
 
 
+    const removeFavourite = (e) => {
+        e.stopPropagation()
+        
+        removeUserAdv(props.id)
+        .then(res => {
+            setToast({ type:'success', msg:'Annuncio Rimosso'})
+            getUserSavedAds(props.dispatch)
+        })
+        .catch(e => setToast({ type: 'error', msg: 'Errore, operazione fallita' }))
+
+    }
 
     const handleFavouriteRender = () => {
         let isSaved = props.savedAds.find(ad => ad.id === props.id)
@@ -51,7 +62,7 @@ const AdvCard = (props) => {
         if (isSaved) {
             return (
                 <FontAwesomeIcon
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={removeFavourite}
                     icon={faHeart}
                     className='text-red-500 text-2xl'
                 />
@@ -59,7 +70,7 @@ const AdvCard = (props) => {
         } else {
             return (
                 <FontAwesomeIcon
-                    onClick={handleFavouriteClick}
+                    onClick={addFavourite}
                     icon={faHeart}
                     className='text-gray-400 text-2xl hover:text-red-400 transition'
                 />
@@ -70,6 +81,7 @@ const AdvCard = (props) => {
     return (
         <>
             <Toast
+                clearValues={setToast}
                 type={toast.type}
                 msg={toast.msg}
             />
