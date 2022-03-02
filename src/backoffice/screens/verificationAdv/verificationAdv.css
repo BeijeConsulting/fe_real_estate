@@ -1,5 +1,5 @@
 .container-VerificationAdv{
-    height: calc(100vh - 160px);
+    height: calc(100vh - 200px);
     overflow-y: auto;
     border-radius: 10px;
 }
