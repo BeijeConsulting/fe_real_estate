@@ -2,8 +2,15 @@ import React from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
 import { Table } from "antd";
-import Card from "../../../components/UI/Card/Card";
-import Input from "../../../components/UI/Input/Input";
+
+// components
+import Card from "../../../../components/UI/Card/Card";
+import Input from "../../../../components/UI/Input/Input";
+import Button from "../../../../components/UI/Button/Button";
+
+// api
+import { updateBusinessInfo } from "../../../../../services/frontend/managerApi";
+import AddEmployee from "./AddEmployee";
 
 const ManageBusiness = (props) => {
 	const [state, setState] = useState({
@@ -19,6 +26,13 @@ const ManageBusiness = (props) => {
 	const setSurname = (e) => setState({ ...state, refSurname: e.target.value });
 	const setVatNumber = (e) => setState({ ...state, vatNumber: e.target.value });
 	const setPhone = (e) => setState({ ...state, phone: e.target.value });
+
+	const handleSubmit = () => {
+		updateBusinessInfo(
+			{ businessName: props.managed.businessName, ...state },
+			props.dispatch
+		);
+	};
 
 	const dataSource = [
 		{
@@ -71,26 +85,39 @@ const ManageBusiness = (props) => {
 							</p>
 							<p className="text-sm text-slate-500">Creato il 02/03/2022</p>
 							<div className="flex flex-row p-4">
-								<div className="flex flex-col mr-4">
+								<div className="flex flex-col mr-4 w-56">
 									<p className={labelClass}>NOME REFERENTE</p>
-									<Input value={"NAME"} onChange={setName} />
+									<Input value={state.refName} onChange={setName} />
 								</div>
-								<div className="flex flex-col">
+								<div className="flex flex-col w-56">
 									<p className={labelClass}>COGNOME REFERENTE</p>
-									<Input value={"SURNAME"} onChange={setSurname} />
+									<Input value={state.refSurname} onChange={setSurname} />
 								</div>
 							</div>
 							<div className="flex flex-row p-4">
-								<div className="flex flex-col mr-4">
+								<div className="flex flex-col mr-4 w-56">
 									<p className={labelClass}>VAT NUMBER</p>
-									<Input value={"VAT NUMBER"} onChange={setVatNumber} />
+									<Input value={state.vatNumber} onChange={setVatNumber} />
 								</div>
-								<div className="flex flex-col">
+								<div className="flex flex-col w-56">
 									<p className={labelClass}>PHONE</p>
-									<Input value={"PHONE"} onChange={setPhone} />
+									<Input value={state.phone} onChange={setPhone} />
 								</div>
 							</div>
+							<div className="flex max-w-lg mx-auto">
+								<Button
+									className="max-w-lg"
+									marginTop={40}
+									iconPosition="right"
+									onClick={handleSubmit}
+									label={"Edit"}
+								/>
+							</div>
+							<p className="text-center italic mt-4">
+								Edits are saved only after pressing the button
+							</p>
 						</Card>
+						<AddEmployee />
 						<Table dataSource={dataSource} columns={columns} />
 					</div>
 				</>

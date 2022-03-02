@@ -1,5 +1,6 @@
 import { javaAcademyServiceInstance } from "../javaAcademyService";
 import authApi from "./authApi";
+import { getUserMe } from "./usersApi";
 
 /**
  *
@@ -27,15 +28,20 @@ export const addEmployee = (username, dispatch) =>
  * @param { () => {} } dispatch the redux dispatch
  */
 export const updateBusinessInfo = (body, dispatch) =>
-	authApi.retryAfterRefreshToken(
-		(token) =>
-			javaAcademyServiceInstance.put("/business/update", body, {
-				headers: {
-					Authorization: "Bearer " + token,
-				},
-			}),
-		dispatch
-	);
+	authApi
+		.retryAfterRefreshToken(
+			(token) =>
+				javaAcademyServiceInstance.put("/business/update", body, {
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				}),
+			dispatch
+		)
+		.then((res) => {
+			getUserMe(dispatch);
+			return res;
+		});
 
 /**
  *
