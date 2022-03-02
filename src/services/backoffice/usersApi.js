@@ -80,7 +80,7 @@ export const getNameUserFromSellerId = async (token, idSeller) => {
     let headers = {
         'Authorization': `Bearer ${token}`,
     }
-    const result = await javaAcademyServiceInstance.get(
+    await javaAcademyServiceInstance.get(
         `/adv/${idSeller}`,
         { headers }
     ).then((response) => {
@@ -112,7 +112,7 @@ export const getUserByUsername = async (username, token) => {
     await javaAcademyServiceInstance.get("/user/find/" + username, { headers }).then((response) => {
         userByUsername = response.data
 
-    }).catch( response => userByUsername = null
+    }).catch(() => userByUsername = null
     )
     return userByUsername
 }
@@ -124,7 +124,7 @@ export const deleteUser = async (token, id) => {
     }
     console.log("token", token)
     console.log("id", id)
-    const result = await javaAcademyServiceInstance.put('/admin/disableUser/' + id, {}, { headers } ).then( (response) => 
+    await javaAcademyServiceInstance.put('/admin/disableUser/' + id, {}, { headers }).then((response) =>
         deleteCheck = response
     )
     return deleteCheck

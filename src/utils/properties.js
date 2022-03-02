@@ -38,9 +38,11 @@ const ROUTES = {
 				SELF: "user",
 				DASHBOARD: "",
 				NEW_ADV: "new-adv",
+				NEW_BUSINESS: "new-business",
 				EDIT_PROFILE: "edit-profile",
 				POSTED_ADS: "posted-ads",
 				SAVED_ADS: "saved-ads",
+				MANAGE_BUSINESS: "manage-business"
 			},
 		},
 	},

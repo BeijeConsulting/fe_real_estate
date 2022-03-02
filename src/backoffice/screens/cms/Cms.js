@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 import "./cms.css";
 import "antd/dist/antd.css";
-import { Outlet, useNavigate, useLocation, useParams } from "react-router-dom";
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 //utils
 import storage from "../../../common/utils/storage";

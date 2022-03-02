@@ -24,20 +24,25 @@ import { useParams, Link } from "react-router-dom";
 import { Table, Input, Button, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-const { Search } = Input;
-const { Option } = Select;
+
 
 const AdvListBo = (props) => {
   // hooks
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   const [advList, setAdvList] = useState([]);
   const [isModalOpened, setModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
   const [allPlaces, setPlaces] = useState([{}]);
-  const [allBuilding, setBuilding] = useState([{ label: "Tutti", value: null }, ...BUILDING_TYPES])
-  const [allAdv, setAdv] = useState([{ label: "Tutti", value: null }, ...ADV_TYPES])
+  const [allBuilding, setBuilding] = useState([
+    { label: "Tutti", value: null },
+    ...BUILDING_TYPES,
+  ]);
+  const [allAdv, setAdv] = useState([
+    { label: "Tutti", value: null },
+    ...ADV_TYPES,
+  ]);
   const [search, setSearch] = useState({
     search: {
       buildingType: null,
@@ -49,8 +54,7 @@ const AdvListBo = (props) => {
   const [paginationOptions, setPagination] = useState({
     numPage: 1,
     elementForPage: 10,
-  })
-
+  });
 
   // func List
   let columnsAdv = [
@@ -92,15 +96,22 @@ const AdvListBo = (props) => {
 
   // pagination func
   const pageHandler = async (pagination) => {
-    if (search.buildingType === undefined && search.advType === undefined && search.city === undefined) {
-      getListAdv(pagination.current, pagination.pageSize)
+    if (
+      search.buildingType === undefined &&
+      search.advType === undefined &&
+      search.city === undefined
+    ) {
+      getListAdv(pagination.current, pagination.pageSize);
     } else {
-      searchAdv(pagination.current, pagination.pageSize)
+      searchAdv(pagination.current, pagination.pageSize);
     }
   };
 
   //axios
-  const getListAdv = async (page = paginationOptions.numPage, pageSize = paginationOptions.elementForPage) => {
+  const getListAdv = async (
+    page = paginationOptions.numPage,
+    pageSize = paginationOptions.elementForPage
+  ) => {
     let paginationList = await getAllAdsPaginations(
       props.admin.token,
       page,
@@ -120,16 +131,19 @@ const AdvListBo = (props) => {
     setIsLoading(false);
   };
 
-  const searchAdv = async (numPage = paginationOptions.numPage, elementForPage = paginationOptions.elementForPage) => {
+  const searchAdv = async (
+    numPage = paginationOptions.numPage,
+    elementForPage = paginationOptions.elementForPage
+  ) => {
     let params = {};
     if (search.buildingType) {
-      params.buildingType = search.buildingType
+      params.buildingType = search.buildingType;
     }
     if (search.city) {
-      params.city = search.city
+      params.city = search.city;
     }
     if (search.advType) {
-      params.advType = search.advType
+      params.advType = search.advType;
     }
     let searchResults = await searchAdvByParams(
       props.admin.token,
@@ -145,7 +159,7 @@ const AdvListBo = (props) => {
       return item;
     });
     setAdvList(listSearch);
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   // func search bar
@@ -159,7 +173,11 @@ const AdvListBo = (props) => {
 
   const searchByAdvName = () => {
     setIsLoading(true);
-    if (search.buildingType === undefined && search.advType === undefined && search.city === undefined) {
+    if (
+      search.buildingType === undefined &&
+      search.advType === undefined &&
+      search.city === undefined
+    ) {
       getListAdv();
     } else {
       searchAdv();
@@ -174,7 +192,7 @@ const AdvListBo = (props) => {
         value: element,
       };
     });
-    payload.unshift({ label: "Tutti", value: null })
+    payload.unshift({ label: "Tutti", value: null });
     setPlaces(payload);
   };
 

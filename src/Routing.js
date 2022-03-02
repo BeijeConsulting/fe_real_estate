@@ -13,7 +13,6 @@ import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
 import CmsBusiness from "./backoffice/screens/cmsBusiness/CmsBusiness";
 import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login";
-import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
@@ -59,9 +58,6 @@ const SignUp = React.lazy(() =>
 const SignUpPrivate = React.lazy(() =>
 	import("./frontend/screens/Auth/SignUp/SignUpPrivate")
 );
-const SignUpBusiness = React.lazy(() =>
-	import("./frontend/screens/Auth/SignUp/SignUpBusiness")
-);
 const ForgotPsw = React.lazy(() => import("./frontend/screens/Auth/ForgotPsw"));
 const User = React.lazy(() => import("./frontend/screens/User/User"));
 const EditProfile = React.lazy(() =>
@@ -71,8 +67,10 @@ const PostedAdvs = React.lazy(() =>
 	import("./frontend/screens/User/PostedAdvs")
 );
 const SaveAdvs = React.lazy(() => import("./frontend/screens/User/SaveAdvs"));
+const ManageBusiness = React.lazy(() => import("./frontend/screens/User/ManageBusiness"));
 const Dashboard = React.lazy(() => import("./frontend/screens/User/Dashboard"));
 const NewAdv = React.lazy(() => import("./frontend/screens/User/NewAdv"));
+const NewBusiness = React.lazy(() => import("./frontend/screens/User/NewBusiness"));
 const DetailBuilding = React.lazy(() =>
 	import("./frontend/screens/DetailBuilding/DetailBuilding")
 );
@@ -212,10 +210,6 @@ const Routing = () => (
 							path={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
 							element={<SignUpPrivate />}
 						/>
-						<Route
-							path={ROUTES.FE.BASE.AUTH.SIGNUP.BUSINESS}
-							element={<SignUpBusiness />}
-						/>
 					</Route>
 					<Route
 						path={ROUTES.FE.BASE.AUTH.FORGOT_PASSWORD}
@@ -234,6 +228,7 @@ const Routing = () => (
 				>
 					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
 					<Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
+					<Route path={ROUTES.FE.BASE.USER.NEW_BUSINESS} element={<NewBusiness />} />
 					<Route
 						path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
 						element={<EditProfile />}
@@ -243,13 +238,13 @@ const Routing = () => (
 						element={<PostedAdvs />}
 					/>
 					<Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
+					<Route path={ROUTES.FE.BASE.USER.MANAGE_BUSINESS} element={<ManageBusiness />} />
 				</Route>
 			</Route>
 
 			{/* BACKOFFICE */}
 			<Route path="admin-auth" element={<AdminLogin />} />
 			<Route path="admin" element={<Cms />}>
-				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
 				<Route path="business/:id" element={<CmsBusiness />}>

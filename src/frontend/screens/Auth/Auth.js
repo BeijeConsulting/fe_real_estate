@@ -19,13 +19,7 @@ class Auth extends Component {
 
 	componentDidMount = () => {
 		if (!this.props.username) {
-			const refreshToken = localStorage.getItem(
-				storage.LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN
-			);
-
-			if (!!refreshToken) {
-				authApi.updateAuthToken({ refreshToken }, this.props.dispatch);
-			}
+			authApi.updateAuthToken(this.props.dispatch);
 		}
 	};
 
