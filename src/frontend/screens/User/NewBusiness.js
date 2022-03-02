@@ -30,25 +30,25 @@ class NewBusiness extends Component {
         this.dataValidations = {
             vatNumber: [formValidation.nonEmptyText],
             businessName: [formValidation.nonEmptyText],
-            address: [formValidation.nonEmptyText],
-            email: [formValidation.nonEmptyText, formValidation.invalidEmail],
-            password: [formValidation.nonEmptyText, formValidation.invalidPassword],
+            refName: [formValidation.nonEmptyText],
+            refSurname: [formValidation.nonEmptyText, formValidation.invalidEmail],
+            phone: [formValidation.nonEmptyText],
         };
 
         this.state = {
             data: {
                 vatNumber: "",
                 businessName: "",
-                address: "",
-                email: "",
-                password: "",
+                refName: "",
+                refSurname: "",
+                phone: ""
             },
             errors: {
                 vatNumber: "",
                 businessName: "",
-                address: "",
-                email: "",
-                password: "",
+                refName: "",
+                refSurname: "",
+                phone: ""
             },
             redirectToLogin: false,
         };
@@ -76,23 +76,25 @@ class NewBusiness extends Component {
         });
     };
 
-    onChangeAddress = (e) => {
+
+    onChangerefName = (e) => {
         this.setState({
-            data: { ...this.state.data, surname: e.target.value },
+            data: { ...this.state.data, refName: e.target.value },
         });
     };
 
-    onChangeEmail = (e) => {
+    onChangerefSurname = (e) => {
         this.setState({
-            data: { ...this.state.data, email: e.target.value },
+            data: { ...this.state.data, refSurname: e.target.value },
         });
     };
 
-    onChangePassword = (e) => {
+    onChangePhone = (e) => {
         this.setState({
-            data: { ...this.state.data, password: e.target.value },
+            data: { ...this.state.data, phone: e.target.value },
         });
     };
+
 
     // Errors
 
@@ -147,57 +149,68 @@ class NewBusiness extends Component {
                     />
                     <title>{t("SignUpBusiness.helmet.title")}</title>
                 </Helmet>
-                <form className="flex flex-col justify-evenly items-center">
+                <form className="flex flex-col justify-evenly items-center mt-5">
                     <h1 className="capitalise font-primary font-extrabold text-4xl">
                         {t("SignUpBusiness.signUp")}
                     </h1>
                     <p className="font-primary font-light text-sm mt-2 text-center">
                         {t("SignUpBusiness.signUpBusiness")}
                     </p>
-                    <Input
-                        placeholder={t("SignUpBusiness.VATNumber")}
-                        type="text"
-                        onChange={this.onChangeVatNumber}
-                        onCloseError={this.resetError("vatNumber")}
-                        errorMessage={this.translateErrorMessage(
-                            this.state.errors.vatNumber
-                        )}
-                    />
 
-                    <Input
-                        placeholder={t("SignUpBusiness.businessName")}
-                        type="text"
-                        onChange={this.onChangeBusinessName}
-                        onCloseError={this.resetError("businessName")}
-                        errorMessage={this.translateErrorMessage(
-                            this.state.errors.businessName
-                        )}
-                    />
+                    <div className="mt-5">
+                        <Input
+                            placeholder={t("SignUpBusiness.VATNumber")}
+                            type="text"
+                            onChange={this.onChangeVatNumber}
+                            onCloseError={this.resetError("vatNumber")}
+                            errorMessage={this.translateErrorMessage(
+                                this.state.errors.vatNumber
+                            )}
+                        />
+                    </div>
+                    <div className="mt-5">
+                        <Input
+                            placeholder={t("SignUpBusiness.businessName")}
+                            type="text"
+                            onChange={this.onChangeBusinessName}
+                            onCloseError={this.resetError("businessName")}
+                            errorMessage={this.translateErrorMessage(
+                                this.state.errors.businessName
+                            )}
+                        />
+                    </div>
 
-                    <Input
-                        placeholder={t("SignUpBusiness.address")}
-                        type="text"
-                        onChange={this.onChangeAddress}
-                        onCloseError={this.resetError("address")}
-                        errorMessage={this.translateErrorMessage(this.state.errors.address)}
-                    />
 
-                    <Input
-                        placeholder="email"
-                        type="email"
-                        onChange={this.onChangeEmail}
-                        onCloseError={this.resetError("email")}
-                        errorMessage={this.translateErrorMessage(this.state.errors.email)}
-                    />
-                    <Input
-                        placeholder="password"
-                        type="password"
-                        onChange={this.onChangePassword}
-                        onCloseError={this.resetError("password")}
-                        errorMessage={this.translateErrorMessage(
-                            this.state.errors.password
-                        )}
-                    />
+                    <div className="mt-5">
+                        <Input
+                            placeholder={t("SignUpBusiness.refName")}
+                            type="text"
+                            onChange={this.onChangerefName}
+                            onCloseError={this.resetError("refName")}
+                            errorMessage={this.translateErrorMessage(this.state.errors.refName)}
+                        />
+                    </div>
+                    <div className="mt-5">
+
+                        <Input
+                            placeholder={t("SignUpBusiness.refSurname")}
+                            type="text"
+                            onChange={this.onChangerefSurname}
+                            onCloseError={this.resetError("refSurname")}
+                            errorMessage={this.translateErrorMessage(this.state.errors.refSurname)}
+                        />
+                    </div>
+
+                    <div className="mt-5">
+
+                        <Input
+                            placeholder="phone"
+                            type="text"
+                            onChange={this.onChangePhone}
+                            onCloseError={this.resetError("phone")}
+                            errorMessage={this.translateErrorMessage(this.state.errors.phone)}
+                        />
+                    </div>
 
                     <Button
                         marginTop={"15px"}
