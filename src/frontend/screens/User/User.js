@@ -8,7 +8,7 @@ import MobileUserNavbar from "../../components/UserNavbar/MobileUserNavbar/Mobil
 import RefreshTokenOrRedirect from "../../components/RefreshTokenOrRedirect/RefreshTokenOrRedirect";
 
 import { connect } from 'react-redux'
-import { getUserPostedAdvs, getUserSavedAds, userMe } from "../../../services/frontend/usersApi";
+import { getUserMe, getUserPostedAdvs, getUserSavedAds } from "../../../services/frontend/usersApi";
 
 
 const User = (props ) => {
@@ -16,7 +16,7 @@ const User = (props ) => {
 	useEffect(() => {
 
 		
-        userMe( props.dispatch )
+        getUserMe( props.dispatch )
 		getUserSavedAds( props.dispatch )
 		getUserPostedAdvs( props.dispatch )
 

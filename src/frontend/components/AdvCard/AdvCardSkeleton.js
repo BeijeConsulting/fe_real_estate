@@ -1,9 +1,7 @@
 import React from 'react'
 
 // components
-import PhotosCarousel from '../PhotosCarousel/PhotosCarousel'
 import Card from "../UI/Card/Card";
-import AdvAuthor from "./AdvAuthor";
 
 
 const AdvCardSkeleton = (props) => {

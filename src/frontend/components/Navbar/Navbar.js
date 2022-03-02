@@ -55,7 +55,10 @@ const Navbar = (props) => {
 		setSidebarOpened(!sidebarOpened);
 	};
 
-	const handleLogoutClick = () => props.dispatch(logout());
+	const handleLogoutClick = () => {
+		props.dispatch(logout())
+		handleNavigate('/')
+	}
 
 	return (
 		<div
