@@ -13,7 +13,6 @@ import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
 import CmsBusiness from "./backoffice/screens/cmsBusiness/CmsBusiness";
 import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login";
-import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
@@ -71,6 +70,7 @@ const PostedAdvs = React.lazy(() =>
 	import("./frontend/screens/User/PostedAdvs")
 );
 const SaveAdvs = React.lazy(() => import("./frontend/screens/User/SaveAdvs"));
+const ManageBusiness = React.lazy(() => import("./frontend/screens/User/ManageBusiness"));
 const Dashboard = React.lazy(() => import("./frontend/screens/User/Dashboard"));
 const NewAdv = React.lazy(() => import("./frontend/screens/User/NewAdv"));
 const NewBusiness = React.lazy(() => import("./frontend/screens/User/NewBusiness"));
@@ -245,13 +245,13 @@ const Routing = () => (
 						element={<PostedAdvs />}
 					/>
 					<Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
+					<Route path={ROUTES.FE.BASE.USER.MANAGE_BUSINESS} element={<ManageBusiness />} />
 				</Route>
 			</Route>
 
 			{/* BACKOFFICE */}
 			<Route path="admin-auth" element={<AdminLogin />} />
 			<Route path="admin" element={<Cms />}>
-				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
 				<Route path="business/:id" element={<CmsBusiness />}>

@@ -60,7 +60,7 @@ const UpdateProfile = (props) => {
     }
 
     const saveChanges = async () => {
-        let data = await updateUserInfo(state.updatedData, props.admin.token)
+        await updateUserInfo(state.updatedData, props.admin.token)
         navigate("/admin/profile")
     }
 

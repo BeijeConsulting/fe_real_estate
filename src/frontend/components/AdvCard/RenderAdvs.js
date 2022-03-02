@@ -1,20 +1,27 @@
 import React from 'react'
 import AdvCard from './AdvCard'
 import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
+
+//img
 import noAdv from '../../assets/illustrations/noAdvFound.svg'
+
+import { connect } from 'react-redux'
 
 const RenderAdvs = (props) => {
 
     let { lang } = useParams()
+    let navigate = useNavigate()
 
-    const handleNavigate = () => {
-
+    const handleNavigate = (dest) => () => {
+        navigate(dest)
     }
 
 
     const handleRender = (adv, key) => {
         return (
+            <div className={props.horizontal && 'inline-block mr-4'}>
             <AdvCard
                 key={'advard-' + key + adv.id}
                 savedAds={props.savedAds}
@@ -29,11 +36,12 @@ const RenderAdvs = (props) => {
                 onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv.seller.username}`)}
                 authorName={adv.seller.username}
             />
+            </div>
         )
     }
 
     return (
-        <div className={props.className}>
+        <div className={props.className + ( props.horizontal && " scrolling-wrapper" ) }>
             {props.data.map(handleRender)}
 
             {/* no advs found */}
@@ -48,7 +56,12 @@ const RenderAdvs = (props) => {
 }
 
 RenderAdvs.defaultProps = {
-    data: []
+    data: [],
+    className: ''
 }
 
-export default RenderAdvs
+const mapStateToProps = state => ({
+    savedAds: state.userMeDuck.savedAds
+})
+
+export default connect(mapStateToProps) (RenderAdvs)

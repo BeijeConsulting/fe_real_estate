@@ -6,7 +6,7 @@ import { map } from "lodash";
 /* redux */
 import { connect } from "react-redux";
 /* API */
-import { apiCustomLabelChart } from "../../../../services/backoffice/chartsApi";
+import { apiCustomLabelChart, apiBasicColumnPlotRegion, apiBasicAreaPlotChart } from "../../../../services/backoffice/chartsApi";
 /* ant */
 import { Card } from "antd";
 import { Row, Col, Skeleton } from 'antd';
@@ -14,7 +14,7 @@ import { Row, Col, Skeleton } from 'antd';
 import CustomLabelChart from "../../../componets/funcComponets/customLabelChart/CustomLabelChart";
 import BasicColumnPlot from "../../../componets/funcComponets/BasicColumnPlotChart/BasicColumnPlot";
 import BasicAreaPlotChart from "../../../componets/funcComponets/basicAreaPlotChart/BasicAreaPlotChart";
-import { result } from "lodash";
+
 
 import { useTranslation } from "react-i18next";
 
@@ -24,10 +24,23 @@ const UserStatistic = (props) => {
 
     const [state, setState] = useState({
         customLabelChartState: undefined,
+        basicColumnPlotState: undefined,
+        basicAreaPlotState: undefined,
     });
 
 
     /*methods to sync Charts*/
+    const syncAllCharts = async () => {
+        let genderChart = await syncCustomLabelChart()
+        let regionChart = await syncBasicColumnPlot()
+        let loginChart = await syncBasicAreaPlotChart()
+        setState({
+            ...state,
+            customLabelChartState: genderChart,
+            basicColumnPlotState: regionChart,
+            basicAreaPlotState: loginChart
+        })
+    }
     const syncCustomLabelChart = async () => {
         let resultApi = await apiCustomLabelChart(props.admin.token)
         resultApi = resultApi.map((item) => {
@@ -37,14 +50,19 @@ const UserStatistic = (props) => {
             }
             return obj
         })
-        setState({
-            ...state,
-            customLabelChartState: resultApi
-        })
+        return resultApi
+    }
+    const syncBasicColumnPlot = async () => {
+        let resultApi = await apiBasicColumnPlotRegion(props.admin.token)
+        return resultApi
+    }
+    const syncBasicAreaPlotChart = async () => {
+        let resultApi = await apiBasicAreaPlotChart(props.admin.token)
+        return resultApi
     }
     /* componentDidMount */
     useEffect(() => {
-        syncCustomLabelChart()
+        syncAllCharts()
     }, [])
     /* componentDidUpdate*/
     useEffect(() => {
@@ -55,7 +73,7 @@ const UserStatistic = (props) => {
             <Row>
                 <Col span={24} >
                     <Card loading={false} title={t("BoDashboard.Users.Chart1")}>
-                        <BasicAreaPlotChart />
+                        <BasicAreaPlotChart data={state.basicAreaPlotState} />
                     </Card>
                 </Col>
                 <Col span={24} lg={12}>
@@ -66,7 +84,7 @@ const UserStatistic = (props) => {
                 <Col span={24} lg={12}>
                     <Card loading={false} title={t("BoDashboard.Users.Chart3")}>
                         <div className="basic" style={{ overflow: "auto" }}>
-                            <BasicColumnPlot />
+                            <BasicColumnPlot data={state.basicColumnPlotState} />
                         </div>
                     </Card>
                 </Col>

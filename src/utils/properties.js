@@ -42,6 +42,7 @@ const ROUTES = {
 				EDIT_PROFILE: "edit-profile",
 				POSTED_ADS: "posted-ads",
 				SAVED_ADS: "saved-ads",
+				MANAGE_BUSINESS: "manage-business"
 			},
 		},
 	},

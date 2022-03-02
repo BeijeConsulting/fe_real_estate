@@ -101,3 +101,26 @@ p {
 h1 {
 	margin-bottom: 0 !important;
 }
+
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.btn-home{
+	font-size: 2rem;
+	color: #fff;
+	color: var(--primary);
+	text-transform: uppercase;
+	padding: 0.5rem 0.8rem;
+	border: 2px solid var(--primary);
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.btn-home:hover{
+	background-color: var(--primary);
+	color: black
+}
