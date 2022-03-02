@@ -9,6 +9,7 @@ import {
 	faList,
 	faColumns,
 	faUser,
+	faBriefcase
 } from "@fortawesome/free-solid-svg-icons";
 
 //connect
@@ -52,6 +53,11 @@ const UserNavbar = (props) => {
 			label: 'Valuta la tua Casa',
 			icon: faHouseChimney,
 			route: `../${ROUTES.FE.BASE.ASSESS_BUILDING}`
+		},
+		{
+			label: 'Crea un Business',
+			icon: faBriefcase,
+			route: ROUTES.FE.BASE.USER.NEW_BUSINESS
 		}
 	]
 
@@ -77,7 +83,7 @@ const UserNavbar = (props) => {
 	);
 };
 
-const UserFullname = ({ fullname,email }) => {
+const UserFullname = ({ fullname, email }) => {
 	return (
 		<div className="flex flex-row mb-2 items-center space-x-2">
 			<img className="avatar rounded-full h-20 w-20" src={UserAvatar} alt="" />
