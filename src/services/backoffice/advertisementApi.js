@@ -5,7 +5,7 @@ export const getAllAds = async (token) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .get(`/advertisement`, { headers })
     .then((response) => {
       newAdvList = response.data;
@@ -18,7 +18,7 @@ export const getAllAdsPaginations = async (token, pageId, total) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .get(`/advertisement/pages/${pageId}/${total}`, { headers })
     .then((response) => {
       advListPage = response.data;
@@ -74,7 +74,7 @@ export const getAdvBusinessName = async (token, businessName) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .get(`/business/advertisements/${businessName}`, { headers })
     .then((response) => {
       newAdvListForBusiness = response.data;
@@ -103,7 +103,7 @@ export const postAdvState = async (token, id, state) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .post(`checker/${state}/${id}`, {}, { headers })
     .then((response) => {
       updateAdv = response.data;
@@ -117,7 +117,7 @@ export const searchAdvByParams = async (token, pageNum, pageSize, param) => {
   //     Authorization: `Bearer ${token}`,
   //   };
   // { headers }
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .post(`search/${pageNum}/${pageSize}`, param)
     .then((response) => {
       searchAdv = response.data;
@@ -131,7 +131,7 @@ export const disableAdv = async (token, id) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .put(`/admin/disableAdvertisement/${id}`, {}, { headers })
     .then((response) => {
       disableAdv = response.data;

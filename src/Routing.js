@@ -13,7 +13,6 @@ import UpdateProfile from "./backoffice/screens/profile/UpdateProfile";
 import Cms from "./backoffice/screens/cms/Cms";
 import CmsBusiness from "./backoffice/screens/cmsBusiness/CmsBusiness";
 import AdminLogin from "./backoffice/screens/AdminLogin/Admin-login";
-import * as RoutingBO from "./backoffice/RoutingBO";
 import UsersList from "./backoffice/screens/UsersList/UsersList";
 import VerificationAdv from "./backoffice/screens/verificationAdv/VerificationAdv";
 import BusinessList from "./backoffice/screens/BusinessList/BusinessList";
@@ -249,7 +248,6 @@ const Routing = () => (
 			{/* BACKOFFICE */}
 			<Route path="admin-auth" element={<AdminLogin />} />
 			<Route path="admin" element={<Cms />}>
-				<Route index element={<RoutingBO.DashBoard />} />
 				<Route path="users" element={<UsersList />} />
 				<Route path="businesses" element={<BusinessList />} />
 				<Route path="business/:id" element={<CmsBusiness />}>
