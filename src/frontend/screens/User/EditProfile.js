@@ -35,6 +35,7 @@ const EditProfile = (props) => {
     const setName = (e) => setState({ ...state, name: e.target.value })
     const setSurname = (e) => setState({ ...state, surname: e.target.value })
     const setEmail = (e) => setState({ ...state, email: e.target.value })
+    const setUsername = (e) => setState({ ...state, username: e.target.value })
 
     const handleSubmit = () => {
         updateUser(state)
@@ -50,6 +51,7 @@ const EditProfile = (props) => {
             <Toast
                 type={toast.type}
                 msg={toast.msg}
+                clearValues={setToast}
             />
             <h1 className='text-3xl font-bold'>{t("Dashboard.Profile")}</h1>
             <p>{t("Dashboard.EditProfile")}</p>
@@ -88,7 +90,7 @@ const EditProfile = (props) => {
                     <Input
                         value={state.username}
                         image={<FontAwesomeIcon icon={faAt} />}
-                        onChange={setEmail}
+                        onChange={setUsername}
                     />
                 </div>
 

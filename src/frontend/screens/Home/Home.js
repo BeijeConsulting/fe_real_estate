@@ -37,7 +37,7 @@ const Home = () => {
 
 	return (
 		<div className="fixed-background">
-			<Toast type={toast.type} msg={toast.msg} />
+			<Toast type={toast.type} msg={toast.msg} clearValues={setToast} />
 			{/* SEO */}
 			<Helmet>
 				<meta name="description" content={t("Home.helmet.description")} />
@@ -58,15 +58,14 @@ const Home = () => {
 
 				<Carousel />
 
-				<div className="flex flex-col w-full mt-6 p-2 bg-secondary">
+				<div className="flex font-primary flex-col w-full mt-6 p-2 py-6 bg-secondary">
 					<h1 className="text-3xl md:text-4xl text-center color-primary p-2">{t("Home.publishAd.text")}</h1>
 					<h3 className="text-xl md:text-xl text-center color-primary">{t("Home.publishAd.subtext")}</h3>
+					
 					<div className="w-2/5 mb- mx-auto">
-						<Button
-							size={18}
-							label={t("Home.publishAd.button")}
-						>
-						</Button>
+						<div onClick={handleClick} className='flex flex-1 justify-center  mx-auto bottom-10 left-0 right-0'>
+							<p className='btn-home rounded font-primary'>PUBBLICA ANNUNCIO</p>
+						</div>
 					</div>
 				</div>
 
