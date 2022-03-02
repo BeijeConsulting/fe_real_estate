@@ -70,10 +70,11 @@ const PostedAdvs = React.lazy(() =>
 	import("./frontend/screens/User/PostedAdvs")
 );
 const SaveAdvs = React.lazy(() => import("./frontend/screens/User/SaveAdvs"));
-const ManageBusiness = React.lazy(() => import("./frontend/screens/User/ManageBusiness"));
 const Dashboard = React.lazy(() => import("./frontend/screens/User/Dashboard"));
 const NewAdv = React.lazy(() => import("./frontend/screens/User/NewAdv"));
-const NewBusiness = React.lazy(() => import("./frontend/screens/User/NewBusiness"));
+const Business = React.lazy(() =>
+	import("./frontend/screens/User/business/Business")
+);
 const DetailBuilding = React.lazy(() =>
 	import("./frontend/screens/DetailBuilding/DetailBuilding")
 );
@@ -235,7 +236,7 @@ const Routing = () => (
 				>
 					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
 					<Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
-					<Route path={ROUTES.FE.BASE.USER.NEW_BUSINESS} element={<NewBusiness />} />
+					<Route path={ROUTES.FE.BASE.USER.BUSINESS} element={<Business />} />
 					<Route
 						path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
 						element={<EditProfile />}
@@ -245,7 +246,6 @@ const Routing = () => (
 						element={<PostedAdvs />}
 					/>
 					<Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
-					<Route path={ROUTES.FE.BASE.USER.MANAGE_BUSINESS} element={<ManageBusiness />} />
 				</Route>
 			</Route>
 

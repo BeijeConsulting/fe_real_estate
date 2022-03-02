@@ -9,7 +9,7 @@ import {
 	faList,
 	faColumns,
 	faUser,
-	faBriefcase
+	faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 
 //connect
@@ -20,62 +20,65 @@ import { connect } from "react-redux";
 import { ROUTES } from "../../../utils/properties";
 import UserAvatar from "../../assets/images/avatar.png";
 
-
 const UserNavbar = (props) => {
-
 	let routes = [
 		{
-			label: 'Dashboard',
+			label: "Dashboard",
 			icon: faColumns,
-			route: ROUTES.FE.BASE.USER.DASHBOARD
+			route: ROUTES.FE.BASE.USER.DASHBOARD,
 		},
 		{
-			label: 'Modifica Profilo',
+			label: "Modifica Profilo",
 			icon: faUser,
-			route: ROUTES.FE.BASE.USER.EDIT_PROFILE
+			route: ROUTES.FE.BASE.USER.EDIT_PROFILE,
 		},
 		{
-			label: 'Pubblica Annuncio',
+			label: "Pubblica Annuncio",
 			icon: faPenToSquare,
-			route: "new-adv"
+			route: "new-adv",
 		},
 		{
-			label: 'Annunci Pubblicati',
+			label: "Annunci Pubblicati",
 			icon: faList,
-			route: ROUTES.FE.BASE.USER.POSTED_ADS
+			route: ROUTES.FE.BASE.USER.POSTED_ADS,
 		},
 		{
-			label: 'Annunci Salvati',
+			label: "Annunci Salvati",
 			icon: faBookmark,
-			route: ROUTES.FE.BASE.USER.SAVED_ADS
+			route: ROUTES.FE.BASE.USER.SAVED_ADS,
 		},
 		{
-			label: 'Valuta la tua Casa',
+			label: "Valuta la tua Casa",
 			icon: faHouseChimney,
-			route: `../${ROUTES.FE.BASE.ASSESS_BUILDING}`
+			route: `../${ROUTES.FE.BASE.ASSESS_BUILDING}`,
 		},
 		{
-			label: 'Crea un Business',
+			label: "Business",
 			icon: faBriefcase,
-			route: ROUTES.FE.BASE.USER.NEW_BUSINESS
-		}
-	]
-
+			route: ROUTES.FE.BASE.USER.BUSINESS,
+		},
+	];
 
 	const handleRouteRender = (route, key) => {
 		return (
-			<Link key={'dash-nav-' + key} className={"m-2 link-menu"} to={route.route}>
+			<Link
+				key={"dash-nav-" + key}
+				className={"m-2 link-menu"}
+				to={route.route}
+			>
 				<FontAwesomeIcon className={"mr-2"} icon={route.icon} />
 				{route.label}
 			</Link>
-		)
-	}
+		);
+	};
 
 	return (
 		<div className="hidden md:flex flex-col  min-w-max bg-secondary">
 			<nav className="md:flex flex-col p-10 text-lg font-primary color-primary">
-
-				<UserFullname fullname={props.user?.name + " " + props.user?.surname} email={props.user?.email} />
+				<UserFullname
+					fullname={props.user?.name + " " + props.user?.surname}
+					email={props.user?.email}
+				/>
 
 				{routes.map(handleRouteRender)}
 			</nav>
@@ -89,14 +92,14 @@ const UserFullname = ({ fullname, email }) => {
 			<img className="avatar rounded-full h-20 w-20" src={UserAvatar} alt="" />
 			<div>
 				<h1 className="text-xl text-white"> {fullname} </h1>
-				<p className='text-md'>{email}</p>
+				<p className="text-md">{email}</p>
 			</div>
 		</div>
-	)
-}
+	);
+};
 
-const mapStateToProps = state => ({
-	user: state.userMeDuck.userMe
-})
+const mapStateToProps = (state) => ({
+	user: state.userMeDuck.userMe,
+});
 
 export default connect(mapStateToProps)(UserNavbar);

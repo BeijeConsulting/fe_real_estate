@@ -1,6 +1,6 @@
 import storage from "../../common/utils/storage";
 
-const SET_POSTED_ADS ='generic/user/SET_POSTED_ADS'
+const SET_POSTED_ADS = "generic/user/SET_POSTED_ADS";
 const SET_SAVED_ADS = "generic/user/SET_SAVED_ADS";
 const SET_USER_ME = "generic/user/SET_USER_ME";
 const SET_USER_DATA = "generic/user/SET_USER_DATA";
@@ -28,10 +28,10 @@ const setSavedAds = (saved) => ({
 	payload: saved,
 });
 
-const setPostedAds = ( postedAds ) => ({
+const setPostedAds = (postedAds) => ({
 	type: SET_POSTED_ADS,
-	payload: postedAds
-})
+	payload: postedAds,
+});
 
 const logout = () => ({
 	type: LOGOUT,
@@ -65,12 +65,16 @@ const userMeDuck = (state = INIT_STATE, action) => {
 			return { ...INIT_STATE };
 
 		case SET_USER_ME:
-			return { ...state, userMe: action.payload };
+			return {
+				...state,
+				user: { ...state.user, ...action.payload },
+				userMe: action.payload,
+			};
 
 		case SET_SAVED_ADS:
 			return { ...state, savedAds: action.payload };
 		case SET_POSTED_ADS:
-			return { ...state, postedAds: action.payload }
+			return { ...state, postedAds: action.payload };
 		default:
 			return state;
 	}
