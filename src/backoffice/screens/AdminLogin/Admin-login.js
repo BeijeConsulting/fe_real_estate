@@ -15,7 +15,8 @@ import Input from "../../../frontend/components/UI/Input/Input";
 import Button from "../../../frontend/components/UI/Button/Button";
 /* API */
 import authAdminApi from "../../../services/backoffice/authAdminApi";
-
+/* assets */
+import logo from "../../../common/assets/logo/logo.png"
 class AdminLogin extends PureComponent {
   constructor(props) {
     super(props);
@@ -34,7 +35,7 @@ class AdminLogin extends PureComponent {
     }
     this.DoYouRememberMe();
   }
-  componentDidUpdate() {}
+  componentDidUpdate() { }
 
   /* User funcs */
   setUsername = (e) => {
@@ -103,7 +104,7 @@ class AdminLogin extends PureComponent {
       <main className="container-auth-admin font-primary">
         <div className="box-auth-admin">
           <section className="box-Logo">
-            <LogoComp LogoCompHeight="80px" LogoCompWidth="80px" />
+            <LogoComp LogoCompPath={logo} LogoCompHeight="80px" LogoCompWidth="80px" />
           </section>
           <section className="box-inputs">
             <div>
