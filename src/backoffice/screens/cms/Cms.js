@@ -83,55 +83,63 @@ const Cms = (props) => {
             mode="inline"
             defaultSelectedKeys={[location.pathname]}
           >
-            <Menu.Item
-              key={`/admin/profile`}
-              icon={<UserOutlined />}
-              onClick={() => setTitleNavigate("profile")}
-            >
-              {t("BoCms.Cms.Profile")}
-            </Menu.Item>
-            <Menu.Item
-              key={`/admin/dashBoard/users`}
-              icon={<FontAwesomeIcon icon={faChartLine} />}
-              onClick={() => setTitleNavigate("dashBoard/users")}
-            >
-              {t("BoCms.Cms.Dashboard")}
-            </Menu.Item>
-            <Menu.Item
-              key={`/admin/advertisements`}
-              icon={<FontAwesomeIcon icon={faRectangleList} />}
-              onClick={() => setTitleNavigate("advertisements")}
-            >
-              {t("BoCms.Cms.Ads")}
-            </Menu.Item>
-            <Menu.Item
-              key={`/admin/users`}
-              icon={<FontAwesomeIcon icon={faUsers} />}
-              onClick={() => setTitleNavigate("users")}
-            >
-              {t("BoCms.Cms.Users")}
-            </Menu.Item>
-            <Menu.Item
-              key={`/admin/businesses`}
-              icon={<HomeOutlined />}
-              onClick={() => setTitleNavigate("businesses")}
-            >
-              {t("BoCms.Cms.Business")}
-            </Menu.Item>
-            <Menu.Item
-              key={`/admin/collaborators`}
-              icon={<FontAwesomeIcon icon={faBriefcase} />}
-              onClick={() => setTitleNavigate("collaborators")}
-            >
-              {t("BoCms.Cms.Checkers")}
-            </Menu.Item>
-            <Menu.Item
-              key={`/admin/verification-adv`}
-              icon={<FontAwesomeIcon icon={faStamp} />}
-              onClick={() => setTitleNavigate("verification-adv")}
-            >
-              {t("BoCms.Cms.Verifications")}
-            </Menu.Item>
+            {props.admin.permission.includes("CHECKER") && (
+              <Menu.Item
+                key={`/admin/profile`}
+                icon={<UserOutlined />}
+                onClick={() => setTitleNavigate("profile")}
+              >
+                {t("BoCms.Cms.Profile")}
+              </Menu.Item>
+            )}
+            {props.admin.permission.includes("ADMIN") && (
+              <>
+                <Menu.Item
+                  key={`/admin/dashBoard/users`}
+                  icon={<FontAwesomeIcon icon={faChartLine} />}
+                  onClick={() => setTitleNavigate("dashBoard/users")}
+                >
+                  {t("BoCms.Cms.Dashboard")}
+                </Menu.Item>
+                <Menu.Item
+                  key={`/admin/advertisements`}
+                  icon={<FontAwesomeIcon icon={faRectangleList} />}
+                  onClick={() => setTitleNavigate("advertisements")}
+                >
+                  {t("BoCms.Cms.Ads")}
+                </Menu.Item>
+                <Menu.Item
+                  key={`/admin/users`}
+                  icon={<FontAwesomeIcon icon={faUsers} />}
+                  onClick={() => setTitleNavigate("users")}
+                >
+                  {t("BoCms.Cms.Users")}
+                </Menu.Item>
+                <Menu.Item
+                  key={`/admin/businesses`}
+                  icon={<HomeOutlined />}
+                  onClick={() => setTitleNavigate("businesses")}
+                >
+                  {t("BoCms.Cms.Business")}
+                </Menu.Item>
+                <Menu.Item
+                  key={`/admin/collaborators`}
+                  icon={<FontAwesomeIcon icon={faBriefcase} />}
+                  onClick={() => setTitleNavigate("collaborators")}
+                >
+                  {t("BoCms.Cms.Checkers")}
+                </Menu.Item>
+              </>
+            )}
+            {props.admin.permission.includes("CHECKER") && (
+              <Menu.Item
+                key={`/admin/verification-adv`}
+                icon={<FontAwesomeIcon icon={faStamp} />}
+                onClick={() => setTitleNavigate("verification-adv")}
+              >
+                {t("BoCms.Cms.Verifications")}
+              </Menu.Item>
+            )}
           </Menu>
 
           <div className="logout">
