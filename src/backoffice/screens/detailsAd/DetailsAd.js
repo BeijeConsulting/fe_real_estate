@@ -17,13 +17,15 @@ const { Panel } = Collapse;
 
 const DetailsAd = (props) => {
   // hooks
-  const [adv, setAdv] = useState([]);
-  const [seller, setSeller] = useState("");
-  const [checker, setChecker] = useState("");
+  const [state, setState] = useState({
+    adv: [],
+    seller: "",
+    checker: "",
+  });
   // global var
   const title =
-    ` ${adv[0]?.advType} ${adv[0]?.buildingType} ${adv[0]?.city}`.toUpperCase();
-  const description = adv[0]?.longDescription;
+    ` ${state.adv[0]?.advType} ${state.adv[0]?.buildingType} ${state.adv[0]?.city}`.toUpperCase();
+  const description = state.adv[0]?.longDescription;
 
   //router
   const param = useParams();
@@ -65,10 +67,12 @@ const DetailsAd = (props) => {
       username: formatData[0].checker?.username,
       idChecker: formatData[0].checker?.id,
     };
-    setAdv(formatData);
-    setSeller(seller);
-    setChecker(checker);
-    console.log("STATO", adv[0].status);
+
+    setState({
+      adv: formatData,
+      seller: seller,
+      checker: checker,
+    });
   };
 
   // carousel func
@@ -92,26 +96,26 @@ const DetailsAd = (props) => {
   }, []);
   return (
     <>
-      {adv.length !== 0 && (
+      {state.adv.length !== 0 && (
         <div className="container-all">
           <div className="container-advdetails">
             {/* title */}
             <Title className="title" level={2}>
               {title}
             </Title>
-            {adv[0].status === "Approved" && (
+            {state.adv[0].status === "Approved" && (
               <Title className="state-adv" level={5} type="success">
-                {adv[0].status}
+                {state.adv[0].status}
               </Title>
             )}
-            {adv[0].status === "Refused" && (
+            {state.adv[0].status === "Refused" && (
               <Title className="state-adv" level={5} type="warning">
-                {adv[0].status}
+                {state.adv[0].status}
               </Title>
             )}
-            {adv[0].status === "Deleted" && (
+            {state.adv[0].status === "Deleted" && (
               <Title className="state-adv" level={5} type="danger">
-                {adv[0].status}
+                {state.adv[0].status}
               </Title>
             )}
             <div className="container-head">
@@ -119,17 +123,17 @@ const DetailsAd = (props) => {
               <span>
                 {" "}
                 Creato da:&nbsp;
-                <Link to={`/admin/user/${seller.idSeller}/details`}>
-                  {seller.username}
+                <Link to={`/admin/user/${state.seller.idSeller}/details`}>
+                  {state.seller.username}
                 </Link>
               </span>
               {/* link revisor?? */}
-              {checker.username && (
+              {state.checker.username && (
                 <span>
                   {" "}
                   Revisionato da:&nbsp;
-                  <Link to={`/admin/user/${checker.idChecker}/details`}>
-                    {checker.username}
+                  <Link to={`/admin/user/${state.checker.idChecker}/details`}>
+                    {state.checker.username}
                   </Link>
                 </span>
               )}
@@ -181,7 +185,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -210,7 +214,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -239,7 +243,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -276,7 +280,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -313,7 +317,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -350,7 +354,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -395,7 +399,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -424,7 +428,7 @@ const DetailsAd = (props) => {
                         className="info-list"
                         size="small"
                         itemLayout="vertical"
-                        dataSource={adv}
+                        dataSource={state.adv}
                         renderItem={(item, key) => (
                           <List.Item key={key} className="info-profile-items">
                             <List.Item.Meta
@@ -450,7 +454,7 @@ const DetailsAd = (props) => {
 
             {/* bottons */}
             <div className="container-button">
-              {adv[0].status && adv[0].status !== "Approved" && (
+              {state.adv[0].status && state.adv[0].status !== "Approved" && (
                 <Button type="primary" onClick={approveAdv}>
                   Approva
                 </Button>
