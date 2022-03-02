@@ -11,14 +11,14 @@
 	--secondary: #202740;
 	--gray: #e5e5e5;
 	--white: #ffffff;
-	--red:#ee0909;
+	--red: #ee0909;
 }
 
 .font-primary {
 	font-family: "Poppins", sans-serif;
 }
 
-.background-error{
+.background-error {
 	background-color: var(--red);
 }
 
@@ -55,8 +55,7 @@
 	);
 }
 
-.bg-gradient-secondary{
-
+.bg-gradient-secondary {
 	background: linear-gradient(
 		3deg,
 		rgba(32, 39, 64, 1) 17%,
@@ -72,35 +71,33 @@
 	background-color: #e5e5e5;
 }
 
-.underlined{
-    position: relative;
+.underlined {
+	position: relative;
 }
 
-.underlined::after{
-    position: absolute;
-    bottom: 0;
-    height: 10px;
-    width: 50px;
-    background-color: #ffe714;
+.underlined::after {
+	position: absolute;
+	bottom: 0;
+	height: 10px;
+	width: 50px;
+	background-color: #ffe714;
 }
 
 .scale-in-hover {
-    transform: scale(1);
-    transition: 0.2s;
+	transform: scale(1);
+	transition: 0.2s;
 }
 
-.scale-in-hover:hover{
-    transform: scale(1.03)
+.scale-in-hover:hover {
+	transform: scale(1.03);
 }
 
 /* END COMMON CSS */
 
-
 p {
-    margin-bottom: 0 !important
+	margin-bottom: 0 !important;
 }
 
-
-h1{
-    margin-bottom: 0 !important;
+h1 {
+	margin-bottom: 0 !important;
 }
