@@ -32,7 +32,7 @@ export const getAdv = async (token, id) => {
     Authorization: `Bearer ${token}`,
   };
   const result = await javaAcademyServiceInstance
-    .get(`/admin/advertisement/${id}`, { headers })
+    .get(`/advertisement/${id}`, { headers })
     .then((response) => {
       newAdv = [response.data];
     });
@@ -63,7 +63,9 @@ export const getRefusedAdvertaisement = async (token) => {
     .then((response) => {
       return response.data;
     })
-    .catch(() => { return "errore" });
+    .catch(() => {
+      return "errore";
+    });
   return result;
 };
 
@@ -137,16 +139,16 @@ export const disableAdv = async (token, id) => {
   return disableAdv;
 };
 
-export const getAdvertisementsById =  async (token, id) => {
-  let advertisementsById = null
+export const getAdvertisementsById = async (token, id) => {
+  let advertisementsById = null;
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  await javaAcademyServiceInstance.get("/user/ads/id/" + id, {headers}).then( response => {
-    advertisementsById = response.data
-  }
-  ).catch(
-
-  )
-  return advertisementsById
-}
+  await javaAcademyServiceInstance
+    .get("/user/ads/id/" + id, { headers })
+    .then((response) => {
+      advertisementsById = response.data;
+    })
+    .catch();
+  return advertisementsById;
+};

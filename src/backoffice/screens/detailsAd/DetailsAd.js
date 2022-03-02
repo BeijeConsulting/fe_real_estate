@@ -17,7 +17,7 @@ const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
 const DetailsAd = (props) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   // hooks
   const [adv, setAdv] = useState([]);
   const [seller, setSeller] = useState("");
@@ -159,7 +159,9 @@ const DetailsAd = (props) => {
                 {t("BoAds.Detail.Description")}
               </Title>
               {description === "-" && (
-                <p style={{ textAlign: "center" }}>{t("BoAds.Detail.NoDescription")}</p>
+                <p style={{ textAlign: "center" }}>
+                  {t("BoAds.Detail.NoDescription")}
+                </p>
               )}
               {description !== "-" && (
                 <p style={{ textAlign: "center" }}>{description}</p>
@@ -450,6 +452,7 @@ const DetailsAd = (props) => {
 
             {/* bottons */}
             <div className="container-button">
+              {}
               <Button type="primary" onClick={approveAdv}>
                 {t("BoAds.Detail.buttonApprove")}
               </Button>
