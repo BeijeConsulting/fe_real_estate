@@ -2,13 +2,16 @@ import "./businessUsers.css"
 import React, { useState, useEffect } from 'react';
 /* react router */
 import { Link } from "react-router-dom";
-/* redux */
-import { connect } from "react-redux";
+
 // Import from AntDesign
-import { Table, Input, Tag, Space, Button } from "antd";
+import { Table } from "antd";
 /* API */
 import { getUsersBusiness } from '../../../../services/backoffice/businessApi';
-const BusinessUsers = props => {
+import { useTranslation } from "react-i18next";
+
+const BusinessUsers = (props) => {
+
+    const { t } = useTranslation()
 
     let [state, setState] = useState({
         /* table */
@@ -16,18 +19,19 @@ const BusinessUsers = props => {
         isLoading: true,
         totalElements: 0,
     });
+
     /* definizione colonne */
     let columnsTable = [
         {
-            title: 'Username',
+            title: t("BoBusiness.Users.Username"),
             dataIndex: '',
         },
         {
-            title: 'Email',
+            title: t("BoBusiness.Users.Email"),
             dataIndex: '',
         },
         {
-            title: 'Tipo',
+            title: t("BoBusiness.Users.Type"),
             dataIndex: '',
         },
         {
@@ -47,7 +51,7 @@ const BusinessUsers = props => {
 
         //API is Missing
         let resultAPI = await getUsersBusiness()
-        
+
         console.log(resultAPI)
         /* ant design wanted a key inside an object to work */
         /*         resultAPI = resultAPI.map(item => {

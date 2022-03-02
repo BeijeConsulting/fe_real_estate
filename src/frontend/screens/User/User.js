@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet } from "react-router-dom";
 
 // components
@@ -7,7 +7,22 @@ import UserNavbar from "../../components/UserNavbar/UserNavbar";
 import MobileUserNavbar from "../../components/UserNavbar/MobileUserNavbar/MobileUserNavbar";
 import RefreshTokenOrRedirect from "../../components/RefreshTokenOrRedirect/RefreshTokenOrRedirect";
 
-const User = () => {
+import { connect } from 'react-redux'
+import { getUserMe, getUserPostedAdvs, getUserSavedAds } from "../../../services/frontend/usersApi";
+
+
+const User = (props ) => {
+
+	useEffect(() => {
+
+		
+        getUserMe( props.dispatch )
+		getUserSavedAds( props.dispatch )
+		getUserPostedAdvs( props.dispatch )
+
+    }, [])
+
+
 	return (
 		<div className="h-screen flex flex-col">
 			<RefreshTokenOrRedirect />
@@ -23,4 +38,4 @@ const User = () => {
 	);
 };
 
-export default User;
+export default connect() (User);

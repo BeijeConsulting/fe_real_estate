@@ -13,8 +13,10 @@ import avatar from '../../assets/images/avatar.png'
 
 //utils
 import getBuildingType from '../../../common/utils/getBuildingType'
-import { userSaveAdv } from '../../../services/frontend/usersApi';
+import { getUserSavedAds, userSaveAdv } from '../../../services/frontend/usersApi';
 import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage';
+// redux
+import { connect } from 'react-redux'
 
 const AdvCard = (props) => {
 
@@ -31,7 +33,10 @@ const AdvCard = (props) => {
             setToast({ type: 'error', msg: 'Esegui il Login per Salvare' })
         } else {
             userSaveAdv(props.id, token)
-                .then(res => setToast({ type: 'success', msg: 'Annuncio salvato!' }))
+                .then(res => {
+                    setToast({ type: 'success', msg: 'Annuncio salvato!' })
+                    getUserSavedAds(props.dispatch)
+                })
                 .catch(e => setToast({ type: 'error', msg: 'Non sono riuscito a salvare' }))
 
         }
@@ -94,7 +99,7 @@ const AdvCard = (props) => {
                     <p className='block font-primary font-bold text-3xl '>{title}</p>
                     <p className='font-primary'>
                         {!!props.description
-                            ? props.description?.slice(0, 90) + ".."
+                            ? props.description.slice(0, 90) + ".."
                             : "Descrizione non disponibile"
                         }
                     </p>
@@ -127,4 +132,4 @@ AdvCard.defaultProps = {
     savedAds: []
 }
 
-export default AdvCard;
+export default connect() (AdvCard);

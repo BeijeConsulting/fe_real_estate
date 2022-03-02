@@ -13,9 +13,8 @@ import { useTranslation } from "react-i18next"
 
 // icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import { updateUser } from '../../../services/frontend/usersApi';
-
+import { faAt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { getUserMe, updateUser } from '../../../services/frontend/usersApi';
 
 
 const EditProfile = (props) => {
@@ -23,28 +22,32 @@ const EditProfile = (props) => {
     const { t } = useTranslation()
 
     let labelClass = "font-bold text-2xl m-0 p-0"
-    
-    const [ state, setState] = useState({
+
+    const [state, setState] = useState({
         name: props.userMe.name,
         surname: props.userMe.surname,
-        email: props.userMe.email
+        email: props.userMe.email,
+        username: props.userMe.username
     })
 
-    const [ toast,setToast ] = useState({ msg: '', type:'default'})
+    const [toast, setToast] = useState({ msg: '', type: 'default' })
 
-    const setName = (e) => setState({ ...state, name: e.target.value})
-    const setSurname = (e) => setState({ ...state, surname: e.target.value})
-    const setEmail = (e) => setState({ ...state, email: e.target.value})
+    const setName = (e) => setState({ ...state, name: e.target.value })
+    const setSurname = (e) => setState({ ...state, surname: e.target.value })
+    const setEmail = (e) => setState({ ...state, email: e.target.value })
 
     const handleSubmit = () => {
-        updateUser( state )
-        .then(res => setToast({ msg:'Informazioni Aggiornate correttamente', type:'success'}))
-        .catch(e => setToast({ type:'error', msg:'Errore: Non ho aggiornato le info'}))
+        updateUser(state)
+            .then(res => {
+                setToast({ msg: 'Informazioni Aggiornate correttamente', type: 'success' })
+                getUserMe( props.dispatch)
+            })
+            .catch(e => setToast({ type: 'error', msg: 'Errore: Non ho aggiornato le info' }))
     }
 
     return (
         <div className='p-6 bg-gray-200 flex-1'>
-            <Toast 
+            <Toast
                 type={toast.type}
                 msg={toast.msg}
             />
@@ -78,6 +81,13 @@ const EditProfile = (props) => {
                     <Input
                         value={state.email}
                         image={<FontAwesomeIcon icon={faEnvelope} />}
+                        onChange={setEmail}
+                    />
+
+                    <p className={labelClass + " mt-4"}>Username</p>
+                    <Input
+                        value={state.username}
+                        image={<FontAwesomeIcon icon={faAt} />}
                         onChange={setEmail}
                     />
                 </div>

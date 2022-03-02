@@ -1,24 +1,33 @@
-import { Button, Form, Input, DatePicker, Upload } from "antd";
-import "antd/dist/antd.css";
-import "./updateBusinessDetails.css"
-
-import { connect } from "react-redux";
-
+//React imports 
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { connect } from "react-redux";
+//css imports
+import "./updateBusinessDetails.css"
+//antd imports
+import { Button, Form, Input } from "antd";
+import "antd/dist/antd.css";
+//api imports
 import { getBusinessById, updateBusinessInfo } from "../../../../services/backoffice/businessApi";
+//i18n imports
 import { useTranslation } from "react-i18next";
 
 const UpdateBusinessDetails = (props) => {
-    let businessData = {}
-    let updatedData = {}
+
     let navigate = useNavigate()
     let params = useParams()
     let { t } = useTranslation()
     const [form] = Form.useForm();
 
-    const [state, setState] = useState({ businessData: null, updatedData: {} })
+    let businessData = {}
+    let updatedData = {}
+
+    const [state, setState] = useState(
+        {
+            businessData: null, 
+            updatedData: {}
+        }
+    )
 
     const getBusinessData = async () => {
         businessData = await getBusinessById(params.id, props.admin.token)
@@ -73,9 +82,6 @@ const UpdateBusinessDetails = (props) => {
         form.resetFields()
 
     }, [])
-
-
-
 
     return (
 

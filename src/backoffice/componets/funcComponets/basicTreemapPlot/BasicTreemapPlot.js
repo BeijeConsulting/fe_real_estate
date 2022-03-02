@@ -10,7 +10,7 @@ const BasicTreemapPlot = () => {
         name: 'root',
         children: [
             {
-                name: '分类 1',
+                name: 'fillippo',
                 value: 560,
             },
             {
