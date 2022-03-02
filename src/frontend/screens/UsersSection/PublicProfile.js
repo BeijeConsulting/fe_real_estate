@@ -80,6 +80,7 @@ const PublicProfile = () => {
 				<AdvCard
 					key={"advard-" + key + adv.id}
 					id={adv.id}
+					address={adv.address}
 					city={adv.city}
 					squareMeters={adv.areaMsq}
 					description={adv?.longDescription}
