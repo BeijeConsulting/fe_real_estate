@@ -30,7 +30,8 @@ import Textarea from "../../components/UI/Textarea/Textarea";
 
 const NewAdv = (props) => {
 	const [current, setCurrent] = useState(0);
-
+	const [success, setSuccess] = useState(false)
+	const [error, setError] = useState(false)
 	const [state, setState] = useState({
 		address: "",
 		advType: ADV_TYPES[0].value,
@@ -83,10 +84,13 @@ const NewAdv = (props) => {
 
 		const adv = await addNewAdv(body, token)
 			.then((res) => {
-				//add tostify and redirect
 				console.log(res);
+				setSuccess(true)
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				console.log(err)
+				setError(true)
+			});
 	};
 
 	const switchCheck = (key) => () => {
@@ -666,6 +670,8 @@ const NewAdv = (props) => {
 								</div>
 							</div>
 						)}
+						{success && <p className="mt-5">{t("Dashboard.ThankYouMessage")}</p>}
+						{error && <p className="mt-5">{t("Dashboard.ErrorMessage")}</p>}
 					</form>
 				</div>
 			</div>
