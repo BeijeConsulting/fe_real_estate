@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import logo from "../../../common/assets/logo/logo-black.png";
 import { useTranslation } from "react-i18next";
 
-import authApi from '../../../services/javaAcademyService'
+import authApi from '../../../services/frontend/authApi'
 
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";

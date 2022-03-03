@@ -3,27 +3,14 @@
 
 import { useEffect, useState } from 'react';
 import { Column } from '@ant-design/plots';
-
-
-const ColumnPlotWithSlider = () => {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    asyncFetch();
-  }, []);
-
-  const asyncFetch = () => {
-    fetch('https://gw.alipayobjects.com/os/bmw-prod/be63e0a2-d2be-4c45-97fd-c00f752a66d4.json')
-      .then((response) => response.json())
-      .then((json) => setData(json))
-      .catch((error) => {
-        console.log('fetch data failed', error);
-      });
-  };
+import { Spin } from 'antd';
+import PropTypes from 'prop-types'
+const ColumnPlotWithSlider = (props) => {
+  const data = props.data;
   const config = {
     data,
-    xField: '城市',
-    yField: '销售额',
+    xField: 'businessName',
+    yField: 'userAdv',
     xAxis: {
       label: {
         autoRotate: false,
@@ -35,7 +22,27 @@ const ColumnPlotWithSlider = () => {
     },
   };
 
-  return <Column {...config} />;
+  return (
+    <>
+      {
+        props.data !== undefined &&
+        <Column {...config} />
+      }
+      {
+        props.data === undefined &&
+        <div className='container flex  justify-center items-center h-72'>
+          <Spin />
+        </div>
+      }
+    </>
+  )
 };
+
+ColumnPlotWithSlider.dafultProps = {
+  data: undefined
+}
+ColumnPlotWithSlider.propTypes = {
+  data: PropTypes.array
+}
 
 export default ColumnPlotWithSlider

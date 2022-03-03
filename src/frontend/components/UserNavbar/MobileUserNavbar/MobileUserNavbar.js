@@ -5,19 +5,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPenToSquare,
 	faBookmark,
-	faHouseChimney,
+
 	faList,
 	faUser,
 	faColumns,
 	faChevronCircleDown,
+	faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./mobileUserNavbar.css";
 import { ROUTES } from "../../../../utils/properties";
 
+//Translation
+import { useTranslation } from 'react-i18next';
+
 const MobileUserNavbar = () => {
 	const [toggle, setToggle] = useState(false);
-
+	const { t } = useTranslation()
 	const openToggle = () => {
 		setToggle(!toggle);
 	};
@@ -44,11 +48,11 @@ const MobileUserNavbar = () => {
 						onClick={openToggle}
 					>
 						<FontAwesomeIcon className={"mr-2"} icon={faUser} />
-						Modifica profilo
+						{t("MobileUserNavbar.EditProfile")}
 					</Link>
 					<Link className={"m-2 link-menu"} to={"new-adv"} onClick={openToggle}>
 						<FontAwesomeIcon className={"mr-2"} icon={faPenToSquare} />
-						Pubblica annuncio
+						{t("MobileUserNavbar.PostAd")}
 					</Link>
 					<Link
 						className={"m-2 link-menu"}
@@ -56,7 +60,7 @@ const MobileUserNavbar = () => {
 						onClick={openToggle}
 					>
 						<FontAwesomeIcon className={"mr-2"} icon={faList} />
-						Annunci pubblicati
+						{t("MobileUserNavbar.PostedAds")}
 					</Link>
 					<Link
 						className={"m-2 link-menu"}
@@ -64,15 +68,15 @@ const MobileUserNavbar = () => {
 						onClick={openToggle}
 					>
 						<FontAwesomeIcon className={"mr-2"} icon={faBookmark} />
-						Annunci salvati
+						{t("MobileUserNavbar.SavedAds")}
 					</Link>
 					<Link
 						className={"m-2 link-menu"}
-						to={`../${ROUTES.FE.BASE.ASSESS_BUILDING}`}
+						to={ROUTES.FE.BASE.USER.BUSINESS}
 						onClick={openToggle}
 					>
-						<FontAwesomeIcon className={"mr-2"} icon={faHouseChimney} />
-						Valuta la tua casa
+						<FontAwesomeIcon className={"mr-2"} icon={faBriefcase} />
+						Business
 					</Link>
 				</nav>
 			)}

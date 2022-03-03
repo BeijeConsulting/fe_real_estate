@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // files
 import banner from "../../assets/images/immagine-letto-2.png";

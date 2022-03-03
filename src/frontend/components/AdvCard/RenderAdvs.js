@@ -51,7 +51,7 @@ const RenderAdvs = (props) => {
             {/* no advs found */}
             {props.data.length <= 0 &&
                 <div className='max-w-3xl mx-auto  mt-10 '>
-                    <img className='h-60 w-60 mx-auto' src={noAdv} />
+                    <img alt='not-found' className='h-60 w-60 mx-auto' src={noAdv} />
                     <p className='text-center text-3xl font-bold'>{t("Dashboard.AdsNotFound")}</p>
                 </div>
             }

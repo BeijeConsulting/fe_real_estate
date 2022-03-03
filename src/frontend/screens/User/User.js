@@ -11,16 +11,16 @@ import { connect } from 'react-redux'
 import { getUserMe, getUserPostedAdvs, getUserSavedAds } from "../../../services/frontend/usersApi";
 
 
-const User = (props ) => {
+const User = (props) => {
 
 	useEffect(() => {
 
-		
-        getUserMe( props.dispatch )
-		getUserSavedAds( props.dispatch )
-		getUserPostedAdvs( props.dispatch )
 
-    }, [])
+		getUserMe(props.dispatch)
+		getUserSavedAds(props.dispatch)
+		getUserPostedAdvs(props.dispatch)
+
+	}, [])
 
 
 	return (
@@ -38,4 +38,4 @@ const User = (props ) => {
 	);
 };
 
-export default connect() (User);
+export default connect()(User);
