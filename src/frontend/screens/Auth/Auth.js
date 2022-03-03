@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Card from "../../components/UI/Card/Card";
 import Languages from "../../components/Languages/Languages";
 import logo from "../../../common/assets/logo/logo.png";
-import storage from "../../../common/utils/storage";
+
 import { Navigate, Outlet } from "react-router-dom";
 import { connect } from "react-redux";
 import authApi from "../../../services/frontend/authApi";
