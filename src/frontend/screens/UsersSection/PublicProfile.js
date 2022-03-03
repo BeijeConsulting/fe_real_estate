@@ -9,14 +9,17 @@ import NavBar from "../../components/Navbar/Navbar";
 import AdvCard from "../../components/AdvCard/AdvCard";
 
 // api
-import { getPublicAdsByUsername, getUserByUsername } from "../../../services/frontend/usersApi";
+import {
+	getPublicAdsByUsername,
+	getUserByUsername,
+} from "../../../services/frontend/usersApi";
 import { findAds } from "../../../services/frontend/advertisementApi";
 
 // routing
 import { useNavigate, useParams } from "react-router-dom";
 
 //TRANSLATION
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 
 const STATUS_TYPE = {
 	LOADING: "loading",
@@ -38,9 +41,9 @@ const PublicProfile = () => {
 		const loadUser = async () => {
 			// Note: if request is successful, resUser can be also `null`. See `getUserByUsername`
 			const fecthedUser = await getUserByUsername(params.username).catch(
-				() => null
+				(err) => console.error(err)
 			);
-			console.log(fecthedUser);
+
 			let newState = {};
 
 			if (!fecthedUser) {
@@ -60,9 +63,7 @@ const PublicProfile = () => {
 
 	useEffect(() => {
 		if (!!state.user?.id) {
-			getPublicAdsByUsername(state.user.username)
-			.then((res) =>
-		
+			getPublicAdsByUsername(state.user.username).then((res) =>
 				setState((previousState) => ({
 					...previousState,
 					ads: res.data,
@@ -145,7 +146,9 @@ const PublicProfile = () => {
 							</p>
 						</div>
 						<div className="flex flex-col pt-3">
-							<h1 className="font-bold text-xl">{t("Dashboard.ProfilePostedAds")}</h1>
+							<h1 className="font-bold text-xl">
+								{t("Dashboard.ProfilePostedAds")}
+							</h1>
 							{!!state.ads?.length && state.ads.length > 0 ? (
 								state.ads.map(handleAdvRender)
 							) : (
