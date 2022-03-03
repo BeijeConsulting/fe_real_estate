@@ -1,0 +1,10 @@
+{
+	"errorLoading": "Non ho potuto caricare le informazioni dell'azienda",
+	"title": "Area riservata azienda",
+	"creationDate": "Creato il",
+	"refName": "Nome Referente",
+	"refSurname": "Cognome Referente",
+	"vatNumber": "Partita IVA",
+	"phone": "telefono",
+	"infoMessage": "I cambiamenti sono salvati solo dopo aver premuto il bottone."
+}

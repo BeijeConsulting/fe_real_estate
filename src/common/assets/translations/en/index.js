@@ -24,13 +24,15 @@ import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import Search from "./Search.json";
 import DetailBuilding from "./DetailBuilding.json";
-import Dashboard from "./Dashboard.json"
+import Dashboard from "./Dashboard.json";
 import WhatWeOffer from "./WhatWeOffer.json";
 import ContactSeller from "./ContactSeller.json";
+import ManageBusiness from "./ManageBusiness.json";
 
 const en = {
 	AboutUs,
 	Footer,
+	ManageBusiness,
 	Navbar,
 	Dashboard,
 	MobileUserNavbar,
@@ -57,7 +59,7 @@ const en = {
 	BoUsers,
 	BoVerification,
 	DetailBuilding,
-	ContactSeller
+	ContactSeller,
 };
 
 export default en;

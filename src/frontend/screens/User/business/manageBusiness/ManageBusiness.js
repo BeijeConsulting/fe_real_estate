@@ -11,8 +11,11 @@ import ListEmployee from "./ListEmployee";
 
 // api
 import { updateBusinessInfo } from "../../../../../services/frontend/managerApi";
+import { useTranslation } from "react-i18next";
 
 const ManageBusiness = (props) => {
+	const { t } = useTranslation();
+
 	const [state, setState] = useState({
 		refName: props.managed.refName,
 		refSurname: props.managed.refSurname,
@@ -38,36 +41,42 @@ const ManageBusiness = (props) => {
 		<div className="p-6 bg-gray-200 flex-1">
 			{!props.managed ? (
 				<h1 className="text-3xl font-bold text-red-500">
-					Could not load business info.
+					{t("ManageBusiness.errorLoading")}
 				</h1>
 			) : (
 				<>
 					<h1 className="text-3xl font-bold color-secondary">
-						Area riservata Business
+						{t("ManageBusiness.title")}
 					</h1>
 					<div className="flex flex-col">
 						<Card className="flex flex-col my-4 justify-center items-center">
 							<p className="text-xl font-bold my-2">
 								{props.managed?.businessName}
 							</p>
-							<p className="text-sm text-slate-500">Creato il 02/03/2022</p>
+							<p className="text-sm text-slate-500">
+								{!!props.managed?.createDatetime
+									? `${t("ManageBusiness.creationDate")} ${new Date(
+											props.managed.createDatetime
+									  ).toLocaleDateString()}`
+									: undefined}
+							</p>
 							<div className="flex flex-row p-4">
 								<div className="flex flex-col mr-4 w-56">
-									<p className={labelClass}>NOME REFERENTE</p>
+									<p className={labelClass}>{t("ManageBusiness.refName")}</p>
 									<Input value={state.refName} onChange={setName} />
 								</div>
 								<div className="flex flex-col w-56">
-									<p className={labelClass}>COGNOME REFERENTE</p>
+									<p className={labelClass}>{t("ManageBusiness.refSurname")}</p>
 									<Input value={state.refSurname} onChange={setSurname} />
 								</div>
 							</div>
 							<div className="flex flex-row p-4">
 								<div className="flex flex-col mr-4 w-56">
-									<p className={labelClass}>VAT NUMBER</p>
+									<p className={labelClass}>{t("ManageBusiness.vatNumber")}</p>
 									<Input value={state.vatNumber} onChange={setVatNumber} />
 								</div>
 								<div className="flex flex-col w-56">
-									<p className={labelClass}>PHONE</p>
+									<p className={labelClass}>{t("ManageBusiness.phone")}</p>
 									<Input value={state.phone} onChange={setPhone} />
 								</div>
 							</div>
@@ -81,7 +90,7 @@ const ManageBusiness = (props) => {
 								/>
 							</div>
 							<p className="text-center italic mt-4">
-								Edits are saved only after pressing the button
+								{t("ManageBusiness.infoMessage")}
 							</p>
 						</Card>
 						<AddEmployee />
