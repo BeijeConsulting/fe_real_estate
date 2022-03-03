@@ -45,7 +45,7 @@ const NewAdv = (props) => {
 		city: "",
 		condition: CONDITION.NEW,
 		cooling: COOLING.NO,
-		description: "",
+		longDescription: "",
 		deedState: DEED_STATES.FREE,
 		elevator: false,
 		energyRating: ENERGY_RATING.A,
@@ -630,8 +630,8 @@ const NewAdv = (props) => {
 										className={"border-2 border-slate-300"}
 										minHeight={"50px"}
 										maxHeight={"250px"}
-										onChange={handlerInput("description")}
-										value={state.description}
+										onChange={handlerInput("longDescription")}
+										value={state.longDescription}
 									/>
 								</div>
 

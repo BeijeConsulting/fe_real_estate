@@ -36,7 +36,7 @@ const Illustrations = (props) => {
 					img={icon1}
 					label={t("Illustrations.1")}
 					onClick={navigateTo(
-						`/${params.lang}/${ROUTES.FE.BASE.SELF}/${ROUTES.FE.BASE.WHAT_WE_OFFER}`
+						`/${params.lang}/${ROUTES.FE.BASE.WHAT_WE_OFFER}`
 					)}
 				/>
 
@@ -49,7 +49,7 @@ const Illustrations = (props) => {
 					img={icon3}
 					label={t("Illustrations.3")}
 					onClick={navigateTo(
-						`/${params.lang}/${ROUTES.FE.BASE.SELF}/${ROUTES.FE.BASE.ABOUT_US}`
+						`/${params.lang}/${ROUTES.FE.BASE.ABOUT_US}`
 					)}
 				/>
 			</div>

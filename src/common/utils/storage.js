@@ -1,7 +1,7 @@
 export const LOCAL_STORAGE_KEYS = {
 	REMEMBER_ME: "asdubasndasncmacsksa",
-	USER_TOKEN: "asdnsaionasadaclmlamsioascnsacas",
-	USER_REFRESH_TOKEN: "aslajkbcjsnlsadnsaionasadaclmlamsioascnsacas",
+	USER_TOKEN: "tdnsaionasadaclmlamsioascnsacat",
+	USER_REFRESH_TOKEN: "rtslajkbcjsnlsadnsaionasadaclmlamsioascnsacart",
 	ADMIN_TOKEN: "t0k3r40m1n",
 };
 

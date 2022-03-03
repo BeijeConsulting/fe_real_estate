@@ -6,7 +6,7 @@ import { map } from "lodash";
 /* redux */
 import { connect } from "react-redux";
 /* API */
-import { apiCustomLabelChart, apiBasicColumnPlotRegion, apiBasicAreaPlotChart } from "../../../../services/backoffice/chartsApi";
+import { apiCustomLabelChart, apiBasicColumnPlotRegion, apiBasicAreaPlotChart, apiAllUsers } from "../../../../services/backoffice/chartsApi";
 /* ant */
 import { Card } from "antd";
 import { Row, Col, Skeleton } from 'antd';
@@ -26,6 +26,7 @@ const UserStatistic = (props) => {
         customLabelChartState: undefined,
         basicColumnPlotState: undefined,
         basicAreaPlotState: undefined,
+        allUsersState: undefined
     });
 
 
@@ -34,12 +35,18 @@ const UserStatistic = (props) => {
         let genderChart = await syncCustomLabelChart()
         let regionChart = await syncBasicColumnPlot()
         let loginChart = await syncBasicAreaPlotChart()
+        let allUsers = await syncAllUsers()
         setState({
             ...state,
             customLabelChartState: genderChart,
             basicColumnPlotState: regionChart,
-            basicAreaPlotState: loginChart
+            basicAreaPlotState: loginChart,
+            allUsersState: allUsers
         })
+    }
+    const syncAllUsers = async () => {
+        let resultApi = await apiAllUsers(props.admin.token)
+        return resultApi
     }
     const syncCustomLabelChart = async () => {
         let resultApi = await apiCustomLabelChart(props.admin.token)
@@ -77,7 +84,7 @@ const UserStatistic = (props) => {
                     </Card>
                 </Col>
                 <Col span={24} lg={12}>
-                    <Card loading={false} title={t("BoDashboard.Users.Chart2")} >
+                    <Card loading={false} title={`${t("BoDashboard.Users.Chart2")} ${state.allUsersState}`} >
                         <CustomLabelChart data={state.customLabelChartState} />
                     </Card>
                 </Col>

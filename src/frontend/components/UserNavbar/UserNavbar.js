@@ -52,11 +52,6 @@ const UserNavbar = (props) => {
 			route: ROUTES.FE.BASE.USER.SAVED_ADS,
 		},
 		{
-			label: t("Dashboard.AssessYourProperty"),
-			icon: faHouseChimney,
-			route: `../${ROUTES.FE.BASE.ASSESS_BUILDING}`,
-		},
-		{
 			label: "Business",
 			icon: faBriefcase,
 			route: ROUTES.FE.BASE.USER.BUSINESS,
