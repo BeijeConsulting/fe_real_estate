@@ -3,12 +3,13 @@ import "./detailsAd.css";
 // redux
 import { connect } from "react-redux";
 //router
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 // service
 import {
   disableAdv,
   getAdv,
   postAdvState,
+  getAdvChecker,
 } from "../../../services/backoffice/advertisementApi";
 // Ant design imports
 import { Typography, Carousel, Collapse, Button, Row, Col, List } from "antd";
@@ -29,6 +30,7 @@ const DetailsAd = (props) => {
 
   //router
   const param = useParams();
+  const navigate = useNavigate();
   //utils
   const formatDataFromApi = (valueObj) => {
     Object.keys(valueObj).map((key) => {
@@ -54,7 +56,13 @@ const DetailsAd = (props) => {
   };
   // axios
   const createAdv = async () => {
-    let resultApi = await getAdv(props.admin.token, param.id);
+    let resultApi = null;
+    if (props.admin?.permission?.includes("ADMIN")) {
+      resultApi = await getAdv(props.admin.token, param.id);
+    } else {
+      resultApi = await getAdvChecker(props.admin.token, param.id);
+    }
+
     let formatData = [formatDataFromApi(resultApi[0])];
     // let nameSeller = await getNameUserFromSellerId(props.admin.token, formatData[0].seller.id)
 
@@ -80,15 +88,23 @@ const DetailsAd = (props) => {
     console.log(a, b, c);
   }
 
+  //FuncGoBack
+  const goBack = () => {
+    navigate(-1);
+  };
+
   //buttons funs
   const approveAdv = async () => {
     let data = await postAdvState(props.admin.token, param.id, "approve");
+    goBack();
   };
   const refuseAdv = async () => {
     let data = await postAdvState(props.admin.token, param.id, "refuse");
+    goBack();
   };
   const deleteAdv = async () => {
     let data = await disableAdv(props.admin.token, param.id);
+    goBack();
   };
   // useEffect
   useEffect(() => {
