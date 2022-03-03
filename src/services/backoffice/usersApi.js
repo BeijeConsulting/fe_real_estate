@@ -129,3 +129,16 @@ export const deleteUser = async (token, id) => {
     )
     return deleteCheck
 }
+
+export const getUsersProfile = async (token) => {
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    let userProfile = ''
+    await javaAcademyServiceInstance.get("/user/myProfile", { headers }).then((response) => {
+        userProfile = response.data
+
+    }).catch(
+    )
+    return userProfile
+}
