@@ -24,7 +24,7 @@ import { connect } from 'react-redux'
 
 const AdvCard = (props) => {
 
-    let title = getBuildingType(props.rooms) + " in " + types.adv(props.advType) + " a " + props.address
+    let title =  getBuildingType(props.rooms) + " in " + types.adv(props.advType)  +  " a " + props.address 
 
     const [toast, setToast] = useState({ type: '', msg: '' })
 
@@ -89,7 +89,7 @@ const AdvCard = (props) => {
                 type={toast.type}
                 msg={toast.msg}
             />
-            <Card className={'flex-col md:flex-row overflow-hidden mb-6 shadow ' + props.className}>
+            <Card className={'flex-col md:flex-row  overflow-hidden mb-6 shadow ' + props.className}>
                 <div className='relative'>
                     {/* BLURRED USER SECTION */}
                     <AdvAuthor
@@ -101,18 +101,18 @@ const AdvCard = (props) => {
                     {/* PHOTOS */}
                     <PhotosCarousel
                         photos={props.photos}
-                        className='md:min-h-60 md:w-96 2xl:min-h-64 2xl:w-96'
+                        className='h-48 md:h-60 md:w-96 2xl:h-64 2xl:w-96'
                     />
                 </div>
 
-                <div onClick={props.onClick} className='relative bg-white hover:bg-gray-50 transition cursor-pointer  p-4 flex-col flex flex-1'>
+                <div onClick={props.onClick} className='relative max-w-md text-clip bg-white hover:bg-gray-50 transition cursor-pointer  p-4 flex-col flex flex-1'>
                     {/* INFO-RIGHT */}
                     <div className='flex justify-between'>
                         <p className='font-primary font-semibold text-xl text-gray-700'>{props.city}</p>
                         {handleFavouriteRender()}
                     </div>
 
-                    <p className='block font-primary font-bold text-3xl '>{title}</p>
+                    <p className='block font-primary font-bold text-3xl'>{title}</p>
                     <p className='font-primary'>
                         {!!props.description
                             ? props.description.slice(0, 90) + ".."

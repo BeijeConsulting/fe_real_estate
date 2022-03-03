@@ -4,6 +4,7 @@ const SET_POSTED_ADS = "generic/user/SET_POSTED_ADS";
 const SET_SAVED_ADS = "generic/user/SET_SAVED_ADS";
 const SET_USER_ME = "generic/user/SET_USER_ME";
 const SET_USER_DATA = "generic/user/SET_USER_DATA";
+const SET_EMPLOYEES = "generic/user/SET_EMPLOYEES";
 const LOGOUT = "generic/user/LOGOUT";
 
 // return only id, username
@@ -38,7 +39,13 @@ const logout = () => ({
 	payload: {},
 });
 
+const setBusinessEmployees = (employees) => ({
+	type: SET_EMPLOYEES,
+	payload: employees,
+});
+
 const INIT_STATE = {
+	businessEmployees: [],
 	user: {},
 	userMe: {},
 	savedAds: [],
@@ -56,7 +63,7 @@ const userMeDuck = (state = INIT_STATE, action) => {
 				action.payload.refreshToken
 			);
 
-			return { ...state, user: action.payload.user };
+			return { ...state, user: { ...state.user, ...action.payload.user } };
 
 		case LOGOUT:
 			localStorage.removeItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN);
@@ -75,11 +82,20 @@ const userMeDuck = (state = INIT_STATE, action) => {
 			return { ...state, savedAds: action.payload };
 		case SET_POSTED_ADS:
 			return { ...state, postedAds: action.payload };
+		case SET_EMPLOYEES:
+			return { ...state, businessEmployees: action.payload };
 		default:
 			return state;
 	}
 };
 
-export { setPostedAds, setSavedAds, setUser, setUserMe, logout };
+export {
+	setPostedAds,
+	setSavedAds,
+	setUser,
+	setUserMe,
+	logout,
+	setBusinessEmployees,
+};
 
 export default userMeDuck;

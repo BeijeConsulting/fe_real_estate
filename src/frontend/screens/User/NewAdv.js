@@ -30,8 +30,8 @@ import Textarea from "../../components/UI/Textarea/Textarea";
 
 const NewAdv = (props) => {
 	const [current, setCurrent] = useState(0);
-	const [success, setSuccess] = useState(false)
-	const [error, setError] = useState(false)
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
 	const [state, setState] = useState({
 		address: "",
 		advType: ADV_TYPES[0].value,
@@ -81,15 +81,15 @@ const NewAdv = (props) => {
 			price: parseInt(state.price),
 		};
 
-
 		const adv = await addNewAdv(body, token)
 			.then((res) => {
-				console.log(res);
-				setSuccess(true)
+				setSuccess(true);
+				setError(false);
 			})
 			.catch((err) => {
-				console.log(err)
-				setError(true)
+				console.log(err);
+				setSuccess(false);
+				setError(true);
 			});
 	};
 
@@ -670,8 +670,14 @@ const NewAdv = (props) => {
 								</div>
 							</div>
 						)}
-						{success && <p className="mt-5">{t("Dashboard.ThankYouMessage")}</p>}
-						{error && <p className="mt-5">{t("Dashboard.ErrorMessage")}</p>}
+						{success && (
+							<p className="mt-5 text-green-500">
+								{t("Dashboard.ThankYouMessage")}
+							</p>
+						)}
+						{error && (
+							<p className="mt-5 text-red-500">{t("Dashboard.ErrorMessage")}</p>
+						)}
 					</form>
 				</div>
 			</div>
