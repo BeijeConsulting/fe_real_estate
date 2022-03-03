@@ -11,6 +11,7 @@ import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
 import SignUpBusiness from "./SignUpBusiness.json";
 import WhatWeOffer from "./WhatWeOffer.json";
+import MobileUserNavbar from "./MobileUserNavbar.json";
 import BoAds from "./BoAds.json";
 import BoBusiness from "./BoBusiness.json";
 import BoCheckers from "./BoCheckers.json";
@@ -29,6 +30,7 @@ import ContactSeller from "./ContactSeller.json";
 
 const it = {
 	AboutUs,
+	MobileUserNavbar,
 	Dashboard,
 	Home,
 	NewAdv,

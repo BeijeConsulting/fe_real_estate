@@ -29,7 +29,7 @@ const ManageBusiness = (props) => {
 
 	const handleSubmit = () => {
 		updateBusinessInfo(
-			{ businessName: props.managed.businessName, ...state },
+			{ businessName: props.managed.businessName, ...state.managed },
 			props.dispatch
 		);
 	};

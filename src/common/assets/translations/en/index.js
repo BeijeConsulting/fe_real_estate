@@ -16,6 +16,7 @@ import Home from "./Home.json";
 import Illustrations from "./Illustrations.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
+import MobileUserNavbar from "./MobileUserNavbar.json";
 import Navbar from "./Navbar.json";
 import NewAdv from "./NewAdv.json";
 import SignUp from "./SignUp.json";
@@ -32,6 +33,7 @@ const en = {
 	Footer,
 	Navbar,
 	Dashboard,
+	MobileUserNavbar,
 	NewAdv,
 	Home,
 	Search,

@@ -13,7 +13,9 @@ const building = ( buildingType ) => {
     return result.pluralLabel
 }
 
-export default  {
+const typesTranslator =  {
     adv, building
 }
+
+export default typesTranslator
 
