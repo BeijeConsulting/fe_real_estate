@@ -37,7 +37,7 @@ const BusinessUsers = (props) => {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link to={"/admin/user/" + record.key + "/details"}>{t("BoUsers.Users.FactsCard")}</Link>
+                <Link to={"/admin/user/" + record.id + "/details"}>{t("BoUsers.Users.FactsCard")}</Link>
             ,
         }
     ]
