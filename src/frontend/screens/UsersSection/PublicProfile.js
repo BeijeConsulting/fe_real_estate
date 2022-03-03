@@ -6,17 +6,18 @@ import avatar from "../../assets/images/avatar.png";
 
 // components
 import NavBar from "../../components/Navbar/Navbar";
-import AdvCard from "../../components/AdvCard/AdvCard";
 
 // api
-import { getPublicAdsByUsername, getUserByUsername } from "../../../services/frontend/usersApi";
-import { findAds } from "../../../services/frontend/advertisementApi";
+import {
+	getPublicAdsByUsername,
+	getUserByUsername,
+} from "../../../services/frontend/usersApi";
 
 // routing
 import { useParams } from "react-router-dom";
 
 //TRANSLATION
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
 import RenderAdvs from "../../components/AdvCard/RenderAdvs";
 
 const STATUS_TYPE = {
@@ -38,9 +39,9 @@ const PublicProfile = () => {
 		const loadUser = async () => {
 			// Note: if request is successful, resUser can be also `null`. See `getUserByUsername`
 			const fecthedUser = await getUserByUsername(params.username).catch(
-				() => null
+				(err) => console.error(err)
 			);
-			console.log(fecthedUser);
+
 			let newState = {};
 
 			if (!fecthedUser) {
@@ -60,9 +61,7 @@ const PublicProfile = () => {
 
 	useEffect(() => {
 		if (!!state.user?.id) {
-			getPublicAdsByUsername(state.user.username)
-			.then((res) =>
-		
+			getPublicAdsByUsername(state.user.username).then((res) =>
 				setState((previousState) => ({
 					...previousState,
 					ads: res.data,
@@ -70,7 +69,6 @@ const PublicProfile = () => {
 			);
 		}
 	}, [state.user]);
-
 
 	return (
 		<div className="flex flex-col items-center bg-gray min-h-screen w-screen">
@@ -123,7 +121,9 @@ const PublicProfile = () => {
 							</p>
 						</div>
 						<div className="flex flex-col pt-3">
-							<h1 className="font-bold text-xl">{t("Dashboard.ProfilePostedAds")}</h1>
+							<h1 className="font-bold text-xl">
+								{t("Dashboard.ProfilePostedAds")}
+							</h1>
 							<RenderAdvs data={state.ads} />
 						</div>
 					</div>

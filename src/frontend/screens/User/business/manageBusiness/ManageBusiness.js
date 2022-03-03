@@ -1,16 +1,16 @@
 import React from "react";
 import { useState } from "react";
 import { connect } from "react-redux";
-import { Table } from "antd";
 
 // components
 import Card from "../../../../components/UI/Card/Card";
 import Input from "../../../../components/UI/Input/Input";
 import Button from "../../../../components/UI/Button/Button";
+import AddEmployee from "./AddEmployee";
+import ListEmployee from "./ListEmployee";
 
 // api
 import { updateBusinessInfo } from "../../../../../services/frontend/managerApi";
-import AddEmployee from "./AddEmployee";
 
 const ManageBusiness = (props) => {
 	const [state, setState] = useState({
@@ -33,39 +33,6 @@ const ManageBusiness = (props) => {
 			props.dispatch
 		);
 	};
-
-	const dataSource = [
-		{
-			key: "1",
-			name: "Mike",
-			age: 32,
-			address: "10 Downing Street",
-		},
-		{
-			key: "2",
-			name: "John",
-			age: 42,
-			address: "10 Downing Street",
-		},
-	];
-
-	const columns = [
-		{
-			title: "Name",
-			dataIndex: "name",
-			key: "name",
-		},
-		{
-			title: "Age",
-			dataIndex: "age",
-			key: "age",
-		},
-		{
-			title: "Address",
-			dataIndex: "address",
-			key: "address",
-		},
-	];
 
 	return (
 		<div className="p-6 bg-gray-200 flex-1">
@@ -118,7 +85,7 @@ const ManageBusiness = (props) => {
 							</p>
 						</Card>
 						<AddEmployee />
-						<Table dataSource={dataSource} columns={columns} />
+						<ListEmployee />
 					</div>
 				</>
 			)}
