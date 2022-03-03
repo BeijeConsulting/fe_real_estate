@@ -3,6 +3,8 @@ import AdvCard from './AdvCard'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 
+//translation
+import { useTranslation } from 'react-i18next';
 
 //img
 import noAdv from '../../assets/illustrations/noAdvFound.svg'
@@ -10,7 +12,7 @@ import noAdv from '../../assets/illustrations/noAdvFound.svg'
 import { connect } from 'react-redux'
 
 const RenderAdvs = (props) => {
-
+    const { t } = useTranslation()
     let { lang } = useParams()
     let navigate = useNavigate()
 
@@ -50,7 +52,7 @@ const RenderAdvs = (props) => {
             {props.data.length <= 0 &&
                 <div className='max-w-3xl mx-auto  mt-10 '>
                     <img className='h-60 w-60 mx-auto' src={noAdv} />
-                    <p className='text-center text-3xl font-bold'>Non ho trovato annunci</p>
+                    <p className='text-center text-3xl font-bold'>{t("Dashboard.AdsNotFound")}</p>
                 </div>
             }
         </div>

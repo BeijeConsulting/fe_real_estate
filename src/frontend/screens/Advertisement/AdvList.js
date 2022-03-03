@@ -117,7 +117,7 @@ const AdvList = (props) => {
         } else {
             return (
                 <div className='font-primary text-center'>
-                    <img className='mx-auto max-h-80 mb-6' src={noHouseFound} />
+                    <img className='mx-auto max-h-80 mb-6' src={noHouseFound} alt='no house found' />
                     <p className='text-3xl font-bold'>{t("AdvList.NotFound")} {t(`AdvList.buildingTypePlural.${buildingType}`)} {t("AdvList.ForYou")}</p>
                     <p className=''>{t("AdvList.UnderConstruction")}</p>
                 </div>
