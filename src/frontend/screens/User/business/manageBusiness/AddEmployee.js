@@ -8,7 +8,10 @@ import Button from "../../../../components/UI/Button/Button";
 import Toast from "../../../../components/Toast/Toast";
 
 // api
-import { addEmployee } from "../../../../../services/frontend/managerApi";
+import {
+	addEmployee,
+	getEmployeesList,
+} from "../../../../../services/frontend/managerApi";
 
 const AddEmployee = (props) => {
 	const [state, setState] = useState({
@@ -25,6 +28,7 @@ const AddEmployee = (props) => {
 		addEmployee(state.username, props.dispatch)
 			.then(() => {
 				setState({ ...state, msg: "Success", status: "success" });
+				getEmployeesList(props.managed.businessName, props.dispatch);
 			})
 			.catch((err) => {
 				let msg = err?.response?.data?.message ?? "Unknown error";
@@ -33,11 +37,14 @@ const AddEmployee = (props) => {
 	};
 
 	return (
-		<Card>
+		<Card className="flex flex-col mb-4 justify-center items-center">
 			<div className="flex flex-row p-4 items-center justify-center">
 				<div className="flex flex-col mr-4 w-56 items-center justify-center">
-					<p className={"font-bold text-xl m-0 p-0"}>Add employee</p>
-					<Input value={state.vatNumber} onChange={onChange} />
+					<Input
+						value={state.vatNumber}
+						onChange={onChange}
+						placeholder={"Add employee"}
+					/>
 				</div>
 				<div className="flex flex-col w-56 items-center justify-center">
 					<Button
@@ -53,4 +60,8 @@ const AddEmployee = (props) => {
 	);
 };
 
-export default connect()(AddEmployee);
+const mapStateToProps = (state) => ({
+	managed: state.userMeDuck.user.managed,
+});
+
+export default connect(mapStateToProps)(AddEmployee);

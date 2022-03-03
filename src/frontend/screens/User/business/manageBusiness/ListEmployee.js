@@ -12,31 +12,31 @@ import { connect } from "react-redux";
 const ListEmployee = (props) => {
 	const [state, setState] = useState({
 		modalNumber: -1,
-		employees: [],
-		updateEmployeeList: true,
 	});
 
-	const setEmployees = (employees) =>
-		setState({ ...state, employees, updateEmployeeList: false });
+	// modal handlers
 	const openModal = (num) => () => setState({ ...state, modalNumber: num });
-	const closeModal = () => setState({ ...state, modalNumber: -1 });
+	const closeModal = () =>
+		setState((prevState) => ({
+			...prevState,
+			modalNumber: -1,
+		}));
+
+	// remove employee
 	const onClickRemove = (id) => () =>
 		removeEmployee(id, props.dispatch).then(() => {
-			setState((prevState) => ({
-				...prevState,
-				modalNumber: -1,
-				updateEmployeeList: true,
-			}));
+			getEmployeesList(props.managed.businessName, props.dispatch);
+
+			closeModal();
 		});
 
+	// did mount
 	useEffect(() => {
-		if (state.updateEmployeeList) {
-			getEmployeesList(props.managed.businessName, props.dispatch).then((res) =>
-				setEmployees(res.data)
-			);
-		}
-	}, [state.updateEmployeeList]);
+		// load emplyees first time
+		getEmployeesList(props.managed.businessName, props.dispatch);
+	}, []);
 
+	// to map employees for antd's Table
 	const mapToDataSource = (emp) => {
 		return {
 			key: emp.id,
@@ -46,6 +46,7 @@ const ListEmployee = (props) => {
 		};
 	};
 
+	// antd's Table settings
 	const columns = [
 		{
 			title: "Username",
@@ -84,14 +85,16 @@ const ListEmployee = (props) => {
 
 	return (
 		<Table
-			dataSource={state.employees.map(mapToDataSource)}
+			dataSource={props.businessEmployees.map(mapToDataSource)}
 			columns={columns}
+			pagination={{ showSizeChanger: false, hideOnSinglePage: true }}
 		/>
 	);
 };
 
 const mapStateToProps = (state) => ({
 	managed: state.userMeDuck.user.managed,
+	businessEmployees: state.userMeDuck.businessEmployees,
 });
 
 export default connect(mapStateToProps)(React.memo(ListEmployee));
