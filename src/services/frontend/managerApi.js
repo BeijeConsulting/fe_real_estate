@@ -24,6 +24,26 @@ export const addEmployee = (username, dispatch) =>
 
 /**
  *
+ * @param { string } id
+ * @param { () => {} } dispatch the redux dispatch
+ */
+export const removeEmployee = (id, dispatch) =>
+	authApi.retryAfterRefreshToken(
+		(token) =>
+			javaAcademyServiceInstance.put(
+				"/business/removeFromBusiness/id/" + id,
+				{},
+				{
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				}
+			),
+		dispatch
+	);
+
+/**
+ *
  * @param {{}} body Must containt `businessName`
  * @param { () => {} } dispatch the redux dispatch
  */
@@ -70,14 +90,10 @@ export const getManagedBusiness = (dispatch) =>
 export const getEmployeesList = (businessName, dispatch) =>
 	authApi.retryAfterRefreshToken(
 		(token) =>
-			javaAcademyServiceInstance.get(
-				"/business/EmployeeList/" + businessName,
-				{},
-				{
-					headers: {
-						Authorization: "Bearer " + token,
-					},
-				}
-			),
+			javaAcademyServiceInstance.get("/business/EmployeeList/" + businessName, {
+				headers: {
+					Authorization: "Bearer " + token,
+				},
+			}),
 		dispatch
 	);

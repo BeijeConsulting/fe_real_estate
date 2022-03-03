@@ -101,7 +101,7 @@ const AdvCard = (props) => {
                     {/* PHOTOS */}
                     <PhotosCarousel
                         photos={props.photos}
-                        className='md:h-60 md:w-96 2xl:h-64 2xl:w-96'
+                        className='md:min-h-60 md:w-96 2xl:min-h-64 2xl:w-96'
                     />
                 </div>
 

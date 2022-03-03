@@ -1,7 +1,7 @@
 import { BUILDING_TYPES, ADV_TYPES } from '../../common/utils/globalTypes'
 
 const adv = ( advType ) => {
-    console.log(advType)
+
     let result = ADV_TYPES.find( type => type.value.toLocaleLowerCase() === advType?.toLocaleLowerCase())
     
     return result ? result.label : 'error'
