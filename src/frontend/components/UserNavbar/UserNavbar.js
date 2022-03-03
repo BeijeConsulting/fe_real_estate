@@ -16,11 +16,15 @@ import {
 
 import { connect } from "react-redux";
 
+//translation
+import { useTranslation } from 'react-i18next';
+
 // utils
 import { ROUTES } from "../../../utils/properties";
 import UserAvatar from "../../assets/images/avatar.png";
 
 const UserNavbar = (props) => {
+	const { t } = useTranslation()
 	let routes = [
 		{
 			label: "Dashboard",
@@ -28,27 +32,27 @@ const UserNavbar = (props) => {
 			route: ROUTES.FE.BASE.USER.DASHBOARD,
 		},
 		{
-			label: "Modifica Profilo",
+			label: t("Dashboard.EditProfileLabel"),
 			icon: faUser,
 			route: ROUTES.FE.BASE.USER.EDIT_PROFILE,
 		},
 		{
-			label: "Pubblica Annuncio",
+			label: t("Dashboard.PostAdLabel"),
 			icon: faPenToSquare,
 			route: "new-adv",
 		},
 		{
-			label: "Annunci Pubblicati",
+			label: t("Dashboard.ProfilePostedAds"),
 			icon: faList,
 			route: ROUTES.FE.BASE.USER.POSTED_ADS,
 		},
 		{
-			label: "Annunci Salvati",
+			label: t("Dashboard.SavedAds"),
 			icon: faBookmark,
 			route: ROUTES.FE.BASE.USER.SAVED_ADS,
 		},
 		{
-			label: "Valuta la tua Casa",
+			label: t("Dashboard.AssessYourProperty"),
 			icon: faHouseChimney,
 			route: `../${ROUTES.FE.BASE.ASSESS_BUILDING}`,
 		},

@@ -6,20 +6,19 @@ import avatar from "../../assets/images/avatar.png";
 
 // components
 import NavBar from "../../components/Navbar/Navbar";
-import AdvCard from "../../components/AdvCard/AdvCard";
 
 // api
 import {
 	getPublicAdsByUsername,
 	getUserByUsername,
 } from "../../../services/frontend/usersApi";
-import { findAds } from "../../../services/frontend/advertisementApi";
 
 // routing
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 //TRANSLATION
 import { useTranslation } from "react-i18next";
+import RenderAdvs from "../../components/AdvCard/RenderAdvs";
 
 const STATUS_TYPE = {
 	LOADING: "loading",
@@ -33,7 +32,6 @@ const PublicProfile = () => {
 		user: null,
 		ads: [],
 	});
-	const navigate = useNavigate();
 	const params = useParams();
 	const { t } = useTranslation();
 
@@ -71,29 +69,6 @@ const PublicProfile = () => {
 			);
 		}
 	}, [state.user]);
-
-	const handleAdvRender = useCallback(
-		(adv, key) => {
-			const handleNavigate = (dest) => () => {
-				navigate(dest);
-			};
-			return (
-				<AdvCard
-					key={"advard-" + key + adv.id}
-					id={adv.id}
-					address={adv.address}
-					city={adv.city}
-					squareMeters={adv.areaMsq}
-					description={adv?.longDescription}
-					roomNumber={adv.rooms}
-					price={adv.price}
-					onClick={handleNavigate(`/${params.lang}/adv/${adv.id}`)}
-					authorName={adv.seller.username}
-				/>
-			);
-		},
-		[params.lang, navigate]
-	);
 
 	return (
 		<div className="flex flex-col items-center bg-gray min-h-screen w-screen">
@@ -149,11 +124,7 @@ const PublicProfile = () => {
 							<h1 className="font-bold text-xl">
 								{t("Dashboard.ProfilePostedAds")}
 							</h1>
-							{!!state.ads?.length && state.ads.length > 0 ? (
-								state.ads.map(handleAdvRender)
-							) : (
-								<p>{t("Dashboard.CannotLoadAds")}</p>
-							)}
+							<RenderAdvs data={state.ads} />
 						</div>
 					</div>
 				</div>

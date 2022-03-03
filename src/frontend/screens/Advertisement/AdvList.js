@@ -86,6 +86,7 @@ const AdvList = (props) => {
                 key={'advard-' + key + adv.id}
                 savedAds={props.savedAds}
                 id={adv.id}
+                advType={adv.advType}
                 city={adv.city}
                 address={adv.address}
                 squareMeters={adv.areaMsq}
@@ -116,7 +117,7 @@ const AdvList = (props) => {
         } else {
             return (
                 <div className='font-primary text-center'>
-                    <img className='mx-auto max-h-80 mb-6' src={noHouseFound} />
+                    <img className='mx-auto max-h-80 mb-6' src={noHouseFound} alt='no house found' />
                     <p className='text-3xl font-bold'>{t("AdvList.NotFound")} {t(`AdvList.buildingTypePlural.${buildingType}`)} {t("AdvList.ForYou")}</p>
                     <p className=''>{t("AdvList.UnderConstruction")}</p>
                 </div>

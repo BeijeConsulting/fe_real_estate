@@ -5,9 +5,9 @@ import "./notFound.css"
 const NotFound = () => {
 	return (
 		<div className="flex flex-col justify-center items-center h-screen bg-secondary font-primary">
-			<div className="container">
+			<div className="container-404">
 				<img className="imgNotFound" src={imgNotFound} />
-				<h1 className="-mt-10 text-center text-3xl font-bold color-secondary">PAGE NOT FOUND</h1>
+				<h1 className="-mt-10 md:-mt-16 text-center text-2xl md:text-4xl font-bold color-secondary">PAGE NOT FOUND</h1>
 			</div>
 		</div>
 	)

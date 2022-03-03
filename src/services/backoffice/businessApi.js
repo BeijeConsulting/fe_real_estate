@@ -61,13 +61,15 @@ export const getBusinessName = async (token, id) => {
 };
 
 export const getUsersBusiness = async (id, token) => {
-    const result = await javaAcademyServiceInstance.get()
-        .then(response => {
-
-        }
-        ).catch()
-
-    return result
+    let businessUsers = null;
+    let headers = {
+        'Authorization': `Bearer ${token}`,
+    }
+    await javaAcademyServiceInstance.get("/admin/employeeList/" + id, { headers })
+        .then((response) => {
+            businessUsers = response.data;
+        })
+    return businessUsers
 }
 
 export const getBusinessById = async (id, token) => {

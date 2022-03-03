@@ -5,7 +5,7 @@
     "advType": {
         "sale": "Sale",
         "rent": "Rent",
-        "shortRent":"Short rent"
+        "short_rent":"Short rent"
     },
     "SortBy": "Sort By...",
     "Cheapest": "Cheapest",

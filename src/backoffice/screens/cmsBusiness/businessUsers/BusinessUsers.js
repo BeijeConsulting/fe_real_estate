@@ -1,7 +1,7 @@
 import "./businessUsers.css"
 import React, { useState, useEffect } from 'react';
 /* react router */
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 // Import from AntDesign
 import { Table } from "antd";
@@ -9,7 +9,10 @@ import { Table } from "antd";
 import { getUsersBusiness } from '../../../../services/backoffice/businessApi';
 import { useTranslation } from "react-i18next";
 
+import { connect } from "react-redux";
+
 const BusinessUsers = (props) => {
+    const params = useParams()
 
     const { t } = useTranslation()
 
@@ -24,21 +27,17 @@ const BusinessUsers = (props) => {
     let columnsTable = [
         {
             title: t("BoBusiness.Users.Username"),
-            dataIndex: '',
+            dataIndex: 'username',
         },
         {
             title: t("BoBusiness.Users.Email"),
-            dataIndex: '',
-        },
-        {
-            title: t("BoBusiness.Users.Type"),
-            dataIndex: '',
+            dataIndex: 'email',
         },
         {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link key={Math.random()}>Scheda User</Link>
+                <Link to={"/admin/user/" + record.key + "/details"}>{t("BoUsers.Users.FactsCard")}</Link>
             ,
         }
     ]
@@ -46,40 +45,44 @@ const BusinessUsers = (props) => {
     useEffect(() => {
         sincBusinessUsers()
     }, [])
+
     /* sincronize BusinessUsers */
     const sincBusinessUsers = async () => {
-
-        //API is Missing
-        let resultAPI = await getUsersBusiness()
-
-        console.log(resultAPI)
+        let resultAPI = await getUsersBusiness(params.id, props.admin.token)
         /* ant design wanted a key inside an object to work */
-        /*         resultAPI = resultAPI.map(item => {
-                    item = {
-                        ...item,
-                        key: item.id
-                    }
-                    return item;
-                })
-                setState({
-                    ...state,
-                    businessUsers: resultAPI,
-                    isLoading: false
-                }) */
+        /*                  resultAPI = resultAPI.map(item => {
+                            item = {
+                                ...item,
+                                key: item.id
+                            }
+                            return item;
+                        }) */
+        setState({
+            ...state,
+            businessUsers: resultAPI,
+            isLoading: false
+        })
     }
     return (
-        <div className='container-BusinessUsers' >
-            <Table
-                dataSource={state.businessUsers}
-                columns={columnsTable}
-                loading={state.isLoading}
-                tableLayout="fixed"
-                scroll={{ scrollToFirstRowOnChange: true }}
-                pagination={{ showSizeChanger: false, total: state.totalElements, hideOnSinglePage: true }}
-            />
+        <div className="BusinessUsers-background">
+            <div className='container-BusinessUsers' >
+                <Table
+                    dataSource={state.businessUsers}
+                    columns={columnsTable}
+                    loading={state.isLoading}
+                    tableLayout="fixed"
+                    scroll={{ scrollToFirstRowOnChange: true }}
+                    pagination={{ showSizeChanger: false, total: state.totalElements, hideOnSinglePage: true }}
+                />
+            </div>
         </div>
     )
 }
 
+const mapStateToProps = (state) => (
+    {
+        admin: state.adminDuck.admin
+    }
+)
 
-export default BusinessUsers
+export default connect(mapStateToProps)(BusinessUsers)

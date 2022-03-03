@@ -1,8 +1,10 @@
 import "./Navbar.css";
-import React, { useState } from "react";
+import React, { useState, useEffect  } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../common/assets/logo/logo-black.png";
 import { useTranslation } from "react-i18next";
+
+import authApi from '../../../services/javaAcademyService'
 
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";
@@ -19,11 +21,26 @@ import {
 import { connect } from "react-redux";
 import { logout } from "../../../redux/ducks/userMeDuck";
 
-//
+// utils
 import { ROUTES } from "../../../utils/properties";
+import { LOCAL_STORAGE_KEYS } from "../../../common/utils/storage";
+
+
 
 const Navbar = (props) => {
+
 	const { i18n,t} = useTranslation();
+
+	let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN)
+
+	useEffect(() => {
+	  if ( token ) {
+		
+		authApi.updateAuthToken(props.dispatch)
+	  }
+	
+	}, [])
+	
 
 	let routes = [
 		{
@@ -100,6 +117,8 @@ const Navbar = (props) => {
 						toggleSidebar={toggleSidebar}
 						routes={routes}
 						navigate={handleNavigate}
+						logout={handleLogoutClick}
+						userId={props.userMeDuck.user?.id}
 					/>
 				</div>
 			</div>
