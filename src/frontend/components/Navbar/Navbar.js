@@ -100,6 +100,8 @@ const Navbar = (props) => {
 						toggleSidebar={toggleSidebar}
 						routes={routes}
 						navigate={handleNavigate}
+						logout={handleLogoutClick}
+						userId={props.userMeDuck.user?.id}
 					/>
 				</div>
 			</div>

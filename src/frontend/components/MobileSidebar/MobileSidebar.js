@@ -1,7 +1,11 @@
 import React from 'react'
 import "./MobileSidebar.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'react-i18next'
+import { ROUTES } from '../../../utils/properties'
+import { useParams } from 'react-router-dom'
+
 
 const MobileSidebar = (props) => {
 
@@ -9,12 +13,12 @@ const MobileSidebar = (props) => {
   let sidebarTranslate = props.isOpened ? "translateX(0px)" : "translateX(800px)"
   let events = props.isOpened ? "auto" : "none"
 
-
-
+  const { t } = useTranslation()
+  const { lang } = useParams()
 
   const handleSidebarLinkRender = (link, key) => {
     return (
-      <div 
+      <div
         key={`sidenav-` + key}
         className='mb-2 p-2 text-white font-bold bg-secondary rounded'
         onClick={props.navigate(link.route)}
@@ -37,6 +41,37 @@ const MobileSidebar = (props) => {
         <div className='mt-6'>
 
           {props.routes.map(handleSidebarLinkRender)}
+          {/*  auth buttons */}
+          {
+            props.userId
+              ? <>
+                <p
+                  onClick={props.navigate(`/${lang}/${ROUTES.FE.BASE.USER.SELF}`)}
+                  className="text-xl mt-6 nav-btn nav-fill font-primary"
+                >
+                  {t("Navbar.PrivateArea")}
+                </p>
+                <p onClick={props.logout} className="cursor-pointer">
+                  <FontAwesomeIcon icon={faArrowRightFromBracket} /> LOG OUT
+                </p>
+              </>
+              : <>
+                <p
+                  onClick={props.navigate(`/${lang}/${ROUTES.FE.BASE.AUTH.SELF}`)}
+                  className="text-xl mt-6 p-2 nav-btn nav-fill font-primary"
+                >
+                  {t("Navbar.SignIn")}
+                </p>
+                <p
+                  onClick={props.navigate(`/${lang}/${ROUTES.FE.BASE.AUTH.SELF}/${ROUTES.FE.BASE.AUTH.SIGNUP.SELF}`)}
+                  className="mt-2  p-2 text-xl nav-btn nav-outline font-primary"
+                >
+                  {t("Navbar.SignUp")}
+                </p>
+              </>
+          }
+
+
         </div>
       </div>
 
