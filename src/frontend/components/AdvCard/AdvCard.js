@@ -13,14 +13,18 @@ import avatar from '../../assets/images/avatar.png'
 
 //utils
 import getBuildingType from '../../../common/utils/getBuildingType'
-import { getUserSavedAds, removeUserAdv, userSaveAdv } from '../../../services/frontend/usersApi';
 import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage';
+import types from '../../utils/typesTranslator'
+
+//apis
+import { getUserSavedAds, removeUserAdv, userSaveAdv } from '../../../services/frontend/usersApi';
+
 // redux
 import { connect } from 'react-redux'
 
 const AdvCard = (props) => {
 
-    let title = getBuildingType(props.rooms) + " in " + props.address
+    let title = getBuildingType(props.rooms) + " in " + types.adv(props.advType) + " a " + props.address
 
     const [toast, setToast] = useState({ type: '', msg: '' })
 

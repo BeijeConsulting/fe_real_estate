@@ -4,7 +4,6 @@ import RenderAdvs from "../../components/AdvCard/RenderAdvs"
 
 // REDUX
 import { connect } from 'react-redux'
-import SpinngerScreen from "../../../common/components/funcComponents/SpinnerScreen/SpinnerScreen"
 
 const Dashboard = (props) => {
 

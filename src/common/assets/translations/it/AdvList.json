@@ -5,7 +5,7 @@
     "advType": {
         "sale": "Vendita",
         "rent": "Affitto",
-        "shortRent":"Affitto breve"
+        "short_rent":"Affitto breve"
     },
     "SortBy": "Ordina Per...",
     "Cheapest": "Dal meno caro",
