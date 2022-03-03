@@ -23,7 +23,7 @@ class BusinessList extends Component {
         super(props)
 
         this.state = {
-            isModal: false,
+            isModal: -1,
             refresh: false,
             businesses: [],
             isLoading: true,
@@ -60,16 +60,15 @@ class BusinessList extends Component {
                         return (
                             <>
                                 <Popover content={t("BoBusiness.Business.HoverRemove")} trigger="hover">
-                                    <Button type="primary" onClick={this.openCloseModal} danger>
+                                    <Button type="primary" onClick={this.openModal(record.key)} danger>
                                         <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
                                     </Button>
                                 </Popover>
-                                {
-                                    this.state.isModal &&
-                                    <Modal visible={this.state.isModal} onOk={this.handleRemove(record.key)} onCancel={this.openCloseModal} getContainer={false}>
-                                        <p>{t("BoBusiness.Business.ModalText")}</p>
-                                    </Modal>
-                                }
+
+                                <Modal visible={this.state.isModal !== -1} onOk={this.handleRemove(record.key)} onCancel={this.closeModal} getContainer={false}>
+                                    <p>{t("BoBusiness.Business.ModalText")}</p>
+                                </Modal>
+
                             </>
                         )
                     }
@@ -118,16 +117,15 @@ class BusinessList extends Component {
                             return (
                                 <>
                                     <Popover content={t("BoBusiness.Business.HoverRemove")} trigger="hover">
-                                        <Button type="primary" onClick={this.openCloseModal} danger>
+                                        <Button type="primary" onClick={this.openModal(record.key)} danger>
                                             <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
                                         </Button>
                                     </Popover>
-                                    {
-                                        this.state.isModal &&
-                                        <Modal visible={this.state.isModal} onOk={this.handleRemove(record.key)} onCancel={this.openCloseModal} getContainer={false}>
-                                            <p>{t("BoBusiness.Business.ModalText")}</p>
-                                        </Modal>
-                                    }
+
+                                    <Modal visible={this.state.isModal === record.key} onOk={this.handleRemove(record.key)} onCancel={this.closeModal} getContainer={false}>
+                                        <p>{t("BoBusiness.Business.ModalText")}</p>
+                                    </Modal>
+
                                 </>
                             )
                         }
@@ -144,9 +142,15 @@ class BusinessList extends Component {
         this.removeBusiness(id)
     }
 
-    openCloseModal = () => {
+    openModal = (id) => () => {
         this.setState({
-            isModal: !this.state.isModal,
+            isModal: id,
+        })
+    }
+
+    closeModal = () => {
+        this.setState({
+            isModal: -1,
             refresh: !this.state.refresh
         })
     }
