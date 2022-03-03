@@ -60,7 +60,6 @@ const Cms = (props) => {
 
   //retrieve Admin data
   const remenberMe = async () => {
-    console.log("ora ci penso")
     await authAdminApi.updateAuthToken(props.dispatch).catch(() => {
       navigate("/admin-auth");
     });
