@@ -26,7 +26,7 @@ const CheckersList = (props) => {
             users: [],
             isLoading: true,
             refresh: false,
-            isModal: false
+            isModal: -1
         }
     )
 
@@ -64,16 +64,13 @@ const CheckersList = (props) => {
                     record.key === props.admin.id ? '' :
                         <>
                             <Popover content={t("BoCheckers.PopoverTitle")} trigger="hover">
-                                <Button type="primary" onClick={openCloseModal} danger>
+                                <Button type="primary" onClick={openModal(record.key)} danger>
                                     <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
                                 </Button>
                             </Popover>
-                            {
-                                state.isModal &&
-                                <Modal visible={state.isModal} onOk={handleChangePermit(record.key)} onCancel={openCloseModal} getContainer={false}>
-                                    <p>{t("BoCheckers.Modal.TextRemovePermit")}</p>
-                                </Modal>
-                            }
+                            <Modal visible={state.isModal === record.key } onOk={handleChangePermit(record.key)} onCancel={closeModal} getContainer={false}>
+                                <p>{t("BoCheckers.Modal.TextRemovePermit")}</p>
+                            </Modal>
                         </>
 
                 )
@@ -91,15 +88,24 @@ const CheckersList = (props) => {
             refresh: !state.refresh,
         })
     }
-    const openCloseModal = () => {
+
+    const openModal = (id) => () => {
         setState({
             ...state,
-            isModal: !state.isModal
+            isModal: id,
+        })
+    }
+
+    const closeModal = () => {
+        setState({
+            ...state,
+            isModal: -1,
+            refresh: !state.refresh,
         })
     }
 
     const removePermit = async (id) => {
-        let changePermit = await changeCheckerPermit(id, {}, props.admin.token)
+        await changeCheckerPermit(id, {}, props.admin.token)
     }
 
 
