@@ -63,7 +63,7 @@ const userMeDuck = (state = INIT_STATE, action) => {
 				action.payload.refreshToken
 			);
 
-			return { ...state, user: action.payload.user };
+			return { ...state, user: { ...state.user, ...action.payload.user } };
 
 		case LOGOUT:
 			localStorage.removeItem(storage.LOCAL_STORAGE_KEYS.USER_TOKEN);
