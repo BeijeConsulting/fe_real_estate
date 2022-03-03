@@ -25,6 +25,8 @@ const RenderAdvs = (props) => {
         return (
             <div className={props.horizontal && 'inline-block mr-4'}>
                 <AdvCard
+                    
+                    advType={adv.advType}
                     key={'advard-' + key + adv.id}
                     savedAds={props.savedAds}
                     id={adv.id}

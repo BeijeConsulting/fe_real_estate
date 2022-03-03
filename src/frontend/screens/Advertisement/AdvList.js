@@ -86,6 +86,7 @@ const AdvList = (props) => {
                 key={'advard-' + key + adv.id}
                 savedAds={props.savedAds}
                 id={adv.id}
+                advType={adv.advType}
                 city={adv.city}
                 address={adv.address}
                 squareMeters={adv.areaMsq}
