@@ -23,7 +23,7 @@ const RenderAdvs = (props) => {
 
     const handleRender = (adv, key) => {
         return (
-            <div className={props.horizontal && 'inline-block mr-4'}>
+            <div className={props.horizontal && ' whitespace-normal ml-4 max-w-sm md:max-w-3xl inline-block mr-4'}>
                 <AdvCard
                     
                     advType={adv.advType}

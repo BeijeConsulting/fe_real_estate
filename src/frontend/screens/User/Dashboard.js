@@ -11,15 +11,17 @@ const Dashboard = (props) => {
     const { t } = useTranslation()
 
     return (
-        <div className='p-6 bg-gray-200 flex-1'>
-            <p>@{props.userMe?.username}</p>
-            <h1 className='text-3xl font-bold'>{t("Dashboard.Hello")} {props.userMe?.name} 👋 </h1>
+        <div className=' bg-gray-200 flex-1'>
+            <div className='p-6'>
+                <p>@{props.userMe?.username}</p>
+                <h1 className='text-3xl font-bold'>{t("Dashboard.Hello")} {props.userMe?.name} 👋 </h1>
+            </div>
 
             {/*  latest saved ads */}
-            <p className='text-3xl font-semibold mt-10 mb-4'>{t("Dashboard.LatestSavedAds")}</p>
+            <p className='ml-4 text-3xl font-semibold mt-10 mb-4'>{t("Dashboard.LatestSavedAds")}</p>
             <RenderAdvs horizontal data={props.savedAds?.slice(0, 3)} />
 
-            <p className='text-3xl font-semibold mt-10 mb-4'>{t("Dashboard.LatestPostedAds")}</p>
+            <p className='ml-4 text-3xl font-semibold mt-10 mb-4'>{t("Dashboard.LatestPostedAds")}</p>
             <RenderAdvs horizontal data={props.postedAds?.slice(0, 3)} />
 
         </div>
