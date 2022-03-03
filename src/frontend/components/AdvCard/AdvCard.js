@@ -13,18 +13,22 @@ import avatar from '../../assets/images/avatar.png'
 
 //utils
 import getBuildingType from '../../../common/utils/getBuildingType'
-import { getUserSavedAds, userSaveAdv } from '../../../services/frontend/usersApi';
 import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage';
+import types from '../../utils/typesTranslator'
+
+//apis
+import { getUserSavedAds, removeUserAdv, userSaveAdv } from '../../../services/frontend/usersApi';
+
 // redux
 import { connect } from 'react-redux'
 
 const AdvCard = (props) => {
 
-    let title = getBuildingType(props.rooms) + " in " + props.address
+    let title =  getBuildingType(props.rooms) + " in " + types.adv(props.advType)  +  " a " + props.address 
 
     const [toast, setToast] = useState({ type: '', msg: '' })
 
-    const handleFavouriteClick = (e) => {
+    const addFavourite = (e) => {
         e.stopPropagation()
 
         let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
@@ -44,6 +48,17 @@ const AdvCard = (props) => {
     }
 
 
+    const removeFavourite = (e) => {
+        e.stopPropagation()
+        
+        removeUserAdv(props.id)
+        .then(res => {
+            setToast({ type:'success', msg:'Annuncio Rimosso'})
+            getUserSavedAds(props.dispatch)
+        })
+        .catch(e => setToast({ type: 'error', msg: 'Errore, operazione fallita' }))
+
+    }
 
     const handleFavouriteRender = () => {
         let isSaved = props.savedAds.find(ad => ad.id === props.id)
@@ -51,7 +66,7 @@ const AdvCard = (props) => {
         if (isSaved) {
             return (
                 <FontAwesomeIcon
-                    onClick={(e) => e.stopPropagation()}
+                    onClick={removeFavourite}
                     icon={faHeart}
                     className='text-red-500 text-2xl'
                 />
@@ -59,7 +74,7 @@ const AdvCard = (props) => {
         } else {
             return (
                 <FontAwesomeIcon
-                    onClick={handleFavouriteClick}
+                    onClick={addFavourite}
                     icon={faHeart}
                     className='text-gray-400 text-2xl hover:text-red-400 transition'
                 />
@@ -70,10 +85,11 @@ const AdvCard = (props) => {
     return (
         <>
             <Toast
+                clearValues={setToast}
                 type={toast.type}
                 msg={toast.msg}
             />
-            <Card className={'flex-col md:flex-row overflow-hidden mb-6 shadow ' + props.className}>
+            <Card className={'flex-col md:flex-row  overflow-hidden mb-6 shadow ' + props.className}>
                 <div className='relative'>
                     {/* BLURRED USER SECTION */}
                     <AdvAuthor
@@ -85,18 +101,18 @@ const AdvCard = (props) => {
                     {/* PHOTOS */}
                     <PhotosCarousel
                         photos={props.photos}
-                        className='md:h-60 md:w-96 2xl:h-64 2xl:w-96'
+                        className='h-48 md:h-60 md:w-96 2xl:h-64 2xl:w-96'
                     />
                 </div>
 
-                <div onClick={props.onClick} className='relative bg-white hover:bg-gray-50 transition cursor-pointer  p-4 flex-col flex flex-1'>
+                <div onClick={props.onClick} className='relative max-w-md text-clip bg-white hover:bg-gray-50 transition cursor-pointer  p-4 flex-col flex flex-1'>
                     {/* INFO-RIGHT */}
                     <div className='flex justify-between'>
                         <p className='font-primary font-semibold text-xl text-gray-700'>{props.city}</p>
                         {handleFavouriteRender()}
                     </div>
 
-                    <p className='block font-primary font-bold text-3xl '>{title}</p>
+                    <p className='block font-primary font-bold text-3xl'>{title}</p>
                     <p className='font-primary'>
                         {!!props.description
                             ? props.description.slice(0, 90) + ".."

@@ -1,14 +1,20 @@
 import "./businessUsers.css"
 import React, { useState, useEffect } from 'react';
 /* react router */
-import { Link } from "react-router-dom";
-/* redux */
-import { connect } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+
 // Import from AntDesign
-import { Table, Input, Tag, Space, Button } from "antd";
+import { Table } from "antd";
 /* API */
 import { getUsersBusiness } from '../../../../services/backoffice/businessApi';
-const BusinessUsers = props => {
+import { useTranslation } from "react-i18next";
+
+import { connect } from "react-redux";
+
+const BusinessUsers = (props) => {
+    const params = useParams()
+
+    const { t } = useTranslation()
 
     let [state, setState] = useState({
         /* table */
@@ -16,25 +22,22 @@ const BusinessUsers = props => {
         isLoading: true,
         totalElements: 0,
     });
+
     /* definizione colonne */
     let columnsTable = [
         {
-            title: 'Username',
-            dataIndex: '',
+            title: t("BoBusiness.Users.Username"),
+            dataIndex: 'username',
         },
         {
-            title: 'Email',
-            dataIndex: '',
-        },
-        {
-            title: 'Tipo',
-            dataIndex: '',
+            title: t("BoBusiness.Users.Email"),
+            dataIndex: 'email',
         },
         {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link key={Math.random()}>Scheda User</Link>
+                <Link to={"/admin/user/" + record.id + "/details"}>{t("BoUsers.Users.FactsCard")}</Link>
             ,
         }
     ]
@@ -42,40 +45,44 @@ const BusinessUsers = props => {
     useEffect(() => {
         sincBusinessUsers()
     }, [])
+
     /* sincronize BusinessUsers */
     const sincBusinessUsers = async () => {
-
-        //API is Missing
-        let resultAPI = await getUsersBusiness()
-        
-        console.log(resultAPI)
+        let resultAPI = await getUsersBusiness(params.id, props.admin.token)
         /* ant design wanted a key inside an object to work */
-        /*         resultAPI = resultAPI.map(item => {
-                    item = {
-                        ...item,
-                        key: item.id
-                    }
-                    return item;
-                })
-                setState({
-                    ...state,
-                    businessUsers: resultAPI,
-                    isLoading: false
-                }) */
+        /*                  resultAPI = resultAPI.map(item => {
+                            item = {
+                                ...item,
+                                key: item.id
+                            }
+                            return item;
+                        }) */
+        setState({
+            ...state,
+            businessUsers: resultAPI,
+            isLoading: false
+        })
     }
     return (
-        <div className='container-BusinessUsers' >
-            <Table
-                dataSource={state.businessUsers}
-                columns={columnsTable}
-                loading={state.isLoading}
-                tableLayout="fixed"
-                scroll={{ scrollToFirstRowOnChange: true }}
-                pagination={{ showSizeChanger: false, total: state.totalElements, hideOnSinglePage: true }}
-            />
+        <div className="BusinessUsers-background">
+            <div className='container-BusinessUsers' >
+                <Table
+                    dataSource={state.businessUsers}
+                    columns={columnsTable}
+                    loading={state.isLoading}
+                    tableLayout="fixed"
+                    scroll={{ scrollToFirstRowOnChange: true }}
+                    pagination={{ showSizeChanger: false, total: state.totalElements, hideOnSinglePage: true }}
+                />
+            </div>
         </div>
     )
 }
 
+const mapStateToProps = (state) => (
+    {
+        admin: state.adminDuck.admin
+    }
+)
 
-export default BusinessUsers
+export default connect(mapStateToProps)(BusinessUsers)

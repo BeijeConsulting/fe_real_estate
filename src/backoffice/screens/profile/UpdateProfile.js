@@ -3,7 +3,7 @@ import { UploadOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import "./updateProfile.css";
 import { useEffect, useState } from "react";
-import { getUserById, updateUserInfo } from "../../../services/backoffice/usersApi";
+import { getUserById, updateUserInfo, getUsersProfile } from "../../../services/backoffice/usersApi";
 import { connect } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const UpdateProfile = (props) => {
     const [state, setState] = useState({ dataAdmin: null, updatedData: {}, isModalOpened: false })
 
     const getAdminData = async () => {
-        dataAdmin = await getUserById(props.admin.id, props.admin.token)
+        dataAdmin = await getUsersProfile( props.admin.token)
         updatedData = {
             email: dataAdmin.email,
             avatarUrl: dataAdmin.avatarUrl,
@@ -60,7 +60,7 @@ const UpdateProfile = (props) => {
     }
 
     const saveChanges = async () => {
-        let data = await updateUserInfo(state.updatedData, props.admin.token)
+        await updateUserInfo(state.updatedData, props.admin.token)
         navigate("/admin/profile")
     }
 

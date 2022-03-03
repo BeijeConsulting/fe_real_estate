@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // files
 import banner from "../../assets/images/immagine-letto-2.png";
@@ -6,17 +6,19 @@ import avatar from "../../assets/images/avatar.png";
 
 // components
 import NavBar from "../../components/Navbar/Navbar";
-import AdvCard from "../../components/AdvCard/AdvCard";
 
 // api
-import { getUserByUsername } from "../../../services/frontend/usersApi";
-import { findAds } from "../../../services/frontend/advertisementApi";
+import {
+	getPublicAdsByUsername,
+	getUserByUsername,
+} from "../../../services/frontend/usersApi";
 
 // routing
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 //TRANSLATION
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "react-i18next";
+import RenderAdvs from "../../components/AdvCard/RenderAdvs";
 
 const STATUS_TYPE = {
 	LOADING: "loading",
@@ -30,7 +32,6 @@ const PublicProfile = () => {
 		user: null,
 		ads: [],
 	});
-	const navigate = useNavigate();
 	const params = useParams();
 	const { t } = useTranslation();
 
@@ -38,9 +39,9 @@ const PublicProfile = () => {
 		const loadUser = async () => {
 			// Note: if request is successful, resUser can be also `null`. See `getUserByUsername`
 			const fecthedUser = await getUserByUsername(params.username).catch(
-				() => null
+				(err) => console.error(err)
 			);
-			console.log(fecthedUser);
+
 			let newState = {};
 
 			if (!fecthedUser) {
@@ -60,39 +61,17 @@ const PublicProfile = () => {
 
 	useEffect(() => {
 		if (!!state.user?.id) {
-			findAds({ userId: state.user.id }).then((res) =>
+			getPublicAdsByUsername(state.user.username).then((res) =>
 				setState((previousState) => ({
 					...previousState,
-					ads: res.data.resList,
+					ads: res.data,
 				}))
 			);
 		}
 	}, [state.user]);
 
-	const handleAdvRender = useCallback(
-		(adv, key) => {
-			const handleNavigate = (dest) => () => {
-				navigate(dest);
-			};
-			return (
-				<AdvCard
-					key={"advard-" + key + adv.id}
-					id={adv.id}
-					city={adv.city}
-					squareMeters={adv.areaMsq}
-					description={adv?.longDescription}
-					roomNumber={adv.rooms}
-					price={adv.price}
-					onClick={handleNavigate(`/${params.lang}/adv/${adv.id}`)}
-					authorName={adv.seller.username}
-				/>
-			);
-		},
-		[params.lang, navigate]
-	);
-
 	return (
-		<div className="flex flex-col items-center bg-gray h-screen w-screen">
+		<div className="flex flex-col items-center bg-gray min-h-screen w-screen">
 			<NavBar fixed />
 			<div className="h-10"></div>
 			{state.statusLoadingUser === STATUS_TYPE.FAILED ? (
@@ -142,12 +121,10 @@ const PublicProfile = () => {
 							</p>
 						</div>
 						<div className="flex flex-col pt-3">
-							<h1 className="font-bold text-xl">{t("Dashboard.ProfilePostedAds")}</h1>
-							{!!state.ads?.length && state.ads.length > 0 ? (
-								state.ads.map(handleAdvRender)
-							) : (
-								<p>{t("Dashboard.CannotLoadAds")}</p>
-							)}
+							<h1 className="font-bold text-xl">
+								{t("Dashboard.ProfilePostedAds")}
+							</h1>
+							<RenderAdvs data={state.ads} />
 						</div>
 					</div>
 				</div>

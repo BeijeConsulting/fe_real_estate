@@ -31,7 +31,7 @@
 	},
 	"button": {
 		"see": "See",
-		"notFound": "I haven't found any"
+		"notFound": "Not enough "
 	},
 	"locationDefault": "Where...",
 	"locationPlaceholder":"Choose a city..."

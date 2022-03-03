@@ -65,7 +65,6 @@ class DetailBuilding extends Component {
 	componentDidMount() {
 		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
 			const adv = res.data;
-			console.log(res)
 			let details = {};
 			if (!!adv) {
 				details = {
@@ -92,7 +91,6 @@ class DetailBuilding extends Component {
 					guidedTour: adv.guidedTour,
 					heating: adv.heating,
 					houseNumber: adv.houseNumber,
-					description: adv.longDescription,
 					parkingSpots: adv.parkingSpots,
 					pool: adv.pool,
 					price: adv.price,
@@ -136,7 +134,7 @@ class DetailBuilding extends Component {
 		return (
 			<>
 				<Navbar fixed />
-				<div className="flex flex-col font-primary bg-slate-200">
+				<div className="flex flex-col font-primary bg-gray-200">
 					<div className="mx-auto xl:max-w-5xl xl:mx-auto">
 						<div className="flex flex-row mt-20 bg-white p-1 md:p-3">
 							<h1 className="text-xl ml-2 my-2 md:text-2xl font-bold bg-white rounded">

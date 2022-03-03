@@ -24,8 +24,7 @@ import { useParams, Link } from "react-router-dom";
 import { Table, Input, Button, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
-const { Search } = Input;
-const { Option } = Select;
+
 
 const AdvListBo = (props) => {
   // hooks

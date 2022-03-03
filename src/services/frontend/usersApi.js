@@ -1,94 +1,102 @@
 import { LOCAL_STORAGE_KEYS } from "../../common/utils/storage";
 import { javaAcademyServiceInstance } from "../javaAcademyService";
 
-import { setUserMe, setSavedAds, setPostedAds } from "../../redux/ducks/userMeDuck";
+import {
+	setUserMe,
+	setSavedAds,
+	setPostedAds,
+} from "../../redux/ducks/userMeDuck";
 
-
-
-export const getUserByUsername = async (username) => {
-	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
-
-	if (!token) {
-		return null;
-	}
-
-	let user = "";
-	const headers = {
-		Authorization: "Bearer " + token,
-	};
-	await javaAcademyServiceInstance
-		.get("/user/find/" + username, { headers })
-		.then((response) => {
-			user = response.data;
-		})
-		.catch(() => { });
-	return user;
+export const getPublicAdsByUsername = async (username) => {
+	return await javaAcademyServiceInstance.get("/user/ads/username/" + username);
 };
 
+export const getUserByUsername = (username) =>
+	javaAcademyServiceInstance
+		.get("/user/find/" + username)
+		.then((response) => response.data);
+
 // get all user data
-export const getUserMe = async ( dispatch ) => {
-	let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
+export const getUserMe = async (dispatch) => {
+	let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 	let headers = {
-		'Authorization': `Bearer ${token}`,
-	}
+		Authorization: `Bearer ${token}`,
+	};
 
 	await javaAcademyServiceInstance
-		.get('/user/myProfile', { headers })
-		.then(res => {
-			dispatch(setUserMe(res.data))
-		})
-}
+		.get("/user/myProfile", { headers })
+		.then((res) => {
+			dispatch(setUserMe(res.data));
+		});
+};
 
 // get all user saved ads
-export const getUserSavedAds = async ( dispatch ) => {
+export const getUserSavedAds = async (dispatch) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
-	
+
 	let headers = {
-		'Authorization': `Bearer ${token}`,
-	}
+		Authorization: `Bearer ${token}`,
+	};
 
 	await javaAcademyServiceInstance
-	.get('/user/saveadv', { headers })
-	.then(res => {
-		dispatch(setSavedAds(res.data))
-	})
-}
+		.get("/user/saveadv", { headers })
+		.then((res) => {
+			dispatch(setSavedAds(res.data));
+		});
+};
 
 // add adv to user favourite
-export const userSaveAdv = async ( advId, token ) => {
+export const userSaveAdv = async (advId, token) => {
 	let headers = {
-		'Authorization': `Bearer ${token}`,
-	}
+		Authorization: `Bearer ${token}`,
+	};
 
-	return await javaAcademyServiceInstance
-	.post('/user/saveadv/' + advId, {},  { headers })
+	return await javaAcademyServiceInstance.post(
+		"/user/saveadv/" + advId,
+		{},
+		{ headers }
+	);
+};
 
-}
+//remove favourite adv user
+export const removeUserAdv = async (advId) => {
+	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
+	let headers = {
+		Authorization: `Bearer ${token}`,
+	};
+
+	return await javaAcademyServiceInstance.put(
+		"/user/removeSavedAdv/" + advId,
+		{},
+		{ headers }
+	);
+};
 
 // update user info
-export const updateUser = async ( newObj ) => {
+export const updateUser = async (newObj) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
-	let headers = { 'Authorization': `Bearer ${token}` }
-
-	return await javaAcademyServiceInstance.put('/user/update', newObj, { headers } ) 
-}
+	let headers = { Authorization: `Bearer ${token}` };
+	console.log(token);
+	return await javaAcademyServiceInstance.put("/user/update", newObj, {
+		headers,
+	});
+};
 
 // get user published advs
-export const getUserPostedAdvs = async ( dispatch ) => {
+export const getUserPostedAdvs = async (dispatch) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
-	let headers = {	'Authorization': `Bearer ${token}` }
+	let headers = { Authorization: `Bearer ${token}` };
 
 	let data;
 
 	await javaAcademyServiceInstance
-	.get('/user/myAdvertisements', { headers})
-	.then( res => data = res.data )
+		.get("/user/myAdvertisements", { headers })
+		.then((res) => (data = res.data));
 
-	dispatch(setPostedAds( data ))
+	dispatch(setPostedAds(data));
 
-	return data
-}
-
+	return data;
+};
 
 export const signUp = async (data) => {
 	let err = null;

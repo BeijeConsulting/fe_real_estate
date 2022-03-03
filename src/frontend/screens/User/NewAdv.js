@@ -30,7 +30,8 @@ import Textarea from "../../components/UI/Textarea/Textarea";
 
 const NewAdv = (props) => {
 	const [current, setCurrent] = useState(0);
-
+	const [success, setSuccess] = useState(false);
+	const [error, setError] = useState(false);
 	const [state, setState] = useState({
 		address: "",
 		advType: ADV_TYPES[0].value,
@@ -44,7 +45,7 @@ const NewAdv = (props) => {
 		city: "",
 		condition: CONDITION.NEW,
 		cooling: COOLING.NO,
-		description: "",
+		longDescription: "",
 		deedState: DEED_STATES.FREE,
 		elevator: false,
 		energyRating: ENERGY_RATING.A,
@@ -80,13 +81,16 @@ const NewAdv = (props) => {
 			price: parseInt(state.price),
 		};
 
-
 		const adv = await addNewAdv(body, token)
 			.then((res) => {
-				//add tostify and redirect
-				console.log(res);
+				setSuccess(true);
+				setError(false);
 			})
-			.catch((err) => console.log(err));
+			.catch((err) => {
+				console.log(err);
+				setSuccess(false);
+				setError(true);
+			});
 	};
 
 	const switchCheck = (key) => () => {
@@ -626,8 +630,8 @@ const NewAdv = (props) => {
 										className={"border-2 border-slate-300"}
 										minHeight={"50px"}
 										maxHeight={"250px"}
-										onChange={handlerInput("description")}
-										value={state.description}
+										onChange={handlerInput("longDescription")}
+										value={state.longDescription}
 									/>
 								</div>
 
@@ -665,6 +669,14 @@ const NewAdv = (props) => {
 									<Button label={t("NewAdv.Post")} onClick={postAd} />
 								</div>
 							</div>
+						)}
+						{success && (
+							<p className="mt-5 text-green-500">
+								{t("Dashboard.ThankYouMessage")}
+							</p>
+						)}
+						{error && (
+							<p className="mt-5 text-red-500">{t("Dashboard.ErrorMessage")}</p>
 						)}
 					</form>
 				</div>
