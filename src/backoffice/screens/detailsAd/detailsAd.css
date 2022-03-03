@@ -95,3 +95,23 @@
     justify-content: space-between;
     width: 30vh; */
 }
+
+.container-feedback {
+  position: absolute;
+  top: 15px;
+  right: 0px;
+}
+.container-feedback .box-success {
+  animation: feedBackBox 0.3s linear 0s;
+}
+.container-feedback .box-error {
+  animation: feedBackBox 0.3s linear 0s;
+}
+@keyframes feedBackBox {
+  0% {
+    margin-right: -350px;
+  }
+  100% {
+    margin-right: 20px;
+  }
+}
