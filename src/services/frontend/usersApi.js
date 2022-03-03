@@ -3,7 +3,11 @@ import { javaAcademyServiceInstance } from "../javaAcademyService";
 
 import { setUserMe, setSavedAds, setPostedAds } from "../../redux/ducks/userMeDuck";
 
-
+export const getPublicAdsByUsername = async ( username ) => {
+		
+	return await javaAcademyServiceInstance
+	.get('/user/ads/username/' + username)
+}
 
 export const getUserByUsername = async (username) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
@@ -39,6 +43,7 @@ export const getUserMe = async ( dispatch ) => {
 		})
 }
 
+
 // get all user saved ads
 export const getUserSavedAds = async ( dispatch ) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
@@ -65,11 +70,23 @@ export const userSaveAdv = async ( advId, token ) => {
 
 }
 
+//remove favourite adv user
+export const removeUserAdv = async ( advId ) => {
+	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
+	let headers = {
+		'Authorization': `Bearer ${token}`,
+	}
+
+	return await javaAcademyServiceInstance
+	.put('/user/removeSavedAdv/' + advId, {},  { headers })
+
+}
+
 // update user info
 export const updateUser = async ( newObj ) => {
 	const token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 	let headers = { 'Authorization': `Bearer ${token}` }
-
+	console.log(token);
 	return await javaAcademyServiceInstance.put('/user/update', newObj, { headers } ) 
 }
 

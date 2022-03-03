@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { withTranslation } from "react-i18next";
-import PropTypes from "prop-types";
-import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 
+import PropTypes from "prop-types";
+import { useParams } from "react-router-dom";
+import SignUpPrivate from "./SignUpPrivate";
 import business from '../../../assets/illustrations/business.svg'
 
 class SignUp extends Component {
@@ -15,37 +15,15 @@ class SignUp extends Component {
 	}
 
 	render() {
-		const { t, path } = this.props;
-
 		return (
 			<>
 				<div className="flex flex-col  w-screen">
-					<div className="flex items-center justify-center">
-
-						<div className="my-4 px-2 py-2 flex rounded bg-tertiary text-lg font-medium ">
-							<Link
-								className={`uppercase px-2 rounded font-primary hover:text-black ${path === `/${this.props.lang}/auth/signup/private` ? 'bg-primary text-black' : 'text-gray-300'}`}
-								to={"private"}
-							>
-
-								{t("SignUp.goToPrivateSignUp")}
-							</Link>
-							<p className='px-2 text-gray-300'>|</p>
-							<Link
-								className={`uppercase px-2 rounded font-primary hover:text-black  ${path === `/${this.props.lang}/auth/signup/business` ? 'bg-primary text-black ' : 'text-gray-300'}`}
-								to={"business"}
-							>
-								{t("SignUp.goToBusinessSignUp")}
-							</Link>
-						</div>
-					</div>
-
 					<div className="flex justify-around items-center">
 						<div className="hidden md:flex flex-col ">
 							<img className='max-w-md' src={business} alt="login-profile" />
 						</div>
 						<div className="flex flex-col items-center justify-evenly">
-							<Outlet />
+							<SignUpPrivate />
 						</div>
 					</div>
 				</div>
@@ -60,8 +38,8 @@ SignUp.propTypes = {
 
 const LocationWrap = (props) => {
 	const params = useParams()
-	const location = useLocation();
-	return <SignUp {...props} path={location.pathname} lang={params.lang} />;
+
+	return <SignUp {...props} lang={params.lang} />;
 };
 
-export default withTranslation()(LocationWrap);
+export default (LocationWrap);

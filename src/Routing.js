@@ -58,9 +58,6 @@ const SignUp = React.lazy(() =>
 const SignUpPrivate = React.lazy(() =>
 	import("./frontend/screens/Auth/SignUp/SignUpPrivate")
 );
-const SignUpBusiness = React.lazy(() =>
-	import("./frontend/screens/Auth/SignUp/SignUpBusiness")
-);
 const ForgotPsw = React.lazy(() => import("./frontend/screens/Auth/ForgotPsw"));
 const User = React.lazy(() => import("./frontend/screens/User/User"));
 const EditProfile = React.lazy(() =>
@@ -70,9 +67,11 @@ const PostedAdvs = React.lazy(() =>
 	import("./frontend/screens/User/PostedAdvs")
 );
 const SaveAdvs = React.lazy(() => import("./frontend/screens/User/SaveAdvs"));
-const ManageBusiness = React.lazy(() => import("./frontend/screens/User/ManageBusiness"));
 const Dashboard = React.lazy(() => import("./frontend/screens/User/Dashboard"));
 const NewAdv = React.lazy(() => import("./frontend/screens/User/NewAdv"));
+const Business = React.lazy(() =>
+	import("./frontend/screens/User/business/Business")
+);
 const DetailBuilding = React.lazy(() =>
 	import("./frontend/screens/DetailBuilding/DetailBuilding")
 );
@@ -212,10 +211,6 @@ const Routing = () => (
 							path={ROUTES.FE.BASE.AUTH.SIGNUP.PRIVATE}
 							element={<SignUpPrivate />}
 						/>
-						<Route
-							path={ROUTES.FE.BASE.AUTH.SIGNUP.BUSINESS}
-							element={<SignUpBusiness />}
-						/>
 					</Route>
 					<Route
 						path={ROUTES.FE.BASE.AUTH.FORGOT_PASSWORD}
@@ -234,6 +229,7 @@ const Routing = () => (
 				>
 					<Route path={ROUTES.FE.BASE.USER.DASHBOARD} element={<Dashboard />} />
 					<Route path={ROUTES.FE.BASE.USER.NEW_ADV} element={<NewAdv />} />
+					<Route path={ROUTES.FE.BASE.USER.BUSINESS} element={<Business />} />
 					<Route
 						path={ROUTES.FE.BASE.USER.EDIT_PROFILE}
 						element={<EditProfile />}
@@ -243,7 +239,6 @@ const Routing = () => (
 						element={<PostedAdvs />}
 					/>
 					<Route path={ROUTES.FE.BASE.USER.SAVED_ADS} element={<SaveAdvs />} />
-					<Route path={ROUTES.FE.BASE.USER.MANAGE_BUSINESS} element={<ManageBusiness />} />
 				</Route>
 			</Route>
 

@@ -117,97 +117,97 @@ class UsersList extends Component {
         }
     }
 
-        searchByName = (value) => {
-            this.setState({
-                searchQuery: value,
-                isLoading: true
-            })
-            if (value === "") {
-                this.fetchUsersPaged(1,10)
-            } else {
-                this.fetchUsersByName(value)
-            }
-        }
-
-        fetchUsersByName = async (value = this.state.searchQuery) => {
-            let payload = [await getUserByUsername(value, this.props.admin.token)]
-            payload = payload.map( element => {
-                return({...element, key: element.id})
-            })
-            console.log(payload)
-            if(payload[0]) {
-                this.setState({
-                    users: payload,
-                    isLoading: false,
-                    totalElements: payload.lenght
-                })
-            } else {
-                this.setState({
-                    users: [],
-                    isLoading: false,
-                    totalElements: 0
-                })
-            }
-        }
-
-        fetchUsersPaged = async (page, count) => {
-            let payload = await getUsersPaged(this.props.admin.token, page, count)
-            this.setState({
-                users: payload.fetchedUsers,
-                isLoading: false,
-                totalElements: payload.totalElements
-            })
-        }
-
-        pageHandler = async (pagination) => {
-            this.setState({
-                isLoading: true
-            })
-            if (this.state.searchQuery === "") {
-                this.fetchUsersPaged(pagination.current, pagination.pageSize)
-            }
-            else {
-                //Search API
-            }
-        }
-
-        render() {
-            const { t } = this.props;
-            return (
-                <div className="users-list-background">
-                    <div className="users-list-container">
-                        <div className="users-list-header">
-                            <Search
-                                placeholder={t("BoUsers.Users.Searchbar")}
-                                enterButton
-                                allowClear
-                                onSearch={this.searchByName}
-                                className="icon-correction"
-                                size="large" />
-                        </div>
-                        <div className="users-list-table">
-                            <Table dataSource={this.state.users}
-                                columns={this.state.columns}
-                                loading={this.state.isLoading}
-                                tableLayout="fixed"
-                                scroll={{ scrollToFirstRowOnChange: true }}
-                                pagination={{
-                                    defaultPageSize: 10,
-                                    total: this.state.totalElements,
-                                    hideOnSinglePage: true,
-                                }}
-                                onChange={this.pageHandler}
-                            />
-                        </div>
-                    </div>
-                </div>
-            )
+    searchByName = (value) => {
+        this.setState({
+            searchQuery: value,
+            isLoading: true
+        })
+        if (value === "") {
+            this.fetchUsersPaged(1, 10)
+        } else {
+            this.fetchUsersByName(value)
         }
     }
 
-    const mapStateToProps = state => ({
-        admin: state.adminDuck.admin,
-        lang: state.translationDuck.payload
-    })
+    fetchUsersByName = async (value = this.state.searchQuery) => {
+        let payload = [await getUserByUsername(value, this.props.admin.token)]
+        payload = payload.map(element => {
+            return ({ ...element, key: element.id })
+        })
+        console.log(payload)
+        if (payload[0]) {
+            this.setState({
+                users: payload,
+                isLoading: false,
+                totalElements: payload.lenght
+            })
+        } else {
+            this.setState({
+                users: [],
+                isLoading: false,
+                totalElements: 0
+            })
+        }
+    }
+
+    fetchUsersPaged = async (page, count) => {
+        let payload = await getUsersPaged(this.props.admin.token, page, count)
+        this.setState({
+            users: payload.fetchedUsers,
+            isLoading: false,
+            totalElements: payload.totalElements
+        })
+    }
+
+    pageHandler = async (pagination) => {
+        this.setState({
+            isLoading: true
+        })
+        if (this.state.searchQuery === "") {
+            this.fetchUsersPaged(pagination.current, pagination.pageSize)
+        }
+        else {
+            //Search API
+        }
+    }
+
+    render() {
+        const { t } = this.props;
+        return (
+            <div className="users-list-background">
+                <div className="users-list-container">
+                    <div className="users-list-header">
+                        <Search
+                            placeholder={t("BoUsers.Users.Searchbar")}
+                            enterButton
+                            allowClear
+                            onSearch={this.searchByName}
+                            className="icon-correction"
+                            size="large" />
+                    </div>
+                    <div className="users-list-table">
+                        <Table dataSource={this.state.users}
+                            columns={this.state.columns}
+                            loading={this.state.isLoading}
+                            tableLayout="fixed"
+                            scroll={{ scrollToFirstRowOnChange: true }}
+                            pagination={{
+                                defaultPageSize: 10,
+                                total: this.state.totalElements,
+                                hideOnSinglePage: true,
+                            }}
+                            onChange={this.pageHandler}
+                        />
+                    </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = state => ({
+    admin: state.adminDuck.admin,
+    lang: state.translationDuck.payload
+})
 
 export default withTranslation()(connect(mapStateToProps)(UsersList))
