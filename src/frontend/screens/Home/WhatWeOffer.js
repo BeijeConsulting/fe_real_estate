@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 // style
 import "./WhatWeOffer.css";
@@ -13,6 +14,7 @@ import { useTranslation } from "react-i18next";
 
 // seo
 import { Helmet } from "react-helmet";
+import { ROUTES } from "../../../utils/properties";
 
 const CLASSES = {
 	CARD: "flex flex-col items-start mt-4 mb-2 my-8",
@@ -23,6 +25,7 @@ const CLASSES = {
 
 const WhatWeOffer = () => {
 	const { t } = useTranslation();
+	const params = useParams();
 
 	return (
 		<div className="w-screen h-screen fixed overflow-auto flex flex-col justify-between items-center">
@@ -50,6 +53,7 @@ const WhatWeOffer = () => {
 				<ServiceCard
 					buttonText={t("WhatWeOffer.services.newAd.button")}
 					classNameRedirectSection={"what-we-offer__insert-ad"}
+					redirectPath={`/${params.lang}/${ROUTES.FE.BASE.AUTH.SELF}`}
 					title={t("WhatWeOffer.services.newAd.title")}
 				>
 					<div className={CLASSES.CARD_INFO}>
@@ -67,6 +71,7 @@ const WhatWeOffer = () => {
 				<ServiceCard
 					buttonText={t("WhatWeOffer.services.assessProperty.button")}
 					classNameRedirectSection={"what-we-offer__assess-property"}
+					redirectPath={`/${params.lang}/${ROUTES.FE.BASE.ASSESS_BUILDING}`}
 					reverse={true}
 					title={t("WhatWeOffer.services.assessProperty.title")}
 				>
