@@ -63,7 +63,11 @@ const retryAfterRefreshToken = async (authorizedApi, dispatch) => {
 
 	// token still valid, some other error occurred
 	if (firstRes.status !== 401) {
-		return new Promise((_, reject) => reject({ response: firstRes }));
+		return new Promise((resolve, reject) =>
+			firstRes.status > 199 && firstRes.status < 300
+				? resolve(firstRes)
+				: reject({ response: firstRes })
+		);
 	}
 
 	// token exists but it is expired
