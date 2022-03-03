@@ -4,13 +4,12 @@
 		"description": "Create a Business account and begin to buy or sell properties."
 	},
 	"signUp": "Start business",
+	"CreatedOn": "Created on ",
+	"PrivateAreaBusiness": "Private Area Business",
 	"VATNumber": "VAT number",
 	"businessName": "Business name",
+	"Phone": "phone number",
 	"refName": "Ref Name",
 	"refSurname": "Ref Surname",
-	"signUpButton": "Start",
-	"goToLogin": {
-		"label": "Already registered?",
-		"link": "Log in"
-	}
+	"signUpButton": "Start"
 }

@@ -206,7 +206,7 @@ class NewBusiness extends Component {
 
 					<div className="mt-5">
 						<Input
-							placeholder="phone"
+							placeholder={t("SignUpBusiness.Phone")}
 							type="text"
 							onChange={this.onChangePhone}
 							onCloseError={this.resetError("phone")}
