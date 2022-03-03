@@ -1,3 +1,4 @@
+import { setBusinessEmployees } from "../../redux/ducks/userMeDuck";
 import { javaAcademyServiceInstance } from "../javaAcademyService";
 import authApi from "./authApi";
 import { getUserMe } from "./usersApi";
@@ -88,12 +89,17 @@ export const getManagedBusiness = (dispatch) =>
  * @returns
  */
 export const getEmployeesList = (businessName, dispatch) =>
-	authApi.retryAfterRefreshToken(
-		(token) =>
-			javaAcademyServiceInstance.get("/business/EmployeeList/" + businessName, {
-				headers: {
-					Authorization: "Bearer " + token,
-				},
-			}),
-		dispatch
-	);
+	authApi
+		.retryAfterRefreshToken(
+			(token) =>
+				javaAcademyServiceInstance.get(
+					"/business/EmployeeList/" + businessName,
+					{
+						headers: {
+							Authorization: "Bearer " + token,
+						},
+					}
+				),
+			dispatch
+		)
+		.then((res) => dispatch(setBusinessEmployees(res.data)));
