@@ -1,7 +1,8 @@
 import "./advertisementsStatistic.css"
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
-
+/* redux */
+import { connect } from "react-redux";
 /* ant */
 import { Card } from "antd";
 import { Row, Col, Skeleton, Collapse } from 'antd';
@@ -9,12 +10,32 @@ import { Row, Col, Skeleton, Collapse } from 'antd';
 import MapAdvertisementsChart from "../../../componets/funcComponets/MapAdvertisementsChart/MapAdvertisementsChart";
 import BasicAreaPlotChart from "../../../componets/funcComponets/basicAreaPlotChart/BasicAreaPlotChart";
 import { useTranslation } from "react-i18next";
-
-const AdvertisementsStatistic = () => {
-
+//Api
+import { apiBasicAreaPlotAdv } from "../../../../services/backoffice/chartsApi";
+const AdvertisementsStatistic = (props) => {
     const { t } = useTranslation()
-
     const { Panel } = Collapse;
+
+    const [state, setState] = useState({
+        advertisementsReleaseState: undefined,
+    })
+    const syncAllCharts = async () => {
+        let advertisementsReleaseChart = await syncBasicAreaPlotChart()
+        setState({
+            ...state,
+            advertisementsReleaseState: advertisementsReleaseChart
+        })
+    }
+
+    const syncBasicAreaPlotChart = async () => {
+        let resultApi = await apiBasicAreaPlotAdv(props.admin.token)
+        return resultApi
+    }
+
+    //componentDidMount
+    useEffect(() => {
+        syncAllCharts()
+    }, [])
 
     return (
         <div className="advertisementsStatistic-container">
@@ -25,7 +46,7 @@ const AdvertisementsStatistic = () => {
                             <MapAdvertisementsChart />
                         </Panel>
                         <Panel header={t("BoDashboard.Ads.Chart2")} key="2">
-                            <BasicAreaPlotChart></BasicAreaPlotChart>
+                            <BasicAreaPlotChart data={state.advertisementsReleaseState}></BasicAreaPlotChart>
                         </Panel>
                     </Collapse>
                 </Col>
@@ -33,6 +54,8 @@ const AdvertisementsStatistic = () => {
         </div>
     )
 }
+const mapStateToProps = (state) => ({
+    admin: state.adminDuck.admin
+})
 
-
-export default AdvertisementsStatistic
+export default connect(mapStateToProps)(AdvertisementsStatistic)

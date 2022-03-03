@@ -1,15 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Liquid } from '@ant-design/plots';
+import PropTypes from 'prop-types'
+import { Spin } from 'antd';
 
-const LiquidPlotChart = () => {
-
-
-
-
-
+const LiquidPlotChart = (props) => {
+    const data = props.data
     const config = {
-        percent: 0.05,
+        percent: data,
         shape: (x, y, width, height) => {
             const path = [];
             const w = Math.min(width, height);
@@ -26,7 +24,6 @@ const LiquidPlotChart = () => {
                     (-Math.sin(((54 + i * 72) * Math.PI) / 180) * w) / 4 + y,
                 ]);
             }
-
             path.push(['Z']);
             return path;
         },
@@ -50,10 +47,29 @@ const LiquidPlotChart = () => {
 
 
 
-    return <Liquid {...config} />;
+    return (
+        <>
+            {
+                props.data !== undefined &&
+                <Liquid {...config} />
+            }
+
+            {
+                props.data === undefined &&
+                <div className='container flex  justify-center items-center h-72'>
+                    <Spin />
+                </div>
+            }
+        </>
+    )
 };
 
-
+LiquidPlotChart.dafultProps = {
+    data: undefined
+}
+LiquidPlotChart.propTypes = {
+    data: PropTypes.number
+}
 
 export default LiquidPlotChart
 
