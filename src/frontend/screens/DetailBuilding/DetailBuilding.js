@@ -65,7 +65,6 @@ class DetailBuilding extends Component {
 	componentDidMount() {
 		javaAcademyService.getDetailBuilding(this.props.params.buildingId).then((res) => {
 			const adv = res.data;
-			console.log(res)
 			let details = {};
 			if (!!adv) {
 				details = {

@@ -10,6 +10,7 @@ import {
 	faUser,
 	faColumns,
 	faChevronCircleDown,
+	faBriefcase,
 } from "@fortawesome/free-solid-svg-icons";
 
 import "./mobileUserNavbar.css";
@@ -68,11 +69,11 @@ const MobileUserNavbar = () => {
 					</Link>
 					<Link
 						className={"m-2 link-menu"}
-						to={`../${ROUTES.FE.BASE.ASSESS_BUILDING}`}
+						to={ROUTES.FE.BASE.USER.BUSINESS}
 						onClick={openToggle}
 					>
-						<FontAwesomeIcon className={"mr-2"} icon={faHouseChimney} />
-						Valuta la tua casa
+						<FontAwesomeIcon className={"mr-2"} icon={faBriefcase} />
+						Business
 					</Link>
 				</nav>
 			)}
