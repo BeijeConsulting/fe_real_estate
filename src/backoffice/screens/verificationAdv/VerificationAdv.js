@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 /* redux */
 import { connect } from "react-redux";
 // Import from AntDesign
-import { Table, Input, Tag, Space, Button, Alert } from "antd";
+import { Table } from "antd";
 /* API */
 import { getPendingAdvertaisement, getRefusedAdvertaisement } from "../../../services/backoffice/advertisementApi";
 /* utils */

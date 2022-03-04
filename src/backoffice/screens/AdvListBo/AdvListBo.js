@@ -31,7 +31,6 @@ const AdvListBo = (props) => {
   const { t } = useTranslation();
 
   const [advList, setAdvList] = useState([]);
-  const [isModalOpened, setModal] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [totalElements, setTotalElements] = useState(0);
   const [allPlaces, setPlaces] = useState([{}]);

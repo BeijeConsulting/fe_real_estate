@@ -95,7 +95,7 @@ const DetailsAd = (props) => {
 
   // carousel func
   const onChange = (a, b, c) => {
-    // console.log(a, b, c);
+    
   };
 
   // show feedback func

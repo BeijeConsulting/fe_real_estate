@@ -1,11 +1,11 @@
 import { Button, Form, Input, Modal, Typography, Alert } from "antd";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { connect } from "react-redux"
 import "./addChecker.css"
 
 import { createChecker } from "../../../services/backoffice/checkerApi";
-import { createUser, getUserByUsername, getUsers } from "../../../services/backoffice/usersApi";
+import { createUser, getUserByUsername } from "../../../services/backoffice/usersApi";
 import { useTranslation } from "react-i18next";
 
 const AddChecker = (props) => {
@@ -67,7 +67,6 @@ const AddChecker = (props) => {
 
     const saveUser = async () => {
         user = await createUser(state.checker)
-        console.log('status', user)
     }
 
     const checkData = async () => {
@@ -86,15 +85,12 @@ const AddChecker = (props) => {
                 checkStatus: 'ko'
             })
         }
-        console.log('check status', state.checkStatus)
     }
 
     const saveChecker = async () => {
         let user = await getUserByUsername(state.checker.username, props.admin.token)
         let check = await createChecker(user.id, {}, props.admin.token)
-        console.log('check', check)
         navigate('/admin/collaborators')
-
     }
 
 

@@ -134,7 +134,6 @@ class UsersList extends Component {
         payload = payload.map(element => {
             return ({ ...element, key: element.id })
         })
-        console.log(payload)
         if (payload[0]) {
             this.setState({
                 users: payload,
