@@ -1,10 +1,10 @@
 import "./Navbar.css";
-import React, { useState, useEffect  } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "../../../common/assets/logo/logo-black.png";
 import { useTranslation } from "react-i18next";
 
-import authApi from '../../../services/frontend/authApi'
+import authApi from "../../../services/frontend/authApi";
 
 //COMPONENTS
 import MobileSidebar from "../MobileSidebar/MobileSidebar";
@@ -25,22 +25,16 @@ import { logout } from "../../../redux/ducks/userMeDuck";
 import { ROUTES } from "../../../utils/properties";
 import { LOCAL_STORAGE_KEYS } from "../../../common/utils/storage";
 
-
-
 const Navbar = (props) => {
+	const { i18n, t } = useTranslation();
 
-	const { i18n,t} = useTranslation();
-
-	let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN)
+	let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_REFRESH_TOKEN);
 
 	useEffect(() => {
-	  if ( token ) {
-		
-		authApi.updateAuthToken(props.dispatch)
-	  }
-	
-	}, [])
-	
+		if (token) {
+			authApi.updateAuthToken(props.dispatch);
+		}
+	}, []);
 
 	let routes = [
 		{
@@ -73,9 +67,9 @@ const Navbar = (props) => {
 	};
 
 	const handleLogoutClick = () => {
-		props.dispatch(logout())
-		handleNavigate('/')
-	}
+		props.dispatch(logout());
+		handleNavigate("/");
+	};
 
 	return (
 		<div
@@ -98,7 +92,7 @@ const Navbar = (props) => {
 
 				{/* DESKTOP ONLY */}
 				<div className="hidden md:flex flex-row space-x-2">
-					<Languages />
+					<Languages classNameIcon="text-2xl px-2" />
 					{handleAuth(
 						!props.userMeDuck.user?.id,
 						handleNavigate,
@@ -173,7 +167,7 @@ const handleAuth = (
 				>
 					{t("Navbar.PrivateArea")}
 				</p>
-				<p onClick={handleLogoutClick} className="cursor-pointer">
+				<p onClick={handleLogoutClick} className="cursor-pointer md:pl-2">
 					<FontAwesomeIcon icon={faArrowRightFromBracket} /> LOG OUT
 				</p>
 			</>
