@@ -22,7 +22,7 @@ import {
   List,
   Alert,
 } from "antd";
-const { Title, Text } = Typography;
+const { Title } = Typography;
 const { Panel } = Collapse;
 
 const DetailsAd = (props) => {

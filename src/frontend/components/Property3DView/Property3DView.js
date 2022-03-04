@@ -63,17 +63,6 @@ class Property3DView extends Component {
 						<ambientLight intensity={1} />
 						<pointLight intensity={1} position={[10, 10, 10]} />
 						<OrbitControls />
-						{/* <FBXTexureShow
-							src={dragon}
-							srcTexture={dragonGroundTexture}
-							position={[40, 0, 0]}
-						/>
-						<OBJMTLShow
-							src={smartphone}
-							mtlSrc={smartphoneMTL}
-							position={[0, -20, 0]}
-							scale={0.1}
-						/> */}
 						<OBJMTLShow
 							src={luxuryHouse}
 							mtlSrc={luxuryHouseMtl}
@@ -82,7 +71,6 @@ class Property3DView extends Component {
 						/>
 					</Suspense>
 				</Canvas>
-
 				<Loader />
 			</div>
 		);
