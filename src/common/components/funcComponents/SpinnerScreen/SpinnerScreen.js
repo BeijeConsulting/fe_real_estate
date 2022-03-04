@@ -5,7 +5,7 @@ const SpinngerScreen = () => {
 	return (
 		<div
 			style={{
-				backgroundColor: 'rgba(227, 191, 0, 1)',
+				backgroundColor: "rgba(227, 191, 0, 1)",
 				position: "fixed",
 				height: "100vh",
 				width: "100vw",
@@ -16,7 +16,16 @@ const SpinngerScreen = () => {
 				justifyContent: "center",
 			}}
 		>
-			<div className="lds-hourglass"></div>
+			<div class="lds-roller">
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+				<div></div>
+			</div>
 		</div>
 	);
 };
