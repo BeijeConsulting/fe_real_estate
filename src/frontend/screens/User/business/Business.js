@@ -5,7 +5,7 @@ import ManageBusiness from "./manageBusiness/ManageBusiness";
 import NewBusiness from "./NewBusiness";
 
 //translation
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const Business = (props) => {
 	const { t } = useTranslation();
@@ -27,20 +27,22 @@ const Business = (props) => {
 			<div className="flex flex-col">
 				<Card className="flex flex-col my-4 justify-center items-center">
 					<p className="text-xl font-bold my-2">
-						{props.business?.businessName ?? "No business name"}
+						{props.business.businessName ?? "No business name"}
 					</p>
-					<p className="text-sm text-slate-500">{t("SignUpBusiness.CreatedOn")} 02/03/2022</p>
+					<p className="text-sm text-slate-500">
+						{t("SignUpBusiness.CreatedOn")} 02/03/2022
+					</p>
 					<div className="flex flex-row p-4">
 						<div className="flex flex-col mr-4 w-56">
 							<p className={titleClass}>{t("SignUpBusiness.refName")}</p>
 							<p className={valueClass}>
-								{props.business?.refName ?? "Unknown"}
+								{props.business.refName ?? "Unknown"}
 							</p>
 						</div>
 						<div className="flex flex-col w-56">
 							<p className={titleClass}>{t("SignUpBusiness.refSurname")}</p>
 							<p className={valueClass}>
-								{props.business?.refSurname ?? "Unknown"}
+								{props.business.refSurname ?? "Unknown"}
 							</p>
 						</div>
 					</div>
@@ -48,12 +50,12 @@ const Business = (props) => {
 						<div className="flex flex-col mr-4 w-56">
 							<p className={titleClass}>{t("SignUpBusiness.VATNumber")}</p>
 							<p className={valueClass}>
-								{props.business?.vatNumber ?? "Unknown"}
+								{props.business.vatNumber ?? "Unknown"}
 							</p>
 						</div>
 						<div className="flex flex-col w-56">
 							<p className={titleClass}>{t("SignUpBusiness.Phone")}</p>
-							<p className={valueClass}>{props.business?.phone ?? "Unknown"}</p>
+							<p className={valueClass}>{props.business.phone ?? "Unknown"}</p>
 						</div>
 					</div>
 				</Card>
