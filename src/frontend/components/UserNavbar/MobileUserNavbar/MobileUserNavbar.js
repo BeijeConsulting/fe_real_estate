@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	faPenToSquare,
 	faBookmark,
-
 	faList,
 	faUser,
 	faColumns,
@@ -17,18 +16,18 @@ import "./mobileUserNavbar.css";
 import { ROUTES } from "../../../../utils/properties";
 
 //Translation
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 const MobileUserNavbar = () => {
 	const [toggle, setToggle] = useState(false);
-	const { t } = useTranslation()
+	const { t } = useTranslation();
 	const openToggle = () => {
 		setToggle(!toggle);
 	};
 
 	return (
 		<>
-			<div className="flex flex-row font-primary bg-secondary p-2 color-primary md:hidden">
+			<div className="flex flex-row items-center font-primary bg-secondary p-2 color-primary md:hidden">
 				<p className="mr-2">Menù</p>
 				<FontAwesomeIcon icon={faChevronCircleDown} onClick={openToggle} />
 			</div>

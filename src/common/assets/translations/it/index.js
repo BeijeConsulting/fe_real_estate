@@ -1,5 +1,6 @@
 import AboutUs from "./AboutUs.json";
 import AdvList from "./AdvList.json";
+import AssessProperty from "./AssessProperty.json";
 import Home from "./Home.json";
 import Navbar from "./Navbar.json";
 import FAQ from "./FAQ.json";
@@ -32,6 +33,7 @@ import ContactSeller from "./ContactSeller.json";
 const it = {
 	AboutUs,
 	MobileUserNavbar,
+	AssessProperty,
 	ManageBusiness,
 	Dashboard,
 	Home,

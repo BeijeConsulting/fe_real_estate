@@ -3,7 +3,7 @@ import "./detailsAd.css";
 // redux
 import { connect } from "react-redux";
 //router
-import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 // service
 import {
   disableAdv,
@@ -12,7 +12,16 @@ import {
   getAdvChecker,
 } from "../../../services/backoffice/advertisementApi";
 // Ant design imports
-import { Typography, Carousel, Collapse, Button, Row, Col, List } from "antd";
+import {
+  Typography,
+  Carousel,
+  Collapse,
+  Button,
+  Row,
+  Col,
+  List,
+  Alert,
+} from "antd";
 const { Title, Text } = Typography;
 const { Panel } = Collapse;
 
@@ -22,6 +31,7 @@ const DetailsAd = (props) => {
     adv: [],
     seller: "",
     checker: "",
+    feedback: null,
   });
   // global var
   const title =
@@ -84,9 +94,27 @@ const DetailsAd = (props) => {
   };
 
   // carousel func
-  function onChange(a, b, c) {
-    console.log(a, b, c);
-  }
+  const onChange = (a, b, c) => {
+    // console.log(a, b, c);
+  };
+
+  // show feedback func
+  const showFeedback = (apiCode) => {
+    if (apiCode === 200) {
+      setState({
+        ...state,
+        feedback: true,
+      });
+      setTimeout(() => {
+        goBack();
+      }, 2000);
+    } else {
+      setState({
+        ...state,
+        feedback: false,
+      });
+    }
+  };
 
   //FuncGoBack
   const goBack = () => {
@@ -96,15 +124,15 @@ const DetailsAd = (props) => {
   //buttons funs
   const approveAdv = async () => {
     let data = await postAdvState(props.admin.token, param.id, "approve");
-    goBack();
+    showFeedback(data.status);
   };
   const refuseAdv = async () => {
     let data = await postAdvState(props.admin.token, param.id, "refuse");
-    goBack();
+    showFeedback(data.status);
   };
   const deleteAdv = async () => {
     let data = await disableAdv(props.admin.token, param.id);
-    goBack();
+    showFeedback(data.status);
   };
   // useEffect
   useEffect(() => {
@@ -155,20 +183,38 @@ const DetailsAd = (props) => {
               )}
             </div>
 
+            {/* feedback  */}
+            <div className="container-feedback">
+              {state.feedback && (
+                <div className="box-success">
+                  <Alert message="Success" type="success" showIcon />
+                </div>
+              )}
+              {state.feedback === false && (
+                <div className="box-error">
+                  <Alert
+                    message="Check username or password"
+                    type="error"
+                    showIcon
+                  />
+                </div>
+              )}
+            </div>
+
             {/* carousell */}
             <div className="container-carousel">
-              <Carousel className="carousel" afterChange={onChange}>
-                <div className="photo-container">
-                  <h3 className="adv-photos">1</h3>
+              <Carousel autoplay afterChange={onChange}>
+                <div>
+                  <div className="adv-photos">1</div>
                 </div>
-                <div className="photo-container">
-                  <h3 className="adv-photos">2</h3>
+                <div>
+                  <div className="adv-photos">2</div>
                 </div>
-                <div className="photo-container">
-                  <h3 className="adv-photos">3</h3>
+                <div>
+                  <div className="adv-photos">3</div>
                 </div>
-                <div className="photo-container">
-                  <h3 className="adv-photos">4</h3>
+                <div>
+                  <div className="adv-photos">4</div>
                 </div>
               </Carousel>
             </div>

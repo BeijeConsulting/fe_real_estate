@@ -32,42 +32,18 @@
 
 .container-carousel {
   margin-top: 1em;
-}
-
-.carousel {
-  margin: auto;
-  width: 70%;
-  padding: 10px;
-  height: 60%;
-  text-align: center;
+  width: 100%;
 }
 
 .adv-photos {
+  width: auto;
+  height: 460px;
   color: #fff;
-  line-height: 60vh;
+  line-height: 460px;
   text-align: center;
   background-image: url("https://foyr.com/learn/wp-content/uploads/2021/08/design-your-dream-home.jpg");
-  /* background-size: contain; */
   background-size: cover;
-  /* background-repeat: no-repeat; */
-}
-
-@media (max-width: 480px) {
-  .adv-photos {
-    line-height: 20vh;
-  }
-}
-
-@media (min-width: 481px) and (max-width: 767px) {
-  .adv-photos {
-    line-height: 20vh;
-  }
-}
-
-@media (min-width: 768px) and (max-width: 979px) {
-  .adv-photos {
-    line-height: 30vh;
-  }
+  background-position: center;
 }
 
 .description {
@@ -80,8 +56,7 @@
   margin-left: 2em;
   margin-right: 2em;
 }
-.collapse {
-}
+
 .title-collapse {
   font-weight: bold;
 }
@@ -97,6 +72,7 @@
 }
 
 .container-feedback {
+  margin-top: 6em;
   position: absolute;
   top: 15px;
   right: 0px;

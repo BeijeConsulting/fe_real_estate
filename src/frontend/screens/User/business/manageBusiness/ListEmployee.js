@@ -7,9 +7,17 @@ import {
 	getEmployeesList,
 	removeEmployee,
 } from "../../../../../services/frontend/managerApi";
+
+// redux
 import { connect } from "react-redux";
 
+// routing
+import { useNavigate, useParams } from "react-router-dom";
+import { ROUTES } from "../../../../../utils/properties";
+
 const ListEmployee = (props) => {
+	const navigate = useNavigate();
+	const params = useParams();
 	const [state, setState] = useState({
 		modalNumber: -1,
 	});
@@ -29,6 +37,14 @@ const ListEmployee = (props) => {
 
 			closeModal();
 		});
+
+	// redirect to employee public profile
+	const goToUser = (username) => () =>
+		navigate(
+			`/${params.lang}/${
+				ROUTES.FE.BASE.USERS_SECTION.SELF
+			}/${ROUTES.FE.BASE.USERS_SECTION.PUBLIC_PROFILE.getPath(username)}`
+		);
 
 	// did mount
 	useEffect(() => {
@@ -52,11 +68,20 @@ const ListEmployee = (props) => {
 			title: "Username",
 			dataIndex: "username",
 			key: "username",
+			render: (_, record) => (
+				<p
+					onClick={goToUser(record.username)}
+					className="text-blue-500 cursor-default no-underline hover:underline"
+				>
+					{record.username}
+				</p>
+			),
 		},
 		{
 			title: "Email",
 			dataIndex: "email",
 			key: "email",
+			responsive: ["sm"],
 		},
 		{
 			title: "",
