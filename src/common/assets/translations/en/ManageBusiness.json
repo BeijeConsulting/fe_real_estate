@@ -1,0 +1,10 @@
+{
+	"errorLoading": "Could not load business info.",
+	"title": "Business reserved area",
+	"creationDate": "Created at",
+	"refName": "Ref. name",
+	"refSurname": "Ref. surname",
+	"vatNumber": "VAT number",
+	"phone": "phone",
+	"infoMessage": "Edits are saved only after pressing the button."
+}

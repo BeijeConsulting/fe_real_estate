@@ -3,6 +3,7 @@ import { javaAcademyServiceInstance } from "../javaAcademyService";
 import authApi from "./authApi";
 import { getUserMe } from "./usersApi";
 
+
 /**
  *
  * @param { string } username
@@ -53,6 +54,28 @@ export const updateBusinessInfo = (body, dispatch) =>
 		.retryAfterRefreshToken(
 			(token) =>
 				javaAcademyServiceInstance.put("/business/update", body, {
+					headers: {
+						Authorization: "Bearer " + token,
+					},
+				}),
+			dispatch
+		)
+		.then((res) => {
+			getUserMe(dispatch);
+			return res;
+		});
+
+
+/**
+ *
+ * @param {{}} body Must containt `businessName`
+ * @param { () => {} } dispatch the redux dispatch
+ */
+export const createBusiness = (body, dispatch) =>
+	authApi
+		.retryAfterRefreshToken(
+			(token) =>
+				javaAcademyServiceInstance.post("/business/register", body, {
 					headers: {
 						Authorization: "Bearer " + token,
 					},

@@ -18,9 +18,9 @@ import { withTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 
 // api
-import { signUp } from "../../../../services/frontend/usersApi";
 import { connect } from "react-redux";
-
+import { createBusiness } from "../../../../services/frontend/managerApi"
+import { getUserMe } from "../../../../services/frontend/usersApi";
 class NewBusiness extends Component {
 	constructor(props) {
 		super(props);
@@ -67,13 +67,13 @@ class NewBusiness extends Component {
 
 	onChangeVatNumber = (e) => {
 		this.setState({
-			data: { ...this.state.data, cf: e.target.value },
+			data: { ...this.state.data, vatNumber: e.target.value },
 		});
 	};
 
 	onChangeBusinessName = (e) => {
 		this.setState({
-			data: { ...this.state.data, name: e.target.value },
+			data: { ...this.state.data, businessName: e.target.value },
 		});
 	};
 
@@ -129,9 +129,13 @@ class NewBusiness extends Component {
 		e.preventDefault();
 
 		if (this.areDataValid()) {
-			signUp(this.state.data).then(() => {
-				this.redirectToLogin();
-			});
+			//registra business
+
+			createBusiness(this.state.data, this.props.dispatch)
+				.catch((err) => {
+					console.error(err);
+				})
+
 		}
 	};
 
@@ -152,9 +156,7 @@ class NewBusiness extends Component {
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
 						{t("SignUpBusiness.signUp")}
 					</h1>
-					<p className="font-primary font-light text-sm mt-2 text-center">
-						{t("SignUpBusiness.signUpBusiness")}
-					</p>
+
 
 					<div className="mt-5">
 						<Input
@@ -204,7 +206,7 @@ class NewBusiness extends Component {
 
 					<div className="mt-5">
 						<Input
-							placeholder="phone"
+							placeholder={t("SignUpBusiness.Phone")}
 							type="text"
 							onChange={this.onChangePhone}
 							onCloseError={this.resetError("phone")}
@@ -220,20 +222,10 @@ class NewBusiness extends Component {
 						label={t("SignUpBusiness.signUpButton")}
 					/>
 
-					<p className="font-primary mt-5">
-						{t("SignUpBusiness.goToLogin.label")}
-					</p>
-					<Link
-						className="font-primary mt-2"
-						to={`/${this.props.i18n.language}/${ROUTES.FE.BASE.AUTH.SELF}/${ROUTES.FE.BASE.AUTH.LOGIN}`}
-					>
-						{t("SignUpBusiness.goToLogin.link")}
-					</Link>
-					{this.state.redirectToLogin && (
-						<Navigate
-							to={`/${this.props.i18n.language}/${ROUTES.FE.BASE.AUTH.SELF}/${ROUTES.FE.BASE.AUTH.LOGIN}`}
-						/>
-					)}
+
+
+
+
 				</form>
 			</>
 		);

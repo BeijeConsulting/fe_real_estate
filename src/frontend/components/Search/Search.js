@@ -100,32 +100,40 @@ const Search = () => {
 	};
 
 	return (
-		<div className="select-none flex-1 flex flex-col justify-center items-center">
-			<div className="flex flex-col md:flex-row text-white z-30 text-5xl space-x-2">
-				<p>{t(`Search.search`)}</p>
-				<SearchSelect
-					ico=""
-					value={t(
-						`Search.buildingTypeSingular.${query.buildingType.value.toLowerCase()}`
-					)}
-					callback={setBuildingType}
-					options={mapBuildingTypes()}
-				/>
-				<p>{t(`Search.for`)}</p>
-				<SearchSelect
-					ico=""
-					value={t(`Search.advType.${query.advType.value.toLowerCase()}`)}
-					callback={setAdvType}
-					options={mapAdvTypes()}
-				/>
-				<p>{t(`Search.in`)}</p>
-				<LocationSelect
-					ico=""
-					value={
-						query.location !== "" ? query.location : t("Search.locationDefault")
-					}
-					callback={setLocation}
-				/>
+		<div className="select-none flex flex-col justify-center items-center">
+			<div className="flex flex-col text-4xl md:flex-row text-white z-30 md:text-5xl md:space-x-2">
+				<div className="flex pb-4 md:pb-0 ">
+					<p className="pr-2">{t(`Search.search`)}</p>
+					<SearchSelect
+						ico=""
+						value={t(
+							`Search.buildingTypeSingular.${query.buildingType.value.toLowerCase()}`
+						)}
+						callback={setBuildingType}
+						options={mapBuildingTypes()}
+					/>
+				</div>
+				<div className="flex pb-4 md:pb-0 ">
+					<p className="pr-2">{t(`Search.for`)}</p>
+					<SearchSelect
+						ico=""
+						value={t(`Search.advType.${query.advType.value.toLowerCase()}`)}
+						callback={setAdvType}
+						options={mapAdvTypes()}
+					/>
+				</div>
+				<div className="flex pb-4 md:pb-0 ">
+					<p className="pr-2">{t(`Search.in`)}</p>
+					<LocationSelect
+						ico=""
+						value={
+							query.location !== ""
+								? query.location
+								: t("Search.locationDefault")
+						}
+						callback={setLocation}
+					/>
+				</div>
 			</div>
 
 			<Button
