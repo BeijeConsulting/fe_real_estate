@@ -33,13 +33,13 @@ const RenderAdvs = (props) => {
                     city={adv.city}
                     address={adv.address}
                     squareMeters={adv.areaMsq}
-                    description={adv?.longDescription}
+                    description={adv.longDescription}
                     roomNumber={adv.rooms}
                     price={adv.price}
                     onClick={handleNavigate(`/${lang}/adv/${adv.id}`)}
-                    onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv.seller.username}`)}
-                    authorName={adv.seller.username}
-                    business={adv.seller.business}
+                    onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv?.seller?.username}`)}
+                    authorName={adv?.seller?.username}
+                    business={adv?.seller?.business}
                 />
             </div>
         )

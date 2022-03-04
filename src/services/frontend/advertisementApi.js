@@ -20,6 +20,10 @@ const addNewAdv = async (adv, token) => {
 	return await client.post("advertisement", adv, { headers });
 };
 
-export { findAds, getCities, getUserAds, addNewAdv };
+const getLatestAds = async () => {
+	return await client.get('/advertisement/lastads')
+}
+
+export { findAds, getCities, getUserAds, addNewAdv, getLatestAds };
 
 
