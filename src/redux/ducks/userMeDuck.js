@@ -83,7 +83,12 @@ const userMeDuck = (state = INIT_STATE, action) => {
 		case SET_POSTED_ADS:
 			return { ...state, postedAds: action.payload };
 		case SET_EMPLOYEES:
-			return { ...state, businessEmployees: action.payload };
+			return {
+				...state,
+				businessEmployees: action.payload.filter(
+					(u) => u?.id !== state.user.id
+				),
+			};
 		default:
 			return state;
 	}

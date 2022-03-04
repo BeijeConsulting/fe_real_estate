@@ -21,19 +21,19 @@ import { LOCAL_STORAGE_KEYS } from "../../../common/utils/storage";
 
 const Home = () => {
 	const { t } = useTranslation();
-	let navigate = useNavigate()
+	let navigate = useNavigate();
 
-	const [toast, setToast] = useState({ type: '', msg: '' })
+	const [toast, setToast] = useState({ type: "", msg: "" });
 
 	const handleClick = () => {
-		let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
+		let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN);
 
 		if (token) {
-			navigate(`user/new-adv`)
+			navigate(`user/new-adv`);
 		} else {
-			setToast({ type: 'error', msg: 'Per piacere esegui il Login' })
+			setToast({ type: "error", msg: "Per piacere esegui il Login" });
 		}
-	}
+	};
 
 	return (
 		<div className="fixed-background">
@@ -41,17 +41,18 @@ const Home = () => {
 			{/* SEO */}
 			<Helmet>
 				<meta name="description" content={t("Home.helmet.description")} />
-				<title>DOMUS</title>
+				<title>DOMUS - Home</title>
 			</Helmet>
 			{/* Home */}
 			<div className="home-container">
 				<Navbar fixed />
 
-				<div className=" h-screen flex flex-col">
+				<div className=" h-screen flex flex-col justify-evenly md:justify-around">
+					<div className="hidden md:block h-8"></div>
 					<Search />
 
-					<div onClick={handleClick} className='flex flex-1 justify-center absolute mx-auto bottom-10 left-0 right-0'>
-						<p className='btn-home rounded font-primary'>PUBBLICA ANNUNCIO</p>
+					<div onClick={handleClick} className="flex justify-center mx-auto">
+						<p className="btn-home rounded font-primary">PUBBLICA ANNUNCIO</p>
 					</div>
 				</div>
 				<Illustrations className="illustrations-container" />
@@ -59,12 +60,19 @@ const Home = () => {
 				<Carousel />
 
 				<div className="flex font-primary flex-col w-full mt-6 p-2 py-6 bg-secondary">
-					<h1 className="text-3xl md:text-4xl text-center color-primary p-2">{t("Home.publishAd.text")}</h1>
-					<h3 className="text-xl md:text-xl text-center color-primary">{t("Home.publishAd.subtext")}</h3>
-					
+					<h1 className="text-3xl md:text-4xl text-center color-primary p-2">
+						{t("Home.publishAd.text")}
+					</h1>
+					<h3 className="text-xl md:text-xl text-center color-primary">
+						{t("Home.publishAd.subtext")}
+					</h3>
+
 					<div className="w-2/5 mb- mx-auto">
-						<div onClick={handleClick} className='flex flex-1 justify-center  mx-auto bottom-10 left-0 right-0'>
-							<p className='btn-home rounded font-primary'>PUBBLICA ANNUNCIO</p>
+						<div
+							onClick={handleClick}
+							className="flex flex-1 justify-center  mx-auto bottom-10 left-0 right-0"
+						>
+							<p className="btn-home rounded font-primary">PUBBLICA ANNUNCIO</p>
 						</div>
 					</div>
 				</div>

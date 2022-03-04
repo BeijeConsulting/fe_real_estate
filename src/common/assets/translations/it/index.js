@@ -7,6 +7,7 @@ import FAQ from "./FAQ.json";
 import Footer from "./Footer.json";
 import Login from "./Login.json";
 import Map from "./Map.json";
+import ManageBusiness from "./ManageBusiness.json";
 import NewAdv from "./NewAdv.json";
 import SignUp from "./SignUp.json";
 import SignUpPrivate from "./SignUpPrivate.json";
@@ -33,6 +34,7 @@ const it = {
 	AboutUs,
 	MobileUserNavbar,
 	AssessProperty,
+	ManageBusiness,
 	Dashboard,
 	Home,
 	NewAdv,
@@ -59,7 +61,7 @@ const it = {
 	BoUsers,
 	BoVerification,
 	DetailBuilding,
-	ContactSeller
+	ContactSeller,
 };
 
 export default it;

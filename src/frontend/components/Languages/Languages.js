@@ -23,8 +23,11 @@ const Languages = (props) => {
 		<div>
 			<SearchSelect
 				fgClass={props.fgClass}
-				value={<FontAwesomeIcon className="text-2xl" icon={faGlobe} />}
+				value={
+					<FontAwesomeIcon className={props.classNameIcon} icon={faGlobe} />
+				}
 				callback={changeLanguage}
+				showArrow={false}
 				options={langs}
 			/>
 		</div>
@@ -32,11 +35,12 @@ const Languages = (props) => {
 };
 
 Languages.defaultProps = {
+	classNameIcon: "",
 	fgClass: "",
 };
 
 Languages.propTypes = {
-	classNameContainer: PropTypes.string,
+	classNameIcon: PropTypes.string,
 };
 
 export default Languages;
