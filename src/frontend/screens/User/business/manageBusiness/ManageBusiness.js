@@ -45,7 +45,7 @@ const ManageBusiness = (props) => {
 				</h1>
 			) : (
 				<>
-					<h1 className="text-3xl font-bold color-secondary">
+					<h1 className="text-3xl text-center font-bold color-secondary">
 						{t("ManageBusiness.title")}
 					</h1>
 					<div className="flex flex-col">
@@ -60,7 +60,7 @@ const ManageBusiness = (props) => {
 									  ).toLocaleDateString()}`
 									: undefined}
 							</p>
-							<div className="flex flex-row p-4">
+							<div className="flex flex-col md:flex-row p-4">
 								<div className="flex flex-col mr-4 w-56">
 									<p className={labelClass}>{t("ManageBusiness.refName")}</p>
 									<Input value={state.refName} onChange={setName} />
@@ -70,7 +70,7 @@ const ManageBusiness = (props) => {
 									<Input value={state.refSurname} onChange={setSurname} />
 								</div>
 							</div>
-							<div className="flex flex-row p-4">
+							<div className="flex flex-col md:flex-row p-4">
 								<div className="flex flex-col mr-4 w-56">
 									<p className={labelClass}>{t("ManageBusiness.vatNumber")}</p>
 									<Input value={state.vatNumber} onChange={setVatNumber} />
