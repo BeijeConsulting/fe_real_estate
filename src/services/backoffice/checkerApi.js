@@ -47,7 +47,6 @@ export const changeCheckerPermit = async (id, content, token) => {
     };
     await javaAcademyServiceInstance.put("/admin/checker/removePermit/" + id, content, { headers }).then((response) => {
         updateCheckerPermit = response
-        console.log('updateCheckerPermit', updateCheckerPermit)
 
     }).catch(
 

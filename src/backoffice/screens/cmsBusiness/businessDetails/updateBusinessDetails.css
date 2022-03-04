@@ -1,5 +1,5 @@
 .update-business-container{    
-    height: calc(100vh - 160px);
+    height: calc(100vh - 220px);
 }
 
 .update-business-form{
@@ -26,10 +26,11 @@
     grid-column-start: 3;
     grid-column-end: 5;
     justify-self: center;
+    align-self: center;
 }   
 
 .update-business-button{
-    
+    margin-top: 4em;
     grid-row-start: 4;
     grid-column-start: 1;
     grid-column-end: 5;
@@ -41,6 +42,7 @@
 
     .update-business-container{
         overflow-y: scroll;
+        align-items: center;
     }
     .update-business-form{
         display: flex;

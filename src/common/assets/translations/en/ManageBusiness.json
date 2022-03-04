@@ -6,5 +6,9 @@
 	"refSurname": "Ref. surname",
 	"vatNumber": "VAT number",
 	"phone": "phone",
-	"infoMessage": "Edits are saved only after pressing the button."
+	"infoMessage": "Edits are saved only after pressing the button.",
+	"AddEmployee": {
+		"button": "Add",
+		"field": "Employee"
+	}
 }

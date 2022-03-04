@@ -6,5 +6,9 @@
 	"refSurname": "Cognome Referente",
 	"vatNumber": "Partita IVA",
 	"phone": "telefono",
-	"infoMessage": "I cambiamenti sono salvati solo dopo aver premuto il bottone."
+	"infoMessage": "I cambiamenti sono salvati solo dopo aver premuto il bottone.",
+	"AddEmployee": {
+		"button": "Aggiungi",
+		"field": "Dipendente"
+	}
 }

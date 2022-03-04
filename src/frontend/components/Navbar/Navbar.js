@@ -92,7 +92,7 @@ const Navbar = (props) => {
 
 				{/* DESKTOP ONLY */}
 				<div className="hidden md:flex flex-row space-x-2">
-					<Languages classNameIcon="text-2xl px-2" />
+					<Languages classNameIcon="text-2xl px-2 pt-1" />
 					{handleAuth(
 						!props.userMeDuck.user?.id,
 						handleNavigate,

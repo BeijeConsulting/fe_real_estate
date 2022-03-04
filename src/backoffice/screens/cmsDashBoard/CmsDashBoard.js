@@ -1,7 +1,7 @@
 import "./cmsDashBoard.css"
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 /* react-router-dom*/
-import { useNavigate, useParams, useLocation, Outlet } from "react-router-dom"
+import { useNavigate, useLocation, Outlet } from "react-router-dom"
 
 /* funcComponet */
 import TagComp from "../../componets/funcComponets/tagComp/TagComp";

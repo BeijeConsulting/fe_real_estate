@@ -20,13 +20,11 @@ import BusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/Bu
 import UpdateBusinessDetails from "./backoffice/screens/cmsBusiness/businessDetails/UpdateBusinessDetails";
 import BusinessAdv from "./backoffice/screens/cmsBusiness/businessAdv/BusinessAdv";
 import BusinessUsers from "./backoffice/screens/cmsBusiness/businessUsers/BusinessUsers";
-import Checker from "./backoffice/screens/Checkers/Checker";
 import CheckersList from "./backoffice/screens/Checkers/CheckersList";
 import AddChecker from "./backoffice/screens/Checkers/AddChecker";
 import AdvListBo from "./backoffice/screens/AdvListBo/AdvListBo";
 import CmsUser from "./backoffice/screens/CmsUser/CmsUser";
 import UserDetails from "./backoffice/screens/CmsUser/UserDetails/UserDetails";
-import UpdateUserDetails from "./backoffice/screens/CmsUser/UserDetails/UpdateUserDetails";
 import UserAdv from "./backoffice/screens/CmsUser/UserAdv/UserAdv";
 
 // COMMON
@@ -258,10 +256,6 @@ const Routing = () => (
 				</Route>
 				<Route path="user/:id" element={<CmsUser />}>
 					<Route path="details" element={<UserDetails />} />
-					<Route
-						path="details/update-details"
-						element={<UpdateUserDetails />}
-					/>
 					<Route path="advertisements" element={<UserAdv />} />
 				</Route>
 				<Route path="advertisements" element={<AdvListBo />} />
@@ -275,7 +269,6 @@ const Routing = () => (
 				<Route path="profile" element={<Profile />} />
 				<Route path="profile/update-profile" element={<UpdateProfile />} />
 				<Route path="collaborators" element={<CheckersList />} />
-				<Route path="collaborator/:id" element={<Checker />} />
 				<Route path="collaborator/add-collaborator" element={<AddChecker />} />
 			</Route>
 			<Route path="*" element={<NotFound />} />

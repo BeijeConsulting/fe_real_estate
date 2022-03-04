@@ -15,7 +15,8 @@
             "Username": "Username",
             "Contacts": "Contatti",
             "Email": "Email personale",
-            "Delete": "Elimina"
+            "Delete": "Elimina",
+            "ModalText": "Vuoi davvero eliminare questo utente?"
         },
         "Ads": "Annunci",
         "Adv": {

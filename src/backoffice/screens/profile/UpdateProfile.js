@@ -1,9 +1,8 @@
-import { Button, Form, Input, Modal, Upload } from "antd";
-import { UploadOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Modal } from "antd";
 import "antd/dist/antd.css";
 import "./updateProfile.css";
 import { useEffect, useState } from "react";
-import { getUserById, updateUserInfo, getUsersProfile } from "../../../services/backoffice/usersApi";
+import { updateUserInfo, getUsersProfile } from "../../../services/backoffice/usersApi";
 import { connect } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
@@ -15,14 +14,11 @@ const UpdateProfile = (props) => {
     let navigate = useNavigate()
     const { t } = useTranslation()
     const [form] = Form.useForm();
-    const antProps = {
-        action: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.interlinecenter.com%2F%3Fattachment_id%3D337&psig=AOvVaw1M-WHiEIbmWU6iI0nqA9iI&ust=1645182122041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPibgZLLhvYCFQAAAAAdAAAAABAD'
-    }
 
     const [state, setState] = useState({ dataAdmin: null, updatedData: {}, isModalOpened: false })
 
     const getAdminData = async () => {
-        dataAdmin = await getUsersProfile( props.admin.token)
+        dataAdmin = await getUsersProfile(props.admin.token)
         updatedData = {
             email: dataAdmin.email,
             avatarUrl: dataAdmin.avatarUrl,
@@ -77,24 +73,13 @@ const UpdateProfile = (props) => {
         <>{state.dataAdmin !== null &&
 
             <div className="update-profile-container" >
-
+                <h2 className="update-title">{t("BoUpdateProfile.Update")}</h2>
                 <Form
                     className="update-profile-form"
                     layout={"horizontal"}
                     form={form}
                     initialValues={state.dataAdmin}
                 >
-                    <span className="update-profile-img">
-                    </span>
-                    <Upload
-                        className="update-profile-upload"
-                        {...antProps}
-                        accept="image/png, image/jpeg"
-
-                    >
-                        <Button icon={<UploadOutlined />}>Upload</Button>
-                    </Upload>
-
                     <div className="update-profile-info">
                         <Form.Item className="form-item" name="name" label={t("BoUpdateProfile.Info.Name")}>
                             <Input onChange={handleName} placeholder="inserisci nome" />
@@ -102,9 +87,6 @@ const UpdateProfile = (props) => {
                         <Form.Item className="form-item" name="surname" label={t("BoUpdateProfile.Info.Surname")}>
                             <Input onChange={handleSurname} placeholder="inserisci cognome" />
                         </Form.Item>
-
-                    </div>
-                    <div className="update-profile-contacts">
                         <Form.Item className="form-item" name="username" label={t("BoUpdateProfile.Info.Username")}>
                             <Input placeholder="admin" />
                         </Form.Item>

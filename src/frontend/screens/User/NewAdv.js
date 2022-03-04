@@ -305,9 +305,7 @@ const NewAdv = (props) => {
 						)}
 						{current === 1 && (
 							<div className="flex flex-col mx-auto">
-								{/* <div className="grid grid-cols-3"> */}
-
-								<div className="flex flex-wrap gap-2">
+								<div className="flex flex-wrap gap-2 md:max-w-xs">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
 											{t("NewAdv.Balcony")}
@@ -337,9 +335,7 @@ const NewAdv = (props) => {
 											checked={state.pool}
 										/>
 									</div>
-								</div>
 
-								<div className="flex flex-wrap gap-2">
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
 											{t("NewAdv.Attic")}
@@ -369,8 +365,7 @@ const NewAdv = (props) => {
 											checked={state.terrace}
 										/>
 									</div>
-								</div>
-								<div className="flex flex-wrap gap-2">
+
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
 											{t("NewAdv.Reception")}
@@ -381,26 +376,25 @@ const NewAdv = (props) => {
 										/>
 									</div>
 								</div>
-
-								<div className="mb-5">
-									<label className="uppercase font-primary color-secondary mr-3">
-										{t("NewAdv.ParkingSpot")}
-									</label>
-									<div className="flex mr-2">
-										<CircleButton
-											label="-"
-											onClickCallback={decrement("parkingSpots")}
-										/>
-										<span className="text-lg font-semibold my-2 mx-3">
-											{state.parkingSpots}
-										</span>
-										<CircleButton
-											label="+"
-											onClickCallback={increment("parkingSpots")}
-										/>
-									</div>
-								</div>
 								<div className="flex flex-wrap mx-auto">
+									<div className="mb-5">
+										<label className="uppercase font-primary color-secondary mr-3">
+											{t("NewAdv.ParkingSpot")}
+										</label>
+										<div className="flex mr-2">
+											<CircleButton
+												label="-"
+												onClickCallback={decrement("parkingSpots")}
+											/>
+											<span className="text-lg font-semibold my-2 mx-3">
+												{state.parkingSpots}
+											</span>
+											<CircleButton
+												label="+"
+												onClickCallback={increment("parkingSpots")}
+											/>
+										</div>
+									</div>
 									<div className="mb-5">
 										<label className="uppercase font-primary color-secondary mr-3">
 											{t("NewAdv.Bathrooms")}

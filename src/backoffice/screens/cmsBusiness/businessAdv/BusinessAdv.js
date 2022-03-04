@@ -13,7 +13,7 @@ import { connect } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 
 // ant design
-import { Table, Input, Tag, Space } from "antd";
+import { Table, Input } from "antd";
 import { useTranslation } from "react-i18next";
 const { Search } = Input;
 
@@ -26,12 +26,10 @@ const BusinessAdv = (props) => {
   const { t } = useTranslation();
   //router
   const param = useParams();
-  console.log("Param", param);
 
   //axios
   const getListAdvForBusiness = async () => {
     let businessName = await getBusinessName(props.admin.token, param.id);
-    console.log(businessName);
     let resultApi = await getAdvBusinessName(props.admin.token, businessName);
     let listData = resultApi.map((item) => {
       item = {
@@ -40,7 +38,6 @@ const BusinessAdv = (props) => {
       };
       return item;
     });
-    console.log("listData", listData);
     setAdvBusiness(listData);
     setIsLoading(false);
   };
@@ -96,7 +93,6 @@ const BusinessAdv = (props) => {
 
   useEffect(() => {
     getListAdvForBusiness();
-    console.log("STATE", advBusiness);
   }, []);
 
   return (

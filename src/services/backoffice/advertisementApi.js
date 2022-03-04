@@ -31,7 +31,7 @@ export const getAdv = async (token, id) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .get(`/admin/advertisement/${id}`, { headers })
     .then((response) => {
       newAdv = [response.data];
@@ -44,7 +44,7 @@ export const getAdvChecker = async (token, id) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .get(`/checker/pending/${id}`, { headers })
     .then((response) => {
       newAdv = [response.data];
@@ -119,7 +119,7 @@ export const postAdvState = async (token, id, state) => {
   await javaAcademyServiceInstance
     .post(`checker/${state}/${id}`, {}, { headers })
     .then((response) => {
-      updateAdv = response.data;
+      updateAdv = response;
     });
   return updateAdv;
 };
@@ -147,7 +147,7 @@ export const disableAdv = async (token, id) => {
   await javaAcademyServiceInstance
     .put(`/admin/disableAdvertisement/${id}`, {}, { headers })
     .then((response) => {
-      disableAdv = response.data;
+      disableAdv = response;
     });
   return disableAdv;
 };
