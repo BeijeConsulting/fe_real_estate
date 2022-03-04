@@ -71,23 +71,11 @@ const Profile = (props) => {
                                         title={t("BoProfile.Info.Username")}
                                         description={item.username}
                                     />
-                                </List.Item>
-                            )}
-                        />
-                    </div>
-
-                    <div className='contacts-profile-box'>
-                        <List
-                            className="contacts-list"
-                            header={<h3 className='contacts-title'>{t("BoProfile.Contacts.Contacts")}</h3>}
-                            itemLayout="vertical"
-                            dataSource={state.data}
-                            renderItem={item => (
-                                <List.Item>
                                     <List.Item.Meta
                                         title={t("BoProfile.Contacts.PersonalEmail")}
                                         description={item.email}
                                     />
+
                                 </List.Item>
                             )}
                         />

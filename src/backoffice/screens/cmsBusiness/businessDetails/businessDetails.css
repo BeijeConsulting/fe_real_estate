@@ -1,5 +1,5 @@
 .business-detail-container{
-    height: calc(100vh - 170px);
+    height: calc(100vh - 220px);
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -36,12 +36,18 @@
     justify-self: center;
 }
 
-@media (max-width: 640px){
+@media (max-width: 849px){
     .business-detail-container{
+        margin-top: 1em;
+        overflow-y: scroll;
         padding: 1em;
         display: flex;
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
+        gap: 1em;
+    }
+    .business-info-box{
+        margin-top: 6em;
     }
 }

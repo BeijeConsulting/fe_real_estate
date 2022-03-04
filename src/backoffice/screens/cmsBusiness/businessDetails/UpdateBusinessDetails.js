@@ -88,8 +88,9 @@ const UpdateBusinessDetails = (props) => {
         <>{state.businessData !== null &&
 
             <div className="update-business-container" >
+                <h2 className="update-title">{t("BoBusiness.UpdateBusiness.Update")}</h2>
                 <Form
-                    className="update-profile-form"
+                    className="update-business-form"
                     layout={"horizontal"}
                     form={form}
                     initialValues={state.businessData}
