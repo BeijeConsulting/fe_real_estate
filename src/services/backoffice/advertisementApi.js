@@ -119,7 +119,7 @@ export const postAdvState = async (token, id, state) => {
   await javaAcademyServiceInstance
     .post(`checker/${state}/${id}`, {}, { headers })
     .then((response) => {
-      updateAdv = response.data;
+      updateAdv = response;
     });
   return updateAdv;
 };
@@ -147,7 +147,7 @@ export const disableAdv = async (token, id) => {
   await javaAcademyServiceInstance
     .put(`/admin/disableAdvertisement/${id}`, {}, { headers })
     .then((response) => {
-      disableAdv = response.data;
+      disableAdv = response;
     });
   return disableAdv;
 };

@@ -74,11 +74,13 @@ const Cms = (props) => {
 
   return (
     <>
-      {
-        props.admin.permission &&
+      {props.admin.permission && (
         <Layout style={{ width: "100%", height: "100vh" }}>
           <Sider breakpoint="lg" collapsedWidth="0">
-            <div className="logo" />
+            <div className="logo-container">
+              <p className="img-logo"></p>
+              <span className="logo">DOMUS PANEL</span>
+            </div>
             <Menu
               theme="dark"
               mode="inline"
@@ -176,7 +178,7 @@ const Cms = (props) => {
             </Layout>
           )}
         </Layout>
-      }
+      )}
     </>
   );
 };
