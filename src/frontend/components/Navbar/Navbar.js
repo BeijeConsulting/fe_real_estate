@@ -77,7 +77,7 @@ const Navbar = (props) => {
 				"z-40 bg-gradient top-0 right-0 left-0 " + (props.fixed ? "fixed" : "")
 			}
 		>
-			<div className="px-4 md:px-0 py-2.5 lg:max-w-6xl mx-auto  justify-between flex flex-row items-center">
+			<div className="px-4 md:px-0 py-2.5  lg:max-w-6xl mx-auto  justify-between flex flex-row items-center">
 				<div className="flex flex-row">
 					<div className="text-3xl lg:text-4xl font-primary font-bold flex">
 						<img src={logo} alt="logo" className="h-10 " />

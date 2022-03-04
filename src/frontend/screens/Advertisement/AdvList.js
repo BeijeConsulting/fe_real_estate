@@ -94,6 +94,7 @@ const AdvList = (props) => {
 					`/${lang}/users-section/public-profile/${adv.seller.username}`
 				)}
 				authorName={adv.seller.username}
+				business={adv.seller.business}
 			/>
 		);
 	};

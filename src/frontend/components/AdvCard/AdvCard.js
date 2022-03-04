@@ -96,6 +96,7 @@ const AdvCard = (props) => {
                         onClick={props.onAuthorClick}
                         avatarUrl={avatar}
                         displayName={props.authorName}
+                        business={props.business}
                     />
 
                     {/* PHOTOS */}
