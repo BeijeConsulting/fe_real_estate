@@ -10,7 +10,6 @@ import { Select } from "antd";
 //UTILS
 import sortList from '../../../common/utils/sortList'
 import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage'
-import typesTranslator from '../../utils/typesTranslator'
 
 // imgs
 import noHouseFound from '../../assets/illustrations/noHouseFound.svg'
