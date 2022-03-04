@@ -89,7 +89,7 @@ const AddChecker = (props) => {
 
     const saveChecker = async () => {
         let user = await getUserByUsername(state.checker.username, props.admin.token)
-        let check = await createChecker(user.id, {}, props.admin.token)
+        await createChecker(user.id, {}, props.admin.token)
         navigate('/admin/collaborators')
     }
 

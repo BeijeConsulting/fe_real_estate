@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
 //utils
 import utilsMethods from "../../../common/utils/utilsMethods";
 import { ADV_TYPES, BUILDING_TYPES } from "../../../common/utils/globalTypes";
@@ -8,7 +7,6 @@ import "./advListBo.css";
 
 // axios
 import {
-  getAllAds,
   getAllAdsPaginations,
   searchAdvByParams,
 } from "../../../services/backoffice/advertisementApi";
@@ -18,10 +16,10 @@ import { getCities } from "../../../services/frontend/advertisementApi";
 import { connect } from "react-redux";
 
 // react router
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // ant design
-import { Table, Input, Button, Select } from "antd";
+import { Table, Button, Select } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 

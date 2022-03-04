@@ -1,4 +1,4 @@
-import { Button, Form, Input, Modal, Upload } from "antd";
+import { Button, Form, Input, Modal } from "antd";
 import "antd/dist/antd.css";
 import "./updateProfile.css";
 import { useEffect, useState } from "react";
