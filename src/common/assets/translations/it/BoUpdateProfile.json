@@ -5,6 +5,7 @@
         "Surname": "Cognome",
         "Username": "Username"
     },
+    "Update": "MODIFICA DATI PROFILO",
 	"Contacts": {
         "Contacts": "Contatti",
         "PersonalEmail": "Email personale"

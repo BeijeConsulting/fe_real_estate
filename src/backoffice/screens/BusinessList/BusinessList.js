@@ -113,16 +113,16 @@ class BusinessList extends Component {
                         id: 1 + '-' + this.props.lang,
                         title: '',
                         dataIndex: 'actions',
-                        render: (text, record) => {
+                        render: (text, record, index) => {
                             return (
                                 <>
                                     <Popover content={t("BoBusiness.Business.HoverRemove")} trigger="hover">
-                                        <Button type="primary" onClick={this.openModal(record.key)} danger>
+                                        <Button type="primary" onClick={this.openModal(index)} danger>
                                             <UserDeleteOutlined style={{ fontSize: '20px', margin: 0 }} />
                                         </Button>
                                     </Popover>
 
-                                    <Modal visible={this.state.isModal === record.key} onOk={this.handleRemove(record.key)} onCancel={this.closeModal} getContainer={false}>
+                                    <Modal visible={this.state.isModal === index} onOk={this.handleRemove(record.key)} onCancel={this.closeModal} getContainer={false}>
                                         <p>{t("BoBusiness.Business.ModalText")}</p>
                                     </Modal>
 

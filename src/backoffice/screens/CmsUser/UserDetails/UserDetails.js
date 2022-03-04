@@ -1,13 +1,15 @@
+//import css
 import "./userDetails.css"
-import { React, Component } from "react"
+//import react
+import { React } from "react"
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { deleteUser } from "../../../../services/backoffice/usersApi";
-
-import { getUserById } from "../../../../services/backoffice/usersApi";
-
+//import api
+import { deleteUser, getUserById } from "../../../../services/backoffice/usersApi";
+//import antd
 import { Button, List, Modal } from "antd";
+//import i18n
 import { useTranslation } from "react-i18next";
 
 const UserDetails = (props) => {
@@ -75,48 +77,21 @@ const UserDetails = (props) => {
                                 title={t("BoUsers.CmsUser.Info.Username")}
                                 description={item.username}
                             />
-                        </List.Item>
-                    )}
-                />
-            </div>
-
-            <div className='contacts-user-box'>
-                <List
-                    className="contacts-list"
-                    header={<h3 className='contacts-title'>{t("BoUsers.CmsUser.Info.Contacts")}</h3>}
-                    itemLayout="vertical"
-                    dataSource={state.data}
-                    loading={state.isLoading}
-                    renderItem={item => (
-                        <List.Item>
                             <List.Item.Meta
                                 title={t("BoUsers.CmsUser.Info.Email")}
                                 description={item.email}
                             />
-                            {/*<List.Item.Meta
-                            title={'Numero di telefono'}
-                            description={item.phoneNumber}
-                        />
-                        <List.Item.Meta
-                            title={'Email di lavoro'}
-                            description={item.businessEmail}
-                        />*/}
                         </List.Item>
                     )}
                 />
             </div>
-            {/*             <Button
-                className='button-user'
-                type="primary"
-                onClick={handleClick}
-            > Modifica Dati </Button> */}
             <Button
                 className='button-delete'
                 type="danger"
                 onClick={handleModal}
-            > Elimina </Button>
+            >{t("BoUsers.CmsUser.Info.Delete")}</Button>
             <Modal visible={state.isModalOpened} onOk={handleDelete} onCancel={handleModal} getContainer={false}>
-                <p>Attenzione, stai per eliminare questo utente. Procedere?</p>
+                <p>{t("BoUsers.CmsUser.Info.ModalText")}</p>
             </Modal>
         </div >
     )

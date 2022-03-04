@@ -27,6 +27,7 @@
     },
     "Button": "Modifica dati",
     "UpdateBusiness": {
+        "Update": "MODIFICA DATI AZIENDA",
         "BusinessName":"Nome azienda",
         "Vat": "Partita Iva",
         "Address": "Indirizzo",

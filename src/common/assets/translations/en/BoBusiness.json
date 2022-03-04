@@ -27,6 +27,7 @@
     },
     "Button": "Edit data",
     "UpdateBusiness": {
+        "Update": "EDIT BUSINESS DATA",
         "BusinessName":"Business name",
         "Vat": "Vat code",
         "Address": "Address",
