@@ -2,24 +2,23 @@ import React from 'react';
 
 //COMPONENTS
 import Navbar from '../../components/Navbar/Navbar';
-import Button from '../../components/UI/Button/Button';
 import Footer from '../../components/Footer/Footer';
 
 //CSS
 import './FAQ.css';
 
 //Translation
-import {useTranslation} from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 //FONTAWESOME
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowRight, faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 //IMAGES
 import YellowWoman from "../../../assets/images/womanhelp1.jpg";
 
 const FAQ = () => {
-    const {t} = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <>

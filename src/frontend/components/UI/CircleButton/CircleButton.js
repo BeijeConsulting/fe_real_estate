@@ -16,7 +16,6 @@ CircleButton.defaultProps = {
 
 CircleButton.propTypes = {
   label: PropTypes.string,
-  className: PropTypes.string,
   onClick: PropTypes.func,
 };
 
