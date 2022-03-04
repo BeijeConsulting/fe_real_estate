@@ -1,94 +1,29 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 // components
 import PhotosCarousel from '../PhotosCarousel/PhotosCarousel'
 import Card from "../UI/Card/Card";
 import AdvAuthor from "./AdvAuthor";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
-import Toast from '../Toast/Toast'
 
 // imgs
 import avatar from '../../assets/images/avatar.png'
 
 //utils
 import getBuildingType from '../../../common/utils/getBuildingType'
-import { LOCAL_STORAGE_KEYS } from '../../../common/utils/storage';
 import types from '../../utils/typesTranslator'
 
-//apis
-import { getUserSavedAds, removeUserAdv, userSaveAdv } from '../../../services/frontend/usersApi';
 
 // redux
 import { connect } from 'react-redux'
+import AdvFavouriteButton from './AdvFavouriteButton';
 
 const AdvCard = (props) => {
 
     let title =  getBuildingType(props.rooms) + " in " + types.adv(props.advType)  +  " a " + props.address 
 
-    const [toast, setToast] = useState({ type: '', msg: '' })
-
-    const addFavourite = (e) => {
-        e.stopPropagation()
-
-        let token = localStorage.getItem(LOCAL_STORAGE_KEYS.USER_TOKEN)
-
-        if (!token) {
-            setToast({ type: 'error', msg: 'Esegui il Login per Salvare' })
-        } else {
-            userSaveAdv(props.id, token)
-                .then(res => {
-                    setToast({ type: 'success', msg: 'Annuncio salvato!' })
-                    getUserSavedAds(props.dispatch)
-                })
-                .catch(e => setToast({ type: 'error', msg: 'Non sono riuscito a salvare' }))
-
-        }
-
-    }
-
-
-    const removeFavourite = (e) => {
-        e.stopPropagation()
-        
-        removeUserAdv(props.id)
-        .then(res => {
-            setToast({ type:'success', msg:'Annuncio Rimosso'})
-            getUserSavedAds(props.dispatch)
-        })
-        .catch(e => setToast({ type: 'error', msg: 'Errore, operazione fallita' }))
-
-    }
-
-    const handleFavouriteRender = () => {
-        let isSaved = props.savedAds.find(ad => ad.id === props.id)
-
-        if (isSaved) {
-            return (
-                <FontAwesomeIcon
-                    onClick={removeFavourite}
-                    icon={faHeart}
-                    className='text-red-500 text-2xl'
-                />
-            )
-        } else {
-            return (
-                <FontAwesomeIcon
-                    onClick={addFavourite}
-                    icon={faHeart}
-                    className='text-gray-400 text-2xl hover:text-red-400 transition'
-                />
-            )
-        }
-    }
 
     return (
         <>
-            <Toast
-                clearValues={setToast}
-                type={toast.type}
-                msg={toast.msg}
-            />
             <Card className={'flex-col md:flex-row  overflow-hidden mb-6 shadow ' + props.className}>
                 <div className='relative'>
                     {/* BLURRED USER SECTION */}
@@ -110,7 +45,7 @@ const AdvCard = (props) => {
                     {/* INFO-RIGHT */}
                     <div className='flex justify-between'>
                         <p className='font-primary font-semibold text-xl text-gray-700'>{props.city}</p>
-                        {handleFavouriteRender()}
+                        <AdvFavouriteButton id={props.id} />
                     </div>
 
                     <p className='block font-primary font-bold text-3xl'>{title}</p>

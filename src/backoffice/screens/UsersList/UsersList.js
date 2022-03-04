@@ -12,7 +12,7 @@ import { getUsersPaged, getUserByUsername } from "../../../services/backoffice/u
 import { connect } from "react-redux";
 
 // Import from AntDesign
-import { Table, Input, Tag, Space } from "antd";
+import { Table, Input, Tag } from "antd";
 import { Link } from "react-router-dom";
 
 const { Search } = Input;
@@ -134,12 +134,11 @@ class UsersList extends Component {
         payload = payload.map(element => {
             return ({ ...element, key: element.id })
         })
-        console.log(payload)
         if (payload[0]) {
             this.setState({
                 users: payload,
                 isLoading: false,
-                totalElements: payload.lenght
+                totalElements: 1
             })
         } else {
             this.setState({

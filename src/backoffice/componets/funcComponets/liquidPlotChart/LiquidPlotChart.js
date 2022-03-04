@@ -1,5 +1,4 @@
-
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Liquid } from '@ant-design/plots';
 import PropTypes from 'prop-types'
 import { Spin } from 'antd';

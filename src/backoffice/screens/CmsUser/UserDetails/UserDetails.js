@@ -29,10 +29,6 @@ const UserDetails = (props) => {
         setState({ data })
     }
 
-    const handleClick = () => {
-        navigate('/admin/user/' + params.id + "/details/update-details")
-    }
-
     const handleModal = () => {
         let isModalOpened = state.isModalOpened
         setState({

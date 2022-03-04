@@ -31,7 +31,7 @@ export const getAdv = async (token, id) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .get(`/admin/advertisement/${id}`, { headers })
     .then((response) => {
       newAdv = [response.data];
@@ -44,7 +44,7 @@ export const getAdvChecker = async (token, id) => {
   let headers = {
     Authorization: `Bearer ${token}`,
   };
-  const result = await javaAcademyServiceInstance
+  await javaAcademyServiceInstance
     .get(`/checker/pending/${id}`, { headers })
     .then((response) => {
       newAdv = [response.data];

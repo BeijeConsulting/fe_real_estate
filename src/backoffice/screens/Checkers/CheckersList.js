@@ -122,7 +122,7 @@ const CheckersList = (props) => {
     }
 
     useEffect(() => {
-        let data = fetchCheckers()
+        fetchCheckers()
     }, [state.refresh])
 
     return (

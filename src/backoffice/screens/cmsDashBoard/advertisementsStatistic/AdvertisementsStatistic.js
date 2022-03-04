@@ -1,11 +1,9 @@
 import "./advertisementsStatistic.css"
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
 /* redux */
 import { connect } from "react-redux";
 /* ant */
-import { Card } from "antd";
-import { Row, Col, Skeleton, Collapse } from 'antd';
+import { Row, Col, Collapse } from 'antd';
 /* statistics*/
 import MapAdvertisementsChart from "../../../componets/funcComponets/MapAdvertisementsChart/MapAdvertisementsChart";
 import BasicAreaPlotChart from "../../../componets/funcComponets/basicAreaPlotChart/BasicAreaPlotChart";

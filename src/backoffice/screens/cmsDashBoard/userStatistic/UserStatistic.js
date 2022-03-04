@@ -1,15 +1,12 @@
 import "./userStatistic.css"
 import React, { useState, useEffect } from 'react';
-import ReactDOM from 'react-dom';
-/* lodash */
-import { map } from "lodash";
 /* redux */
 import { connect } from "react-redux";
 /* API */
 import { apiCustomLabelChart, apiBasicColumnPlotRegion, apiBasicAreaPlotChart, apiAllUsers } from "../../../../services/backoffice/chartsApi";
 /* ant */
 import { Card } from "antd";
-import { Row, Col, Skeleton } from 'antd';
+import { Row, Col } from 'antd';
 /* statistics*/
 import CustomLabelChart from "../../../componets/funcComponets/customLabelChart/CustomLabelChart";
 import BasicColumnPlot from "../../../componets/funcComponets/BasicColumnPlotChart/BasicColumnPlot";

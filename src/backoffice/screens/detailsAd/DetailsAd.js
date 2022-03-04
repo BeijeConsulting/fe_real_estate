@@ -67,7 +67,7 @@ const DetailsAd = (props) => {
   // axios
   const createAdv = async () => {
     let resultApi = null;
-    if (props.admin?.permission?.includes("ADMIN")) {
+    if (props.admin.permission?.includes("ADMIN")) {
       resultApi = await getAdv(props.admin.token, param.id);
     } else {
       resultApi = await getAdvChecker(props.admin.token, param.id);
@@ -95,7 +95,7 @@ const DetailsAd = (props) => {
 
   // carousel func
   const onChange = (a, b, c) => {
-    // console.log(a, b, c);
+    
   };
 
   // show feedback func

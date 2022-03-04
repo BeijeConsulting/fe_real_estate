@@ -1,9 +1,8 @@
-import { Button, Form, Input, Modal, Upload } from "antd";
-import { UploadOutlined } from '@ant-design/icons';
+import { Button, Form, Input, Modal } from "antd";
 import "antd/dist/antd.css";
 import "./updateProfile.css";
 import { useEffect, useState } from "react";
-import { getUserById, updateUserInfo, getUsersProfile } from "../../../services/backoffice/usersApi";
+import { updateUserInfo, getUsersProfile } from "../../../services/backoffice/usersApi";
 import { connect } from "react-redux";
 
 import { useNavigate } from "react-router-dom";
@@ -15,9 +14,6 @@ const UpdateProfile = (props) => {
     let navigate = useNavigate()
     const { t } = useTranslation()
     const [form] = Form.useForm();
-    const antProps = {
-        action: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.interlinecenter.com%2F%3Fattachment_id%3D337&psig=AOvVaw1M-WHiEIbmWU6iI0nqA9iI&ust=1645182122041000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPibgZLLhvYCFQAAAAAdAAAAABAD'
-    }
 
     const [state, setState] = useState({ dataAdmin: null, updatedData: {}, isModalOpened: false })
 

@@ -1,7 +1,3 @@
-
-
-
-import { useEffect, useState } from 'react';
 import { Column } from '@ant-design/plots';
 import { Spin } from 'antd';
 import PropTypes from 'prop-types'

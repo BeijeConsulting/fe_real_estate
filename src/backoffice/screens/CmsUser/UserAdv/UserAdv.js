@@ -1,5 +1,3 @@
-
-import { UploadOutlined } from '@ant-design/icons';
 import "antd/dist/antd.css";
 import { useEffect, useState } from "react";
 import { connect } from "react-redux";
@@ -9,7 +7,7 @@ import { Link, useParams} from "react-router-dom";
 //Utils
 import utilsMethods from "../../../../common/utils/utilsMethods";
 // Import from AntDesign
-import { Table, Input, Tag, Space, Button } from "antd";
+import { Table } from "antd";
 import { getAdvertisementsById } from '../../../../services/backoffice/advertisementApi';
 import { useTranslation } from 'react-i18next';
 
@@ -53,7 +51,7 @@ const UserAdv = (props) => {
             title: '',
             dataIndex: 'actions',
             render: (text, record) =>
-                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>Scheda advertisement</Link>
+                <Link key={Math.random()} to={"/admin/advertisement/" + record.id}>{t("BoAds.Columns.AdvCard")}</Link>
             ,
         }
     ]

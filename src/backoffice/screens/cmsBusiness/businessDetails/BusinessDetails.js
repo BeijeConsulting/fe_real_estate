@@ -28,7 +28,6 @@ const BusinessDetails = (props) => {
     const getBusinessData = async () => {
         businessData = await getBusinessById(params.id, props.admin.token)
         data = [businessData]
-        console.log('business data', data)
         setState({ data, isLoading: false })
     }
 

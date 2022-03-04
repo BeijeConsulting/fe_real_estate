@@ -2,8 +2,6 @@ import React from 'react'
 
 const AdvAuthor = (props) => {
 
-    console.log(props.business)
-
     return (
         <div className='p-2 items-center flex backdrop-blur-sm absolute bottom-0 left-0 z-10 right-0 h-18'>
             {/* AVATAR AUTHOR */}
