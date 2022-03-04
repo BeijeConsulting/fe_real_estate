@@ -68,6 +68,7 @@ const AdvCard = (props) => {
 }
 
 AdvCard.defaultProps = {
+    business: '',
     id: 0,
     title: 'title',
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elite Vestibulum ultricies suscipit rhoncus. Curabitur sed feugiat mi, sed mollis tortor. Duis aliquet dapibus nulla non venenatis. Duis rutrum mauris vitae lacus sagittis facilisis. Mauris vehicula nulla quis interdum tempor. ",

@@ -37,7 +37,7 @@ const RenderAdvs = (props) => {
                     onClick={handleNavigate(`/${lang}/adv/${adv.id}`)}
                     onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv.seller.username}`)}
                     authorName={adv.seller.username}
-                    business={adv.seller?.business}
+                    business={adv.seller.business}
                 />
             </div>
         )
