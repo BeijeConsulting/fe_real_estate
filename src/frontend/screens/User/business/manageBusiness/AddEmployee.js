@@ -37,25 +37,25 @@ const AddEmployee = (props) => {
 	};
 
 	return (
-		<Card className="flex flex-col mb-4 justify-center items-center">
-			<div className="flex flex-row p-4 items-center justify-center">
-				<div className="flex flex-col mr-4 w-56 items-center justify-center">
-					<Input
-						value={state.vatNumber}
-						onChange={onChange}
-						placeholder={"Add employee"}
-					/>
-				</div>
-				<div className="flex flex-col w-56 items-center justify-center">
-					<Button
-						className="max-w-lg"
-						iconPosition="right"
-						onClick={onClickAddEmployee}
-						label={"Add"}
-					/>
-				</div>
-				<Toast type={state.status} msg={state.msg} clearValues={onClearValue} />
+		<Card className="flex flex-col mb-4 p-4 md:flex-row md:justify-center items-center">
+			<div className="flex flex-col pb-2 md:pb-0 md:mr-4 w-56 items-center justify-center">
+				<Input
+					value={state.vatNumber}
+					onChange={onChange}
+					placeholder={"Add employee"}
+				/>
 			</div>
+			<div className="flex flex-col w-56 items-center justify-center">
+				<Button
+					className="max-w-lg"
+					iconPosition="right"
+					onClick={onClickAddEmployee}
+					label={"Add"}
+				/>
+			</div>
+			<Toast type={state.status} msg={state.msg} clearValues={onClearValue} />
+			{/* <div className="flex flex-col justify-evenly md:flex-row p-4 items-center md:justify-center">
+			</div> */}
 		</Card>
 	);
 };
