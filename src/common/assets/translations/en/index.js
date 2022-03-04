@@ -1,5 +1,6 @@
 import AdvList from "./AdvList.json";
 import AboutUs from "./AboutUs.json";
+import AssessProperty from "./AssessProperty.json";
 import BoAds from "./BoAds.json";
 import BoBusiness from "./BoBusiness.json";
 import BoCheckers from "./BoCheckers.json";
@@ -31,6 +32,7 @@ import ContactSeller from "./ContactSeller.json";
 const en = {
 	AboutUs,
 	Footer,
+	AssessProperty,
 	Navbar,
 	Dashboard,
 	MobileUserNavbar,
