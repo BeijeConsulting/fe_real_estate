@@ -86,7 +86,7 @@ const AdvList = (props) => {
 				city={adv.city}
 				address={adv.address}
 				squareMeters={adv.areaMsq}
-				description={adv?.longDescription}
+				description={adv.longDescription}
 				roomNumber={adv.rooms}
 				price={adv.price}
 				onClick={handleNavigate(`/${lang}/adv/${adv.id}`)}

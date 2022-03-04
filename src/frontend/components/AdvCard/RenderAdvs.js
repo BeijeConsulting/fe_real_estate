@@ -23,11 +23,9 @@ const RenderAdvs = (props) => {
 
     const handleRender = (adv, key) => {
         return (
-            <div className={props.horizontal && ' whitespace-normal ml-4 max-w-sm md:max-w-3xl inline-block mr-4'}>
+            <div key={'advard-' + key + adv.id} className={props.horizontal && ' whitespace-normal ml-4 max-w-sm md:max-w-3xl inline-block mr-4'}>
                 <AdvCard
-                    
                     advType={adv.advType}
-                    key={'advard-' + key + adv.id}
                     savedAds={props.savedAds}
                     id={adv.id}
                     city={adv.city}
@@ -37,9 +35,9 @@ const RenderAdvs = (props) => {
                     roomNumber={adv.rooms}
                     price={adv.price}
                     onClick={handleNavigate(`/${lang}/adv/${adv.id}`)}
-                    onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv?.seller?.username}`)}
-                    authorName={adv?.seller?.username}
-                    business={adv?.seller?.business}
+                    onAuthorClick={handleNavigate(`/${lang}/users-section/public-profile/${adv.seller.username}`)}
+                    authorName={adv.seller.username}
+                    business={adv.seller?.business}
                 />
             </div>
         )
