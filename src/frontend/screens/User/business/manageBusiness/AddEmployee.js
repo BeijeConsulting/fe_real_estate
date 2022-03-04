@@ -13,7 +13,12 @@ import {
 	getEmployeesList,
 } from "../../../../../services/frontend/managerApi";
 
+// translation
+import { useTranslation } from "react-i18next";
+
 const AddEmployee = (props) => {
+	const { t } = useTranslation();
+
 	const [state, setState] = useState({
 		username: "",
 		status: "idle", // idle, success, error
@@ -42,7 +47,7 @@ const AddEmployee = (props) => {
 				<Input
 					value={state.vatNumber}
 					onChange={onChange}
-					placeholder={"Add employee"}
+					placeholder={t("ManageBusiness.AddEmployee.field")}
 				/>
 			</div>
 			<div className="flex flex-col w-56 items-center justify-center">
@@ -50,12 +55,10 @@ const AddEmployee = (props) => {
 					className="max-w-lg"
 					iconPosition="right"
 					onClick={onClickAddEmployee}
-					label={"Add"}
+					label={t("ManageBusiness.AddEmployee.button")}
 				/>
 			</div>
 			<Toast type={state.status} msg={state.msg} clearValues={onClearValue} />
-			{/* <div className="flex flex-col justify-evenly md:flex-row p-4 items-center md:justify-center">
-			</div> */}
 		</Card>
 	);
 };
