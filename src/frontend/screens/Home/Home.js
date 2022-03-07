@@ -10,7 +10,6 @@ import Search from "../../components/Search/Search";
 import Footer from "../../components/Footer/Footer";
 import Illustrations from "../../components/Illustrations/Illustrations";
 import Carousel from "../../components/Carousel/Carousel";
-import Button from "../../components/UI/Button/Button";
 
 // translations
 import { Helmet } from "react-helmet";

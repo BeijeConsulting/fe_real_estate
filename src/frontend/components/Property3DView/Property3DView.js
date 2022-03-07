@@ -5,19 +5,10 @@ import { Loader, OrbitControls } from "@react-three/drei";
 
 import luxuryHouse from "../../assets/3DModels/luxury house/luxury house interior.obj";
 import luxuryHouseMtl from "../../assets/3DModels/luxury house/luxury house interior.mtl";
-// import dragon from "../../assets/3DModels/dragon/Dragon 2.5_fbx.fbx";
-// import dragonGroundTexture from "../../assets/3DModels/dragon/textures/Dragon_ground_color.jpg";
-// import smartphone from "../../assets/3DModels/Smartphone-3D-Model/Smartphone 3D Model.obj";
-// import smartphoneMTL from "../../assets/3DModels/Smartphone-3D-Model/Smartphone 3D Model.mtl";
-
-// import houseMTL from "../../assets/3DModels/house/H01.mtl";
-// import house from "../../assets/3DModels/house/H01.obj";
 
 import { Canvas } from "@react-three/fiber";
 
-import OBJMTLShow from "./OBJMTLShow";
-// import FBXTexureShow from "./FBXTextureShow";
-// import GLBShow from "./GLBShow";
+const OBJMTLShow = React.lazy(() => import("./OBJMTLShow"));
 
 class Property3DView extends Component {
 	constructor(props) {
@@ -59,19 +50,19 @@ class Property3DView extends Component {
 						width: "80vw",
 					}}
 				>
+					<ambientLight intensity={1} />
+					<pointLight intensity={1} position={[10, 10, 10]} />
+					<OrbitControls />
 					<Suspense fallback={null}>
-						<ambientLight intensity={1} />
-						<pointLight intensity={1} position={[10, 10, 10]} />
-						<OrbitControls />
 						<OBJMTLShow
 							src={luxuryHouse}
 							mtlSrc={luxuryHouseMtl}
-							position={[0, 0, 0]}
-							scale={0.4}
+							position={[0, -5, -30]}
+							scale={0.1}
 						/>
 					</Suspense>
 				</Canvas>
-				<Loader />
+				<Loader barStyles={{ height: 20 }} dataStyles={{ fontSize: 25 }} />
 			</div>
 		);
 	}

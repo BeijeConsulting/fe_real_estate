@@ -81,7 +81,7 @@ const NewAdv = (props) => {
 			price: parseInt(state.price),
 		};
 
-		const adv = await addNewAdv(body, token)
+		await addNewAdv(body, token)
 			.then((res) => {
 				setSuccess(true);
 				setError(false);

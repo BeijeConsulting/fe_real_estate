@@ -1,9 +1,5 @@
 import React, { Component } from "react";
 
-// routing
-import { Navigate, Link } from "react-router-dom";
-import { ROUTES } from "../../../../utils/properties";
-
 // utils
 import formValidation from "../../../utils/formValidation";
 
@@ -19,8 +15,7 @@ import { Helmet } from "react-helmet";
 
 // api
 import { connect } from "react-redux";
-import { createBusiness } from "../../../../services/frontend/managerApi"
-import { getUserMe } from "../../../../services/frontend/usersApi";
+import { createBusiness } from "../../../../services/frontend/managerApi";
 class NewBusiness extends Component {
 	constructor(props) {
 		super(props);
@@ -131,11 +126,9 @@ class NewBusiness extends Component {
 		if (this.areDataValid()) {
 			//registra business
 
-			createBusiness(this.state.data, this.props.dispatch)
-				.catch((err) => {
-					console.error(err);
-				})
-
+			createBusiness(this.state.data, this.props.dispatch).catch((err) => {
+				console.error(err);
+			});
 		}
 	};
 
@@ -156,7 +149,6 @@ class NewBusiness extends Component {
 					<h1 className="capitalise font-primary font-extrabold text-4xl">
 						{t("SignUpBusiness.signUp")}
 					</h1>
-
 
 					<div className="mt-5">
 						<Input
@@ -221,11 +213,6 @@ class NewBusiness extends Component {
 						onClick={this.onClickSignUp}
 						label={t("SignUpBusiness.signUpButton")}
 					/>
-
-
-
-
-
 				</form>
 			</>
 		);

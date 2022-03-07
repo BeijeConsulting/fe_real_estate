@@ -18,13 +18,13 @@ const Carousel = () => {
 
 	useEffect(() => {
 	  getLatestAds().then(res => {
-		  setState(res.data)
+		  setState(res.data.slice(0,2))
 	  })
 	}, [])
 	
 
 	return (
-		<div className="flex flex-col">
+		<div className="flex flex-col bg-gray-100">
 			<h1 className="text-3xl font-bold mt-8 mx-auto md:ml-20 font-primary color-secondary">
 				{t("Carousel.title")}
 			</h1>
