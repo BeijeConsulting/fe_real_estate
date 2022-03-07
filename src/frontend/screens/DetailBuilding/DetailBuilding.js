@@ -178,8 +178,6 @@ const DetailBuilding = () => {
 											</button>
 										</>
 									}
-
-
 								</div>
 							</div>
 						</div>
@@ -339,7 +337,6 @@ const DetailBuilding = () => {
 											/>
 										</div>
 									</div>
-
 								</div>
 							</Card>
 						</div>
