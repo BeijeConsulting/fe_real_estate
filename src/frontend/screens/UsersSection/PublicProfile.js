@@ -107,7 +107,8 @@ const PublicProfile = () => {
 						<div className="flex flex-col pt-2">
 							<h1 className="font-bold text-xl">{t("Dashboard.UserData")}</h1>
 							<p>
-								<b>{t("Dashboard.UserData")}</b>{" "}
+								<b>{t("Dashboard.CreationDate")}</b>
+								{": "}
 								{!!state.user?.createDatetime
 									? new Date(state.user.createDatetime).toLocaleDateString()
 									: state.user?.createDatetime}

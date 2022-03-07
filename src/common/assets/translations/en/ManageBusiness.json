@@ -1,7 +1,7 @@
 {
 	"errorLoading": "Could not load business info.",
 	"title": "Business reserved area",
-	"creationDate": "Created at",
+	"creationDate": "Created on",
 	"refName": "Ref. name",
 	"refSurname": "Ref. surname",
 	"vatNumber": "VAT number",

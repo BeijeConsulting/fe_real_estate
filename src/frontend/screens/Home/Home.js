@@ -51,7 +51,9 @@ const Home = () => {
 					<Search />
 
 					<div onClick={handleClick} className="flex justify-center mx-auto">
-						<p className="btn-home rounded font-primary">PUBBLICA ANNUNCIO</p>
+						<p className="btn-home rounded font-primary">
+							{t("Home.publishAd.button")}
+						</p>
 					</div>
 				</div>
 				<Illustrations className="illustrations-container" />
@@ -71,7 +73,9 @@ const Home = () => {
 							onClick={handleClick}
 							className="flex flex-1 justify-center  mx-auto bottom-10 left-0 right-0"
 						>
-							<p className="btn-home rounded font-primary">PUBBLICA ANNUNCIO</p>
+							<p className="btn-home rounded font-primary">
+								{t("Home.publishAd.button")}
+							</p>
 						</div>
 					</div>
 				</div>

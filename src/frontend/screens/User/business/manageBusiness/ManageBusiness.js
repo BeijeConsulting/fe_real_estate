@@ -54,10 +54,14 @@ const ManageBusiness = (props) => {
 								{props.managed?.businessName}
 							</p>
 							<p className="text-sm text-slate-500">
-								{!!props.managed?.createDatetime
-									? `${t("ManageBusiness.creationDate")} ${new Date(
-											props.managed.createDatetime
-									  ).toLocaleDateString()}`
+								{!!props.managed?.createDatetime?.dayOfMonth &&
+								!!props.managed?.createDatetime?.monthValue &&
+								!!props.managed?.createDatetime?.year
+									? `${t("ManageBusiness.creationDate")} ${
+											props.managed?.createDatetime?.dayOfMonth
+									  }/${props.managed?.createDatetime?.monthValue}/${
+											props.managed?.createDatetime?.year
+									  }`
 									: undefined}
 							</p>
 							<div className="flex flex-col md:flex-row p-4">

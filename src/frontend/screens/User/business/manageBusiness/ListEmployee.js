@@ -71,7 +71,7 @@ const ListEmployee = (props) => {
 			render: (_, record) => (
 				<p
 					onClick={goToUser(record.username)}
-					className="text-blue-500 cursor-default no-underline hover:underline"
+					className="text-blue-500 cursor-pointer no-underline hover:underline"
 				>
 					{record.username}
 				</p>
