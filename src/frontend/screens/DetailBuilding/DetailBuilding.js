@@ -4,8 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Carousel } from "react-carousel-minimal";
 import { useTranslation } from "react-i18next";
 
-
-import getBuildingType from '../../../common/utils/getBuildingType'
+import getBuildingType from "../../../common/utils/getBuildingType";
 
 //Images
 import Avatar from "../../assets/images/avatar.png";
@@ -13,15 +12,27 @@ import Avatar from "../../assets/images/avatar.png";
 //Icon
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-	faMapMarkerAlt, 
+	faMapMarkerAlt,
 	faMapLocationDot,
-	faBath, faDoorOpen,
-	faMaximize, faStairs,
-	faHouse, faCalendarDays,
-	faCubes, faElevator, faBellConcierge,
-	faPersonSwimming, faBoxOpen, faSun, faWineBottle,
-	faSnowflake, faLightbulb,
-	faCar, faTree, faChair, faStar
+	faBath,
+	faDoorOpen,
+	faMaximize,
+	faStairs,
+	faHouse,
+	faCalendarDays,
+	faCubes,
+	faElevator,
+	faBellConcierge,
+	faPersonSwimming,
+	faBoxOpen,
+	faSun,
+	faWineBottle,
+	faSnowflake,
+	faLightbulb,
+	faCar,
+	faTree,
+	faChair,
+	faStar,
 } from "@fortawesome/free-solid-svg-icons";
 
 //API
@@ -38,36 +49,48 @@ import AdvFavouriteButton from "../../components/AdvCard/AdvFavouriteButton";
 import typesTranslator from "../../utils/typesTranslator";
 
 const DetailBuilding = () => {
-	let title = ""
+	let title = "";
 	let data = [
-		{ image: "https://www.easyrelooking.com/wp-content/uploads/taverna4_EasyRelooking.jpg" },
-		{ image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS1Lpa3Gb4GhJLkprEGpKo_vP8lNMOwnLT7rUN_vDiNnX2YSEYl6WGc1nsNEJ8bqZeWOY&usqp=CAU" },
-		{ image: "https://www.diotti.com/media/wysiwyg/easyrelooking/easyrelooking-render-02.jpg" },
-	]
+		{
+			image:
+				"https://www.easyrelooking.com/wp-content/uploads/taverna4_EasyRelooking.jpg",
+		},
+		{
+			image:
+				"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS1Lpa3Gb4GhJLkprEGpKo_vP8lNMOwnLT7rUN_vDiNnX2YSEYl6WGc1nsNEJ8bqZeWOY&usqp=CAU",
+		},
+		{
+			image:
+				"https://www.diotti.com/media/wysiwyg/easyrelooking/easyrelooking-render-02.jpg",
+		},
+	];
 
-	let { t } = useTranslation()
-	let navigate = useNavigate()
-	let params = useParams()
+	let { t } = useTranslation();
+	let navigate = useNavigate();
+	let params = useParams();
 
-	const [adv, setAdv] = useState()
-	const [isCanvaVisible, setIsCanvaVisible] = useState()
+	const [adv, setAdv] = useState();
+	const [isCanvaVisible, setIsCanvaVisible] = useState();
 
 	useEffect(() => {
-		javaAcademyService.getDetailBuilding(params.buildingId)
-			.then(res => {
-				setAdv(res.data)
-			})
-	}, [])
+		javaAcademyService.getDetailBuilding(params.buildingId).then((res) => {
+			setAdv(res.data);
+		});
+	}, []);
 
-	const handleNavigate = (dest) => () =>  navigate(dest)
-	const toggleCanva = () => setIsCanvaVisible(!isCanvaVisible)
+	const handleNavigate = (dest) => () => navigate(dest);
+	const toggleCanva = () => setIsCanvaVisible(!isCanvaVisible);
 
-	if ( !adv ) {
-		return <p>loading</p>
+	if (!adv) {
+		return <p>loading</p>;
 	}
 
-	title = getBuildingType(adv.rooms) + " in " + typesTranslator.adv(adv.advType)  +  " a " + adv.address 
-
+	title =
+		getBuildingType(adv.rooms) +
+		" in " +
+		typesTranslator.adv(adv.advType) +
+		" a " +
+		adv.address;
 
 	return (
 		<>
@@ -98,7 +121,9 @@ const DetailBuilding = () => {
 								margin: "15px 25px",
 							}}
 						/>
-						<div className={"flex flex-col md:h-60 md:w-96 p-2 md:mt-3 md:mx-auto"}>
+						<div
+							className={"flex flex-col md:h-60 md:w-96 p-2 md:mt-3 md:mx-auto"}
+						>
 							<div className="flex flex-row">
 								<div className="flex flex-row mx-2">
 									<FontAwesomeIcon
@@ -110,7 +135,6 @@ const DetailBuilding = () => {
 									</h1>
 								</div>
 								<AdvFavouriteButton id={adv.id} />
-
 							</div>
 							<div className="flex flex-col p-2 mt-3 gap-4">
 								<div className="flex flex-row">
@@ -125,46 +149,62 @@ const DetailBuilding = () => {
 								<div className="flex">
 									<FontAwesomeIcon
 										className={"text-xl text-gray-800 mt-0.5 mr-2"}
-										icon={faMaximize} />
-									<h1 className="text-lg font-medium">{adv.areaMsq} m<sup>2</sup> </h1>
+										icon={faMaximize}
+									/>
+									<h1 className="text-lg font-medium">
+										{adv.areaMsq} m<sup>2</sup>{" "}
+									</h1>
 								</div>
 								<div className="flex">
 									<FontAwesomeIcon
 										className={"text-xl text-gray-800 mt-0.5 mr-2"}
-										icon={faDoorOpen} />
-									<h1 className="text-lg font-medium">{adv.rooms} {t("DetailBuilding.rooms")}</h1>
+										icon={faDoorOpen}
+									/>
+									<h1 className="text-lg font-medium">
+										{adv.rooms} {t("DetailBuilding.rooms")}
+									</h1>
 								</div>
 								<div className="flex">
 									<FontAwesomeIcon
 										className={"text-xl text-gray-800 mt-0.5 mr-2"}
-										icon={faBath} />
-									<h1 className="text-lg font-medium">{adv.bathrooms} {t("DetailBuilding.bathrooms")}</h1>
+										icon={faBath}
+									/>
+									<h1 className="text-lg font-medium">
+										{adv.bathrooms} {t("DetailBuilding.bathrooms")}
+									</h1>
 								</div>
 								<div className="flex">
 									<FontAwesomeIcon
 										className={"text-xl text-gray-800 mt-0.5 mr-2"}
-										icon={faHouse} />
+										icon={faHouse}
+									/>
 									<h1 className="text-lg font-medium">{adv.condition}</h1>
 								</div>
 								<div className="flex">
 									<FontAwesomeIcon
 										className={"text-xl text-gray-800 mt-0.5 mr-2"}
-										icon={faStairs} />
-									<h1 className="text-lg font-medium">{adv.floor}° {t("DetailBuilding.floor")}</h1>
+										icon={faStairs}
+									/>
+									<h1 className="text-lg font-medium">
+										{adv.floor}° {t("DetailBuilding.floor")}
+									</h1>
 								</div>
 								<div className="flex">
 									<FontAwesomeIcon
 										className={"text-xl text-gray-800 mt-0.5 mr-2"}
-										icon={faCalendarDays} />
-									<h1 className="text-lg font-medium">{t("DetailBuilding.posted")} {new Date(adv.date).toLocaleDateString()}</h1>
+										icon={faCalendarDays}
+									/>
+									<h1 className="text-lg font-medium">
+										{t("DetailBuilding.posted")}{" "}
+										{new Date(adv.date).toLocaleDateString()}
+									</h1>
 								</div>
-								<div className="price">
-									{adv.price}€
-								</div>
+								<div className="price">{adv.price}€</div>
 								<div className="flex mt-1">
-
-									{isCanvaVisible && <Property3DView onClickClose={toggleCanva} />}
-									{adv.virtualTour &&
+									{isCanvaVisible && (
+										<Property3DView onClickClose={toggleCanva} />
+									)}
+									{adv.virtualTour && (
 										<>
 											<FontAwesomeIcon
 												className={"text-2xl text-gray-800 mt-1 mr-2"}
@@ -177,9 +217,7 @@ const DetailBuilding = () => {
 												{t("DetailBuilding.open3D")}
 											</button>
 										</>
-									}
-
-
+									)}
 								</div>
 							</div>
 						</div>
@@ -187,10 +225,15 @@ const DetailBuilding = () => {
 
 					<div className="flex flex-col">
 						<div className="flex flex-row m-2">
-							<img className={"avatar"} src={!!adv.avatar ? adv.avatar : Avatar}></img>
+							<img
+								className={"avatar"}
+								src={!!adv.avatar ? adv.avatar : Avatar}
+							></img>
 							<h3
-								className="text-lg font-semibold mt-3 ml-2 cursor-pointer"
-								onClick={handleNavigate(`/${params.lang}/users-section/public-profile/${adv.seller.username}`)}
+								className="text-lg font-semibold mt-3 ml-2 cursor-pointer text-blue-500 no-underline hover:underline"
+								onClick={handleNavigate(
+									`/${params.lang}/users-section/public-profile/${adv.seller.username}`
+								)}
 							>
 								{adv.seller.username}
 							</h3>
@@ -198,19 +241,22 @@ const DetailBuilding = () => {
 
 						<div className="flex flex-col my-5 md:h-60 md:my-10 md:flex md:flex-row">
 							<Card className="flex flex-col md:h-full mb-6 md:w-1/3 p-4 md:mr-6">
-								<h1 className="text-2xl font-bold text-center">{t("DetailBuilding.description")}</h1>
-								{
-									!adv.description ?
-										<p className="text-center">{t("DetailBuilding.descriptionNotPosted")}</p>
-										: <p className="text-center">{adv.description}</p>
-								}
+								<h1 className="text-2xl font-bold text-center">
+									{t("DetailBuilding.description")}
+								</h1>
+								{!adv.description ? (
+									<p className="text-center">
+										{t("DetailBuilding.descriptionNotPosted")}
+									</p>
+								) : (
+									<p className="text-center">{adv.description}</p>
+								)}
 							</Card>
 							<Card className="flex flex-col md:h-full md:w-4/6 p-4">
 								<h1 className="text-2xl text-center font-bold">
 									{t("DetailBuilding.detailInfo")}
 								</h1>
 								<div className="flex flex-col md:flex-row justify-evenly mt-2">
-
 									<div className="flex flex-col">
 										<div className="flex flex-row">
 											<FontAwesomeIcon
@@ -293,7 +339,8 @@ const DetailBuilding = () => {
 											/>
 											<BuildingInfobox
 												title={t("DetailBuilding.cooling")}
-												adv={adv.cooling} />
+												adv={adv.cooling}
+											/>
 										</div>
 									</div>
 
@@ -339,18 +386,16 @@ const DetailBuilding = () => {
 											/>
 										</div>
 									</div>
-
 								</div>
 							</Card>
 						</div>
 					</div>
 					<ContactSeller />
 				</div>
-			</div >
+			</div>
 			<Footer />
 		</>
 	);
-}
+};
 
-
-export default DetailBuilding
+export default DetailBuilding;
